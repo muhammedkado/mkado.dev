@@ -5,16 +5,23 @@ import { profile } from '../data/site';
 <section id="contact" class="contact">
   <div class="wrap">
     <div class="section-head">
-      <h2>Contact</h2>
-      <p>Open to full-time roles, remote or in İstanbul. English, Turkish, Arabic or Kurdish all work.</p>
+      <h2>contact</h2>
+      <p>English, Turkish, Arabic or Kurdish all work.</p>
+      <span class="status">
+        <span class="dot" aria-hidden="true"></span>
+        open to full-time roles, remote or istanbul
+      </span>
     </div>
 
     <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
 
     <div class="ways">
       <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <span class="sep">/</span>
       <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+      <span class="sep">/</span>
       <a href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp {profile.phone}</a>
+      <span class="sep">/</span>
       <a href={profile.cv} download="Muhammed_Kado_CV.pdf">CV (PDF)</a>
     </div>
   </div>

@@ -5,19 +5,19 @@ import { experience as job } from '../data/site';
 <section id="experience">
   <div class="wrap">
     <div class="section-head">
-      <h2>Experience</h2>
+      <h2>experience</h2>
     </div>
 
     <div class="job">
       <div class="when">
-        <strong><a href={job.url} target="_blank" rel="noopener">{job.company}</a></strong>
-        {job.period}<br />
-        {job.location}
+        <span class="range">{job.period}</span>
+        <a class="company" href={job.url} target="_blank" rel="noopener">{job.company}</a>
+        <span class="loc">{job.location}</span>
       </div>
       <div>
         <p class="role">{job.role}</p>
         <p class="summary">{job.summary}</p>
-        <ul>
+        <ul class="diff">
           {job.bullets.map((b) => <li>{b}</li>)}
         </ul>
       </div>

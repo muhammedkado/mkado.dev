@@ -5,23 +5,20 @@ import { demos, demosLive } from '../data/site';
 <section id="demos">
   <div class="wrap">
     <div class="section-head">
-      <h2>Live demos</h2>
+      <h2>live demos</h2>
       <p>Each one is a real deployment with its own database. Sign in with the demo accounts, change whatever you like; everything resets overnight.</p>
+      <span class={`status ${demosLive ? '' : 'soon'}`}>
+        <span class="dot" aria-hidden="true"></span>
+        {demosLive ? `${demos.length} systems up, resets 03:00 utc` : 'deploying — links live shortly'}
+      </span>
     </div>
 
     <div class="board">
-      <div class="board-head">
-        <span class={`status ${demosLive ? '' : 'soon'}`}>
-          <span class="dot" aria-hidden="true"></span>
-          {demosLive ? 'All four systems are up' : 'Deploying now — links go live shortly'}
-        </span>
-        <span>{demos.length} applications, nightly reset at 03:00 UTC</span>
-      </div>
-
       {demos.map((d) => (
-        <article class="demo" id={`demo-${d.slug}`}>
+        <article class={`demo ${demosLive ? '' : 'is-soon'}`} id={`demo-${d.slug}`}>
           <div>
             <div class="demo-title">
+              <span class="dot" aria-hidden="true"></span>
               <h3>{d.name}</h3>
               <span class="period">{d.period}</span>
             </div>

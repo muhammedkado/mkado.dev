@@ -5,14 +5,14 @@ import { skills } from '../data/site';
 <section id="skills">
   <div class="wrap">
     <div class="section-head">
-      <h2>Skills</h2>
+      <h2>skills</h2>
     </div>
 
     <div class="skills">
       {skills.map((g) => (
-        <div class={g.group === 'Mobile' ? 'small' : ''}>
-          <h3>{g.group}</h3>
-          <p>{g.items.join(', ')}</p>
+        <div class="skills-row">
+          <span class="k">{g.group.toLowerCase()}</span>
+          <span class="chips">{g.items.map((item) => <span>{item}</span>)}</span>
         </div>
       ))}
     </div>
