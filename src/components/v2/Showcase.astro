@@ -1,0 +1,105 @@
+---
+import { demos, demosLive } from '../../data/site';
+---
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Five applications you can sign into</h2>
+        <p>Real deployments, each with its own database. Use the demo accounts, change whatever you like — everything resets overnight.</p>
+      </div>
+      <span class={`status ${demosLive ? '' : 'soon'}`}>
+        <span class="dot" aria-hidden="true"></span>
+        {demosLive ? 'All systems up' : 'Deploying — links go live shortly'}
+      </span>
+    </div>
+
+    <div class="showcase">
+      <div class="tabs" role="tablist" aria-label="Applications" aria-orientation="vertical">
+        {demos.map((d, i) => (
+          <button
+            class={`tab ${demosLive ? 'is-live' : ''}`}
+            role="tab"
+            type="button"
+            id={`tab-${d.slug}`}
+            aria-controls={`panel-${d.slug}`}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            tabindex={i === 0 ? 0 : -1}
+          >
+            <span class="dot" aria-hidden="true"></span>
+            <span class="name">{d.name}</span>
+            <span class="meta">{d.stack[0]}</span>
+          </button>
+        ))}
+      </div>
+
+      <div class="panels">
+        {demos.map((d, i) => (
+          <div class="panel" role="tabpanel" id={`panel-${d.slug}`} aria-labelledby={`tab-${d.slug}`} hidden={i !== 0}>
+            <div class="panel-head">
+              <h3>{d.name}</h3>
+              <span class="period">{d.period}</span>
+            </div>
+            <p class="summary">{d.summary}</p>
+            <div class="stack">{d.stack.map((s) => <span>{s}</span>)}</div>
+
+            <div class="panel-actions">
+              <a class="btn btn-primary btn-sm" href={d.url} target="_blank" rel="noopener">Open {d.name}</a>
+              {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
+              {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">Source code</a>}
+            </div>
+
+            {d.credentials.length > 0 && (
+              <div class="creds">
+                {d.credentials.map((c) => (
+                  <div class="cred">
+                    <span class="who">{c.label}</span>
+                    <span class="k">email</span>
+                    <button type="button" class="copy" data-copy={c.user} title="Copy">{c.user}</button>
+                    <span class="k">password</span>
+                    <button type="button" class="copy" data-copy={c.pass} title="Copy">{c.pass}</button>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {d.note && <p class="note">{d.note}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[role="tablist"]').forEach((list) => {
+    const tabs = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+
+    const select = (tab: HTMLButtonElement) => {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls') ?? '');
+        if (panel) panel.hidden = !on;
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => select(tab));
+      tab.addEventListener('keydown', (ev) => {
+        const i = tabs.indexOf(tab);
+        let j: number | null = null;
+        if (ev.key === 'ArrowDown' || ev.key === 'ArrowRight') j = (i + 1) % tabs.length;
+        if (ev.key === 'ArrowUp' || ev.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+        if (ev.key === 'Home') j = 0;
+        if (ev.key === 'End') j = tabs.length - 1;
+        if (j === null) return;
+        ev.preventDefault();
+        tabs[j].focus();
+        select(tabs[j]);
+      });
+    });
+  });
+</script>

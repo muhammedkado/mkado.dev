@@ -1,0 +1,57 @@
+---
+import { timeline } from '../../data/site';
+import { tenureYears } from '../../lib/tenure';
+---
+
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Experience</h2>
+        <p>From a computer-engineering degree to production RFID software that runs in hotels, hospitals and commercial laundries worldwide.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <span class="tl-progress" aria-hidden="true"></span>
+      <ol class="tl-list">
+        {timeline.map((t) => (
+          <li class={`tl-item ${t.to === 'present' ? 'is-current' : ''}`}>
+            <div class="tl-body">
+              <p class="tl-when">
+                <span>{t.from} – {t.to}</span>
+                {t.startDate && <span><b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> yrs</span>}
+                <span class="kind">{t.kind}</span>
+              </p>
+              <h3>{t.title}</h3>
+              <p class="tl-org">
+                {t.url ? <a href={t.url} target="_blank" rel="noopener">{t.org}</a> : t.org}, {t.where}
+              </p>
+              <p class="tl-summary">{t.summary}</p>
+              {t.bullets.length > 0 && (
+                <ul class="tl-bullets">
+                  {t.bullets.map((b) => <li>{b}</li>)}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<script>
+  const items = document.querySelectorAll<HTMLElement>('.tl-item');
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      });
+    },
+    { rootMargin: '0px 0px -12% 0px', threshold: 0.15 },
+  );
+  items.forEach((el) => io.observe(el));
+</script>

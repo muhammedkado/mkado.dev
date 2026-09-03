@@ -171,3 +171,55 @@ export const languages = [
   { name: 'Turkish', level: 'native' },
   { name: 'English', level: 'professional working' },
 ];
+
+// Chronological story for the timeline (newest first).
+export type TimelineEntry = {
+  from: string;
+  to: string;
+  startDate?: string; // ISO — when set, a live tenure figure is shown next to the range
+  kind: 'work' | 'projects' | 'education';
+  title: string;
+  org: string;
+  url?: string;
+  where: string;
+  summary: string;
+  bullets: string[];
+};
+
+export const timeline: TimelineEntry[] = [
+  {
+    from: '2023',
+    to: 'present',
+    startDate: experience.startDate,
+    kind: 'work',
+    title: experience.role,
+    org: experience.company,
+    url: experience.url,
+    where: experience.location,
+    summary: experience.summary,
+    bullets: experience.bullets,
+  },
+  {
+    from: '2024',
+    to: '2026',
+    kind: 'projects',
+    title: 'Five production-style applications',
+    org: 'Independent work',
+    where: 'live on mkado.dev',
+    summary:
+      'A POS back office, an invoicing system, a real-estate platform, an AI job matcher and a tire-shop PWA — ' +
+      'each built end to end with its own database, and published as a live demo anyone can sign into.',
+    bullets: [],
+  },
+  {
+    from: '2019',
+    to: '2024',
+    kind: 'education',
+    title: education.degree,
+    org: education.school,
+    where: 'Burdur',
+    summary:
+      'Graduation project: Kado Job App, a job-board and project-staffing Android app with an admin panel, built with Flutter, Bloc and Firebase.',
+    bullets: [],
+  },
+];

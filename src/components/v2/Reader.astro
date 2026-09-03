@@ -1,0 +1,44 @@
+---
+// A UHF RFID reader sweeping a field of tagged items. Each tag lights up when
+// the expanding read pulse reaches it: its animation delay is distance / speed,
+// where speed must match the ring keyframes in v2.css (r=480 over 4.8s).
+const reader = { x: 72, y: 190 };
+const speed = 100; // px per second
+const positions: [number, number][] = [
+  [170, 130], [170, 250],
+  [260, 70], [260, 190], [260, 320],
+  [350, 130], [350, 250],
+  [440, 70], [440, 190], [440, 320],
+  [520, 130], [520, 250],
+];
+const tags = positions.map(([x, y]) => {
+  const d = Math.hypot(x + 22 - reader.x, y + 9 - reader.y);
+  return { x, y, delay: (d / speed).toFixed(2) };
+});
+---
+
+<svg class="reader" viewBox="0 0 560 380" role="img" aria-labelledby="reader-title">
+  <title id="reader-title">An RFID reader scanning a field of tagged items</title>
+
+  <g class="rings" aria-hidden="true">
+    <circle class="ring" cx={reader.x} cy={reader.y} r="480" style="--d: 0s" />
+    <circle class="ring" cx={reader.x} cy={reader.y} r="480" style="--d: 2.4s" />
+  </g>
+
+  <g class="tags" aria-hidden="true">
+    {tags.map((t) => (
+      <g class="tag" transform={`translate(${t.x} ${t.y})`} style={`--d: ${t.delay}s`}>
+        <rect class="body" x="0" y="0" width="44" height="18" rx="4" />
+        <line class="trace" x1="6" y1="9" x2="17" y2="9" />
+        <line class="trace" x1="27" y1="9" x2="38" y2="9" />
+        <rect class="chip" x="18" y="5" width="8" height="8" rx="1.5" />
+      </g>
+    ))}
+  </g>
+
+  <g class="reader-node" aria-hidden="true">
+    <circle class="halo" cx={reader.x} cy={reader.y} r="14" />
+    <rect class="box" x={reader.x - 18} y={reader.y - 18} width="36" height="36" rx="8" />
+    <circle class="core" cx={reader.x} cy={reader.y} r="5" />
+  </g>
+</svg>

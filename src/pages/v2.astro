@@ -1,26 +1,22 @@
 ---
-import BaseAlt from '../layouts/BaseAlt.astro';
-import Header from '../components/Header.astro';
-import HeroAlt from '../components/HeroAlt.astro';
-import LiveSystems from '../components/LiveSystems.astro';
-import Experience from '../components/Experience.astro';
-import Projects from '../components/Projects.astro';
-import Skills from '../components/Skills.astro';
-import Education from '../components/Education.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import BaseV2 from '../layouts/BaseV2.astro';
+import Header from '../components/v2/Header.astro';
+import Hero from '../components/v2/Hero.astro';
+import Showcase from '../components/v2/Showcase.astro';
+import Timeline from '../components/v2/Timeline.astro';
+import Skills from '../components/v2/Skills.astro';
+import Contact from '../components/v2/Contact.astro';
+import Footer from '../components/v2/Footer.astro';
 ---
 
-<BaseAlt>
+<BaseV2>
   <Header />
   <main>
-    <HeroAlt />
-    <LiveSystems />
-    <Experience />
-    <Projects />
+    <Hero />
+    <Showcase />
+    <Timeline />
     <Skills />
-    <Education />
     <Contact />
   </main>
   <Footer />
-</BaseAlt>
+</BaseV2>
