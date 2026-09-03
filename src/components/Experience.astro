@@ -1,5 +1,6 @@
 ---
 import { experience as job } from '../data/site';
+import { tenureYears } from '../lib/tenure';
 ---
 
 <section id="experience">
@@ -10,7 +11,10 @@ import { experience as job } from '../data/site';
 
     <div class="job">
       <div class="when">
-        <span class="range">{job.period}</span>
+        <span class="range">
+          {job.period} ·
+          <span data-tenure-start={job.startDate}>{tenureYears(job.startDate)}</span> yrs
+        </span>
         <a class="company" href={job.url} target="_blank" rel="noopener">{job.company}</a>
         <span class="loc">{job.location}</span>
       </div>

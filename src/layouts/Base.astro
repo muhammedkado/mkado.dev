@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = `${profile.name} — ${profile.title}`,
-  description = 'Full-stack PHP/Laravel developer in İstanbul. Three years building RFID laundry-management software used in 30+ countries. Five live demos you can open.',
+  description = 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Five live demos you can open.',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? profile.siteUrl).toString();
@@ -73,5 +73,15 @@ const jsonLd = {
   </head>
   <body>
     <slot />
+
+    <script is:inline>
+      // Recompute on every load so the tenure figure keeps ticking over
+      // between deploys instead of going stale (this site is redeployed by hand).
+      document.querySelectorAll('[data-tenure-start]').forEach((el) => {
+        var start = new Date(el.getAttribute('data-tenure-start'));
+        var years = (Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+        el.textContent = years.toFixed(1);
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,43 @@
+---
+import { profile, experience } from '../data/site';
+import { tenureYears } from '../lib/tenure';
+
+const rev = new Date().getFullYear();
+---
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="titleblock">
+      <div class="tb-head">
+        <span>drawing — personal portfolio</span>
+        <span>sheet 01/01 · rev {rev}</span>
+      </div>
+      <div class="tb-rows">
+        <div class="tb-row"><span class="k">name</span><span class="v">{profile.name}</span></div>
+        <div class="tb-row"><span class="k">title</span><span class="v">{profile.title}</span></div>
+        <div class="tb-row"><span class="k">discipline</span><span class="v">{profile.role} — {profile.stackLine}</span></div>
+        <div class="tb-row"><span class="k">location</span><span class="v">{profile.location}</span></div>
+        <div class="tb-row">
+          <span class="k">experience</span>
+          <span class="v"><span data-tenure-start={experience.startDate}>{tenureYears(experience.startDate)}</span> yrs · {experience.company}, since 2023</span>
+        </div>
+        <div class="tb-row">
+          <span class="k">status</span>
+          <span class="v status-inline"><span class="dot" aria-hidden="true"></span> open to work</span>
+        </div>
+      </div>
+    </div>
+
+    <h1>{profile.headline}</h1>
+    <p class="intro">{profile.intro}</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#demos">Open the live demos</a>
+      <a class="btn" href={profile.cv} download="Muhammed_Kado_CV.pdf">Download CV</a>
+      <span class="textlinks">
+        <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+        <span class="sep">/</span>
+        <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </span>
+    </div>
+  </div>
+</section>

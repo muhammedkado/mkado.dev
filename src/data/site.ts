@@ -4,7 +4,8 @@ export const demosLive = false; // flip to true once the VPS is up
 
 export const profile = {
   name: 'Muhammed Kado',
-  title: 'Full Stack Developer',
+  title: 'Computer Engineer',
+  role: 'Full-Stack Developer',
   stackLine: 'PHP · Laravel · React',
   location: 'İstanbul, Turkey (UTC+3)',
   email: 'eng.muhammedkado@gmail.com',
@@ -16,9 +17,10 @@ export const profile = {
   siteUrl: 'https://mkado.dev',
   headline: 'I build the web side of RFID systems that run in 30+ countries.',
   intro:
-    'Full-stack developer in İstanbul. Three years on PHP, Laravel and Zend Framework at USTEK RFID, ' +
-    'shipping features for a laundry-management platform used by commercial laundries, hotels and hospitals. ' +
-    'On my own time I build with React and Next.js. The four applications below are deployed and yours to try.',
+    'Computer engineer in İstanbul, working full-stack. Since 2023 I build REST APIs and web ' +
+    'interfaces in PHP, Laravel and Zend Framework at USTEK RFID, shipping a laundry-management ' +
+    'platform used by commercial laundries, hotels and hospitals. On my own time I build with React ' +
+    'and Next.js. The five applications below are deployed and yours to try.',
 };
 
 export type Demo = {
@@ -136,6 +138,7 @@ export const experience = {
   url: 'https://ustek-rfid.com',
   role: 'Full Stack Developer',
   period: 'May 2023 – present',
+  startDate: '2023-05-01', // used to compute a live tenure figure — see src/lib/tenure.ts
   location: 'İstanbul',
   summary:
     'USTEK builds RFID-based laundry management for commercial laundries, hotels and healthcare, deployed in more than 30 countries. I work on the web platform that sits on top of the readers and terminals.',

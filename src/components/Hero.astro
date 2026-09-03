@@ -1,5 +1,6 @@
 ---
-import { profile } from '../data/site';
+import { profile, experience } from '../data/site';
+import { tenureYears } from '../lib/tenure';
 ---
 
 <section class="hero" id="top">
@@ -13,7 +14,8 @@ import { profile } from '../data/site';
         </span>
       </div>
       <div class="fields">
-        <div class="field"><span class="k">stack</span><span class="v">{profile.stackLine}</span></div>
+        <div class="field"><span class="k">role</span><span class="v">{profile.role} · {profile.stackLine}</span></div>
+        <div class="field"><span class="k">experience</span><span class="v"><span data-tenure-start={experience.startDate}>{tenureYears(experience.startDate)}</span> yrs · USTEK RFID, since 2023</span></div>
         <div class="field"><span class="k">location</span><span class="v">{profile.location}</span></div>
         <div class="field"><span class="k">contact</span><span class="v"><a href={`mailto:${profile.email}`}>{profile.email}</a></span></div>
       </div>

@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mkado.dev',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/v2') })],
   vite: {
     plugins: [tailwindcss()],
   },
