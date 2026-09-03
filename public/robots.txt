@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mkado.dev/sitemap-index.xml

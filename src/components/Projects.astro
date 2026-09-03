@@ -1,0 +1,32 @@
+---
+import { projects, profile } from '../data/site';
+---
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>More projects</h2>
+      <p>Side projects and earlier work, outside the four live demos.</p>
+    </div>
+
+    <div class="projects">
+      {projects.map((p) => (
+        <article class="project">
+          <div>
+            <p class="name">{p.name}</p>
+            <p class="summary">{p.summary}</p>
+            <p class="meta">{p.stack.map((s) => <span>{s}</span>)}</p>
+          </div>
+          <div class="links">
+            {p.url && <a href={p.url} target="_blank" rel="noopener">{p.live ? 'Visit' : 'Open'}</a>}
+            {p.repo && <a href={p.repo} target="_blank" rel="noopener">Code</a>}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="also">
+      Also on <a href={profile.github} target="_blank" rel="noopener">GitHub</a>: a handful of Flutter learning apps (shop, social feed, news reader, notes) from 2022–2023.
+    </p>
+  </div>
+</section>

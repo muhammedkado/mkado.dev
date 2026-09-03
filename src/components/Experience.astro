@@ -1,0 +1,26 @@
+---
+import { experience as job } from '../data/site';
+---
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+    </div>
+
+    <div class="job">
+      <div class="when">
+        <strong><a href={job.url} target="_blank" rel="noopener">{job.company}</a></strong>
+        {job.period}<br />
+        {job.location}
+      </div>
+      <div>
+        <p class="role">{job.role}</p>
+        <p class="summary">{job.summary}</p>
+        <ul>
+          {job.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,11 @@
+---
+import { profile } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© {year} {profile.name}</span>
+    <span>Built with Astro. <a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">Source</a></span>
+  </div>
+</footer>

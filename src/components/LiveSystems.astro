@@ -1,0 +1,80 @@
+---
+import { demos, demosLive } from '../data/site';
+---
+
+<section id="demos">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Live demos</h2>
+      <p>Each one is a real deployment with its own database. Sign in with the demo accounts, change whatever you like; everything resets overnight.</p>
+    </div>
+
+    <div class="board">
+      <div class="board-head">
+        <span class={`status ${demosLive ? '' : 'soon'}`}>
+          <span class="dot" aria-hidden="true"></span>
+          {demosLive ? 'All four systems are up' : 'Deploying now — links go live shortly'}
+        </span>
+        <span>{demos.length} applications, nightly reset at 03:00 UTC</span>
+      </div>
+
+      {demos.map((d) => (
+        <article class="demo" id={`demo-${d.slug}`}>
+          <div>
+            <div class="demo-title">
+              <h3>{d.name}</h3>
+              <span class="period">{d.period}</span>
+            </div>
+            <p class="demo-summary">{d.summary}</p>
+            <div class="stack">{d.stack.map((s) => <span>{s}</span>)}</div>
+          </div>
+
+          <div class="demo-side">
+            <div class="links">
+              <a class="btn btn-sm btn-primary" href={d.url} target="_blank" rel="noopener">Open {d.name.split(' ')[0]}</a>
+              {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
+              {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">Code</a>}
+            </div>
+
+            {d.credentials.length > 0 && (
+              <details class="creds">
+                <summary>Sign-in details</summary>
+                {d.credentials.map((c) => (
+                  <div class="cred">
+                    <span class="who">{c.label}</span>
+                    <span class="k">email</span>
+                    <button type="button" class="copy" data-copy={c.user} title="Copy">{c.user}</button>
+                    <span class="k">password</span>
+                    <button type="button" class="copy" data-copy={c.pass} title="Copy">{c.pass}</button>
+                  </div>
+                ))}
+              </details>
+            )}
+
+            {d.note && <p class="demo-note">{d.note}</p>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button.copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const value = btn.dataset.copy ?? '';
+      try {
+        await navigator.clipboard.writeText(value);
+        const original = btn.textContent;
+        btn.textContent = 'copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1200);
+      } catch {
+        // Clipboard unavailable: the value is already visible to select by hand.
+      }
+    });
+  });
+</script>
