@@ -55,12 +55,14 @@ const jsonLd = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Instrument+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
     <script is:inline>
-      // Apply the saved theme before first paint. System preference is the default.
+      // Mark JS as available (the timeline reveals rely on it) and apply the
+      // saved theme before first paint. System preference is the default.
+      document.documentElement.classList.add('js');
       try {
         var t = localStorage.getItem('theme');
         if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -75,13 +77,48 @@ const jsonLd = {
     <slot />
 
     <script is:inline>
-      // Recompute on every load so the tenure figure keeps ticking over
-      // between deploys instead of going stale (this site is redeployed by hand).
-      document.querySelectorAll('[data-tenure-start]').forEach((el) => {
-        var start = new Date(el.getAttribute('data-tenure-start'));
-        var years = (Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
-        el.textContent = years.toFixed(1);
-      });
+      // Live tenure: recompute on every load so it keeps ticking between deploys,
+      // and count it up once on first paint.
+      (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.querySelectorAll('[data-tenure-start]').forEach(function (el) {
+          var start = new Date(el.getAttribute('data-tenure-start'));
+          var years = (Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+          var final = years.toFixed(1);
+          if (!el.hasAttribute('data-countup') || reduce) {
+            el.textContent = final;
+            return;
+          }
+          el.textContent = '0.0';
+          setTimeout(function () {
+            var t0 = performance.now();
+            var dur = 1100;
+            function tick(now) {
+              var p = Math.min(1, (now - t0) / dur);
+              var e = 1 - Math.pow(1 - p, 3);
+              el.textContent = (years * e).toFixed(1);
+              if (p < 1) requestAnimationFrame(tick);
+              else el.textContent = final;
+            }
+            requestAnimationFrame(tick);
+          }, 500);
+        });
+
+        // Copy-to-clipboard for any button.copy[data-copy].
+        document.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('button.copy[data-copy]');
+          if (!btn) return;
+          navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            var original = btn.textContent;
+            btn.textContent = 'copied';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1200);
+          }).catch(function () {});
+        });
+      })();
     </script>
   </body>
 </html>

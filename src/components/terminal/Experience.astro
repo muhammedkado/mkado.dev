@@ -1,0 +1,24 @@
+---
+import { timeline } from '../../data/site';
+import { tenureYears } from '../../lib/tenure';
+import Cmd from './Cmd.astro';
+---
+
+<Cmd id="experience" n={3} title="Where I've worked and studied (newest first)" cmd="cat experience.txt">
+  {timeline.map((t) => (
+    <article class="job">
+      <p class="job-when">
+        <span>[{t.from} – {t.to}]</span>
+        {t.startDate && <span class="m"><b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> years so far</span>}
+      </p>
+      <p class="job-title">{t.title}</p>
+      <p class="job-org">{t.url ? <a href={t.url} target="_blank" rel="noopener">{t.org}</a> : t.org}, {t.where}</p>
+      <p>{t.summary}</p>
+      {t.bullets.length > 0 && (
+        <ul>
+          {t.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+      )}
+    </article>
+  ))}
+</Cmd>

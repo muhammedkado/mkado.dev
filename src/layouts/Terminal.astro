@@ -1,0 +1,102 @@
+---
+import '../styles/terminal.css';
+import { profile } from '../data/site';
+
+const title = `${profile.name} — ${profile.title} (terminal)`;
+const description = 'A terminal-style version of mkado.dev, written in plain English.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      // A terminal is dark unless you've picked light on this site before.
+      try {
+        if (localStorage.getItem('theme') !== 'light') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script is:inline>
+      (function () {
+        // Live tenure figure, recomputed on every load.
+        document.querySelectorAll('[data-tenure-start]').forEach(function (el) {
+          var start = new Date(el.getAttribute('data-tenure-start'));
+          el.textContent = ((Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000)).toFixed(1);
+        });
+
+        // Copy-to-clipboard for any button.copy[data-copy].
+        document.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('button.copy[data-copy]');
+          if (!btn) return;
+          navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            var original = btn.textContent;
+            btn.textContent = 'copied';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = original;
+              btn.classList.remove('copied');
+            }, 1200);
+          }).catch(function () {});
+        });
+
+        // Commands type themselves as they scroll into view, then their output
+        // fades in. Everything is already in the HTML, so without JS (or with
+        // reduced motion) the page is simply static.
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce || !('IntersectionObserver' in window)) return;
+
+        var cmds = Array.prototype.slice.call(document.querySelectorAll('.cmd[data-typing]'));
+        cmds.forEach(function (c) {
+          var t = c.querySelector('.typed');
+          if (!t) return;
+          c.setAttribute('data-text', t.textContent);
+          t.textContent = '';
+          c.classList.add('is-pending');
+        });
+
+        function type(c) {
+          var t = c.querySelector('.typed');
+          var text = c.getAttribute('data-text') || '';
+          var i = 0;
+          var cur = document.createElement('span');
+          cur.className = 'cursor';
+          t.after(cur);
+          (function step() {
+            i += 1;
+            t.textContent = text.slice(0, i);
+            if (i < text.length) setTimeout(step, 24 + Math.random() * 40);
+            else setTimeout(function () { cur.remove(); c.classList.remove('is-pending'); }, 160);
+          })();
+        }
+
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            io.unobserve(e.target);
+            type(e.target);
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+        cmds.forEach(function (c) { io.observe(c); });
+      })();
+    </script>
+  </body>
+</html>

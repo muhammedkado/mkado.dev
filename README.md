@@ -1,8 +1,13 @@
 # mkado.dev
 
-Personal site of Muhammed Kado — full-stack PHP/Laravel developer in İstanbul. Live at **https://mkado.dev**.
+Personal site of Muhammed Kado — computer engineer and full-stack PHP/Laravel/React developer in İstanbul. Live at **https://mkado.dev**.
 
-The page is a single static build: who I am, one job, four live demos with sign-in details, other projects, skills, contact. All content lives in `src/data/site.ts`; the components only render it.
+Two renderings of the same content, both static:
+
+- `/` — the main site: an animated RFID-reader hero, a tabbed showcase of five live demos with sign-in details, a timeline, skills tied to the projects that use them, contact.
+- `/v2` — a terminal-style version written so non-programmers can follow it (every command has a plain-English comment above it). `noindex`, left out of the sitemap.
+
+All content lives in `src/data/site.ts`; the components only render it. The years-of-experience figure is computed from `experience.startDate` (`src/lib/tenure.ts`) at build time and again in the browser on every load, so it never goes stale.
 
 ## Live demos linked from the site
 
@@ -12,15 +17,16 @@ The page is a single static build: who I am, one job, four live demos with sign-
 | BestTrend SY | https://besttrend.mkado.dev (admin: https://besttrend-api.mkado.dev/admin/login) | private |
 | Invoice System | https://invoice.mkado.dev | [invoice-system-php](https://github.com/muhammedkado/invoice-system-php) |
 | Find Job with AI | https://findjob.mkado.dev | [find_job_with_ai](https://github.com/muhammedkado/find_job_with_ai) |
+| Tire Shop PWA | https://tireshop.mkado.dev | [tire-shop](https://github.com/muhammedkado/tire-shop) |
 
-Flip `demosLive` in `src/data/site.ts` to `true` once the subdomains resolve — it switches the board header from "deploying now" to a live indicator.
+Flip `demosLive` in `src/data/site.ts` to `true` once the subdomains resolve — it switches the status pills from "deploying now" to a live indicator.
 
 ## Stack
 
-- [Astro](https://astro.build) 7, static output, one page
-- Tailwind CSS 4 (via `@tailwindcss/vite`) plus a hand-written stylesheet in `src/styles/global.css`
-- Instrument Serif + Geist from Google Fonts
-- Light/dark theme: system preference by default, toggle stored in `localStorage`
+- [Astro](https://astro.build) 7, static output, two pages, no client-side framework
+- Tailwind CSS 4 (via `@tailwindcss/vite`) plus hand-written stylesheets: `src/styles/global.css` (main) and `src/styles/terminal.css` (`/v2`)
+- Google Fonts: Bricolage Grotesque + Instrument Sans (main), IBM Plex Mono (`/v2`)
+- Light/dark theme: system preference by default (the terminal defaults to dark), toggle stored in `localStorage` and shared by both pages
 - `@astrojs/sitemap`, Open Graph image (`public/og.png`), JSON-LD `Person`
 
 ## Develop

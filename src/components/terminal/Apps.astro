@@ -1,0 +1,44 @@
+---
+import { demos, demosLive } from '../../data/site';
+import Cmd from './Cmd.astro';
+---
+
+<Cmd id="apps" n={2} title="Things I built that you can try right now (nothing to install: click Open)" cmd="ls ~/apps --live">
+  <p class="m">{demos.length} applications, each running on its own server with its own database. Sign in with the demo account, change anything you like; it all resets overnight.</p>
+  <p class={demosLive ? 'g' : 'y'}>{demosLive ? '● all systems up' : '○ deploying now: the Open buttons go live shortly'}</p>
+
+  {demos.map((d) => (
+    <article class="app">
+      <div class="app-head">
+        <span class={`dot ${demosLive ? 'live' : ''}`} aria-hidden="true"></span>
+        <span class="app-name">{d.name}</span>
+        <span class="app-year">{d.period}</span>
+      </div>
+      <p class="app-desc">{d.summary}</p>
+      <p class="app-stack"><span class="k">built with</span> {d.stack.join(', ')}</p>
+
+      <div class="actions">
+        <a class="tbtn tbtn-primary tbtn-sm" href={d.url} target="_blank" rel="noopener">Open {d.name}</a>
+        {d.extra && <a class="tbtn tbtn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
+        {d.repo && <a class="tbtn tbtn-sm" href={d.repo} target="_blank" rel="noopener">See the code</a>}
+      </div>
+
+      {d.credentials.length > 0 && (
+        <details class="login">
+          <summary>demo login (click to show)</summary>
+          {d.credentials.map((c) => (
+            <div class="cred">
+              <span class="who">{c.label}</span>
+              <span class="k">email</span>
+              <button type="button" class="copy" data-copy={c.user} title="Copy">{c.user}</button>
+              <span class="k">password</span>
+              <button type="button" class="copy" data-copy={c.pass} title="Copy">{c.pass}</button>
+            </div>
+          ))}
+        </details>
+      )}
+
+      {d.note && <p class="app-note">{d.note}</p>}
+    </article>
+  ))}
+</Cmd>

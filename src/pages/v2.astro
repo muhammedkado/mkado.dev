@@ -1,22 +1,59 @@
 ---
-import BaseV2 from '../layouts/BaseV2.astro';
-import Header from '../components/v2/Header.astro';
-import Hero from '../components/v2/Hero.astro';
-import Showcase from '../components/v2/Showcase.astro';
-import Timeline from '../components/v2/Timeline.astro';
-import Skills from '../components/v2/Skills.astro';
-import Contact from '../components/v2/Contact.astro';
-import Footer from '../components/v2/Footer.astro';
+import Terminal from '../layouts/Terminal.astro';
+import Whoami from '../components/terminal/Whoami.astro';
+import Apps from '../components/terminal/Apps.astro';
+import Experience from '../components/terminal/Experience.astro';
+import Skills from '../components/terminal/Skills.astro';
+import Contact from '../components/terminal/Contact.astro';
+import Prompt from '../components/terminal/Prompt.astro';
+import { profile } from '../data/site';
+
+const year = new Date().getFullYear();
 ---
 
-<BaseV2>
-  <Header />
-  <main>
-    <Hero />
-    <Showcase />
-    <Timeline />
-    <Skills />
-    <Contact />
-  </main>
-  <Footer />
-</BaseV2>
+<Terminal>
+  <div class="page">
+    <p class="note">
+      <span>This page is styled like a programmer's terminal. Everything is in plain English: scroll, or jump to a command.</span>
+      <span class="jump">
+        <a href="#whoami">whoami</a>
+        <a href="#apps">apps</a>
+        <a href="#experience">experience</a>
+        <a href="#skills">skills</a>
+        <a href="#contact">contact</a>
+      </span>
+    </p>
+
+    <div class="term">
+      <div class="bar">
+        <span class="tab">muhammed@mkado: ~/portfolio</span>
+        <button class="toggle" type="button" id="theme-toggle" aria-label="Switch colour theme">light / dark</button>
+      </div>
+      <main class="body">
+        <Whoami />
+        <Apps />
+        <Experience />
+        <Skills />
+        <Contact />
+        <Prompt />
+      </main>
+    </div>
+
+    <p class="foot">
+      <span>© {year} {profile.name}</span>
+      <a href="/">See the standard version of this site</a>
+    </p>
+  </div>
+</Terminal>
+
+<script>
+  const root = document.documentElement;
+  document.getElementById('theme-toggle')?.addEventListener('click', () => {
+    const dark = root.getAttribute('data-theme') === 'dark';
+    if (dark) root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', 'dark');
+    try {
+      localStorage.setItem('theme', dark ? 'light' : 'dark');
+    } catch {}
+  });
+</script>

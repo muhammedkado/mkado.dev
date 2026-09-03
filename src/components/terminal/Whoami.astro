@@ -1,0 +1,38 @@
+---
+import { profile, experience, education, languages } from '../../data/site';
+import { tenureYears } from '../../lib/tenure';
+import Cmd from './Cmd.astro';
+
+const names = languages.map((l) => l.name);
+const spoken = `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}`;
+---
+
+<Cmd id="whoami" n={1} title="Who I am" cmd="whoami">
+  <h1 class="big">{profile.name}</h1>
+  <p class="sub">{profile.title}, {profile.role}</p>
+
+  <dl class="kv">
+    <dt>works at</dt>
+    <dd><a href={experience.url} target="_blank" rel="noopener">{experience.company}</a>, İstanbul (since 2023)</dd>
+    <dt>experience</dt>
+    <dd><b data-tenure-start={experience.startDate}>{tenureYears(experience.startDate)}</b> years building the web software behind RFID systems</dd>
+    <dt>education</dt>
+    <dd>{education.degree}, {education.school} ({education.period})</dd>
+    <dt>based in</dt>
+    <dd>{profile.location}</dd>
+    <dt>speaks</dt>
+    <dd>{spoken}</dd>
+    <dt>status</dt>
+    <dd><span class="status"><span class="dot" aria-hidden="true"></span>open to work</span></dd>
+  </dl>
+
+  <p>{profile.intro}</p>
+  <p class="comment"># In plain words: I build the web systems that sit on top of RFID hardware, so hotels and laundries can track every item automatically.</p>
+
+  <div class="actions">
+    <a class="tbtn tbtn-primary" href="#apps">Try the apps I built</a>
+    <a class="tbtn" href={profile.cv} download="Muhammed_Kado_CV.pdf">Download CV</a>
+    <a class="tbtn" href={profile.github} target="_blank" rel="noopener">GitHub</a>
+    <a class="tbtn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</Cmd>

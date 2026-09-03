@@ -1,0 +1,24 @@
+---
+import { skills } from '../../data/site';
+import Cmd from './Cmd.astro';
+
+// One line of plain English per group, for readers who don't code.
+const explain: Record<string, string> = {
+  'Back end': 'the server side: the logic and data behind the screens',
+  'Front end': 'what people see and click in the browser',
+  'Data': 'databases: where the information lives',
+  'Cloud & tools': 'hosting, and the tooling that ships the code',
+  'Domain': 'the industry knowledge I bring',
+  'Mobile': 'phone apps',
+};
+---
+
+<Cmd id="skills" n={4} title="What I work with (each group explained for non-programmers)" cmd="cat skills.txt">
+  {skills.map((g) => (
+    <div class="group">
+      <p><span class="k">{g.group.toLowerCase()}</span> <span class="explain"># {explain[g.group] ?? ''}</span></p>
+      <p class="items">{g.items.map((item) => <span>{item}</span>)}</p>
+    </div>
+  ))}
+  <p class="m">Day to day at USTEK: PHP, Laravel, Zend Framework 1, MySQL and REST APIs, against real RFID hardware.</p>
+</Cmd>

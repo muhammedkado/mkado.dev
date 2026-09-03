@@ -1,28 +1,35 @@
 ---
-import { profile } from '../data/site';
+import { profile, languages } from '../data/site';
+const spoken = languages.map((l) => l.name).join(', ');
 ---
 
-<section id="contact" class="contact">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>contact</h2>
-      <p>English, Turkish, Arabic or Kurdish all work.</p>
-      <span class="status">
-        <span class="dot" aria-hidden="true"></span>
-        open to full-time roles, remote or istanbul
-      </span>
+<section class="section" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Hiring a full-stack engineer?</h2>
+      <p>I'm open to full-time roles, remote or in İstanbul. Email is the fastest way to reach me.</p>
+
+      <div class="email-row">
+        <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
+        <button type="button" class="btn btn-sm copy" data-copy={profile.email}>Copy</button>
+      </div>
+
+      <div class="ways">
+        <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp {profile.phone}</a>
+        <a href={profile.cv} download="Muhammed_Kado_CV.pdf">CV (PDF)</a>
+      </div>
     </div>
 
-    <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
-
-    <div class="ways">
-      <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-      <span class="sep">/</span>
-      <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
-      <span class="sep">/</span>
-      <a href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp {profile.phone}</a>
-      <span class="sep">/</span>
-      <a href={profile.cv} download="Muhammed_Kado_CV.pdf">CV (PDF)</a>
-    </div>
+    <aside class="aside">
+      <span class="status"><span class="dot" aria-hidden="true"></span>Open to work</span>
+      <dl>
+        <dt>Based in</dt><dd>{profile.location}</dd>
+        <dt>Roles</dt><dd>Full-stack, back-end (PHP / Laravel), React front-end</dd>
+        <dt>Setup</dt><dd>Remote, or on-site in İstanbul</dd>
+        <dt>Languages</dt><dd>{spoken}</dd>
+      </dl>
+    </aside>
   </div>
 </section>

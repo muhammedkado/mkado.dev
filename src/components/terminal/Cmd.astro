@@ -1,0 +1,20 @@
+---
+// One section = one command. The plain-English comment above it is the real
+// heading, so someone who has never used a terminal still knows what follows.
+interface Props {
+  id: string;
+  n: number;
+  title: string;
+  cmd: string;
+}
+const { id, n, title, cmd } = Astro.props;
+---
+
+<section class="cmd" id={id} data-typing>
+  <h2 class="comment"># {n}. {title}</h2>
+  <div class="line">
+    <span class="prompt">muhammed@mkado:<span class="path">~</span>$</span>
+    <span class="typed">{cmd}</span>
+  </div>
+  <div class="out"><slot /></div>
+</section>
