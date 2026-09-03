@@ -90,6 +90,18 @@ export const demos: Demo[] = [
     note: 'No sign-in. Try the sample CV, or upload your own PDF.',
     period: '2025',
   },
+  {
+    slug: 'tireshop',
+    name: 'Tire Shop PWA',
+    summary:
+      'Mobile-first PWA for running a car-tire shop: inventory, sales and invoices, expenses, and profit reports. Arabic, RTL.',
+    url: 'https://tireshop.mkado.dev',
+    repo: 'https://github.com/muhammedkado/tire-shop',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind 4'],
+    credentials: [],
+    note: 'No sign-in — runs in local demo mode, data stays in your browser.',
+    period: '2025',
+  },
 ];
 
 export const projects = [
