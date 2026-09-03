@@ -1,0 +1,45 @@
+---
+import T from './T.astro';
+import { demos, profile } from '../../data/site';
+
+type Item = { action: string; arg: string; en: string; tr: string; kind: string; keys: string };
+
+const items: Item[] = [
+  { action: 'open', arg: 'about', en: 'About me', tr: 'Hakkımda', kind: 'window', keys: 'about hakkimda whoami profile' },
+  { action: 'open', arg: 'apps', en: 'Apps you can try', tr: 'Deneyebileceğiniz uygulamalar', kind: 'window', keys: 'apps uygulamalar demos projects' },
+  { action: 'open', arg: 'career', en: 'Career and education', tr: 'Kariyer ve eğitim', kind: 'window', keys: 'career kariyer experience deneyim education' },
+  { action: 'open', arg: 'skills', en: 'Skills', tr: 'Beceriler', kind: 'window', keys: 'skills beceriler stack' },
+  { action: 'open', arg: 'contact', en: 'Contact', tr: 'İletişim', kind: 'window', keys: 'contact iletisim email mail' },
+  { action: 'open', arg: 'terminal', en: 'Terminal', tr: 'Terminal', kind: 'window', keys: 'terminal prompt' },
+  { action: 'open', arg: 'trash', en: 'Trash', tr: 'Çöp', kind: 'window', keys: 'trash cop bin' },
+  ...demos.map((d) => ({ action: 'link', arg: d.url, en: `Open ${d.name}`, tr: `${d.name} uygulamasını aç`, kind: 'app', keys: `${d.slug} ${d.stack.join(' ')}` })),
+  { action: 'link', arg: profile.cv, en: 'Download CV (PDF)', tr: 'CV indir (PDF)', kind: 'file', keys: 'cv resume ozgecmis pdf' },
+  { action: 'theme', arg: '', en: 'Switch light / dark', tr: 'Açık / koyu tema', kind: 'system', keys: 'theme tema dark light' },
+  { action: 'lang', arg: '', en: 'Türkçe', tr: 'English', kind: 'system', keys: 'language dil turkce english' },
+  { action: 'power', arg: '', en: 'Shut down', tr: 'Kapat', kind: 'system', keys: 'power shutdown kapat' },
+];
+---
+
+<div class="spot" id="spot" hidden role="dialog" aria-modal="true" aria-label="Search">
+  <div class="spot-box">
+    <input
+      class="spot-input"
+      id="spot-input"
+      type="text"
+      autocomplete="off"
+      spellcheck="false"
+      placeholder="Type to search: apps, cv, theme…"
+      data-ph-en="Type to search: apps, cv, theme…"
+      data-ph-tr="Aramak için yazın: uygulamalar, cv, tema…"
+    />
+    <ul class="spot-list" id="spot-list">
+      {items.map((i) => (
+        <li class="spot-item" data-action={i.action} data-arg={i.arg} data-keys={i.keys}>
+          <span class="spot-k"><T en={i.en} tr={i.tr} /></span>
+          <span class="spot-m">{i.kind}</span>
+        </li>
+      ))}
+    </ul>
+    <p class="spot-foot"><T en="↑↓ to move, Enter to open, Esc to close" tr="↑↓ gezin, Enter aç, Esc kapat" /></p>
+  </div>
+</div>

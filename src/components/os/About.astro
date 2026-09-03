@@ -1,0 +1,52 @@
+---
+import Window from './Window.astro';
+import T from './T.astro';
+import { profile, experience, education, languages, demos } from '../../data/site';
+import { tr } from '../../data/tr';
+import { tenureYears } from '../../lib/tenure';
+
+const tenure = tenureYears(experience.startDate);
+const langCodes = languages.map((l) => l.name.slice(0, 2).toLowerCase()).join(' ');
+const art = ` __  __ _  __
+|  \\/  | |/ /
+| |\\/| | ' /
+| |  | | . \\
+|_|  |_|_|\\_\\`;
+---
+
+<Window id="about" file="about.txt" en="Who I am" tr="Ben kimim">
+  <p class="m"><span id="greet"><T en="Hello" tr="Merhaba" /></span>.</p>
+  <h1 class="big">{profile.name}</h1>
+  <p class="sub"><T en={`${profile.title}, ${profile.role}`} tr={`${tr.profile.title}, ${tr.profile.role}`} /></p>
+
+  <div class="neofetch">
+    <pre class="nf-art" aria-hidden="true">{art}</pre>
+    <dl class="nf-info">
+      <dt>host</dt><dd>muhammed@mkado</dd>
+      <dt><T en="works at" tr="çalıştığı yer" /></dt>
+      <dd><a href={experience.url} target="_blank" rel="noopener">{experience.company}</a>, İstanbul (<T en="since 2023" tr="2023'ten beri" />)</dd>
+      <dt>uptime</dt>
+      <dd><b data-tenure-start={experience.startDate}>{tenure}</b> <T en="years" tr="yıl" /></dd>
+      <dt><T en="education" tr="eğitim" /></dt>
+      <dd><T en={education.degree} tr="Bilgisayar Mühendisliği Lisans" />, {education.period}</dd>
+      <dt>apps</dt>
+      <dd>{demos.length} <T en="live, open to try" tr="yayında, denemeye açık" /></dd>
+      <dt><T en="reach" tr="erişim" /></dt>
+      <dd><T en="30+ countries run software I work on" tr="30'dan fazla ülke üzerinde çalıştığım yazılımı kullanıyor" /></dd>
+      <dt>langs</dt><dd>{langCodes}</dd>
+      <dt><T en="based in" tr="konum" /></dt><dd>{profile.location}</dd>
+      <dt>status</dt>
+      <dd><span class="status"><span class="dot live" aria-hidden="true"></span><T en="open to work" tr="işe açık" /></span></dd>
+    </dl>
+  </div>
+
+  <p><T en={profile.intro} tr={tr.profile.intro} /></p>
+  <p class="comment"># <T en="In plain words: I build the web systems that sit on top of RFID hardware, so hotels and laundries can track every item automatically." tr={tr.profile.plain} /></p>
+
+  <div class="actions">
+    <a class="tbtn tbtn-primary" href="#apps" data-open="apps"><T en="Try the apps I built" tr="Yaptığım uygulamaları dene" /></a>
+    <a class="tbtn" href={profile.cv} download="Muhammed_Kado_CV.pdf"><T en="Download CV" tr="CV indir" /></a>
+    <a class="tbtn" href={profile.github} target="_blank" rel="noopener">GitHub</a>
+    <a class="tbtn" href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+</Window>

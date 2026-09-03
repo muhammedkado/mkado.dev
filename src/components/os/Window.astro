@@ -1,0 +1,28 @@
+---
+// A desktop window: title bar with the "file name", a plain-English subtitle
+// (the real heading for non-programmers), working minimize / maximize / close
+// controls, and the content.
+interface Props {
+  id: string;
+  file: string;
+  en: string;
+  tr: string;
+  closed?: boolean;
+}
+const { id, file, en, tr, closed = false } = Astro.props;
+---
+
+<section class={`win win-${id}`} id={id} data-win={id} aria-labelledby={`${id}-title`} hidden={closed}>
+  <header class="win-bar">
+    <div class="win-head">
+      <span class="win-title" id={`${id}-title`}>{file}</span>
+      <span class="win-sub"><span class="en">{en}</span><span class="tr">{tr}</span></span>
+    </div>
+    <div class="win-ctl">
+      <button type="button" data-min aria-label="Minimize" title="Minimize">–</button>
+      <button type="button" data-max aria-label="Maximize" title="Maximize">▢</button>
+      <button type="button" data-close aria-label="Close" title="Close">×</button>
+    </div>
+  </header>
+  <div class="win-body"><slot /></div>
+</section>

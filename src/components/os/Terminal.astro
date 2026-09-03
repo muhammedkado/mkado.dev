@@ -1,0 +1,126 @@
+---
+import Window from './Window.astro';
+import T from './T.astro';
+import { profile } from '../../data/site';
+
+const commands = ['help', 'apps', 'career', 'skills', 'contact', 'cv', 'theme', 'lang', 'clear'];
+---
+
+<Window id="terminal" file="terminal" en="Type a command and press Enter, or just click one" tr="Bir komut yazıp Enter'a basın ya da birine tıklayın">
+  <div class="chips">
+    {commands.map((c) => <button type="button" data-run={c}>{c}</button>)}
+  </div>
+  <div class="line">
+    <span class="prompt">muhammed@mkado:<span class="path">~</span>$</span>
+    <input
+      class="input"
+      id="cli"
+      type="text"
+      aria-label="Command"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      placeholder="help"
+    />
+  </div>
+  <div class="replies" id="replies" aria-live="polite"></div>
+  <p class="comment"># <T en="Try: hello, merhaba, or مرحبا." tr="Deneyin: hello, merhaba ya da مرحبا." /></p>
+</Window>
+
+<script define:vars={{ cv: profile.cv, email: profile.email }}>
+  var input = document.getElementById('cli');
+  var out = document.getElementById('replies');
+
+  var text = {
+    en: {
+      help: [
+        'help       this list',
+        'apps       the five applications you can try',
+        'career     where I have worked and studied',
+        'skills     what I work with',
+        'contact    email and links',
+        'cv         download my CV (PDF)',
+        'theme      switch light / dark',
+        'lang       Türkçe / English',
+        'clear      clear this area',
+      ].join('\n'),
+      jump: 'Opening ',
+      cv: 'Opening the CV (PDF).',
+      theme: 'Theme switched.',
+      lang: 'Dil Türkçe olarak ayarlandı.',
+      notfound: 'Command not found: ',
+      tryhelp: '. Try: help',
+    },
+    tr: {
+      help: [
+        'help       bu liste',
+        'apps       deneyebileceğiniz beş uygulama',
+        'career     nerede çalıştım ve okudum',
+        'skills     neyle çalışıyorum',
+        'contact    e-posta ve bağlantılar',
+        'cv         CV indir (PDF)',
+        'theme      açık / koyu tema',
+        'lang       Türkçe / English',
+        'clear      bu alanı temizle',
+      ].join('\n'),
+      jump: 'Açılıyor: ',
+      cv: 'CV (PDF) açılıyor.',
+      theme: 'Tema değiştirildi.',
+      lang: 'Language set to English.',
+      notfound: 'Komut bulunamadı: ',
+      tryhelp: '. Deneyin: help',
+    },
+  };
+
+  var jump = {
+    apps: 'apps', demos: 'apps', projects: 'apps', work: 'apps',
+    career: 'career', experience: 'career', education: 'career',
+    skills: 'skills', contact: 'contact', email: 'contact',
+    whoami: 'about', about: 'about', trash: 'trash', terminal: 'terminal',
+  };
+
+  function t() { return document.documentElement.lang === 'tr' ? text.tr : text.en; }
+
+  function print(cmd, body, err) {
+    var div = document.createElement('div');
+    div.className = 'reply' + (err ? ' err' : '');
+    var echo = document.createElement('span');
+    echo.className = 'echo';
+    echo.textContent = '$ ' + cmd + '\n';
+    div.append(echo, body);
+    out.append(div);
+  }
+
+  function run(raw) {
+    var cmd = raw.trim().toLowerCase();
+    if (!cmd) return;
+    var s = t();
+    if (cmd === 'help' || cmd === '?') print(cmd, s.help);
+    else if (cmd === 'clear') out.replaceChildren();
+    else if (cmd === 'cv') { print(cmd, s.cv); window.open(cv, '_blank'); }
+    else if (cmd === 'theme') { window.mkos && window.mkos.theme(); print(cmd, s.theme); }
+    else if (cmd === 'lang') { window.mkos && window.mkos.lang(); print(cmd, s.lang); }
+    else if (cmd === 'mail') print(cmd, email);
+    else if (cmd === 'hi' || cmd === 'hello' || cmd === 'hey') print(cmd, 'Hello! Type help to see what you can do here.');
+    else if (cmd === 'merhaba' || cmd === 'selam') print(cmd, 'Merhaba! help yazın, komutları göstereyim.');
+    else if (cmd === 'مرحبا' || cmd === 'سلام') print(cmd, 'أهلاً! اكتب help لعرض الأوامر.');
+    else if (cmd === 'silav' || cmd === 'slav') print(cmd, 'Silav! help binivîse.');
+    else if (cmd === 'shutdown' || cmd === 'poweroff') { window.mkos && window.mkos.power(); }
+    else if (jump[cmd]) { print(cmd, s.jump + jump[cmd] + '.'); window.mkos && window.mkos.open(jump[cmd]); }
+    else print(cmd, s.notfound + cmd + s.tryhelp, true);
+  }
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter') return;
+    run(input.value);
+    input.value = '';
+  });
+
+  document.querySelectorAll('#terminal [data-run]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      input.value = '';
+      run(b.getAttribute('data-run'));
+      input.focus();
+    });
+  });
+</script>

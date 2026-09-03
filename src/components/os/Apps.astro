@@ -1,0 +1,55 @@
+---
+import Window from './Window.astro';
+import T from './T.astro';
+import { demos, demosLive } from '../../data/site';
+import { tr } from '../../data/tr';
+---
+
+<Window id="apps" file="~/apps" en="Things I built that you can try right now (nothing to install: click Open)" tr="Hemen deneyebileceğiniz, yaptığım uygulamalar (kurulum yok: Aç'a tıklayın)">
+  <p class="m">
+    <T
+      en={`${demos.length} applications, each running on its own server with its own database. Sign in with the demo account, change anything you like; it all resets overnight.`}
+      tr={`${demos.length} uygulama, her biri kendi sunucusunda kendi veritabanıyla çalışıyor. Demo hesabıyla girin, istediğinizi değiştirin; hepsi her gece sıfırlanır.`}
+    />
+  </p>
+  <p class={demosLive ? 'g' : 'y'}>
+    {demosLive
+      ? <T en="● all systems up" tr="● tüm sistemler ayakta" />
+      : <T en="○ deploying now: the Open buttons go live shortly" tr="○ yayına alınıyor: Aç düğmeleri kısa süre içinde çalışacak" />}
+  </p>
+
+  {demos.map((d) => (
+    <article class="app">
+      <div class="app-head">
+        <span class={`dot ${demosLive ? 'live' : ''}`} aria-hidden="true"></span>
+        <span class="app-name">{d.name}</span>
+        <span class="app-year">{d.period}</span>
+      </div>
+      <p class="app-desc"><T en={d.summary} tr={tr.demos[d.slug]?.summary ?? d.summary} /></p>
+      <p class="app-stack"><span class="k"><T en="built with" tr="kullanılan teknolojiler" /></span> {d.stack.join(', ')}</p>
+
+      <div class="actions">
+        <a class="tbtn tbtn-primary tbtn-sm" href={d.url} target="_blank" rel="noopener"><T en={`Open ${d.name}`} tr={`${d.name} aç`} /></a>
+        {d.extra && <a class="tbtn tbtn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
+        {d.repo && <a class="tbtn tbtn-sm" href={d.repo} target="_blank" rel="noopener"><T en="See the code" tr="Kodu gör" /></a>}
+      </div>
+
+      {d.credentials.length > 0 && (
+        <details class="login">
+          <summary><T en="demo login (click to show)" tr="demo girişi (göstermek için tıklayın)" /></summary>
+          {d.credentials.map((c) => (
+            <div class="cred">
+              <span class="who">{c.label}</span>
+              <span class="k"><T en="email" tr="e-posta" /></span>
+              <button type="button" class="copy" data-copy={c.user} title="Copy">{c.user}</button>
+              <span class="k"><T en="password" tr="şifre" /></span>
+              <button type="button" class="copy" data-copy={c.pass} title="Copy">{c.pass}</button>
+            </div>
+          ))}
+        </details>
+      )}
+
+      {d.note && <p class="app-note"><T en={d.note} tr={tr.demos[d.slug]?.note ?? d.note} /></p>}
+    </article>
+  ))}
+</Window>

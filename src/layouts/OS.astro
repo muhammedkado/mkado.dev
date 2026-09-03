@@ -1,0 +1,240 @@
+---
+import '../styles/os.css';
+import { profile } from '../data/site';
+
+const title = `${profile.name} — ${profile.title} (mkOS)`;
+const description = 'mkado.dev as a small operating system: apps you can try, career, skills and contact, written in plain English and Turkish.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;0,700;1,400&family=VT323&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      // Before first paint: dark unless you've picked light on this site; language
+      // from your last choice, else from the browser (Turkish browsers get Turkish).
+      (function () {
+        var root = document.documentElement;
+        var theme = null, lang = null;
+        try { theme = localStorage.getItem('theme'); lang = localStorage.getItem('lang'); } catch (e) {}
+        if (theme !== 'light') root.setAttribute('data-theme', 'dark');
+        if (!lang) lang = (navigator.language || '').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+        root.lang = lang;
+      })();
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var $ = function (id) { return document.getElementById(id); };
+
+        /* ---- tenure: recomputed on every load ---- */
+        document.querySelectorAll('[data-tenure-start]').forEach(function (el) {
+          var start = new Date(el.getAttribute('data-tenure-start'));
+          el.textContent = ((Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000)).toFixed(1);
+        });
+
+        /* ---- copy buttons ---- */
+        document.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('button.copy[data-copy]');
+          if (!btn) return;
+          navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            var original = btn.textContent;
+            btn.textContent = root.lang === 'tr' ? 'kopyalandı' : 'copied';
+            btn.classList.add('copied');
+            setTimeout(function () { btn.textContent = original; btn.classList.remove('copied'); }, 1200);
+          }).catch(function () {});
+        });
+
+        /* ---- language ---- */
+        var langBtn = $('lang-btn');
+        function applyLang(l) {
+          root.lang = l;
+          try { localStorage.setItem('lang', l); } catch (e) {}
+          if (langBtn) langBtn.textContent = l === 'tr' ? 'EN' : 'TR';
+          document.querySelectorAll('[data-ph-en]').forEach(function (el) {
+            el.placeholder = el.getAttribute(l === 'tr' ? 'data-ph-tr' : 'data-ph-en');
+          });
+          tick();
+          greet();
+        }
+        function toggleLang() { applyLang(root.lang === 'tr' ? 'en' : 'tr'); }
+        if (langBtn) langBtn.addEventListener('click', toggleLang);
+
+        /* ---- theme ---- */
+        function toggleTheme() {
+          var dark = root.getAttribute('data-theme') === 'dark';
+          if (dark) root.removeAttribute('data-theme');
+          else root.setAttribute('data-theme', 'dark');
+          try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
+        }
+        var themeBtn = $('theme-toggle');
+        if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
+
+        /* ---- clock & greeting ---- */
+        var clock = $('clock');
+        function tick() {
+          if (!clock) return;
+          var d = new Date();
+          clock.textContent = d.toLocaleTimeString(root.lang === 'tr' ? 'tr-TR' : 'en-GB', { hour: '2-digit', minute: '2-digit' });
+          clock.setAttribute('datetime', d.toISOString());
+        }
+        function greet() {
+          var el = $('greet');
+          if (!el) return;
+          var h = new Date().getHours();
+          var en = h < 5 ? 'Hello' : h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening';
+          var tr = h < 5 ? 'Merhaba' : h < 12 ? 'Günaydın' : h < 18 ? 'İyi günler' : 'İyi akşamlar';
+          el.innerHTML = '<span class="en">' + en + '</span><span class="tr">' + tr + '</span>';
+        }
+        setInterval(tick, 15000);
+
+        /* ---- windows ---- */
+        function updateDock() {
+          document.querySelectorAll('.dock-item[data-open]').forEach(function (b) {
+            var w = $(b.getAttribute('data-open'));
+            b.classList.toggle('is-open', !!w && !w.hidden);
+          });
+        }
+        function openWin(id) {
+          var w = $(id);
+          if (!w) return;
+          w.hidden = false;
+          w.classList.remove('is-min');
+          updateDock();
+          w.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+          w.classList.add('is-focus');
+          setTimeout(function () { w.classList.remove('is-focus'); }, 900);
+        }
+        document.addEventListener('click', function (e) {
+          var o = e.target.closest('[data-open]');
+          if (o) { e.preventDefault(); openWin(o.getAttribute('data-open')); return; }
+          var win = e.target.closest('.win');
+          if (!win) return;
+          if (e.target.closest('[data-min]')) win.classList.toggle('is-min');
+          else if (e.target.closest('[data-max]')) win.classList.toggle('is-max');
+          else if (e.target.closest('[data-close]')) { win.hidden = true; win.classList.remove('is-max'); updateDock(); }
+        });
+        updateDock();
+
+        /* ---- spotlight (Ctrl+K) ---- */
+        var spot = $('spot'), sInput = $('spot-input');
+        var sItems = Array.prototype.slice.call(document.querySelectorAll('.spot-item'));
+        var active = 0;
+        function visible() { return sItems.filter(function (li) { return !li.hidden; }); }
+        function mark() {
+          var v = visible();
+          sItems.forEach(function (li) { li.classList.remove('is-active'); });
+          if (v[active]) { v[active].classList.add('is-active'); v[active].scrollIntoView({ block: 'nearest' }); }
+        }
+        function filter() {
+          var q = sInput.value.trim().toLowerCase();
+          sItems.forEach(function (li) {
+            var hay = (li.textContent + ' ' + li.getAttribute('data-keys')).toLowerCase();
+            li.hidden = !!q && hay.indexOf(q) < 0;
+          });
+          active = 0;
+          mark();
+        }
+        function openSpot() { if (!spot) return; spot.hidden = false; sInput.value = ''; filter(); sInput.focus(); }
+        function closeSpot() { if (spot) spot.hidden = true; }
+        function exec(li) {
+          var a = li.getAttribute('data-action'), arg = li.getAttribute('data-arg');
+          closeSpot();
+          if (a === 'open') openWin(arg);
+          else if (a === 'link') window.open(arg, '_blank');
+          else if (a === 'theme') toggleTheme();
+          else if (a === 'lang') toggleLang();
+          else if (a === 'power') powerOff();
+        }
+        if (spot) {
+          sInput.addEventListener('input', filter);
+          sInput.addEventListener('keydown', function (e) {
+            var v = visible();
+            if (e.key === 'ArrowDown') { e.preventDefault(); active = v.length ? (active + 1) % v.length : 0; mark(); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); active = v.length ? (active - 1 + v.length) % v.length : 0; mark(); }
+            else if (e.key === 'Enter') { if (v[active]) exec(v[active]); }
+            else if (e.key === 'Escape') closeSpot();
+          });
+          sItems.forEach(function (li) { li.addEventListener('click', function () { exec(li); }); });
+          spot.addEventListener('click', function (e) { if (e.target === spot) closeSpot(); });
+          var spotBtn = $('spot-btn');
+          if (spotBtn) spotBtn.addEventListener('click', openSpot);
+        }
+        document.addEventListener('keydown', function (e) {
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); if (spot) { spot.hidden ? openSpot() : closeSpot(); } }
+          else if (e.key === 'Escape' && spot && !spot.hidden) closeSpot();
+        });
+
+        /* ---- power ---- */
+        var sd = $('shutdown');
+        function powerOff() { if (!sd) return; sd.hidden = false; root.classList.add('off'); }
+        var powerBtn = $('power-btn'), powerOn = $('power-on');
+        if (powerBtn) powerBtn.addEventListener('click', powerOff);
+        if (powerOn) powerOn.addEventListener('click', function () { sd.hidden = true; root.classList.remove('off'); });
+
+        /* ---- hint ---- */
+        var hint = $('hint'), hintClose = $('hint-close');
+        try { if (sessionStorage.getItem('mkos-hint') && hint) hint.remove(); } catch (e) {}
+        if (hintClose) hintClose.addEventListener('click', function () {
+          if (hint) hint.remove();
+          try { sessionStorage.setItem('mkos-hint', '1'); } catch (e) {}
+        });
+
+        /* ---- boot ---- */
+        var boot = $('boot');
+        var booted = false;
+        try { booted = !!sessionStorage.getItem('mkos-booted'); } catch (e) {}
+        function finishBoot() {
+          if (!boot || !boot.isConnected) return;
+          boot.classList.add('off');
+          root.classList.remove('booting');
+          try { sessionStorage.setItem('mkos-booted', '1'); } catch (e) {}
+          setTimeout(function () { boot.remove(); }, 450);
+        }
+        if (boot && (reduce || booted)) {
+          boot.remove();
+        } else if (boot) {
+          root.classList.add('booting');
+          var lines = boot.querySelectorAll('.boot-log li');
+          var fill = $('bootfill');
+          var i = 0;
+          (function step() {
+            if (!boot.isConnected) return;
+            if (i < lines.length) {
+              lines[i].classList.add('on');
+              i += 1;
+              if (fill) fill.style.width = Math.round((i / lines.length) * 100) + '%';
+              setTimeout(step, 240 + Math.random() * 200);
+            } else setTimeout(finishBoot, 550);
+          })();
+          var skip = $('bootskip');
+          if (skip) skip.addEventListener('click', finishBoot);
+          document.addEventListener('keydown', function onKey() { finishBoot(); document.removeEventListener('keydown', onKey); });
+        }
+
+        /* ---- expose for the terminal window ---- */
+        window.mkos = { open: openWin, theme: toggleTheme, lang: toggleLang, power: powerOff };
+
+        applyLang(root.lang === 'tr' ? 'tr' : 'en');
+      })();
+    </script>
+  </body>
+</html>

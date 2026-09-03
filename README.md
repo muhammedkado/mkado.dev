@@ -5,7 +5,7 @@ Personal site of Muhammed Kado — computer engineer and full-stack PHP/Laravel/
 Two renderings of the same content, both static:
 
 - `/` — the main site: an animated RFID-reader hero, a tabbed showcase of five live demos with sign-in details, a timeline, skills tied to the projects that use them, contact.
-- `/v2` — a terminal-style version written so non-programmers can follow it (every command has a plain-English comment above it). `noindex`, left out of the sitemap.
+- `/v2` — "mkOS": the same content as a small operating system, written so non-programmers can follow it. Boot screen, menu bar with a live clock and status, windows with working minimize / maximize / close, a dock, Ctrl+K search, a terminal window with clickable commands, a trash-bin easter egg, and an in-place English / Turkish switch (Turkish copy in `src/data/tr.ts`). `noindex`, left out of the sitemap.
 
 All content lives in `src/data/site.ts`; the components only render it. The years-of-experience figure is computed from `experience.startDate` (`src/lib/tenure.ts`) at build time and again in the browser on every load, so it never goes stale.
 

@@ -1,0 +1,33 @@
+---
+import Window from './Window.astro';
+import T from './T.astro';
+import { timeline } from '../../data/site';
+import { tr } from '../../data/tr';
+import { tenureYears } from '../../lib/tenure';
+---
+
+<Window id="career" file="career.log" en="Where I've worked and studied, newest first" tr="Nerede çalıştım ve okudum, en yeniden eskiye">
+  <p class="m">$ tail -f career.log</p>
+  {timeline.map((t, i) => (
+    <article class="job">
+      <p class="job-when">
+        <span>[{t.from} – {t.to === 'present' ? <T en="present" tr="bugün" /> : t.to}]</span>
+        {t.startDate && (
+          <span class="m"><b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> <T en="years so far" tr="yıl, devam ediyor" /></span>
+        )}
+        <span class="k"><T en={t.kind} tr={tr.kind[t.kind]} /></span>
+      </p>
+      <p class="job-title"><T en={t.title} tr={tr.timeline[i]?.title ?? t.title} /></p>
+      <p class="job-org">
+        {t.url ? <a href={t.url} target="_blank" rel="noopener">{t.org}</a> : <T en={t.org} tr={tr.timeline[i]?.org ?? t.org} />},
+        <T en={t.where} tr={tr.timeline[i]?.where ?? t.where} />
+      </p>
+      <p><T en={t.summary} tr={tr.timeline[i]?.summary ?? t.summary} /></p>
+      {t.bullets.length > 0 && (
+        <ul>
+          {t.bullets.map((b, n) => <li><T en={b} tr={tr.timeline[i]?.bullets[n] ?? b} /></li>)}
+        </ul>
+      )}
+    </article>
+  ))}
+</Window>

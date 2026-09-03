@@ -1,0 +1,37 @@
+---
+import T from './T.astro';
+import { svg } from './icons';
+---
+
+<header class="menubar" id="top">
+  <div class="mb-left">
+    <a class="mb-brand" href="#about" data-open="about"><span class="dot live" aria-hidden="true"></span>mkOS</a>
+    <nav class="mb-nav" aria-label="Windows">
+      <a href="#about" data-open="about"><T en="about" tr="hakkımda" /></a>
+      <a href="#apps" data-open="apps"><T en="apps" tr="uygulamalar" /></a>
+      <a href="#career" data-open="career"><T en="career" tr="kariyer" /></a>
+      <a href="#skills" data-open="skills"><T en="skills" tr="beceriler" /></a>
+      <a href="#contact" data-open="contact"><T en="contact" tr="iletişim" /></a>
+    </nav>
+  </div>
+  <div class="mb-right">
+    <span class="mb-status"><span class="dot live" aria-hidden="true"></span><T en="online, open to work" tr="çevrimiçi, işe açık" /></span>
+    <button type="button" class="mb-btn" id="spot-btn" aria-label="Search (Ctrl+K)" title="Search (Ctrl+K)" set:html={svg('search')} />
+    <button type="button" class="mb-btn mb-lang" id="lang-btn" aria-label="Switch language" title="Türkçe / English">TR</button>
+    <button type="button" class="mb-btn" id="theme-toggle" aria-label="Switch colour theme" title="Light / dark">
+      <span class="ic-moon" set:html={svg('moon')} /><span class="ic-sun" set:html={svg('sun')} />
+    </button>
+    <button type="button" class="mb-btn" id="power-btn" aria-label="Shut down" title="Shut down" set:html={svg('power')} />
+    <time class="mb-clock" id="clock">--:--</time>
+  </div>
+</header>
+
+<p class="hint" id="hint">
+  <span>
+    <T
+      en="This page is styled like a small operating system. Everything is in plain English: scroll, click a window in the dock, or press Ctrl+K to search."
+      tr="Bu sayfa küçük bir işletim sistemi gibi tasarlandı. Her şey sade dille yazıldı: kaydırın, dock'taki bir pencereye tıklayın ya da aramak için Ctrl+K'ya basın."
+    />
+  </span>
+  <button type="button" class="hint-close" id="hint-close" aria-label="Dismiss">×</button>
+</p>

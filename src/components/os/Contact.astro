@@ -1,0 +1,21 @@
+---
+import Window from './Window.astro';
+import T from './T.astro';
+import { profile } from '../../data/site';
+---
+
+<Window id="contact" file="contact" en="Get in touch" tr="İletişime geçin">
+  <p class="status"><span class="dot" aria-hidden="true"></span><T en="open to full-time roles, remote or in İstanbul" tr="tam zamanlı rollere açığım, uzaktan ya da İstanbul'da" /></p>
+  <p>
+    <span class="k"><T en="email" tr="e-posta" /></span>
+    <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
+    <button type="button" class="copy" data-copy={profile.email}><T en="copy" tr="kopyala" /></button>
+  </p>
+  <div class="links">
+    <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+    <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+    <a href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp {profile.phone}</a>
+    <a href={profile.cv} download="Muhammed_Kado_CV.pdf">CV (PDF)</a>
+  </div>
+  <p class="m"><T en="I read Kurdish, Arabic, Turkish and English: write in whichever is easiest for you." tr="Kürtçe, Arapça, Türkçe ve İngilizce okuyorum: size hangisi kolaysa onunla yazın." /></p>
+</Window>

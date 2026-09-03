@@ -1,0 +1,21 @@
+---
+import Window from './Window.astro';
+import T from './T.astro';
+import { tr } from '../../data/tr';
+
+const items = [
+  { file: 'portfolio-console.astro', en: "This site's first design (a monochrome 'engineering console'). Retired 3 Sep 2026." },
+  { file: 'portfolio-blueprint.astro', en: 'The second attempt, styled as a technical drawing. Did not survive its first review.' },
+  { file: 'invoice-ui-bootstrap.css', en: "The invoice system's old Bootstrap + jQuery interface, replaced with hand-written CSS in 2026." },
+].map((i, n) => ({ ...i, tr: tr.trash[n]?.note ?? '' }));
+---
+
+<Window id="trash" file="trash/" en="Deleted, but not forgotten" tr="Silindi, ama unutulmadı" closed>
+  {items.map((i) => (
+    <div class="trash-item">
+      <p class="k">{i.file}</p>
+      <p class="m"><T en={i.en} tr={i.tr} /></p>
+    </div>
+  ))}
+  <p class="comment"># <T en="Nothing here is coming back. Empty the bin by closing this window." tr="Buradakiler geri gelmiyor. Pencereyi kapatarak çöpü boşaltın." /></p>
+</Window>

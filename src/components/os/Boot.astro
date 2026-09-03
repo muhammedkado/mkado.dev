@@ -1,0 +1,25 @@
+---
+import T from './T.astro';
+import { experience } from '../../data/site';
+import { tenureYears } from '../../lib/tenure';
+---
+
+<div id="boot" class="boot" aria-hidden="true">
+  <div class="boot-inner">
+    <p class="boot-title">mkOS <span>2026.09</span></p>
+    <ol class="boot-log" id="bootlog">
+      <li><T en="loading profile: muhammed kado, computer engineer" tr="profil yükleniyor: muhammed kado, bilgisayar mühendisi" /></li>
+      <li><T en="mounting ~/apps: 5 applications" tr="~/apps bağlanıyor: 5 uygulama" /></li>
+      <li>
+        <T en="reading career.log:" tr="career.log okunuyor:" />
+        <span data-tenure-start={experience.startDate}>{tenureYears(experience.startDate)}</span>
+        <T en="years at USTEK RFID" tr="yıldır USTEK RFID'de" />
+      </li>
+      <li><T en="starting rfid daemon: 30+ countries reachable" tr="rfid servisi başlatılıyor: 30'dan fazla ülke erişilebilir" /></li>
+      <li><T en="languages: ku ar tr en" tr="diller: ku ar tr en" /></li>
+      <li class="boot-ready"><T en="ready." tr="hazır." /></li>
+    </ol>
+    <div class="boot-bar" aria-hidden="true"><div class="boot-fill" id="bootfill"></div></div>
+    <button type="button" class="boot-skip" id="bootskip"><T en="skip" tr="atla" /> ↵</button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import T from './T.astro';
+import { svg } from './icons';
+
+const items = [
+  { id: 'about', en: 'about', tr: 'hakkımda' },
+  { id: 'apps', en: 'apps', tr: 'uygulamalar' },
+  { id: 'career', en: 'career', tr: 'kariyer' },
+  { id: 'skills', en: 'skills', tr: 'beceriler' },
+  { id: 'contact', en: 'contact', tr: 'iletişim' },
+  { id: 'terminal', en: 'terminal', tr: 'terminal' },
+  { id: 'trash', en: 'trash', tr: 'çöp' },
+];
+---
+
+<nav class="dock" aria-label="Dock">
+  {items.map((i) => (
+    <button type="button" class="dock-item" data-open={i.id} aria-label={i.en}>
+      <span class="dock-icon" set:html={svg(i.id)} />
+      <span class="dock-label"><T en={i.en} tr={i.tr} /></span>
+    </button>
+  ))}
+</nav>

@@ -1,0 +1,9 @@
+---
+// Bilingual text: both languages are in the HTML, CSS shows one based on <html lang>.
+interface Props {
+  en: string;
+  tr: string;
+}
+const { en, tr } = Astro.props;
+---
+<span class="en">{en}</span><span class="tr">{tr}</span>
