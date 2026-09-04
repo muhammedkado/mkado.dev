@@ -1,0 +1,20 @@
+---
+// Decorative backdrop behind the whole page: gradient base, three soft colour
+// fields, a Swiss grid, an outlined "MK" monogram and a touch of film grain.
+// GSAP parallaxes the fields and the monogram on scroll and drifts them toward
+// the pointer (see src/scripts/swiss-motion.ts). Purely decorative: aria-hidden,
+// no pointer events, static under prefers-reduced-motion.
+const noise =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+---
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-drift">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+  </div>
+  <div class="bg-mark">MK</div>
+  <div class="bg-noise" style={`background-image: url("${noise}")`}></div>
+</div>

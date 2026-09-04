@@ -118,6 +118,21 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
     });
   });
 
+  /* ---- backdrop: decorative layers parallax with the scroll (small deltas) ---- */
+  gsap.utils.toArray<HTMLElement>('.bg-blob').forEach((layer, i) => {
+    gsap.to(layer, {
+      yPercent: (i + 1) * -7,
+      ease: 'none',
+      scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.8 },
+    });
+  });
+  gsap.to('.bg-mark', {
+    yPercent: -22,
+    rotation: 4,
+    ease: 'none',
+    scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom bottom', scrub: 0.8 },
+  });
+
   /* ---- reading progress under the nav ---- */
   gsap.to('.nav-progress', {
     scaleX: 1,
@@ -168,6 +183,21 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 
   /* ---- pointer-only micro-interactions ---- */
   if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    // The colour fields drift gently toward the pointer.
+    const drift = document.querySelector<HTMLElement>('.bg-drift');
+    if (drift) {
+      const dx = gsap.quickTo(drift, 'x', { duration: 1.4, ease: 'power2.out' });
+      const dy = gsap.quickTo(drift, 'y', { duration: 1.4, ease: 'power2.out' });
+      window.addEventListener(
+        'pointermove',
+        (e) => {
+          dx((e.clientX / window.innerWidth - 0.5) * 48);
+          dy((e.clientY / window.innerHeight - 0.5) * 48);
+        },
+        { passive: true },
+      );
+    }
+
     // One magnetic focal element per screen: the primary CTA.
     const mag = document.querySelector<HTMLElement>('.hero .btn-primary');
     if (mag) {
