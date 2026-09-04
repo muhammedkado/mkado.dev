@@ -67,9 +67,8 @@ export const demos: Demo[] = [
       { label: 'Admin panel', user: 'admin@besttrend.mkado.dev', pass: 'demo1234' },
     ],
     extra: { label: 'Admin panel', url: 'https://besttrend-api.mkado.dev/admin/login' },
-    note: 'Private repository — code available on request. Deploying: the link goes live shortly.',
+    note: 'Private repository — code available on request.',
     period: '2025',
-    live: false,
   },
   {
     slug: 'invoice',
