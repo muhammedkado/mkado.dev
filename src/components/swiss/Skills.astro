@@ -1,0 +1,20 @@
+---
+import { skills } from '../../data/site';
+---
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Skills</h2>
+      <p>Day to day at USTEK: PHP, Laravel, Zend Framework 1, MySQL and REST APIs, against real RFID hardware. The rest comes from the projects above.</p>
+    </div>
+    <div class="skills">
+      {skills.map((g) => (
+        <div class="skill-group">
+          <h3>{g.group}</h3>
+          <div class="stack">{g.items.map((item) => <span>{item}</span>)}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

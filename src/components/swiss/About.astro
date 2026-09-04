@@ -1,0 +1,38 @@
+---
+import { profile, experience, education, timeline } from '../../data/site';
+import { tenureYears } from '../../lib/tenure';
+---
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="prose">
+      <h2>About</h2>
+      <p class="lead">{profile.name} is a computer engineer ({education.degree}, {education.school}) working as a full-stack developer in İstanbul.</p>
+      <p>Since 2023 I've been at {experience.company}, where I build the web platform that sits on top of RFID readers and terminals: REST APIs and interfaces in PHP, Laravel and Zend Framework for real-time inventory tracking, automated billing and logistics.</p>
+      <p>In plain words: I build the software that lets hotels and laundries know where every towel and uniform is, automatically.</p>
+      <p>On my own time I build with React and Next.js. I'm looking for a full-time role, remote or in İstanbul, and I work in English, Turkish, Arabic and Kurdish.</p>
+    </div>
+
+    <div>
+      <h2>Experience</h2>
+      <ol class="timeline">
+        {timeline.map((t) => (
+          <li class={`tl ${t.to === 'present' ? 'is-current' : ''}`}>
+            <p class="tl-range">
+              {t.from} – {t.to}
+              {t.startDate && <span>, <b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> years</span>}
+            </p>
+            <h3>{t.title}</h3>
+            <p class="org">{t.url ? <a href={t.url} target="_blank" rel="noopener">{t.org}</a> : t.org}, {t.where}</p>
+            <p class="sum">{t.summary}</p>
+            {t.bullets.length > 0 && (
+              <ul>
+                {t.bullets.map((b) => <li>{b}</li>)}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

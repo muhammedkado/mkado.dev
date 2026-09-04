@@ -1,45 +1,24 @@
 ---
-import OS from '../layouts/OS.astro';
-import Boot from '../components/os/Boot.astro';
-import MenuBar from '../components/os/MenuBar.astro';
-import About from '../components/os/About.astro';
-import Apps from '../components/os/Apps.astro';
-import Career from '../components/os/Career.astro';
-import Skills from '../components/os/Skills.astro';
-import Contact from '../components/os/Contact.astro';
-import Terminal from '../components/os/Terminal.astro';
-import Trash from '../components/os/Trash.astro';
-import Dock from '../components/os/Dock.astro';
-import Spotlight from '../components/os/Spotlight.astro';
-import Shutdown from '../components/os/Shutdown.astro';
-import T from '../components/os/T.astro';
-import { profile } from '../data/site';
-
-const year = new Date().getFullYear();
+import Swiss from '../layouts/Swiss.astro';
+import Nav from '../components/swiss/Nav.astro';
+import Hero from '../components/swiss/Hero.astro';
+import Strengths from '../components/swiss/Strengths.astro';
+import Work from '../components/swiss/Work.astro';
+import About from '../components/swiss/About.astro';
+import Skills from '../components/swiss/Skills.astro';
+import Cta from '../components/swiss/Cta.astro';
+import Footer from '../components/swiss/Footer.astro';
 ---
 
-<OS>
-  <Boot />
-  <MenuBar />
-
-  <main class="desktop">
+<Swiss>
+  <Nav />
+  <main>
+    <Hero />
+    <Strengths />
+    <Work />
     <About />
-    <Apps />
-    <div class="desk-col"><Career /></div>
-    <div class="desk-col">
-      <Skills />
-      <Contact />
-      <Terminal />
-    </div>
-    <Trash />
+    <Skills />
+    <Cta />
   </main>
-
-  <p class="foot">
-    <span>© {year} {profile.name}, mkOS 2026.09</span>
-    <a href="/"><T en="See the standard version of this site" tr="Sitenin standart sürümüne geç" /></a>
-  </p>
-
-  <Dock />
-  <Spotlight />
-  <Shutdown />
-</OS>
+  <Footer />
+</Swiss>

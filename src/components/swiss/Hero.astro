@@ -1,0 +1,44 @@
+---
+import { profile, experience, demos, languages } from '../../data/site';
+import { tenureYears } from '../../lib/tenure';
+
+const tenure = tenureYears(experience.startDate);
+const spoken = languages.map((l) => l.name).join(', ');
+---
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow"><b>{profile.title}</b>, {profile.role}</p>
+      <h1>{profile.headline}</h1>
+      <p class="lede">{profile.intro}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#work">See the live work</a>
+        <a class="btn btn-secondary" href={profile.cv} download="Muhammed_Kado_CV.pdf">Download CV</a>
+      </div>
+      <p class="hero-links">
+        <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+        <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      </p>
+    </div>
+
+    <ul class="facts">
+      <li class="fact reveal" style="--i: 0">
+        <b data-tenure-start={experience.startDate} data-countup>{tenure}</b>
+        <span>years at {experience.company}, since 2023</span>
+      </li>
+      <li class="fact reveal" style="--i: 1">
+        <b>{demos.length}</b>
+        <span>live applications you can sign into</span>
+      </li>
+      <li class="fact reveal" style="--i: 2">
+        <b>30+</b>
+        <span>countries running software I work on</span>
+      </li>
+      <li class="fact reveal" style="--i: 3">
+        <b>{languages.length}</b>
+        <span>languages: {spoken}</span>
+      </li>
+    </ul>
+  </div>
+</section>

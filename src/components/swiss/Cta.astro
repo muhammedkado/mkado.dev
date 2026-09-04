@@ -1,0 +1,25 @@
+---
+import { profile } from '../../data/site';
+---
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="cta-panel">
+      <div>
+        <span class="status-pill"><span class="dot live" aria-hidden="true"></span>Open to work</span>
+        <h2 style="margin-top: 16px">Hiring a full-stack engineer?</h2>
+        <p>I'm open to full-time roles, remote or in İstanbul. Email is the fastest way to reach me.</p>
+        <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-inverse" href={`mailto:${profile.email}`}>Email me</a>
+        <a class="btn btn-ghost" href={profile.cv} download="Muhammed_Kado_CV.pdf">Download CV</a>
+        <p class="cta-links">
+          <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+          <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
+          <a href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp {profile.phone}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

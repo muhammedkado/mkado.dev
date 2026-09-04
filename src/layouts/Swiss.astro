@@ -1,0 +1,102 @@
+---
+// /v2 — generated with the ui-ux-pro-max design system in design-system/mkado-dev-v2/MASTER.md
+import '../styles/swiss.css';
+import { profile } from '../data/site';
+
+const title = `${profile.name} — ${profile.title}`;
+const description =
+  'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Five live demos you can open.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <slot />
+
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* theme */
+        var toggle = document.getElementById('theme-toggle');
+        if (toggle) toggle.addEventListener('click', function () {
+          var dark = root.getAttribute('data-theme') === 'dark';
+          if (dark) root.removeAttribute('data-theme');
+          else root.setAttribute('data-theme', 'dark');
+          try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
+        });
+
+        /* live tenure + count-up */
+        document.querySelectorAll('[data-tenure-start]').forEach(function (el) {
+          var start = new Date(el.getAttribute('data-tenure-start'));
+          var years = (Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
+          var final = years.toFixed(1);
+          if (!el.hasAttribute('data-countup') || reduce) { el.textContent = final; return; }
+          el.textContent = '0.0';
+          setTimeout(function () {
+            var t0 = performance.now(), dur = 900;
+            (function tick(now) {
+              var p = Math.min(1, (now - t0) / dur);
+              var e = 1 - Math.pow(1 - p, 3);
+              el.textContent = (years * e).toFixed(1);
+              if (p < 1) requestAnimationFrame(tick); else el.textContent = final;
+            })(t0);
+          }, 350);
+        });
+
+        /* copy buttons */
+        document.addEventListener('click', function (ev) {
+          var btn = ev.target.closest('button.copy[data-copy]');
+          if (!btn) return;
+          navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            var original = btn.textContent;
+            btn.textContent = 'copied';
+            btn.classList.add('copied');
+            setTimeout(function () { btn.textContent = original; btn.classList.remove('copied'); }, 1200);
+          }).catch(function () {});
+        });
+
+        /* stagger reveal: on load for the hero, on scroll for everything else */
+        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+        if (reduce || !('IntersectionObserver' in window)) {
+          items.forEach(function (el) { el.classList.add('in'); });
+          return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+        items.forEach(function (el) { io.observe(el); });
+      })();
+    </script>
+  </body>
+</html>
