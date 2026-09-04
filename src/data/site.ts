@@ -1,6 +1,7 @@
 // Single source of truth for everything on the page.
 
-export const demosLive = false; // flip to true once the VPS is up
+// Global switch for the whole board; a demo can opt out with `live: false`.
+export const demosLive = true; // live since 2026-09-04
 
 export const profile = {
   name: 'Muhammed Kado',
@@ -34,6 +35,7 @@ export type Demo = {
   note?: string;
   extra?: { label: string; url: string };
   period: string;
+  live?: boolean; // defaults to demosLive; set false while a demo isn't deployed yet
 };
 
 export const demos: Demo[] = [
@@ -65,8 +67,9 @@ export const demos: Demo[] = [
       { label: 'Admin panel', user: 'admin@besttrend.mkado.dev', pass: 'demo1234' },
     ],
     extra: { label: 'Admin panel', url: 'https://besttrend-api.mkado.dev/admin/login' },
-    note: 'Private repository — code available on request.',
+    note: 'Private repository — code available on request. Deploying: the link goes live shortly.',
     period: '2025',
+    live: false,
   },
   {
     slug: 'invoice',

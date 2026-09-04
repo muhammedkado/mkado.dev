@@ -1,5 +1,8 @@
 ---
 import { demos, demosLive } from '../data/site';
+
+const isLive = (d: (typeof demos)[number]) => d.live ?? demosLive;
+const allLive = demos.every(isLive);
 ---
 
 <section class="section" id="work">
@@ -9,9 +12,9 @@ import { demos, demosLive } from '../data/site';
         <h2>Five applications you can sign into</h2>
         <p>Real deployments, each with its own database. Use the demo accounts, change whatever you like — everything resets overnight.</p>
       </div>
-      <span class={`status ${demosLive ? '' : 'soon'}`}>
+      <span class={`status ${allLive ? '' : 'soon'}`}>
         <span class="dot" aria-hidden="true"></span>
-        {demosLive ? 'All systems up' : 'Deploying — links go live shortly'}
+        {allLive ? 'All systems up' : `${demos.filter(isLive).length} of ${demos.length} up`}
       </span>
     </div>
 
@@ -19,7 +22,7 @@ import { demos, demosLive } from '../data/site';
       <div class="tabs" role="tablist" aria-label="Applications" aria-orientation="vertical">
         {demos.map((d, i) => (
           <button
-            class={`tab ${demosLive ? 'is-live' : ''}`}
+            class={`tab ${isLive(d) ? 'is-live' : ''}`}
             role="tab"
             type="button"
             id={`tab-${d.slug}`}

@@ -12,8 +12,8 @@ import { tr } from '../../data/tr';
       tr={`${demos.length} uygulama, her biri kendi sunucusunda kendi veritabanıyla çalışıyor. Demo hesabıyla girin, istediğinizi değiştirin; hepsi her gece sıfırlanır.`}
     />
   </p>
-  <p class={demosLive ? 'g' : 'y'}>
-    {demosLive
+  <p class={demos.every((d) => d.live ?? demosLive) ? 'g' : 'y'}>
+    {demos.every((d) => d.live ?? demosLive)
       ? <T en="● all systems up" tr="● tüm sistemler ayakta" />
       : <T en="○ deploying now: the Open buttons go live shortly" tr="○ yayına alınıyor: Aç düğmeleri kısa süre içinde çalışacak" />}
   </p>
@@ -21,7 +21,7 @@ import { tr } from '../../data/tr';
   {demos.map((d) => (
     <article class="app">
       <div class="app-head">
-        <span class={`dot ${demosLive ? 'live' : ''}`} aria-hidden="true"></span>
+        <span class={`dot ${(d.live ?? demosLive) ? 'live' : ''}`} aria-hidden="true"></span>
         <span class="app-name">{d.name}</span>
         <span class="app-year">{d.period}</span>
       </div>

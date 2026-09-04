@@ -27,7 +27,7 @@ const cards: Card[] = [
     creds: d.credentials,
     note: d.note,
     period: d.period,
-    status: (demosLive ? 'live' : 'soon') as Card['status'],
+    status: ((d.live ?? demosLive) ? 'live' : 'soon') as Card['status'],
   })),
   ...projects.map((p) => ({
     key: p.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
@@ -70,9 +70,9 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
         <h2>Work you can open</h2>
         <p>Five real deployments, each with its own database, plus a few side projects. Sign in with the demo accounts and change whatever you like; everything resets overnight.</p>
       </div>
-      <span class={`status-pill ${demosLive ? '' : 'soon'}`}>
-        <span class={`dot ${demosLive ? 'live' : ''}`} aria-hidden="true"></span>
-        {demosLive ? 'All demos up' : 'Demos deploying, links go live shortly'}
+      <span class={`status-pill ${demos.every((d) => d.live ?? demosLive) ? '' : 'soon'}`}>
+        <span class={`dot ${demos.every((d) => d.live ?? demosLive) ? 'live' : ''}`} aria-hidden="true"></span>
+        {demos.every((d) => d.live ?? demosLive) ? 'All demos up' : `${demos.filter((d) => d.live ?? demosLive).length} of ${demos.length} demos up`}
       </span>
     </div>
 
