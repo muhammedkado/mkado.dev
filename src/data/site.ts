@@ -66,8 +66,19 @@ export const demos: Demo[] = [
       { label: 'Property owner', user: 'demo@besttrend.mkado.dev', pass: 'demo1234' },
       { label: 'Admin panel', user: 'admin@besttrend.mkado.dev', pass: 'demo1234' },
     ],
-    extra: { label: 'Admin panel', url: 'https://besttrend-api.mkado.dev/admin/login' },
-    note: 'Private repository — code available on request.',
+    note: 'Private repository — code available on request. Sign in as the property owner to add a listing.',
+    period: '2025',
+  },
+  {
+    slug: 'besttrend-api',
+    name: 'BestTrend Admin & API',
+    summary:
+      'The other half of BestTrend: an AdminLTE back office for moderating listings, users and reports, on top of the Laravel REST API the app itself runs on.',
+    url: 'https://besttrend-api.mkado.dev/admin/login',
+    repo: null,
+    stack: ['Laravel 10', 'Sanctum', 'PostgreSQL', 'AdminLTE', 'REST API'],
+    credentials: [{ label: 'Admin panel', user: 'admin@besttrend.mkado.dev', pass: 'demo1234' }],
+    note: 'The public API is open too — try /api/v1/properties.',
     period: '2025',
   },
   {
