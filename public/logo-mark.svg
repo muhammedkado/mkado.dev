@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+  <title id="t">Muhammed Kado</title>
+  <rect width="64" height="64" rx="14" fill="#101828"/>
+  <!-- read pulses: the RFID motif -->
+  <path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="#6FD0FF" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
+  <path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="#6FD0FF" stroke-width="2.4" stroke-linecap="round" opacity="0.3"/>
+  <circle cx="40" cy="24" r="3" fill="#6D93FF"/>
+  <!-- mk -->
+  <text x="12" y="49" font-family="'Bricolage Grotesque','Space Grotesk',system-ui,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="#F1F4F9">mk</text>
+</svg>

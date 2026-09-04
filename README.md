@@ -22,6 +22,10 @@ All content lives in `src/data/site.ts`; the components only render it. The year
 
 Flip `demosLive` in `src/data/site.ts` to `true` once the subdomains resolve — it switches the status pills from "deploying now" to a live indicator.
 
+## Brand
+
+`docs/brand-guidelines.md` is the source of truth for colours, type, voice, the mark and motion rules (written with the ui-ux-pro-max `brand` skill). `assets/design-tokens.json` / `.css` are generated from it — edit the guidelines, then run the skill's `sync-brand-to-tokens.cjs`. The mark lives in `public/logo-mark.svg` (favicon is the same drawing).
+
 ## Stack
 
 - [Astro](https://astro.build) 7, static output, two pages, no client-side framework

@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
-/* ---------- tokens ---------- */
+/* ---------- tokens (source of truth: docs/brand-guidelines.md) ---------- */
 
 :root {
   --bg: #f7f7f5;
+  --bg-top: #f8f8f6;
+  --bg-bottom: #eaeef6;
+  --blob-1: rgba(31, 79, 216, 0.2);
+  --blob-2: rgba(6, 182, 212, 0.16);
+  --blob-3: rgba(22, 163, 74, 0.12);
+  --grid-line: rgba(16, 24, 40, 0.06);
+  --pulse-line: rgba(31, 79, 216, 0.1);
+  --noise-opacity: 0.45;
   --surface: #ffffff;
   --surface-2: #f0f1ef;
   --ink: #101828;
@@ -30,6 +38,14 @@
 
 :root[data-theme="dark"] {
   --bg: #0b0f17;
+  --bg-top: #0f1522;
+  --bg-bottom: #080b12;
+  --blob-1: rgba(109, 147, 255, 0.2);
+  --blob-2: rgba(111, 208, 255, 0.14);
+  --blob-3: rgba(52, 211, 153, 0.12);
+  --grid-line: rgba(241, 244, 249, 0.05);
+  --pulse-line: rgba(111, 208, 255, 0.1);
+  --noise-opacity: 0.3;
   --surface: #111827;
   --surface-2: #161e2e;
   --ink: #f1f4f9;
@@ -106,6 +122,86 @@ a:hover { color: var(--accent-hover); }
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* ---------- backdrop (brand §6) ---------- */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--bg-top), var(--bg-bottom));
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, #000 25%, transparent 100%);
+  mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, #000 25%, transparent 100%);
+}
+
+.bg-drift { position: absolute; inset: -8%; will-change: transform; }
+.bg-blob { position: absolute; width: 62vmax; height: 62vmax; border-radius: 50%; will-change: transform; }
+.bg-blob-1 { top: -22vmax; left: -18vmax; background: radial-gradient(circle at center, var(--blob-1), transparent 62%); }
+.bg-blob-2 { top: 6vmax; right: -26vmax; background: radial-gradient(circle at center, var(--blob-2), transparent 62%); }
+.bg-blob-3 { bottom: -34vmax; left: 16vw; background: radial-gradient(circle at center, var(--blob-3), transparent 62%); }
+
+.bg-pulse {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(70vw, 900px);
+  height: auto;
+  color: var(--pulse-line);
+  will-change: transform;
+}
+
+.bg-noise { position: absolute; inset: 0; opacity: var(--noise-opacity); mix-blend-mode: overlay; background-repeat: repeat; }
+
+/* ---------- section divider: read-pulse arcs on the rule ---------- */
+
+.divider { position: relative; height: 0; z-index: 1; }
+.divider .wrap { position: relative; }
+.divider svg {
+  position: absolute;
+  left: 20px;
+  top: -14px;
+  width: 28px;
+  height: 28px;
+  color: var(--accent);
+  opacity: 0.7;
+  background: var(--bg-top);
+  border-radius: 50%;
+  padding: 2px;
+}
+
+/* ---------- motion hooks (GSAP; src/scripts/main-motion.ts) ---------- */
+
+html.js .anim { opacity: 0; }
+
+.panels { position: relative; }
+.panels::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-fast, 200ms) ease;
+  pointer-events: none;
+}
+@media (hover: hover) { .panels:hover::before { opacity: 1; } }
+.panels > * { position: relative; }
+
+.brand .mark { width: 28px; height: 28px; border-radius: 7px; flex: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .anim { opacity: 1; }
 }
 
 /* ---------- header ---------- */

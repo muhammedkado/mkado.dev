@@ -1,0 +1,25 @@
+---
+// Brand backdrop for the main site (docs/brand-guidelines.md §6): gradient ground,
+// colour fields in Cobalt Signal / Pulse Cyan / Live Green, a 64px grid faded to
+// the edges, one large set of read-pulse arcs, and film grain. GSAP parallaxes the
+// fields and arcs with the scroll and drifts them toward the pointer
+// (src/scripts/main-motion.ts). Decorative only: aria-hidden, no pointer events.
+const noise =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+---
+
+<div class="bg" aria-hidden="true">
+  <div class="bg-grid"></div>
+  <div class="bg-drift">
+    <div class="bg-blob bg-blob-1"></div>
+    <div class="bg-blob bg-blob-2"></div>
+    <div class="bg-blob bg-blob-3"></div>
+  </div>
+  <svg class="bg-pulse" viewBox="0 0 600 600" fill="none" stroke="currentColor" stroke-width="1.2">
+    <circle cx="600" cy="0" r="180" />
+    <circle cx="600" cy="0" r="300" />
+    <circle cx="600" cy="0" r="420" />
+    <circle cx="600" cy="0" r="540" />
+  </svg>
+  <div class="bg-noise" style={`background-image: url("${noise}")`}></div>
+</div>
