@@ -95,25 +95,73 @@ button { cursor: pointer; }
 
 .muted { color: var(--muted-fg); }
 
-/* ---------- motion: one stagger primitive ---------- */
+/* ---------- motion hooks (GSAP drives these; see src/scripts/swiss-motion.ts) ---------- */
 
-.reveal {
-  opacity: 0;
-  transform: translateY(16px) scale(0.96);
-  transition:
-    opacity var(--dur) var(--ease-out),
-    transform var(--dur-slow) var(--ease-back);
-  transition-delay: calc(var(--i, 0) * 60ms);
-}
-
-.reveal.in { opacity: 1; transform: none; }
-html:not(.js) .reveal { opacity: 1; transform: none; }
+/* Elements GSAP reveals start invisible only when JS runs; a 3s safety net and
+   prefers-reduced-motion both restore the final state. */
+html.js .anim { opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { transition: none; opacity: 1; transform: none; }
-  *, *::before, *::after { animation: none !important; }
+  html.js .anim { opacity: 1; }
+  .section-head h2::after { transform: scaleX(1); }
+  *, *::before, *::after { animation: none !important; transition-duration: 0.001ms !important; }
 }
+
+.nav-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.section-head h2 { position: relative; display: inline-block; padding-bottom: 12px; }
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out) 150ms;
+}
+.section-head h2.in::after { transform: scaleX(1); }
+
+.icon-btn svg { transition: transform var(--dur) var(--ease-back); }
+.icon-btn:hover svg { transform: rotate(18deg); }
+
+.btn-arrow { display: inline-block; transition: transform var(--dur-fast) var(--ease-out); }
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+.to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 25;
+  width: 44px;
+  height: 44px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity var(--dur-fast) ease, transform var(--dur-fast) var(--ease-out);
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { text-decoration: none; }
+.to-top svg { width: 18px; height: 18px; }
 
 /* ---------- buttons ---------- */
 
@@ -243,6 +291,7 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
   box-shadow: var(--shadow-sm);
 }
 
+.fact { transform-style: preserve-3d; }
 .fact b { display: block; font-family: var(--font-head); font-size: 2.25rem; font-weight: 700; line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .fact span { display: block; margin-top: var(--space-sm); color: var(--muted-fg); font-size: 0.95rem; line-height: 1.4; }
 
@@ -303,6 +352,8 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-lg); }
 
 .card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
@@ -311,11 +362,25 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease, opacity var(--dur) var(--ease-out);
+  transition: box-shadow var(--dur-fast) ease;
 }
 
-.card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.card:hover { box-shadow: var(--shadow-md); }
 .card[hidden] { display: none; }
+.card > * { position: relative; }
+
+/* pointer spotlight (pointer devices only; GSAP sets --mx/--my) */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 60%);
+  opacity: 0;
+  transition: opacity var(--dur-fast) ease;
+  pointer-events: none;
+}
+@media (hover: hover) { .card:hover::before { opacity: 1; } }
 
 .card-head { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
 .card-head h3 { font-size: 1.15rem; }
@@ -349,6 +414,8 @@ html:not(.js) .reveal { opacity: 1; transform: none; }
 .prose p { color: var(--muted-fg); max-width: 58ch; }
 .prose p.lead { color: var(--fg); font-size: 1.05rem; }
 
+.timeline-wrap { position: relative; }
+.tl-progress { position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: var(--accent); transform-origin: top; transform: scaleY(0); }
 .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-lg); }
 .tl { position: relative; padding-left: var(--space-lg); border-left: 2px solid var(--border); }
 .tl::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 2px solid var(--border-strong); }

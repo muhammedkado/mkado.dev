@@ -15,9 +15,11 @@ import { tenureYears } from '../../lib/tenure';
 
     <div>
       <h2>Experience</h2>
+      <div class="timeline-wrap">
+      <span class="tl-progress" aria-hidden="true"></span>
       <ol class="timeline">
         {timeline.map((t) => (
-          <li class={`tl ${t.to === 'present' ? 'is-current' : ''}`}>
+          <li class={`tl anim ${t.to === 'present' ? 'is-current' : ''}`}>
             <p class="tl-range">
               {t.from} – {t.to}
               {t.startDate && <span>, <b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> years</span>}
@@ -33,6 +35,7 @@ import { tenureYears } from '../../lib/tenure';
           </li>
         ))}
       </ol>
+      </div>
     </div>
   </div>
 </section>

@@ -20,13 +20,13 @@ const items = [
 
 <section class="section" aria-labelledby="strengths-title">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head anim">
       <h2 id="strengths-title">What I bring</h2>
       <p>Three years of shipping features for a platform that businesses depend on every day, plus a computer-engineering degree behind it.</p>
     </div>
     <div class="strengths">
-      {items.map((s, i) => (
-        <article class="strength reveal" style={`--i: ${i}`}>
+      {items.map((s) => (
+        <article class="strength anim">
           <div class="ic" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={s.icon} />
           </div>

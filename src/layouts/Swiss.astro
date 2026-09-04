@@ -41,7 +41,6 @@ const description =
     <script is:inline>
       (function () {
         var root = document.documentElement;
-        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         /* theme */
         var toggle = document.getElementById('theme-toggle');
@@ -50,24 +49,6 @@ const description =
           if (dark) root.removeAttribute('data-theme');
           else root.setAttribute('data-theme', 'dark');
           try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
-        });
-
-        /* live tenure + count-up */
-        document.querySelectorAll('[data-tenure-start]').forEach(function (el) {
-          var start = new Date(el.getAttribute('data-tenure-start'));
-          var years = (Date.now() - start.getTime()) / (365.25 * 24 * 60 * 60 * 1000);
-          var final = years.toFixed(1);
-          if (!el.hasAttribute('data-countup') || reduce) { el.textContent = final; return; }
-          el.textContent = '0.0';
-          setTimeout(function () {
-            var t0 = performance.now(), dur = 900;
-            (function tick(now) {
-              var p = Math.min(1, (now - t0) / dur);
-              var e = 1 - Math.pow(1 - p, 3);
-              el.textContent = (years * e).toFixed(1);
-              if (p < 1) requestAnimationFrame(tick); else el.textContent = final;
-            })(t0);
-          }, 350);
         });
 
         /* copy buttons */
@@ -82,21 +63,10 @@ const description =
           }).catch(function () {});
         });
 
-        /* stagger reveal: on load for the hero, on scroll for everything else */
-        var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
-        if (reduce || !('IntersectionObserver' in window)) {
-          items.forEach(function (el) { el.classList.add('in'); });
-          return;
-        }
-        var io = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (!e.isIntersecting) return;
-            e.target.classList.add('in');
-            io.unobserve(e.target);
-          });
-        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
-        items.forEach(function (el) { io.observe(el); });
       })();
+    </script>
+    <script>
+      import '../scripts/swiss-motion';
     </script>
   </body>
 </html>
