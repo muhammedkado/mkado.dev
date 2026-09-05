@@ -264,6 +264,24 @@ def deployment():
            "A workstation script pushes code over SSH and uploads local builds; visitors reach the Oracle Cloud VM through Cloudflare's edge, where nginx routes each host to a PHP-FPM pool or a static directory, every app has its own database, and cron jobs re-seed the demos nightly, back up and probe health every five minutes.",
            768, 452, N, E, Z)
 
+def timezone():
+    N = [
+        node("app", 40, 92, "React 19 SPA", "wouter routes, i18next", "APP", "focal", w=160),
+        node("intl", 272, 32, "Intl API", "browser time zones, formats", "BROWSER", "external", w=160),
+        node("locales", 272, 132, "/locales/*.json", "7 languages, RTL for ar", "STATIC", "store", w=160),
+        node("share", 272, 232, "URL state", "shareable links, no backend", "STATE", "async", w=160),
+        node("cdn", 528, 132, "nginx + Cloudflare", "static files, 1y cache", "EDGE", "external", w=176),
+    ]
+    E = [
+        edge("app", "intl", "COMPUTE", src_side="top", dst_side="left"),
+        edge("app", "locales", "FETCH", "link"),
+        edge("app", "share", "ENCODE", "dashed", src_side="bottom", dst_side="left"),
+        edge("cdn", "locales", "SERVES", "dashed"),
+    ]
+    render("timezone", "TimeZone.tools: everything happens in the browser",
+           "A React single-page app computes conversions and working days with the browser's Intl API, loads its seven translation files at runtime, keeps state in the URL so links are shareable, and is served as plain static files behind Cloudflare — there is no backend.",
+           768, 316, N, E)
+
 if __name__ == "__main__":
-    for fn in (pos, besttrend, besttrend_api, invoice, findjob, tireshop, deployment):
+    for fn in (pos, besttrend, besttrend_api, invoice, findjob, tireshop, timezone, deployment):
         fn()

@@ -26,6 +26,7 @@ declare -A URL=(
   [besttrend-api]=https://besttrend-api.mkado.dev/health
   [besttrend]=https://besttrend.mkado.dev/
   [tireshop]=https://tireshop.mkado.dev/
+  [timezone]=https://timezone.mkado.dev/
 )
 
 mkdir -p "$DIR"

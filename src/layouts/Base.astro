@@ -21,7 +21,7 @@ const {
   ogImage,
   jsonLd: jsonLdProp,
   title = `${profile.name} — ${profile.title}`,
-  description = 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Six live demos you can open, signed in with one click.',
+  description = 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Seven live demos you can open, signed in with one click.',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? profile.siteUrl).toString();
@@ -64,7 +64,7 @@ const jsonLd = jsonLdProp ?? {
     <meta property="og:image" content={og} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Muhammed Kado, Computer Engineer in İstanbul: I build the web side of RFID systems that run in 30+ countries. Six live demos." />
+    <meta property="og:image:alt" content="Muhammed Kado, Computer Engineer in İstanbul: I build the web side of RFID systems that run in 30+ countries. Seven live demos." />
     <meta property="og:site_name" content="mkado.dev" />
     <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
     {alternates && lang === 'en' && alternates.tr && <meta property="og:locale:alternate" content="tr_TR" />}
@@ -72,7 +72,7 @@ const jsonLd = jsonLdProp ?? {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={og} />
-    <meta name="twitter:image:alt" content="Muhammed Kado, Computer Engineer: six live demos you can open." />
+    <meta name="twitter:image:alt" content="Muhammed Kado, Computer Engineer: seven live demos you can open." />
     <meta name="theme-color" content="#1f4fd8" />
 
 

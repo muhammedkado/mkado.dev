@@ -20,7 +20,7 @@ export const profile = {
     'Computer engineer in İstanbul, working full-stack. Since 2023 I build REST APIs and web ' +
     'interfaces in PHP, Laravel and Zend Framework at USTEK RFID, shipping a laundry-management ' +
     'platform used by commercial laundries, hotels and hospitals. On my own time I build with React ' +
-    'and Next.js. The six applications below are deployed and yours to try.',
+    'and Next.js. The seven applications below are deployed and yours to try.',
 };
 
 export type Demo = {
@@ -122,17 +122,21 @@ export const demos: Demo[] = [
     note: 'No sign-in — runs in local demo mode, data stays in your browser.',
     period: '2025',
   },
+  {
+    slug: 'timezone',
+    name: 'TimeZone.tools',
+    summary:
+      'Time-zone converter, meeting planner and working-days calculator in seven languages, with right-to-left Arabic — the kind of small tool people keep in a tab all day.',
+    url: 'https://timezone.mkado.dev',
+    repo: 'https://github.com/muhammedkado/timetool',
+    stack: ['React 19', 'TypeScript', 'Vite', 'Tailwind 4', 'i18next'],
+    credentials: [],
+    note: 'No sign-in — everything runs in your browser.',
+    period: '2025',
+  },
 ];
 
 export const projects = [
-  {
-    name: 'TimeZone.tools',
-    summary: 'Time-zone converter, meeting planner and working-days calculator in seven languages with RTL support.',
-    stack: ['React 19', 'Vite', 'Tailwind 4', 'i18next'],
-    url: null, // no public deployment yet; the card links to the source
-    repo: 'https://github.com/muhammedkado/timetool',
-    live: false,
-  },
   {
     name: 'Kado Job App',
     summary: 'Job-board and project-staffing Android app with an admin panel — my graduation project.',
@@ -221,12 +225,12 @@ export const timeline: TimelineEntry[] = [
     from: '2024',
     to: 'present',
     kind: 'projects',
-    title: 'Six live applications',
+    title: 'Seven live applications',
     org: 'Independent work',
     where: 'live on mkado.dev',
     summary:
-      'A POS back office, an invoicing system, a real-estate platform with its admin panel, an AI job matcher and a ' +
-      'tire-shop PWA — each built end to end with its own database, and published as a live demo anyone can open.',
+      'A POS back office, an invoicing system, a real-estate platform with its admin panel, an AI job matcher, a ' +
+      'tire-shop PWA and a time-zone toolkit — each built end to end and published as a live demo anyone can open.',
     bullets: [],
   },
   {

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 316" class="dg" role="img" aria-labelledby="timezone-title timezone-desc">
+<title id="timezone-title">TimeZone.tools: everything happens in the browser</title>
+<desc id="timezone-desc">A React single-page app computes conversions and working days with the browser's Intl API, loads its seven translation files at runtime, keeps state in the URL so links are shareable, and is served as plain static files behind Cloudflare — there is no backend.</desc>
+<defs>
+<marker id="timezone-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="timezone-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M120,92 V68 Q120,60 128,60 H272" class="dg-arrow" marker-end="url(#timezone-m)"/>
+<path d="M200,120 H228 Q236,120 236,128 V152 Q236,160 244,160 H272" class="dg-arrow link" marker-end="url(#timezone-ml)"/>
+<path d="M120,148 V252 Q120,260 128,260 H272" class="dg-arrow dashed" marker-end="url(#timezone-m)"/>
+<path d="M528,160 H432" class="dg-arrow dashed" marker-end="url(#timezone-m)"/>
+<rect x="173" y="40" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="196" y="49" class="dg-label" text-anchor="middle">COMPUTE</text>
+<rect x="200" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="218" y="109" class="dg-label" text-anchor="middle">FETCH</text>
+<rect x="176" y="240" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="196" y="249" class="dg-label" text-anchor="middle">ENCODE</text>
+<rect x="460" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="480" y="149" class="dg-label" text-anchor="middle">SERVES</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 SPA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">wouter routes, i18next</text>
+<rect x="272" y="32" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="32" width="160" height="56" rx="6" class="dg-node external"/>
+<rect x="280" y="38" width="45" height="12" rx="2" class="dg-tag"/>
+<text x="302" y="47" class="dg-tag-text" text-anchor="middle">BROWSER</text>
+<text x="352" y="64" class="dg-name" text-anchor="middle">Intl API</text>
+<text x="352" y="78" class="dg-sub" text-anchor="middle">browser time zones, formats</text>
+<rect x="272" y="132" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="132" width="160" height="56" rx="6" class="dg-node store"/>
+<rect x="280" y="138" width="40" height="12" rx="2" class="dg-tag"/>
+<text x="300" y="147" class="dg-tag-text" text-anchor="middle">STATIC</text>
+<text x="352" y="164" class="dg-name" text-anchor="middle">/locales/*.json</text>
+<text x="352" y="178" class="dg-sub" text-anchor="middle">7 languages, RTL for ar</text>
+<rect x="272" y="232" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="232" width="160" height="56" rx="6" class="dg-node async"/>
+<rect x="280" y="238" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="298" y="247" class="dg-tag-text" text-anchor="middle">STATE</text>
+<text x="352" y="264" class="dg-name" text-anchor="middle">URL state</text>
+<text x="352" y="278" class="dg-sub" text-anchor="middle">shareable links, no backend</text>
+<rect x="528" y="132" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="528" y="132" width="176" height="56" rx="6" class="dg-node external"/>
+<rect x="536" y="138" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="551" y="147" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="616" y="164" class="dg-name" text-anchor="middle">nginx + Cloudflare</text>
+<text x="616" y="178" class="dg-sub" text-anchor="middle">static files, 1y cache</text>
+</svg>

@@ -14,7 +14,7 @@ export const homeFor = (lang: Lang) => (lang === 'tr' ? '/tr/' : '/');
 
 const en = {
   htmlTitle: `${profile.name} — ${profile.title}`,
-  description: 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Six live demos you can open, signed in with one click.',
+  description: 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Seven live demos you can open, signed in with one click.',
   location: profile.location,
   openToWork: 'Open to work',
   theme: 'Switch colour theme',
@@ -28,7 +28,7 @@ const en = {
     readout: ['UHF RFID', 'readers, terminals, web platform', '30+ countries'],
   },
   showcase: {
-    h2: 'Six applications you can sign into',
+    h2: 'Seven applications you can open',
     lead: 'Real deployments, each with its own database. Use the demo accounts, change whatever you like — everything resets overnight.',
     allUp: 'All systems up',
     someUp: (up: number, total: number) => `${up} of ${total} up`,
@@ -78,21 +78,21 @@ const en = {
 
 const trUi: typeof en = {
   htmlTitle: `${profile.name} — ${tr.profile.title}`,
-  description: "İstanbul'da bilgisayar mühendisi, full-stack PHP/Laravel/React. 2023'ten beri USTEK'te 30'dan fazla ülkede kullanılan RFID çamaşır yönetimi yazılımı geliştiriyorum. Tek tıkla giriş yapılan altı canlı demo.",
+  description: "İstanbul'da bilgisayar mühendisi, full-stack PHP/Laravel/React. 2023'ten beri USTEK'te 30'dan fazla ülkede kullanılan RFID çamaşır yönetimi yazılımı geliştiriyorum. Tek tıkla giriş yapılan yedi canlı demo.",
   location: 'İstanbul, Türkiye (UTC+3)',
-  openToWork: 'İş arıyorum',
+  openToWork: 'Yeni fırsatlara açığım',
   theme: 'Renk temasını değiştir',
   skip: 'İçeriğe atla',
   switchTo: { code: 'EN', title: 'English version' },
   nav: { work: 'Çalışmalar', experience: 'Deneyim', skills: 'Yetkinlikler', contact: 'İletişim', sections: 'Bölümler' },
   hero: {
     seeWork: 'Canlı çalışmaları gör',
-    downloadCv: "CV'yi indir",
+    downloadCv: 'CV indir',
     degree: 'Bilgisayar Mühendisliği Lisans',
     readout: ['UHF RFID', 'okuyucular, terminaller, web platformu', '30+ ülke'],
   },
   showcase: {
-    h2: 'Giriş yapabileceğiniz altı uygulama',
+    h2: 'Açabileceğiniz yedi uygulama',
     lead: 'Her biri kendi veritabanıyla gerçek kurulumlar. Demo hesaplarını kullanın, istediğinizi değiştirin — hepsi her gece sıfırlanır.',
     allUp: 'Tüm sistemler ayakta',
     someUp: (up: number, total: number) => `${total} demodan ${up} tanesi ayakta`,
@@ -131,7 +131,7 @@ const trUi: typeof en = {
     spoken: ['Kürtçe', 'Arapça', 'Türkçe', 'İngilizce'].join(', '),
   },
   footer: {
-    line: 'Statik Astro sitesi, istemci tarafında framework yok. Derleme:',
+    line: 'Statik Astro sitesi, istemci taraflı framework kullanılmadı. Derleme:',
     about: 'Bu site hakkında',
     notes: 'Notlar',
     source: 'Kaynak',

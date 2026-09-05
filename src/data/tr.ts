@@ -6,42 +6,38 @@ export const tr = {
   profile: {
     title: 'Bilgisayar Mühendisi',
     role: 'Full-Stack Geliştirici',
-    headline: "30'dan fazla ülkede çalışan RFID sistemlerinin web tarafını geliştiriyorum.",
+    headline: "30'dan fazla ülkede kullanılan RFID tabanlı sistemlerin web arayüzlerini geliştiriyorum.",
     intro:
-      "İstanbul'da yaşayan, full-stack çalışan bir bilgisayar mühendisiyim. 2023'ten beri USTEK RFID'de PHP, Laravel ve " +
-      "Zend Framework ile REST API'ler ve web arayüzleri geliştiriyorum; ürün, 30'dan fazla ülkede ticari çamaşırhaneler, " +
-      'oteller ve hastaneler tarafından kullanılan bir çamaşır yönetim platformu. Kendi zamanımda React ve Next.js ile ' +
-      'üretiyorum. Aşağıdaki altı uygulama yayında ve denemeniz için açık.',
+      "İstanbul'da yaşayan full-stack bir bilgisayar mühendisiyim. 2023'ten bu yana USTEK RFID bünyesinde, 30'u aşkın ülkede hizmet veren çamaşırhane yönetim platformunun web arayüzlerini ve REST API'lerini PHP, Laravel ve Zend Framework ile geliştiriyorum. Ayrıca, React ve Next.js ile projeler üretiyorum. Aşağıdaki altı uygulama, doğrudan denemeniz için yayında.",
     plain:
-      'Sade anlatımıyla: otellerin ve çamaşırhanelerin her bir parçayı otomatik takip edebilmesi için RFID donanımının ' +
-      'üstünde çalışan web sistemlerini yazıyorum.',
+      'Kısacası: Otel ve çamaşırhanelerin tekstil envanterlerini RFID teknolojisiyle otomatik takip edebilmeleri için gereken web tabanlı yönetim sistemlerini tasarlayıp geliştiriyorum.',
   },
 
   demos: {
     pos: {
       summary:
-        'Bir satış noktası sisteminin arka ofisi: ürünler, kategoriler, müşteriler ve rol bazlı yetkilerle kullanıcılar; İngilizce ve Arapça (sağdan sola).',
-      note: 'Kayıt kapalı; yukarıdaki hesaplardan birini kullanın. Veriler her gece sıfırlanır.',
+        'Satış noktası (POS) arka ofis sistemi: Ürün, kategori, müşteri yönetimi ve rol tabanlı kullanıcı yetkilendirmesi; İngilizce ve Arapça (RTL) dil desteği.',
+      note: 'Demo modu açık. Demo hesaplarından birini kullanabilirsiniz. Veriler her gece sıfırlanır.',
     },
     besttrend: {
       summary:
-        'Suriye için emlak platformu: fotoğraflı ve haritalı ilanlar, arama ve kayıtlı aramalar, favoriler, ilan sahibi istatistikleri ve moderasyon için yönetim paneli. Arapça, İngilizce ve Kürtçe.',
-      note: 'Özel depo — kod istek üzerine paylaşılır.',
+        'Suriye emlak platformu: Fotoğraflı ve harita destekli ilanlar, gelişmiş arama, favoriler, ilan sahibi istatistikleri ve kapsamlı yönetim paneli. Arapça, İngilizce ve Kürtçe dil desteği.',
+      note: 'Özel proje: Kaynak kod istek üzerine paylaşılır.',
     },
     invoice: {
       summary:
-        'Kalem kalem faturalar ve canlı toplamlar, bekleyen / ödenmiş / geciken ödemelerin takibi, PDF çıktısı ve müşteriye e-posta.',
-      note: "Framework'süz sade PHP: prepared statement'lar, CSRF token'ları, kullanıcıya özel veri.",
+        'Faturalandırma ve ödeme takibi: Detaylı fatura oluşturma, canlı toplam hesaplama, ödeme durumu (bekleyen/ödendi/gecikmiş) takibi, PDF çıktısı ve müşteriye e-posta gönderimi.',
+      note: "Saf PHP: Prepared statement'lar ve CSRF koruması ile güvenli ve hızlı.",
     },
     findjob: {
       summary:
-        'CV yükleyin, Gemini onu düzenlenebilir bir profile dönüştürsün, sonra gerçek iş ilanlarıyla puanlanmış eşleşmeleri görün.',
-      note: "Giriş yok. Örnek CV'yi deneyin ya da kendi PDF'inizi yükleyin.",
+        "Yapay zeka tabanlı iş eşleştirici: CV'nizi yükleyin, Gemini düzenlenebilir bir profile dönüştürsün; ardından size en uygun iş ilanlarıyla eşleşin.",
+      note: "Kayıt gerekmez. Örnek CV'yi deneyin ya da kendi PDF'inizi yükleyin.",
     },
     tireshop: {
       summary:
-        'Lastikçi işletmek için mobil öncelikli PWA: stok, satış ve fatura, giderler ve kâr raporları. Arapça, sağdan sola.',
-      note: 'Giriş yok — yerel demo modunda çalışır, veriler tarayıcınızda kalır.',
+        'Mobil uyumlu lastikçi yönetim sistemi (PWA): Stok, satış, faturalama, gider ve kâr takibi. Arapça (RTL) dil desteği.',
+      note: 'Giriş gerekmez: Yerel demo modunda çalışır, veriler tarayıcınızda kalır.',
     },
   } as Record<string, { summary: string; note: string }>,
 
@@ -51,12 +47,12 @@ export const tr = {
       org: 'USTEK RFID',
       where: 'İstanbul',
       summary:
-        "USTEK, ticari çamaşırhaneler, oteller ve sağlık kurumları için RFID tabanlı çamaşır yönetimi geliştiriyor; 30'dan fazla ülkede kurulu. Ben okuyucuların ve terminallerin üstünde çalışan web platformunda çalışıyorum.",
+        "USTEK, ticari çamaşırhaneler, oteller ve sağlık kurumları için RFID tabanlı çamaşır yönetimi çözümleri sunuyor; dünya genelinde 30'dan fazla ülkede kurulu. Ben, okuyucular ve terminallerle entegre çalışan web platformunun geliştirilmesinde görev alıyorum.",
       bullets: [
-        "Gerçek zamanlı RFID envanter takibi, otomatik faturalama ve lojistik için PHP, Laravel ve Zend Framework 1 ile REST API'ler ve web arayüzleri geliştirdim.",
-        'Çarşaf ve üniforma yaşam döngüsü özellikleri: depo izleme, üniforma kiralama yönetimi ve forma dağıtımı.',
-        'UHF RFID terminalleri, okuyucular ve platform arasında verinin güvenilir akması için donanım ekibiyle çalıştım.',
-        'Hataya açık modülleri yeniden yazarak dünya genelindeki müşterilerde üretim olaylarını azalttım.',
+        "PHP, Laravel ve Zend Framework 1 kullanarak; gerçek zamanlı RFID envanter takibi, otomatik faturalama ve lojistik süreçleri için REST API'ler ve web arayüzleri geliştirdim.",
+        'Tekstil yaşam döngüsü yönetimi: Depo takibi, kiralama yönetimi ve forma dağıtım süreçlerini optimize ettim.',
+        'UHF RFID terminalleri, okuyucular ve platform arasında kesintisiz ve güvenilir veri akışını sağlamak için donanım ekibiyle koordineli çalıştım.',
+        'Kritik modülleri yeniden yapılandırarak global ölçekte sistem hatalarını azalttım.',
       ],
     },
     {
@@ -64,7 +60,7 @@ export const tr = {
       org: 'Bağımsız çalışma',
       where: 'mkado.dev üzerinde yayında',
       summary:
-        "Bir POS arka ofisi, bir fatura sistemi, yönetim paneliyle bir emlak platformu, yapay zekâlı bir iş eşleştirici ve bir lastikçi PWA'sı — her biri kendi veritabanıyla uçtan uca geliştirildi ve herkesin açabileceği canlı demo olarak yayınlandı.",
+        "POS arka ofisi, fatura sistemi, emlak platformu, yapay zeka destekli iş eşleştirici ve lastikçi PWA'sı: Her biri kendi veritabanıyla uçtan uca geliştirildi ve canlı demo olarak yayımlandı.",
       bullets: [],
     },
     {
@@ -72,7 +68,7 @@ export const tr = {
       org: 'Burdur Mehmet Akif Ersoy Üniversitesi',
       where: 'Burdur',
       summary:
-        'Bitirme projesi: Kado Job App — Flutter, Bloc ve Firebase ile geliştirilmiş, yönetim paneli olan bir iş ilanı ve proje kadrolama Android uygulaması.',
+        'Bitirme projesi: Kado Job App — Flutter, Bloc ve Firebase kullanılarak geliştirilen; yönetim paneli ile bütünleşik bir Android iş ilanı ve personel kadrolama uygulaması.',
       bullets: [],
     },
   ],

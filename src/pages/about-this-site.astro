@@ -8,7 +8,7 @@ import diagram from '../assets/diagrams/deployment.svg?raw';
 import { demos } from '../data/site';
 ---
 
-<Base title="About this site — how six demos run on a free VM" description="How mkado.dev and its six live demos are hosted on a free Oracle Cloud VM behind Cloudflare, deployed with one command over SSH, re-seeded nightly and health-checked every five minutes.">
+<Base title="About this site — how seven demos run on a free VM" description="How mkado.dev and its seven live demos are hosted on a free Oracle Cloud VM behind Cloudflare, deployed with one command over SSH, re-seeded nightly and health-checked every five minutes.">
   <Backdrop />
   <Header />
   <main id="main" class="case">
@@ -18,7 +18,7 @@ import { demos } from '../data/site';
       </nav>
       <header class="case-head">
         <p class="eyebrow">Behind the scenes</p>
-        <h1>How six live demos run on one free virtual machine</h1>
+        <h1>How seven live demos run on one free virtual machine</h1>
         <p class="lead">The portfolio is a static site; the demos are real applications with their own databases. Everything runs on one Always-Free Oracle Cloud VM behind Cloudflare, deploys with a single command, and resets itself every night.</p>
       </header>
 
@@ -27,7 +27,7 @@ import { demos } from '../data/site';
         <figure class="case-diagram" set:html={diagram} />
         <ul class="case-built">
           <li><strong>Cloudflare</strong> in front of everything: DNS, TLS to the visitor, caching of static assets, and an origin certificate on the VM so the hop to the server is encrypted too.</li>
-          <li><strong>nginx</strong> with one virtual host per application. Static sites (this one, the tire-shop PWA, the BestTrend app) are plain directories; the PHP applications each get their own PHP-FPM pool, so a slow request in one cannot starve another.</li>
+          <li><strong>nginx</strong> with one virtual host per application. Static sites (this one, the tire-shop PWA, TimeZone.tools, the BestTrend app) are plain directories; the PHP applications each get their own PHP-FPM pool, so a slow request in one cannot starve another.</li>
           <li><strong>One database per app</strong> — PostgreSQL for BestTrend, MySQL for the POS and invoice apps, SQLite for the stateless job-search wizard.</li>
           <li><strong>Firewall and brute-force protection</strong> — ufw on the host plus fail2ban watching nginx and SSH; SSH is key-only.</li>
         </ul>

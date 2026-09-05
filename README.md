@@ -4,7 +4,7 @@ Personal site of Muhammed Kado — computer engineer and full-stack PHP/Laravel/
 
 Three renderings of the same content, all static:
 
-- `/` — the main site: an animated RFID-reader hero, a tabbed board of six live demos (dashboard screenshot, one-click "Open signed in" button, demo accounts as the fallback), a timeline, skills tied to the projects that use them, contact.
+- `/` — the main site: an animated RFID-reader hero, a tabbed board of seven live demos (dashboard screenshot, one-click "Open signed in" button, demo accounts as the fallback), a timeline, skills tied to the projects that use them, contact.
 - `/v2` — a Swiss / minimalist rendering generated with the [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) design system (`design-system/mkado-dev-v2/MASTER.md`): navy + blue CTA, Space Grotesk / Archivo, filterable project grid, GSAP reveals. `noindex`, left out of the sitemap.
 - `/v3` — "mkOS": the same content as a small operating system, written so non-programmers can follow it. Boot screen, windows, dock, Ctrl+K search, a terminal with clickable commands, an in-place English / Turkish switch (Turkish copy in `src/data/tr.ts`). `noindex`, left out of the sitemap.
 
@@ -20,6 +20,7 @@ All content lives in `src/data/site.ts`; the components only render it. The year
 | Invoice System | https://invoice.mkado.dev/demo.php | [invoice-system-php](https://github.com/muhammedkado/invoice-system-php) |
 | Find Job with AI | https://findjob.mkado.dev (no sign-in) | [find_job_with_ai](https://github.com/muhammedkado/find_job_with_ai) |
 | Tire Shop PWA | https://tireshop.mkado.dev (local demo mode, no sign-in) | [tire-shop](https://github.com/muhammedkado/tire-shop) |
+| TimeZone.tools | https://timezone.mkado.dev (no sign-in) | [timetool](https://github.com/muhammedkado/timetool) |
 
 Each app exposes a `/health` probe (`/health.php` for the invoice app). On the server, `deploy/mkado-status.sh` runs every 5 minutes, probes them with a two-strike rule (the nightly reseed must not flip the board) and writes `/var/www/mkado.dev/status/status.json`, served as `/status.json`. `src/scripts/status.ts` swaps that live state into the dots and the "All systems up · checked N min ago" pill; without it the pages keep their build-time state (`demosLive` in `site.ts`).
 
