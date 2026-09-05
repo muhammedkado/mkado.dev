@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 324" class="dg" role="img" aria-labelledby="besttrend-title besttrend-desc">
+<title id="besttrend-title">BestTrend: the app, its API and storage</title>
+<desc id="besttrend-desc">The React single-page app calls a Laravel REST API with Sanctum tokens; the API owns a PostgreSQL database and uploads listing photos to Bunny Storage, a CDN. The admin panel that shares the API has its own page.</desc>
+<defs>
+<marker id="besttrend-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="besttrend-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="208" height="136" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="130" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">besttrend.mkado.dev</text>
+<rect x="272" y="52" width="480" height="256" rx="8" class="dg-zone"/>
+<rect x="284" y="46" width="155" height="12" class="dg-mask"/>
+<text x="290" y="56" class="dg-zone-label">besttrend-api.mkado.dev</text>
+<path d="M200,120 H296" class="dg-arrow link" marker-end="url(#besttrend-ml)"/>
+<path d="M472,111 H584" class="dg-arrow" marker-end="url(#besttrend-m)"/>
+<path d="M472,129 H520 Q528,129 528,137 V232 Q528,240 536,240 H584" class="dg-arrow" marker-end="url(#besttrend-m)"/>
+<rect x="212" y="100" width="73" height="12" rx="2" class="dg-mask"/>
+<text x="248" y="109" class="dg-label" text-anchor="middle">JSON + TOKEN</text>
+<rect x="502" y="91" width="51" height="12" rx="2" class="dg-mask"/>
+<text x="528" y="100" class="dg-label" text-anchor="middle">ELOQUENT</text>
+<rect x="536" y="220" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="556" y="229" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 SPA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">Vite, TypeScript, i18next</text>
+<rect x="296" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="296" y="92" width="176" height="56" rx="6" class="dg-node app"/>
+<rect x="304" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="316" y="107" class="dg-tag-text" text-anchor="middle">API</text>
+<text x="384" y="124" class="dg-name" text-anchor="middle">Laravel 10 REST API</text>
+<text x="384" y="138" class="dg-sub" text-anchor="middle">Sanctum tokens, /api/v1</text>
+<rect x="584" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="584" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="592" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="602" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="656" y="124" class="dg-name" text-anchor="middle">PostgreSQL</text>
+<text x="656" y="138" class="dg-sub" text-anchor="middle">listings, users, leads</text>
+<rect x="584" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="584" y="212" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="592" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="604" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="656" y="244" class="dg-name" text-anchor="middle">Bunny Storage</text>
+<text x="656" y="258" class="dg-sub" text-anchor="middle">listing photos (CDN)</text>
+</svg>

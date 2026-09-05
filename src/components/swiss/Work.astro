@@ -66,6 +66,8 @@ const filters = [
   { key: 'flutter', label: 'Flutter' },
 ];
 
+// Case-study pages exist for the slugs that have a file in src/content/work.
+const studies = new Set(Object.keys(import.meta.glob('../../content/work/*.md')).map((p) => p.split('/').pop()!.replace('.md', '')));
 const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
 ---
 
@@ -115,6 +117,7 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
             )}
             {c.extra && <a class="btn btn-secondary btn-sm" href={c.extra.url} target="_blank" rel="noopener">{c.extra.label}</a>}
             {c.repo && <a class="btn btn-secondary btn-sm" href={c.repo} target="_blank" rel="noopener">Code</a>}
+            {studies.has(c.key) && <a class="btn btn-secondary btn-sm" href={`/work/${c.key}/`}>Case study</a>}
           </div>
 
           {c.creds.length > 0 && (

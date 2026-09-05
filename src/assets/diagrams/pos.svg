@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="pos-title pos-desc">
+<title id="pos-title">POS admin dashboard: how it is built</title>
+<desc id="pos-desc">A browser talks over HTTPS to nginx, which hands requests to a Laravel 10 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.</desc>
+<defs>
+<marker id="pos-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="pos-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,120 H216" class="dg-arrow link" marker-end="url(#pos-ml)"/>
+<path d="M360,120 H408" class="dg-arrow" marker-end="url(#pos-m)"/>
+<path d="M552,120 H600" class="dg-arrow" marker-end="url(#pos-m)"/>
+<path d="M672,212 V148" class="dg-arrow dashed" marker-end="url(#pos-m)"/>
+<rect x="174" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="192" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="361" y="100" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="384" y="109" class="dg-label" text-anchor="middle">FASTCGI</text>
+<rect x="564" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="576" y="109" class="dg-label" text-anchor="middle">PDO</text>
+<rect x="680" y="174" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="684" y="183" class="dg-label" text-anchor="start">RESET</text>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="107" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="124" class="dg-name" text-anchor="middle">Browser</text>
+<text x="96" y="138" class="dg-sub" text-anchor="middle">AdminLTE, EN / AR (RTL)</text>
+<rect x="216" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="216" y="92" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="224" y="98" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="239" y="107" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="288" y="124" class="dg-name" text-anchor="middle">nginx</text>
+<text x="288" y="138" class="dg-sub" text-anchor="middle">TLS, PHP-FPM pool</text>
+<rect x="408" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="408" y="92" width="144" height="56" rx="6" class="dg-node focal"/>
+<rect x="416" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="428" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="480" y="124" class="dg-name" text-anchor="middle">Laravel 10</text>
+<text x="480" y="138" class="dg-sub" text-anchor="middle">Laratrust roles, i18n</text>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="608" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="618" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="672" y="124" class="dg-name" text-anchor="middle">MySQL</text>
+<text x="672" y="138" class="dg-sub" text-anchor="middle">products, clients, users</text>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="608" y="218" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="623" y="227" class="dg-tag-text" text-anchor="middle">CRON</text>
+<text x="672" y="244" class="dg-name" text-anchor="middle">Nightly reseed</text>
+<text x="672" y="258" class="dg-sub" text-anchor="middle">03:00 UTC, migrate:fresh</text>
+</svg>

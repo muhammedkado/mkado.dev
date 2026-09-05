@@ -5,6 +5,8 @@ import { demos, demosLive } from '../../data/site';
 import { tr } from '../../data/tr';
 import { Picture } from 'astro:assets';
 // Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no image.
+// Case-study pages exist for the slugs that have a file in src/content/work.
+const studies = new Set(Object.keys(import.meta.glob('../../content/work/*.md')).map((p) => p.split('/').pop()!.replace('.md', '')));
 const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
 const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.split('/').pop()!.replace('.png', ''), m.default]));
 ---
@@ -40,6 +42,7 @@ const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.
         <a class="tbtn tbtn-primary tbtn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">{d.demoUrl ? <T en={`Open ${d.name} (signed in)`} tr={`${d.name} aç (giriş yapılmış)`} /> : <T en={`Open ${d.name}`} tr={`${d.name} aç`} />}</a>
         {d.extra && <a class="tbtn tbtn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
         {d.repo && <a class="tbtn tbtn-sm" href={d.repo} target="_blank" rel="noopener"><T en="See the code" tr="Kodu gör" /></a>}
+        {studies.has(d.slug) && <a class="tbtn tbtn-sm" href={`/work/${d.slug}/`}><T en="Case study" tr="Vaka çalışması" /></a>}
       </div>
 
       {d.credentials.length > 0 && (

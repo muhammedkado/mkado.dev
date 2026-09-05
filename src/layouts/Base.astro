@@ -8,17 +8,21 @@ import instrumentWoff from '@fontsource-variable/instrument-sans/files/instrumen
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string; // absolute or site-relative; defaults to /og.png
+  jsonLd?: Record<string, unknown>; // replaces the default Person graph on sub-pages
 }
 
 const {
+  ogImage,
+  jsonLd: jsonLdProp,
   title = `${profile.name} — ${profile.title}`,
   description = 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Six live demos you can open, signed in with one click.',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? profile.siteUrl).toString();
-const og = new URL('/og.png', Astro.site ?? profile.siteUrl).toString();
+const og = new URL(ogImage ?? '/og.png', Astro.site ?? profile.siteUrl).toString();
 
-const jsonLd = {
+const jsonLd = jsonLdProp ?? {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: profile.name,
@@ -76,6 +80,7 @@ const jsonLd = {
     </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>

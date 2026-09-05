@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 332" class="dg" role="img" aria-labelledby="findjob-title findjob-desc">
+<title id="findjob-title">Find Job with AI: the wizard behind the page</title>
+<desc id="findjob-desc">A three-step Blade and Alpine.js wizard posts to a Laravel application that extracts text from the PDF, asks Gemini to parse, enhance and score the profile, pulls live postings from JSearch, and falls back to sample data once the shared daily budget is spent.</desc>
+<defs>
+<marker id="findjob-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="findjob-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,160 H232" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<path d="M312,132 V68 Q312,60 320,60 H456" class="dg-arrow" marker-end="url(#findjob-m)"/>
+<path d="M392,160 H456" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<path d="M285,188 V212 Q285,220 277,220 H112 Q104,220 104,228 V252" class="dg-arrow dashed" marker-end="url(#findjob-m)"/>
+<path d="M339,188 V252 Q339,260 347,260 H456" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<rect x="180" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="200" y="149" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="372" y="40" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="384" y="49" class="dg-label" text-anchor="middle">PDF</text>
+<rect x="404" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="424" y="149" class="dg-label" text-anchor="middle">PROMPT</text>
+<rect x="161" y="200" width="67" height="12" rx="2" class="dg-mask"/>
+<text x="194" y="209" class="dg-label" text-anchor="middle">OVER BUDGET</text>
+<rect x="380" y="240" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="398" y="249" class="dg-label" text-anchor="middle">QUERY</text>
+<rect x="24" y="132" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="132" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="138" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="147" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="164" class="dg-name" text-anchor="middle">Wizard page</text>
+<text x="96" y="178" class="dg-sub" text-anchor="middle">Blade + Alpine.js, 3 steps</text>
+<rect x="232" y="132" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="132" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="240" y="138" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="147" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="312" y="164" class="dg-name" text-anchor="middle">Laravel 10</text>
+<text x="312" y="178" class="dg-sub" text-anchor="middle">throttle 20/h, daily budget</text>
+<rect x="456" y="32" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="32" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="38" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="47" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="532" y="64" class="dg-name" text-anchor="middle">PDF parser</text>
+<text x="532" y="78" class="dg-sub" text-anchor="middle">text only, file not stored</text>
+<rect x="456" y="132" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="132" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="138" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="474" y="147" class="dg-tag-text" text-anchor="middle">AI</text>
+<text x="532" y="164" class="dg-name" text-anchor="middle">Gemini API</text>
+<text x="532" y="178" class="dg-sub" text-anchor="middle">parse, enhance, score</text>
+<rect x="456" y="232" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="232" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="238" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="247" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="532" y="264" class="dg-name" text-anchor="middle">JSearch API</text>
+<text x="532" y="278" class="dg-sub" text-anchor="middle">live job postings</text>
+<rect x="24" y="252" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="252" width="160" height="56" rx="6" class="dg-node async"/>
+<rect x="32" y="258" width="50" height="12" rx="2" class="dg-tag"/>
+<text x="57" y="267" class="dg-tag-text" text-anchor="middle">FALLBACK</text>
+<text x="104" y="284" class="dg-name" text-anchor="middle">Sample data</text>
+<text x="104" y="298" class="dg-sub" text-anchor="middle">fallback when budget is spent</text>
+</svg>

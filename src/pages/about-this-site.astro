@@ -1,0 +1,62 @@
+---
+// How the portfolio and its six demos are hosted, deployed and kept alive.
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Backdrop from '../components/Backdrop.astro';
+import diagram from '../assets/diagrams/deployment.svg?raw';
+import { demos } from '../data/site';
+---
+
+<Base title="About this site — how six demos run on a free VM" description="How mkado.dev and its six live demos are hosted on a free Oracle Cloud VM behind Cloudflare, deployed with one command over SSH, re-seeded nightly and health-checked every five minutes.">
+  <Backdrop />
+  <Header />
+  <main id="main" class="case">
+    <article class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">About this site</span>
+      </nav>
+      <header class="case-head">
+        <p class="eyebrow">Behind the scenes</p>
+        <h1>How six live demos run on one free virtual machine</h1>
+        <p class="lead">The portfolio is a static site; the demos are real applications with their own databases. Everything runs on one Always-Free Oracle Cloud VM behind Cloudflare, deploys with a single command, and resets itself every night.</p>
+      </header>
+
+      <section class="case-section">
+        <h2>What runs where</h2>
+        <figure class="case-diagram" set:html={diagram} />
+        <ul class="case-built">
+          <li><strong>Cloudflare</strong> in front of everything: DNS, TLS to the visitor, caching of static assets, and an origin certificate on the VM so the hop to the server is encrypted too.</li>
+          <li><strong>nginx</strong> with one virtual host per application. Static sites (this one, the tire-shop PWA, the BestTrend app) are plain directories; the PHP applications each get their own PHP-FPM pool, so a slow request in one cannot starve another.</li>
+          <li><strong>One database per app</strong> — PostgreSQL for BestTrend, MySQL for the POS and invoice apps, SQLite for the stateless job-search wizard.</li>
+          <li><strong>Firewall and brute-force protection</strong> — ufw on the host plus fail2ban watching nginx and SSH; SSH is key-only.</li>
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>How a deploy works</h2>
+        <p>The server never talks to GitHub — no tokens, no deploy keys. Each application is a git repository on the VM configured so that a push updates the checked-out code in place. From the workstation, <code>./deploy.sh pos</code> pushes over SSH, then runs the app's own <code>deploy/deploy.sh</code> on the server: Composer, migrations, caches, a PHP-FPM reload. Front-end builds happen locally (the server has no Node) and only the built directory travels, into a staging folder that is swapped in atomically.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>Nightly reset and live status</h2>
+        <p>At 03:00 UTC a cron job re-seeds every demo database, so visitors can change anything without leaving a mess for the next person. Every five minutes another job probes each application's health endpoint and writes a small JSON file; the status dots on the front page read it, with a two-strike rule so the nightly reset never shows as an outage.</p>
+      </section>
+
+      <section class="case-section">
+        <h2>The demos</h2>
+        <ul class="case-built">
+          {demos.map((d) => (
+            <li><a href={`/work/${d.slug}/`}>{d.name}</a> — {d.stack.join(', ')}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="case-section">
+        <h2>This site</h2>
+        <p>Astro, static output, no client-side framework: the front page ships under 2 KB of JavaScript. Fonts are self-hosted, images are served as AVIF and WebP, and the design system, brand guidelines and every line of content live in <a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">the repository</a>.</p>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Base>

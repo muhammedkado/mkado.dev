@@ -1,0 +1,55 @@
+---
+// Index of the case studies: one card per live demo, in the order set in the
+// content front matter.
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Backdrop from '../../components/Backdrop.astro';
+import { demos } from '../../data/site';
+
+const entries = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
+const shotFor = (slug: string) => shotModules[`../../assets/shots/${slug}.png`]?.default;
+---
+
+<Base title="Work — six live applications, each with a case study" description="What each of the six live demos is for, what I built, how it is put together, and what to try in it.">
+  <Backdrop />
+  <Header />
+  <main id="main" class="case work-index">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Work</span>
+      </nav>
+      <header class="case-head">
+        <p class="eyebrow">Case studies</p>
+        <h1>Six applications, and how each one is built</h1>
+        <p class="lead">Every project below is deployed with a demo account. Each page explains the problem, what I built, the architecture, and three things to try.</p>
+      </header>
+
+      <ul class="work-grid">
+        {entries.map((e) => {
+          const demo = demos.find((d) => d.slug === e.id);
+          const shot = shotFor(e.id);
+          return (
+            <li class="work-card">
+              <a href={`/work/${e.id}/`}>
+                {shot && <Picture src={shot} formats={['avif', 'webp']} widths={[480, 960]} sizes="(max-width: 700px) 100vw, 420px" alt="" loading="lazy" decoding="async" />}
+                <div class="work-card-body">
+                  <span class="k">{e.data.period}</span>
+                  <h2>{e.data.title}</h2>
+                  <p>{e.data.tagline}</p>
+                  {demo && <div class="stack">{demo.stack.slice(0, 4).map((s) => <span>{s}</span>)}</div>}
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <p class="work-more">Curious how all of this is hosted for free and kept alive? <a href="/about-this-site/">About this site</a>.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>

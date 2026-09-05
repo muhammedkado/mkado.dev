@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 316" class="dg" role="img" aria-labelledby="tireshop-title tireshop-desc">
+<title id="tireshop-title">Tire shop PWA: local first, cloud optional</title>
+<desc id="tireshop-desc">The installable React app keeps inventory, sales and expenses in the browser's localStorage in local demo mode; with Supabase configured it syncs to a hosted PostgreSQL database and an edge function sends low-stock alerts to a Telegram bot.</desc>
+<defs>
+<marker id="tireshop-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="tireshop-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="208" height="248" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="217" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">local demo mode (portfolio build)</text>
+<rect x="432" y="52" width="320" height="248" rx="8" class="dg-zone"/>
+<rect x="444" y="46" width="142" height="12" class="dg-mask"/>
+<text x="450" y="56" class="dg-zone-label">cloud mode (optional)</text>
+<path d="M120,148 V212" class="dg-arrow" marker-end="url(#tireshop-m)"/>
+<path d="M200,120 H456" class="dg-arrow link dashed" marker-end="url(#tireshop-ml)"/>
+<path d="M528,148 V212" class="dg-arrow dashed" marker-end="url(#tireshop-m)"/>
+<path d="M600,240 H624" class="dg-arrow dashed" marker-end="url(#tireshop-m)"/>
+<rect x="128" y="174" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="132" y="183" class="dg-label" text-anchor="start">SAVE</text>
+<rect x="313" y="100" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="328" y="109" class="dg-label" text-anchor="middle">SYNC</text>
+<rect x="536" y="174" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="540" y="183" class="dg-label" text-anchor="start">TRIGGER</text>
+<rect x="594" y="220" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="612" y="229" class="dg-label" text-anchor="middle">ALERT</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 PWA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">Vite, Tailwind 4, Arabic RTL</text>
+<rect x="40" y="212" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="212" width="160" height="56" rx="6" class="dg-node store"/>
+<rect x="48" y="218" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="66" y="227" class="dg-tag-text" text-anchor="middle">STORE</text>
+<text x="120" y="244" class="dg-name" text-anchor="middle">localStorage</text>
+<text x="120" y="258" class="dg-sub" text-anchor="middle">inventory, sales, expenses</text>
+<rect x="456" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="92" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="107" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="528" y="124" class="dg-name" text-anchor="middle">Supabase</text>
+<text x="528" y="138" class="dg-sub" text-anchor="middle">auth + PostgreSQL</text>
+<rect x="456" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="464" y="218" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="474" y="227" class="dg-tag-text" text-anchor="middle">FN</text>
+<text x="528" y="244" class="dg-name" text-anchor="middle">Edge Function</text>
+<text x="528" y="258" class="dg-sub" text-anchor="middle">low-stock check</text>
+<rect x="624" y="212" width="112" height="56" rx="6" class="dg-mask"/>
+<rect x="624" y="212" width="112" height="56" rx="6" class="dg-node external"/>
+<rect x="632" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="644" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="680" y="244" class="dg-name" text-anchor="middle">Telegram bot</text>
+<text x="680" y="258" class="dg-sub" text-anchor="middle">alerts the owner</text>
+</svg>

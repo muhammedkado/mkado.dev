@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 452" class="dg" role="img" aria-labelledby="deployment-title deployment-desc">
+<title id="deployment-title">How this site and its six demos are deployed</title>
+<desc id="deployment-desc">A workstation script pushes code over SSH and uploads local builds; visitors reach the Oracle Cloud VM through Cloudflare's edge, where nginx routes each host to a PHP-FPM pool or a static directory, every app has its own database, and cron jobs re-seed the demos nightly, back up and probe health every five minutes.</desc>
+<defs>
+<marker id="deployment-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="deployment-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="176" height="232" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="80" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">workstation</text>
+<rect x="248" y="52" width="176" height="136" rx="8" class="dg-zone"/>
+<rect x="260" y="46" width="74" height="12" class="dg-mask"/>
+<text x="266" y="56" class="dg-zone-label">Cloudflare</text>
+<rect x="480" y="52" width="272" height="384" rx="8" class="dg-zone"/>
+<rect x="492" y="46" width="229" height="12" class="dg-mask"/>
+<text x="498" y="56" class="dg-zone-label">Oracle Cloud VM (Ubuntu 24.04, ARM)</text>
+<path d="M400,120 H504" class="dg-arrow link" marker-end="url(#deployment-ml)"/>
+<path d="M168,216 H504" class="dg-arrow link" marker-end="url(#deployment-ml)"/>
+<path d="M616,148 V188" class="dg-arrow" marker-end="url(#deployment-m)"/>
+<path d="M616,244 V284" class="dg-arrow" marker-end="url(#deployment-m)"/>
+<path d="M616,380 V340" class="dg-arrow dashed" marker-end="url(#deployment-m)"/>
+<rect x="434" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="452" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="294" y="196" width="84" height="12" rx="2" class="dg-mask"/>
+<text x="336" y="205" class="dg-label" text-anchor="middle">SSH · GIT PUSH</text>
+<rect x="624" y="162" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="628" y="171" class="dg-label" text-anchor="start">FASTCGI</text>
+<rect x="624" y="258" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="628" y="267" class="dg-label" text-anchor="start">SQL</text>
+<rect x="624" y="354" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="628" y="363" class="dg-label" text-anchor="start">RESET</text>
+<rect x="272" y="92" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="92" width="128" height="56" rx="6" class="dg-node external"/>
+<rect x="280" y="98" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="295" y="107" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="336" y="124" class="dg-name" text-anchor="middle">Edge proxy</text>
+<text x="336" y="138" class="dg-sub" text-anchor="middle">DNS, TLS, cache, WAF</text>
+<rect x="40" y="188" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="188" width="128" height="56" rx="6" class="dg-node input"/>
+<rect x="48" y="194" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="63" y="203" class="dg-tag-text" text-anchor="middle">TOOL</text>
+<text x="104" y="220" class="dg-name" text-anchor="middle">deploy.sh</text>
+<text x="104" y="234" class="dg-sub" text-anchor="middle">git push over ssh, local builds</text>
+<rect x="504" y="92" width="224" height="56" rx="6" class="dg-mask"/>
+<rect x="504" y="92" width="224" height="56" rx="6" class="dg-node focal"/>
+<rect x="512" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="524" y="107" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="616" y="124" class="dg-name" text-anchor="middle">nginx</text>
+<text x="616" y="138" class="dg-sub" text-anchor="middle">one vhost per app, Origin CA</text>
+<rect x="504" y="188" width="224" height="56" rx="6" class="dg-mask"/>
+<rect x="504" y="188" width="224" height="56" rx="6" class="dg-node app"/>
+<rect x="512" y="194" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="524" y="203" class="dg-tag-text" text-anchor="middle">PHP</text>
+<text x="616" y="220" class="dg-name" text-anchor="middle">PHP-FPM pools</text>
+<text x="616" y="234" class="dg-sub" text-anchor="middle">pos · invoice · findjob · besttrend</text>
+<rect x="504" y="284" width="224" height="56" rx="6" class="dg-mask"/>
+<rect x="504" y="284" width="224" height="56" rx="6" class="dg-node store"/>
+<rect x="512" y="290" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="522" y="299" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="616" y="316" class="dg-name" text-anchor="middle">PostgreSQL · MySQL · SQLite</text>
+<text x="616" y="330" class="dg-sub" text-anchor="middle">one database per app</text>
+<rect x="504" y="380" width="224" height="40" rx="6" class="dg-mask"/>
+<rect x="504" y="380" width="224" height="40" rx="6" class="dg-node async"/>
+<rect x="512" y="386" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="527" y="395" class="dg-tag-text" text-anchor="middle">JOBS</text>
+<text x="616" y="404" class="dg-name" text-anchor="middle">cron</text>
+<text x="616" y="418" class="dg-sub" text-anchor="middle">reseed 03:00 · backup · status */5</text>
+</svg>

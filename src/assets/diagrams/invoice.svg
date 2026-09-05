@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="invoice-title invoice-desc">
+<title id="invoice-title">Invoice system: plain PHP with two libraries</title>
+<desc id="invoice-desc">The browser talks to a framework-free PHP 8 application that uses PDO prepared statements against MySQL, renders invoices to PDF with TCPDF and can e-mail them with PHPMailer, which is disabled on the public demo.</desc>
+<defs>
+<marker id="invoice-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="invoice-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,120 H232" class="dg-arrow link" marker-end="url(#invoice-ml)"/>
+<path d="M408,120 H616" class="dg-arrow" marker-end="url(#invoice-m)"/>
+<path d="M291,148 V172 Q291,180 299,180 H312 Q320,180 320,188 V212" class="dg-arrow" marker-end="url(#invoice-m)"/>
+<path d="M349,148 V172 Q349,180 357,180 H504 Q512,180 512,188 V212" class="dg-arrow dashed" marker-end="url(#invoice-m)"/>
+<rect x="182" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="200" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="500" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="512" y="109" class="dg-label" text-anchor="middle">SQL</text>
+<rect x="286" y="160" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="306" y="169" class="dg-label" text-anchor="middle">RENDER</text>
+<rect x="416" y="160" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="430" y="169" class="dg-label" text-anchor="middle">SEND</text>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="107" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="124" class="dg-name" text-anchor="middle">Browser</text>
+<text x="96" y="138" class="dg-sub" text-anchor="middle">hand-written CSS + JS</text>
+<rect x="232" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="92" width="176" height="56" rx="6" class="dg-node focal"/>
+<rect x="240" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="320" y="124" class="dg-name" text-anchor="middle">Plain PHP 8</text>
+<text x="320" y="138" class="dg-sub" text-anchor="middle">no framework, sessions + CSRF</text>
+<rect x="616" y="92" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="616" y="92" width="128" height="56" rx="6" class="dg-node store"/>
+<rect x="624" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="634" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="680" y="124" class="dg-name" text-anchor="middle">MySQL</text>
+<text x="680" y="138" class="dg-sub" text-anchor="middle">PDO prepared statements</text>
+<rect x="232" y="212" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="212" width="176" height="56" rx="6" class="dg-node external"/>
+<rect x="240" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="227" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="320" y="244" class="dg-name" text-anchor="middle">TCPDF</text>
+<text x="320" y="258" class="dg-sub" text-anchor="middle">print / download</text>
+<rect x="440" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="440" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="448" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="460" y="227" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="512" y="244" class="dg-name" text-anchor="middle">PHPMailer</text>
+<text x="512" y="258" class="dg-sub" text-anchor="middle">e-mail (off on the demo)</text>
+</svg>

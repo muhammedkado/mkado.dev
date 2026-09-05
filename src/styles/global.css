@@ -788,3 +788,80 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
 @keyframes par-2 { to { transform: translateY(-14%); } }
 @keyframes par-3 { to { transform: translateY(-21%); } }
 @keyframes par-pulse { to { transform: translateY(-16%) rotate(-6deg); } }
+/* Architecture diagrams (scripts/diagrams.py -> src/assets/diagrams/*.svg, inlined on the
+   case-study pages). Colours come from the tokens, so light/dark just works. */
+.dg { display: block; width: 100%; height: auto; font-family: var(--font-body); }
+.dg-zone { fill: color-mix(in srgb, var(--ink) 3%, transparent); stroke: var(--line-strong); stroke-width: 1; stroke-dasharray: 4 4; }
+.dg-zone-label { fill: var(--ink-3); font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; }
+.dg-mask { fill: var(--surface); }
+.dg-node { fill: var(--surface); stroke: var(--ink); stroke-width: 1; }
+.dg-node.store { fill: color-mix(in srgb, var(--ink) 5%, var(--surface)); stroke: var(--ink-2); }
+.dg-node.external { fill: color-mix(in srgb, var(--ink) 3%, var(--surface)); stroke: color-mix(in srgb, var(--ink) 30%, transparent); }
+.dg-node.input { fill: color-mix(in srgb, var(--ink-2) 10%, var(--surface)); stroke: var(--ink-3); }
+.dg-node.async { fill: color-mix(in srgb, var(--ink) 2%, var(--surface)); stroke: color-mix(in srgb, var(--ink) 25%, transparent); stroke-dasharray: 4 3; }
+.dg-node.focal { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.2; }
+.dg-name { fill: var(--ink); font-size: 12px; font-weight: 600; }
+.dg-sub { fill: var(--ink-2); font-family: var(--font-mono); font-size: 9px; }
+.dg-tag { fill: none; stroke: var(--ink-3); stroke-width: 0.8; }
+.dg-tag-text { fill: var(--ink-2); font-family: var(--font-mono); font-size: 7px; letter-spacing: 0.08em; }
+.dg-arrow { fill: none; stroke: var(--ink-3); stroke-width: 1.2; }
+.dg-arrow.link { stroke: var(--accent); }
+.dg-arrow.dashed { stroke-dasharray: 5 4; }
+.dg-marker { fill: var(--ink-3); }
+.dg-marker.link { fill: var(--accent); }
+.dg-label { fill: var(--ink-3); font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.06em; }
+/* Case-study pages (/work/<slug>/, /work/, /about-this-site/) */
+.case { padding: 5.5rem 0 4rem; }
+.case .wrap { max-width: 880px; }
+.crumbs { display: flex; flex-wrap: wrap; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-3); margin-bottom: 1.5rem; }
+.crumbs a { color: var(--ink-2); text-decoration: none; }
+.crumbs a:hover { color: var(--accent); }
+.case-head .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 0.6rem; }
+.case-head h1 { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 0.9rem; }
+.case-head .lead { font-size: 1.15rem; color: var(--ink-2); max-width: 62ch; margin: 0 0 1rem; }
+.case-head .stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0 0 1.1rem; }
+.case-head .stack span { font-size: 0.8rem; padding: 0.25rem 0.6rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); background: var(--surface); }
+.case-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1rem; }
+.case-creds { border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 0.9rem; background: var(--surface); margin: 0 0 0.8rem; }
+.case-creds summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+.case-creds .cred { display: grid; grid-template-columns: auto auto 1fr; gap: 0.3rem 0.8rem; align-items: center; margin-top: 0.6rem; font-size: 0.88rem; }
+.case-creds .cred .who { grid-column: 1 / -1; font-weight: 600; color: var(--ink-2); }
+.case-creds .cred .k { color: var(--ink-3); font-family: var(--font-mono); font-size: 0.75rem; }
+.case-creds .copy { font-family: var(--font-mono); font-size: 0.85rem; background: none; border: 1px dashed var(--line-strong); border-radius: 6px; padding: 0.15rem 0.45rem; color: var(--ink); cursor: pointer; text-align: left; }
+.case-creds .copy.copied { border-style: solid; color: var(--signal); }
+.case-head .note { color: var(--ink-3); font-size: 0.9rem; margin: 0; }
+.case-shot { margin: 2rem 0 0; }
+.case-shot a { display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface-2); }
+.case-shot img { display: block; width: 100%; height: auto; }
+.case-shot figcaption { font-size: 0.85rem; color: var(--ink-3); margin: 0.6rem 0 0; }
+.case-section { margin: 2.75rem 0 0; }
+.case-section h2 { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: -0.01em; margin: 0 0 0.8rem; }
+.case-section > p { font-size: 1.05rem; color: var(--ink-2); max-width: 66ch; line-height: 1.65; margin: 0; }
+.case-built { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.case-built li { padding: 0.8rem 1rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink-2); line-height: 1.55; }
+.case-built li strong { color: var(--ink); }
+.case-diagram { margin: 0 0 1.2rem; padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); overflow-x: auto; }
+.case-diagram .dg { min-width: 560px; }
+.case-steps { margin: 0; padding-left: 1.4rem; display: grid; gap: 0.5rem; color: var(--ink-2); line-height: 1.55; }
+.case-steps li::marker { color: var(--accent); font-weight: 700; }
+.prose { color: var(--ink-2); line-height: 1.7; max-width: 66ch; }
+.prose h2 { font-family: var(--font-display); font-size: 1.5rem; color: var(--ink); margin: 0 0 0.8rem; }
+.prose p { margin: 0 0 1rem; }
+.prose strong { color: var(--ink); }
+.prose code, .case code { font-family: var(--font-mono); font-size: 0.9em; background: var(--surface-2); border: 1px solid var(--line); border-radius: 5px; padding: 0.05rem 0.35rem; }
+.case-nav { display: flex; justify-content: space-between; gap: 1rem; margin: 3rem 0 0; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.case-nav a { text-decoration: none; color: var(--ink); font-weight: 600; display: grid; gap: 0.2rem; }
+.case-nav a.next { text-align: right; }
+.case-nav .k { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); font-weight: 400; }
+.work-grid { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.2rem; }
+.work-card a { display: block; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); text-decoration: none; color: inherit; transition: border-color 150ms ease, transform 150ms ease; }
+.work-card a:hover { border-color: var(--accent); transform: translateY(-2px); }
+.work-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); }
+.work-card-body { padding: 1rem 1.1rem 1.2rem; }
+.work-card-body .k { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; color: var(--ink-3); }
+.work-card-body h2 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.3rem 0 0.4rem; }
+.work-card-body p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; margin: 0 0 0.8rem; }
+.work-card-body .stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.work-card-body .stack span { font-size: 0.75rem; padding: 0.2rem 0.5rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); }
+.work-more { margin: 2.5rem 0 0; color: var(--ink-2); }
+@media (max-width: 640px) { .case { padding-top: 4.5rem; } .case-nav { flex-direction: column; } .case-nav a.next { text-align: left; } }
