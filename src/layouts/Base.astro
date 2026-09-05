@@ -73,7 +73,7 @@ const jsonLd = jsonLdProp ?? {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={og} />
     <meta name="twitter:image:alt" content="Muhammed Kado, Computer Engineer: seven live demos you can open." />
-    <meta name="theme-color" content="#1f4fd8" />
+    <meta name="theme-color" content="#f7f7f5" />
 
 
     <script is:inline>
@@ -84,6 +84,8 @@ const jsonLd = jsonLdProp ?? {
         var t = localStorage.getItem('theme');
         if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.setAttribute('data-theme', 'dark');
+          var m = document.querySelector('meta[name="theme-color"]');
+          if (m) m.setAttribute('content', '#0b0f17'); // URL bar on Android follows the page background
         }
       } catch (e) {}
     </script>
@@ -129,11 +131,12 @@ const jsonLd = jsonLdProp ?? {
           var btn = ev.target.closest('button.copy[data-copy]');
           if (!btn) return;
           navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+            var tr = document.documentElement.lang === 'tr';
             var original = btn.textContent;
-            btn.textContent = 'copied';
+            btn.textContent = tr ? 'kopyalandı' : 'copied';
             btn.classList.add('copied');
             var live = document.getElementById('a11y-live');
-            if (live) live.textContent = 'Copied to clipboard';
+            if (live) live.textContent = tr ? 'Panoya kopyalandı' : 'Copied to clipboard';
             setTimeout(function () {
               btn.textContent = original;
               btn.classList.remove('copied');

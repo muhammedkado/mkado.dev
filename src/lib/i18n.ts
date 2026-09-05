@@ -17,9 +17,10 @@ const en = {
   description: 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Seven live demos you can open, signed in with one click.',
   location: profile.location,
   openToWork: 'Open to work',
-  theme: 'Switch colour theme',
+  theme: { toDark: 'Switch to dark theme', toLight: 'Switch to light theme' },
   skip: 'Skip to content',
-  switchTo: { code: 'TR', title: 'Türkçe sürüm' },
+  lang: { label: 'Language', en: 'English', tr: 'Türkçe' },
+  menu: { open: 'Open menu', close: 'Close menu' },
   nav: { work: 'Work', experience: 'Experience', skills: 'Skills', contact: 'Contact', sections: 'Sections' },
   hero: {
     seeWork: 'See the live work',
@@ -72,6 +73,7 @@ const en = {
     notes: 'Notes',
     source: 'Source',
     experiments: 'Design experiments',
+    commit: 'The commit that is live',
     dateLocale: 'en-GB',
   },
 };
@@ -81,9 +83,10 @@ const trUi: typeof en = {
   description: "İstanbul'da bilgisayar mühendisi, full-stack PHP/Laravel/React. 2023'ten beri USTEK'te 30'dan fazla ülkede kullanılan RFID çamaşır yönetimi yazılımı geliştiriyorum. Tek tıkla giriş yapılan yedi canlı demo.",
   location: 'İstanbul, Türkiye (UTC+3)',
   openToWork: 'Yeni fırsatlara açığım',
-  theme: 'Renk temasını değiştir',
+  theme: { toDark: 'Koyu temaya geç', toLight: 'Açık temaya geç' },
   skip: 'İçeriğe atla',
-  switchTo: { code: 'EN', title: 'English version' },
+  lang: { label: 'Dil', en: 'English', tr: 'Türkçe' },
+  menu: { open: 'Menüyü aç', close: 'Menüyü kapat' },
   nav: { work: 'Çalışmalar', experience: 'Deneyim', skills: 'Yetkinlikler', contact: 'İletişim', sections: 'Bölümler' },
   hero: {
     seeWork: 'Canlı çalışmaları gör',
@@ -136,6 +139,7 @@ const trUi: typeof en = {
     notes: 'Notlar',
     source: 'Kaynak',
     experiments: 'Tasarım denemeleri',
+    commit: 'Yayındaki commit',
     dateLocale: 'tr-TR',
   },
 };

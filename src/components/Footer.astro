@@ -1,4 +1,5 @@
 ---
+import { execSync } from 'node:child_process';
 import { profile } from '../data/site';
 import { t, type Lang } from '../lib/i18n';
 
@@ -6,13 +7,21 @@ const { lang = 'en' } = Astro.props as { lang?: Lang };
 const s = t(lang);
 const year = new Date().getFullYear();
 const built = new Date().toLocaleDateString(s.footer.dateLocale, { day: 'numeric', month: 'short', year: 'numeric' });
+
+// Short hash of the commit being built, so the footer says exactly which version is live.
+// Both the workstation deploy and GitHub CI build from a checkout; blank if git is unavailable.
+let commit = '';
+try {
+  commit = execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+} catch {}
+const commitUrl = `https://github.com/muhammedkado/mkado.dev/commit/${commit}`;
 ---
 
 <footer class="ftr">
   <div class="wrap">
     <span>© {year} {profile.name}</span>
     <span>
-      {s.footer.line} {built}.
+      {s.footer.line} {built}{commit && <> · <a class="commit" href={commitUrl} target="_blank" rel="noopener" title={s.footer.commit}><code>{commit}</code></a></>}.
       <a href="/about-this-site/">{s.footer.about}</a>
       <span aria-hidden="true">/</span>
       <a href="/notes/">{s.footer.notes}</a>
@@ -23,3 +32,7 @@ const built = new Date().toLocaleDateString(s.footer.dateLocale, { day: 'numeric
     </span>
   </div>
 </footer>
+
+<style>
+  .commit code { font-family: var(--font-mono); font-size: 0.85em; }
+</style>

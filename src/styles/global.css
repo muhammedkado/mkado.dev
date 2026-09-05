@@ -71,7 +71,7 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; } /* reduced-motion override lives in the motion block below */
 
 body {
   margin: 0;
@@ -223,7 +223,7 @@ html.js .anim.is-in { opacity: 1; transform: none; }
 
 .hdr.is-scrolled { border-bottom-color: var(--line); }
 
-.hdr .wrap { height: 64px; display: flex; align-items: center; gap: 20px; }
+.hdr .wrap { position: relative; height: 64px; display: flex; align-items: center; gap: 20px; }
 
 .brand {
   display: inline-flex;
@@ -288,6 +288,40 @@ html.js .anim.is-in { opacity: 1; transform: none; }
 .toggle .sun { display: none; }
 :root[data-theme="dark"] .toggle .sun { display: block; }
 :root[data-theme="dark"] .toggle .moon { display: none; }
+
+/* Right-hand controls: language segments, theme, and (on phones) the menu button — all 36px tall. */
+.controls { display: flex; align-items: center; gap: 8px; }
+
+.lang {
+  display: inline-flex;
+  height: 36px;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.lang a {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  padding: 0 8px;
+  border-radius: calc(var(--radius) - 3px);
+  font: 600 0.78rem/1 var(--font-body);
+  letter-spacing: 0.02em;
+  color: var(--ink-2);
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.lang a:hover { color: var(--ink); }
+.lang a[aria-current] { background: var(--accent-soft); color: var(--accent); }
+.lang a:focus-visible { outline-offset: 0; }
+
+.menu-btn { display: none; }
+.menu-btn .close { display: none; }
+.hdr.is-open .menu-btn .bars { display: none; }
+.hdr.is-open .menu-btn .close { display: block; }
 
 /* ---------- buttons ---------- */
 
@@ -748,8 +782,33 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
   .reader-wrap { max-width: 520px; }
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-  .nav { display: none; }
+  /* Section links fold into a panel under the header; language + theme stay in the bar. */
+  .controls { margin-left: auto; }
+  .menu-btn { display: inline-grid; }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 8px 28px 16px;
+    /* Solid: a backdrop-filter here cannot blur past the header's own filter, so a translucent panel shows the hero through it. */
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 16px 32px -16px rgb(0 0 0 / 0.35);
+  }
+  .hdr.is-open .nav { display: flex; }
+  .nav a { padding: 12px 10px; font-size: 1rem; }
+  .nav a::after { bottom: 7px; }
   .section { padding: 64px 0; }
+}
+
+@media (max-width: 520px) {
+  .brand .name { display: none; } /* mark + pip only; the name is the first thing in the hero anyway */
+  .hdr .wrap { gap: 12px; }
 }
 
 @media (max-width: 860px) {
@@ -866,9 +925,6 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
 .work-more { margin: 2.5rem 0 0; color: var(--ink-2); }
 @media (max-width: 640px) { .case { padding-top: 4.5rem; } .case-nav { flex-direction: column; } .case-nav a.next { text-align: left; } }
 
-/* Language switch in the header nav (EN <-> TR) */
-.nav .lang-switch { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; border: 1px solid var(--line-strong); border-radius: 6px; }
-.nav .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
 /* Notes (/notes/): list + long-form body with code blocks */
 .notes-list { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1rem; }
 .notes-list a { display: block; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: inherit; transition: border-color 150ms ease; }
