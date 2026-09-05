@@ -9,12 +9,13 @@ const allLive = demos.every(isLive);
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Five applications you can sign into</h2>
+        <h2>Six applications you can sign into</h2>
         <p>Real deployments, each with its own database. Use the demo accounts, change whatever you like — everything resets overnight.</p>
       </div>
-      <span class={`status ${allLive ? '' : 'soon'}`}>
+      {/* data-status-* : src/scripts/status.ts swaps in the live 5-minute probe (/status.json) */}
+      <span class={`status ${allLive ? '' : 'soon'}`} data-status-pill>
         <span class="dot" aria-hidden="true"></span>
-        {allLive ? 'All systems up' : `${demos.filter(isLive).length} of ${demos.length} up`}
+        <span data-status-text>{allLive ? 'All systems up' : `${demos.filter(isLive).length} of ${demos.length} up`}</span>
       </span>
     </div>
 
@@ -30,7 +31,7 @@ const allLive = demos.every(isLive);
             aria-selected={i === 0 ? 'true' : 'false'}
             tabindex={i === 0 ? 0 : -1}
           >
-            <span class="dot" aria-hidden="true"></span>
+            <span class="dot" aria-hidden="true" data-status-dot={d.slug}></span>
             <span class="name">{d.name}</span>
             <span class="meta">{d.stack[0]}</span>
           </button>
@@ -48,7 +49,7 @@ const allLive = demos.every(isLive);
             <div class="stack">{d.stack.map((s) => <span>{s}</span>)}</div>
 
             <div class="panel-actions">
-              <a class="btn btn-primary btn-sm" href={d.url} target="_blank" rel="noopener">Open {d.name}</a>
+              <a class="btn btn-primary btn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">Open {d.name}{d.demoUrl && ' (signed in)'}</a>
               {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
               {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">Source code</a>}
             </div>

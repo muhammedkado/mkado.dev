@@ -12,16 +12,15 @@ import { tr } from '../../data/tr';
       tr={`${demos.length} uygulama, her biri kendi sunucusunda kendi veritabanıyla çalışıyor. Demo hesabıyla girin, istediğinizi değiştirin; hepsi her gece sıfırlanır.`}
     />
   </p>
-  <p class={demos.every((d) => d.live ?? demosLive) ? 'g' : 'y'}>
-    {demos.every((d) => d.live ?? demosLive)
-      ? <T en="● all systems up" tr="● tüm sistemler ayakta" />
-      : <T en="○ deploying now: the Open buttons go live shortly" tr="○ yayına alınıyor: Aç düğmeleri kısa süre içinde çalışacak" />}
+  <p class={demos.every((d) => d.live ?? demosLive) ? 'g' : 'y'} data-status-pill>● <span data-status-text>{demos.every((d) => d.live ?? demosLive)
+      ? <T en="all systems up" tr="tüm sistemler ayakta" />
+      : <T en="deploying now: the Open buttons go live shortly" tr="yayına alınıyor: Aç düğmeleri kısa süre içinde çalışacak" />}</span>
   </p>
 
   {demos.map((d) => (
     <article class="app">
       <div class="app-head">
-        <span class={`dot ${(d.live ?? demosLive) ? 'live' : ''}`} aria-hidden="true"></span>
+        <span class={`dot ${(d.live ?? demosLive) ? 'live' : ''}`} aria-hidden="true" data-status-dot={d.slug}></span>
         <span class="app-name">{d.name}</span>
         <span class="app-year">{d.period}</span>
       </div>
@@ -29,7 +28,7 @@ import { tr } from '../../data/tr';
       <p class="app-stack"><span class="k"><T en="built with" tr="kullanılan teknolojiler" /></span> {d.stack.join(', ')}</p>
 
       <div class="actions">
-        <a class="tbtn tbtn-primary tbtn-sm" href={d.url} target="_blank" rel="noopener"><T en={`Open ${d.name}`} tr={`${d.name} aç`} /></a>
+        <a class="tbtn tbtn-primary tbtn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">{d.demoUrl ? <T en={`Open ${d.name} (signed in)`} tr={`${d.name} aç (giriş yapılmış)`} /> : <T en={`Open ${d.name}`} tr={`${d.name} aç`} />}</a>
         {d.extra && <a class="tbtn tbtn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
         {d.repo && <a class="tbtn tbtn-sm" href={d.repo} target="_blank" rel="noopener"><T en="See the code" tr="Kodu gör" /></a>}
       </div>

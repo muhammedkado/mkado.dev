@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = `${profile.name} — ${profile.title}`,
-  description = 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Five live demos you can open.',
+  description = 'Computer engineer in İstanbul, full-stack PHP/Laravel/React. Building RFID laundry-management software at USTEK since 2023, used in 30+ countries. Six live demos you can open, signed in with one click.',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? profile.siteUrl).toString();
@@ -122,6 +122,7 @@ const jsonLd = {
     </script>
     <script>
       import '../scripts/main-motion';
+      import '../scripts/status';
     </script>
   </body>
 </html>

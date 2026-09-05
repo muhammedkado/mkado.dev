@@ -11,7 +11,7 @@ export const tr = {
       "İstanbul'da yaşayan, full-stack çalışan bir bilgisayar mühendisiyim. 2023'ten beri USTEK RFID'de PHP, Laravel ve " +
       "Zend Framework ile REST API'ler ve web arayüzleri geliştiriyorum; ürün, 30'dan fazla ülkede ticari çamaşırhaneler, " +
       'oteller ve hastaneler tarafından kullanılan bir çamaşır yönetim platformu. Kendi zamanımda React ve Next.js ile ' +
-      'üretiyorum. Aşağıdaki beş uygulama yayında ve denemeniz için açık.',
+      'üretiyorum. Aşağıdaki altı uygulama yayında ve denemeniz için açık.',
     plain:
       'Sade anlatımıyla: otellerin ve çamaşırhanelerin her bir parçayı otomatik takip edebilmesi için RFID donanımının ' +
       'üstünde çalışan web sistemlerini yazıyorum.',

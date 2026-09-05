@@ -7,6 +7,7 @@ type Card = {
   summary: string;
   stack: string[];
   url: string | null;
+  demoUrl?: string;
   repo: string | null;
   extra?: { label: string; url: string };
   creds: { label: string; user: string; pass: string }[];
@@ -22,6 +23,7 @@ const cards: Card[] = [
     summary: d.summary,
     stack: d.stack,
     url: d.url,
+    demoUrl: d.demoUrl,
     repo: d.repo,
     extra: d.extra,
     creds: d.credentials,
@@ -68,11 +70,11 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
     <div class="work-head">
       <div class="section-head anim" style="margin-bottom: 0">
         <h2>Work you can open</h2>
-        <p>Five real deployments, each with its own database, plus a few side projects. Sign in with the demo accounts and change whatever you like; everything resets overnight.</p>
+        <p>Six real deployments, each with its own database, plus a few side projects. Sign in with the demo accounts and change whatever you like; everything resets overnight.</p>
       </div>
-      <span class={`status-pill ${demos.every((d) => d.live ?? demosLive) ? '' : 'soon'}`}>
+      <span class={`status-pill ${demos.every((d) => d.live ?? demosLive) ? '' : 'soon'}`} data-status-pill>
         <span class={`dot ${demos.every((d) => d.live ?? demosLive) ? 'live' : ''}`} aria-hidden="true"></span>
-        {demos.every((d) => d.live ?? demosLive) ? 'All demos up' : `${demos.filter((d) => d.live ?? demosLive).length} of ${demos.length} demos up`}
+        <span data-status-text>{demos.every((d) => d.live ?? demosLive) ? 'All demos up' : `${demos.filter((d) => d.live ?? demosLive).length} of ${demos.length} demos up`}</span>
       </span>
     </div>
 
@@ -88,7 +90,7 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
           <div class="card-head">
             <h3>{c.name}</h3>
             <span class="card-status">
-              <span class={`dot ${c.status === 'live' ? 'live' : ''}`} aria-hidden="true"></span>
+              <span class={`dot ${c.status === 'live' ? 'live' : ''}`} aria-hidden="true" data-status-dot={c.key}></span>
               {statusLabel[c.status]}{c.period && `, ${c.period}`}
             </span>
           </div>
@@ -97,8 +99,8 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
 
           <div class="card-actions">
             {c.url && (
-              <a class="btn btn-primary btn-sm" href={c.url} target="_blank" rel="noopener">
-                Open
+              <a class="btn btn-primary btn-sm" href={c.demoUrl ?? c.url} target="_blank" rel="noopener">
+                {c.demoUrl ? 'Open signed in' : 'Open'}
                 <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
             )}

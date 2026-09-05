@@ -756,3 +756,7 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
   .tab .meta { display: none; }
   .panels { padding: 24px 20px; min-height: 0; }
 }
+/* Live status (src/scripts/status.ts): the probe marks dots/pills up or down. */
+[data-status-dot][data-state="down"] { background: #d97706 !important; box-shadow: none !important; animation: none !important; }
+.status[data-state="down"] { color: #b45309; }
+.status[data-state="down"] .dot { background: #d97706; animation: none; }

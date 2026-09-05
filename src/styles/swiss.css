@@ -553,3 +553,6 @@ html.js .anim { opacity: 0; }
   .wrap { padding: 0 var(--space-md); }
   .card { padding: var(--space-md); }
 }
+/* Live status (src/scripts/status.ts) */
+[data-status-dot][data-state="down"], .status-pill[data-state="down"] .dot { background: #d97706 !important; animation: none !important; }
+.status-pill[data-state="down"] { color: #b45309; }

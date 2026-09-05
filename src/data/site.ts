@@ -21,7 +21,7 @@ export const profile = {
     'Computer engineer in İstanbul, working full-stack. Since 2023 I build REST APIs and web ' +
     'interfaces in PHP, Laravel and Zend Framework at USTEK RFID, shipping a laundry-management ' +
     'platform used by commercial laundries, hotels and hospitals. On my own time I build with React ' +
-    'and Next.js. The five applications below are deployed and yours to try.',
+    'and Next.js. The six applications below are deployed and yours to try.',
 };
 
 export type Demo = {
@@ -34,6 +34,9 @@ export type Demo = {
   credentials: { label: string; user: string; pass: string }[];
   note?: string;
   extra?: { label: string; url: string };
+  // One-click sign-in link (the app logs a demo account in and opens its dashboard);
+  // shown as "Open signed in" instead of the plain url. Credentials stay visible as the fallback.
+  demoUrl?: string;
   period: string;
   live?: boolean; // defaults to demosLive; set false while a demo isn't deployed yet
 };
@@ -45,6 +48,7 @@ export const demos: Demo[] = [
     summary:
       'Back office for a point-of-sale system: products, categories, clients and users with role-based permissions, in English and Arabic (RTL).',
     url: 'https://pos.mkado.dev',
+    demoUrl: 'https://pos.mkado.dev/demo/admin',
     repo: 'https://github.com/muhammedkado/POS-Project-Admin-LTE-Dashboard-',
     stack: ['Laravel 10', 'MySQL', 'Laratrust', 'AdminLTE'],
     credentials: [
@@ -75,6 +79,7 @@ export const demos: Demo[] = [
     summary:
       'The other half of BestTrend: an AdminLTE back office for moderating listings, users and reports, on top of the Laravel REST API the app itself runs on.',
     url: 'https://besttrend-api.mkado.dev/admin/login',
+    demoUrl: 'https://besttrend-api.mkado.dev/admin/demo',
     repo: null,
     stack: ['Laravel 10', 'Sanctum', 'PostgreSQL', 'AdminLTE', 'REST API'],
     credentials: [{ label: 'Admin panel', user: 'admin@besttrend.mkado.dev', pass: 'demo1234' }],
@@ -87,6 +92,7 @@ export const demos: Demo[] = [
     summary:
       'Create invoices with line items and live totals, track outstanding, paid and late payments, print to PDF and email the customer.',
     url: 'https://invoice.mkado.dev',
+    demoUrl: 'https://invoice.mkado.dev/demo.php',
     repo: 'https://github.com/muhammedkado/invoice-system-php',
     stack: ['PHP 8', 'MySQL', 'PDO', 'TCPDF', 'PHPMailer'],
     credentials: [{ label: 'Demo', user: 'demo@invoice.mkado.dev', pass: 'demo1234' }],
