@@ -2,7 +2,9 @@
 import { profile } from '../data/site';
 import { t, homeFor, langs, type Lang } from '../lib/i18n';
 
-const { lang = 'en' } = Astro.props as { lang?: Lang };
+// `alternates`: path of this same page in each language (pages that exist in both);
+// the language links use it, and fall back to the language's home page.
+const { lang = 'en', alternates } = Astro.props as { lang?: Lang; alternates?: Partial<Record<Lang, string>> };
 const s = t(lang);
 const home = homeFor(lang);
 ---
@@ -32,7 +34,7 @@ const home = homeFor(lang);
       {/* Both languages, current one marked. The other link gets the section hash appended on the home pages (script below). */}
       <nav class="lang" aria-label={s.lang.label}>
         {langs.map((l) => (
-          <a href={homeFor(l)} hreflang={l} lang={l} title={s.lang[l]} aria-current={l === lang ? 'true' : undefined}>{l.toUpperCase()}</a>
+          <a href={alternates?.[l] ?? homeFor(l)} hreflang={l} lang={l} title={s.lang[l]} aria-current={l === lang ? 'true' : undefined}>{l.toUpperCase()}</a>
         ))}
       </nav>
       <button class="toggle" type="button" id="theme-toggle" aria-label={s.theme.toDark} title={s.theme.toDark} data-to-dark={s.theme.toDark} data-to-light={s.theme.toLight}>

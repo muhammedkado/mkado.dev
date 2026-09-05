@@ -1,10 +1,12 @@
 // Content collections. `work` = one case study per live demo; the file name is
 // the demo slug from src/data/site.ts (the page joins the two by that id).
+// Turkish versions live in src/content/work/tr/<slug>.md (entry id "tr/<slug>")
+// and render at /tr/work/<slug>/; English ids have no slash.
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const work = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/content/work' }),
+  loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
   schema: z.object({
     title: z.string(),
     tagline: z.string(), // one plain-English sentence, also the page description

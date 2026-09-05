@@ -1,0 +1,69 @@
+---
+// Index of the case studies (one card per live demo), in either language.
+// Used by src/pages/work/index.astro and src/pages/tr/work/index.astro.
+import { getCollection } from 'astro:content';
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Backdrop from '../Backdrop.astro';
+import { demos } from '../../data/site';
+import { t, homeFor, type Lang } from '../../lib/i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const s = t(lang).work;
+const base = lang === 'tr' ? '/tr' : '';
+const slugOf = (id: string) => id.replace(/^tr\//, '');
+
+const entries = (await getCollection('work', (e) => (lang === 'tr' ? e.id.startsWith('tr/') : !e.id.includes('/')))).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
+const shotFor = (slug: string) => shotModules[`../../assets/shots/${slug}.png`]?.default;
+const alternates = { en: '/work/', tr: '/tr/work/' };
+---
+
+<Base lang={lang} alternates={alternates} title={s.indexTitle} description={s.indexDescription}>
+  <Backdrop />
+  <Header lang={lang} alternates={alternates} />
+  <main id="main" class="case work-index">
+    <div class="wrap">
+      <nav class="crumbs" aria-label={s.breadcrumb}>
+        <a href={homeFor(lang)}>{s.home}</a><span aria-hidden="true">/</span><span aria-current="page">{s.list}</span>
+      </nav>
+      <header class="case-head">
+        <p class="eyebrow">{s.indexEyebrow}</p>
+        <h1>{s.indexH1}</h1>
+        <p class="lead">{s.indexLead}</p>
+      </header>
+
+      <ul class="work-grid">
+        {entries.map((e) => {
+          const slug = slugOf(e.id);
+          const demo = demos.find((d) => d.slug === slug);
+          const shot = shotFor(slug);
+          return (
+            <li class="work-card">
+              <a href={`${base}/work/${slug}/`}>
+                {shot && <Picture src={shot} formats={['avif', 'webp']} widths={[480, 960]} sizes="(max-width: 700px) 100vw, 420px" alt="" loading="lazy" decoding="async" />}
+                <div class="work-card-body">
+                  <span class="k">{e.data.period}</span>
+                  <h2>{e.data.title}</h2>
+                  <p>{e.data.tagline}</p>
+                  {demo && <div class="stack">{demo.stack.slice(0, 4).map((st) => <span>{st}</span>)}</div>}
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+
+      <p class="work-more">{s.more} <a href="/about-this-site/">{s.about}</a>.</p>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</Base>

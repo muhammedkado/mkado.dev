@@ -66,7 +66,7 @@ const allLive = demos.every(isLive);
               <a class="btn btn-primary btn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">{s.showcase.open(d.name)}{d.demoUrl && s.showcase.signedIn}</a>
               {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
               {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">{s.showcase.source}</a>}
-              {studies.has(d.slug) && <a class="btn btn-sm" href={`/work/${d.slug}/`}>{s.showcase.caseStudy}</a>}
+              {studies.has(d.slug) && <a class="btn btn-sm" href={`${lang === 'tr' ? '/tr' : ''}/work/${d.slug}/`}>{s.showcase.caseStudy}</a>}
             </div>
 
             {d.credentials.length > 0 && (

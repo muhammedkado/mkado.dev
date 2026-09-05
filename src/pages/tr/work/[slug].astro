@@ -1,0 +1,22 @@
+---
+// Turkish case studies: src/content/work/tr/<slug>.md (entry id "tr/<slug>").
+import { getCollection } from 'astro:content';
+import CaseStudy from '../../../components/work/CaseStudy.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('work');
+  const entries = all.filter((e) => e.id.startsWith('tr/')).sort((a, b) => a.data.order - b.data.order);
+  const twins = new Set(all.filter((e) => !e.id.includes('/')).map((e) => e.id));
+  return entries.map((entry, i) => {
+    const slug = entry.id.slice(3);
+    return {
+      params: { slug },
+      props: { entry, prev: entries[i - 1] ?? null, next: entries[i + 1] ?? null, slug, hasTwin: twins.has(slug) },
+    };
+  });
+}
+
+const { entry, prev, next, slug, hasTwin } = Astro.props;
+---
+
+<CaseStudy entry={entry} prev={prev} next={next} lang="tr" slug={slug} hasTwin={hasTwin} />

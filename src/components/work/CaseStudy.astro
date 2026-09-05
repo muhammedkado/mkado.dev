@@ -1,0 +1,140 @@
+---
+// One case study page, in either language. Content: src/content/work/<slug>.md
+// (EN) or src/content/work/tr/<slug>.md (TR); the demo's urls, stack and
+// credentials come from src/data/site.ts (joined by slug); the screenshot from
+// src/assets/shots; the diagram from src/assets/diagrams. Used by
+// src/pages/work/[slug].astro and src/pages/tr/work/[slug].astro.
+import { render, type CollectionEntry } from 'astro:content';
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import Header from '../Header.astro';
+import Footer from '../Footer.astro';
+import Backdrop from '../Backdrop.astro';
+import { demos, profile } from '../../data/site';
+import { t, homeFor, demoCopy, type Lang } from '../../lib/i18n';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  prev: CollectionEntry<'work'> | null;
+  next: CollectionEntry<'work'> | null;
+  lang: Lang;
+  slug: string; // demo slug = entry id without the "tr/" prefix
+  hasTwin: boolean; // the same case study exists in the other language
+}
+
+const { entry, prev, next, lang, slug, hasTwin } = Astro.props;
+const s = t(lang).work;
+const base = lang === 'tr' ? '/tr' : '';
+const pathOf = (id: string) => `${base}/work/${id.replace(/^tr\//, '')}/`;
+
+const demo = demos.find((d) => d.slug === slug);
+if (!demo) throw new Error(`No demo in site.ts for case study "${entry.id}"`);
+const { Content } = await render(entry);
+const copy = demoCopy(demo, lang);
+
+const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
+const shot = shotModules[`../../assets/shots/${slug}.png`]?.default;
+const diagrams = import.meta.glob<string>('../../assets/diagrams/*.svg', { query: '?raw', import: 'default', eager: true });
+const diagram = diagrams[`../../assets/diagrams/${entry.data.diagram ?? slug}.svg`];
+
+const open = demo.demoUrl ?? demo.url;
+const title = `${entry.data.title}${s.titleSuffix}`;
+const alternates = hasTwin ? { en: `/work/${slug}/`, tr: `/tr/work/${slug}/` } : undefined;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareSourceCode',
+  name: entry.data.title,
+  description: entry.data.tagline,
+  inLanguage: lang,
+  url: new URL(Astro.url.pathname, Astro.site ?? profile.siteUrl).toString(),
+  codeRepository: demo.repo ?? undefined,
+  programmingLanguage: demo.stack,
+  author: { '@type': 'Person', name: profile.name, url: profile.siteUrl },
+  ...(demo.url ? { targetProduct: { '@type': 'WebApplication', name: demo.name, url: demo.url } } : {}),
+};
+---
+
+<Base lang={lang} alternates={alternates} title={title} description={entry.data.tagline} jsonLd={jsonLd}>
+  <Backdrop />
+  <Header lang={lang} alternates={alternates} />
+  <main id="main" class="case">
+    <article class="wrap">
+      <nav class="crumbs" aria-label={s.breadcrumb}>
+        <a href={homeFor(lang)}>{s.home}</a><span aria-hidden="true">/</span><a href={`${base}/work/`}>{s.list}</a><span aria-hidden="true">/</span><span aria-current="page">{entry.data.title}</span>
+      </nav>
+
+      <header class="case-head">
+        <p class="eyebrow">{s.eyebrow} · {entry.data.period}</p>
+        <h1>{entry.data.title}</h1>
+        <p class="lead">{entry.data.tagline}</p>
+        <div class="stack">{demo.stack.map((st) => <span>{st}</span>)}</div>
+        <div class="case-actions">
+          <a class="btn btn-primary" href={open} target="_blank" rel="noopener">{s.open(demo.name)}{demo.demoUrl && s.signedIn}</a>
+          {demo.repo && <a class="btn" href={demo.repo} target="_blank" rel="noopener">{s.source}</a>}
+        </div>
+        {demo.credentials.length > 0 && (
+          <details class="case-creds">
+            <summary>{s.accounts}</summary>
+            {demo.credentials.map((c) => (
+              <div class="cred">
+                <span class="who">{c.label}</span>
+                <span class="k">{s.email}</span>
+                <button type="button" class="copy" data-copy={c.user} title={s.copy} aria-label={`${s.copy}: ${c.label} ${s.email} ${c.user}`}>{c.user}</button>
+                <span class="k">{s.password}</span>
+                <button type="button" class="copy" data-copy={c.pass} title={s.copy} aria-label={`${s.copy}: ${c.label} ${s.password}`}>{c.pass}</button>
+              </div>
+            ))}
+          </details>
+        )}
+        {copy.note && <p class="note">{copy.note}</p>}
+      </header>
+
+      {shot && (
+        <figure class="case-shot">
+          <a href={open} target="_blank" rel="noopener" aria-label={s.open(demo.name)}>
+            <Picture src={shot} formats={['avif', 'webp']} widths={[720, 1440]} sizes="(max-width: 900px) 100vw, 860px" alt={s.shotAlt(demo.name)} loading="eager" decoding="async" />
+          </a>
+          <figcaption>{s.shotCaption}</figcaption>
+        </figure>
+      )}
+
+      <section class="case-section">
+        <h2>{s.problem}</h2>
+        <p>{entry.data.problem}</p>
+      </section>
+
+      <section class="case-section">
+        <h2>{s.built}</h2>
+        <ul class="case-built">
+          {entry.data.built.map((b) => <li>{b}</li>)}
+        </ul>
+      </section>
+
+      {diagram && (
+        <section class="case-section">
+          <h2>{s.how}</h2>
+          <figure class="case-diagram" set:html={diagram} />
+        </section>
+      )}
+
+      <section class="case-section">
+        <h2>{s.tryIt}</h2>
+        <ol class="case-steps">
+          {entry.data.tryIt.map((step, i) => (
+            <li>{i === 0 ? <a href={open} target="_blank" rel="noopener">{step}</a> : step}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="case-section prose">
+        <Content />
+      </section>
+
+      <nav class="case-nav" aria-label={s.others}>
+        {prev ? <a href={pathOf(prev.id)}><span class="k">{s.prev}</span>{prev.data.title}</a> : <span />}
+        {next ? <a class="next" href={pathOf(next.id)}><span class="k">{s.next}</span>{next.data.title}</a> : <span />}
+      </nav>
+    </article>
+  </main>
+  <Footer lang={lang} />
+</Base>

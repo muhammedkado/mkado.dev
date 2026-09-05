@@ -1,129 +1,19 @@
 ---
-// One case study per live demo. Content: src/content/work/<slug>.md; the demo's
-// urls, stack and credentials come from src/data/site.ts (joined by slug); the
-// screenshot from src/assets/shots; the diagram from src/assets/diagrams.
-import { getCollection, render } from 'astro:content';
-import { Picture } from 'astro:assets';
-import Base from '../../layouts/Base.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import Backdrop from '../../components/Backdrop.astro';
-import { demos, profile } from '../../data/site';
+// English case studies: src/content/work/<slug>.md (ids without a slash).
+import { getCollection } from 'astro:content';
+import CaseStudy from '../../components/work/CaseStudy.astro';
 
 export async function getStaticPaths() {
-  const entries = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+  const all = await getCollection('work');
+  const entries = all.filter((e) => !e.id.includes('/')).sort((a, b) => a.data.order - b.data.order);
+  const twins = new Set(all.filter((e) => e.id.startsWith('tr/')).map((e) => e.id.slice(3)));
   return entries.map((entry, i) => ({
     params: { slug: entry.id },
-    props: { entry, prev: entries[i - 1] ?? null, next: entries[i + 1] ?? null },
+    props: { entry, prev: entries[i - 1] ?? null, next: entries[i + 1] ?? null, hasTwin: twins.has(entry.id) },
   }));
 }
 
-const { entry, prev, next } = Astro.props;
-const demo = demos.find((d) => d.slug === entry.id);
-if (!demo) throw new Error(`No demo in site.ts for case study "${entry.id}"`);
-const { Content } = await render(entry);
-
-const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
-const shot = shotModules[`../../assets/shots/${entry.id}.png`]?.default;
-const diagrams = import.meta.glob<string>('../../assets/diagrams/*.svg', { query: '?raw', import: 'default', eager: true });
-const diagram = diagrams[`../../assets/diagrams/${entry.data.diagram ?? entry.id}.svg`];
-
-const open = demo.demoUrl ?? demo.url;
-const title = `${entry.data.title} — case study`;
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareSourceCode',
-  name: entry.data.title,
-  description: entry.data.tagline,
-  url: new URL(Astro.url.pathname, Astro.site ?? profile.siteUrl).toString(),
-  codeRepository: demo.repo ?? undefined,
-  programmingLanguage: demo.stack,
-  author: { '@type': 'Person', name: profile.name, url: profile.siteUrl },
-  ...(demo.url ? { targetProduct: { '@type': 'WebApplication', name: demo.name, url: demo.url } } : {}),
-};
+const { entry, prev, next, hasTwin } = Astro.props;
 ---
 
-<Base title={title} description={entry.data.tagline} jsonLd={jsonLd}>
-  <Backdrop />
-  <Header />
-  <main id="main" class="case">
-    <article class="wrap">
-      <nav class="crumbs" aria-label="Breadcrumb">
-        <a href="/">Home</a><span aria-hidden="true">/</span><a href="/work/">Work</a><span aria-hidden="true">/</span><span aria-current="page">{entry.data.title}</span>
-      </nav>
-
-      <header class="case-head">
-        <p class="eyebrow">Case study · {entry.data.period}</p>
-        <h1>{entry.data.title}</h1>
-        <p class="lead">{entry.data.tagline}</p>
-        <div class="stack">{demo.stack.map((s) => <span>{s}</span>)}</div>
-        <div class="case-actions">
-          <a class="btn btn-primary" href={open} target="_blank" rel="noopener">Open {demo.name}{demo.demoUrl && ' (signed in)'}</a>
-          {demo.repo && <a class="btn" href={demo.repo} target="_blank" rel="noopener">Source code</a>}
-        </div>
-        {demo.credentials.length > 0 && (
-          <details class="case-creds">
-            <summary>Demo accounts</summary>
-            {demo.credentials.map((c) => (
-              <div class="cred">
-                <span class="who">{c.label}</span>
-                <span class="k">email</span>
-                <button type="button" class="copy" data-copy={c.user} title="Copy" aria-label={`Copy ${c.label} email ${c.user}`}>{c.user}</button>
-                <span class="k">password</span>
-                <button type="button" class="copy" data-copy={c.pass} title="Copy" aria-label={`Copy ${c.label} password`}>{c.pass}</button>
-              </div>
-            ))}
-          </details>
-        )}
-        {demo.note && <p class="note">{demo.note}</p>}
-      </header>
-
-      {shot && (
-        <figure class="case-shot">
-          <a href={open} target="_blank" rel="noopener" aria-label={`Open ${demo.name}`}>
-            <Picture src={shot} formats={['avif', 'webp']} widths={[720, 1440]} sizes="(max-width: 900px) 100vw, 860px" alt={`${demo.name}: the signed-in dashboard`} loading="eager" decoding="async" />
-          </a>
-          <figcaption>What you see after the one-click sign-in.</figcaption>
-        </figure>
-      )}
-
-      <section class="case-section">
-        <h2>The problem</h2>
-        <p>{entry.data.problem}</p>
-      </section>
-
-      <section class="case-section">
-        <h2>What I built</h2>
-        <ul class="case-built">
-          {entry.data.built.map((b) => <li>{b}</li>)}
-        </ul>
-      </section>
-
-      {diagram && (
-        <section class="case-section">
-          <h2>How it's built</h2>
-          <figure class="case-diagram" set:html={diagram} />
-        </section>
-      )}
-
-      <section class="case-section">
-        <h2>What to try</h2>
-        <ol class="case-steps">
-          {entry.data.tryIt.map((s, i) => (
-            <li>{i === 0 ? <a href={open} target="_blank" rel="noopener">{s}</a> : s}</li>
-          ))}
-        </ol>
-      </section>
-
-      <section class="case-section prose">
-        <Content />
-      </section>
-
-      <nav class="case-nav" aria-label="Other case studies">
-        {prev ? <a href={`/work/${prev.id}/`}><span class="k">Previous</span>{prev.data.title}</a> : <span />}
-        {next ? <a class="next" href={`/work/${next.id}/`}><span class="k">Next</span>{next.data.title}</a> : <span />}
-      </nav>
-    </article>
-  </main>
-  <Footer />
-</Base>
+<CaseStudy entry={entry} prev={prev} next={next} lang="en" slug={entry.id} hasTwin={hasTwin} />
