@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/archivo";
 
 /* ---------- tokens (from design-system/mkado-dev-v2/MASTER.md) ---------- */
 
@@ -31,8 +33,8 @@
   --space-3xl: 64px;
   --radius: 8px;
   --radius-lg: 12px;
-  --font-head: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-head: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Archivo Variable", "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
   --dur-fast: 200ms;
   --dur: 350ms;
   --dur-slow: 450ms;

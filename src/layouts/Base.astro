@@ -1,6 +1,9 @@
 ---
 import '../styles/global.css';
 import { profile } from '../data/site';
+// Hashed URLs of the self-hosted font files, for <link rel=preload> (they are the LCP fonts).
+import bricolageWoff from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url';
+import instrumentWoff from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   title?: string;
@@ -38,6 +41,8 @@ const jsonLd = {
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href={bricolageWoff} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={instrumentWoff} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:type" content="website" />
@@ -57,12 +62,6 @@ const jsonLd = {
     <meta name="twitter:image:alt" content="Muhammed Kado, Computer Engineer: six live demos you can open." />
     <meta name="theme-color" content="#1f4fd8" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Instrument+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
 
     <script is:inline>
       // Mark JS as available (the timeline reveals rely on it) and apply the
