@@ -156,7 +156,7 @@ export const experience = {
   url: 'https://ustek-rfid.com',
   role: 'Full Stack Developer',
   period: 'May 2023 – present',
-  startDate: '2023-05-01', // used to compute a live tenure figure — see src/lib/tenure.ts
+  startDate: '2023-05-15', // first day at USTEK; drives the live tenure figure — see src/lib/tenure.ts
   location: 'İstanbul',
   summary:
     'USTEK builds RFID-based laundry management for commercial laundries, hotels and healthcare, deployed in more than 30 countries. I work on the web platform that sits on top of the readers and terminals.',
