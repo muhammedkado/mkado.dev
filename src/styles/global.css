@@ -869,3 +869,16 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
 /* Language switch in the header nav (EN <-> TR) */
 .nav .lang-switch { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; border: 1px solid var(--line-strong); border-radius: 6px; }
 .nav .lang-switch:hover { border-color: var(--accent); color: var(--accent); }
+/* Notes (/notes/): list + long-form body with code blocks */
+.notes-list { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1rem; }
+.notes-list a { display: block; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: inherit; transition: border-color 150ms ease; }
+.notes-list a:hover { border-color: var(--accent); }
+.notes-list .k { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--ink-3); }
+.notes-list h2 { font-family: var(--font-display); font-size: 1.3rem; margin: 0.3rem 0 0.4rem; }
+.notes-list p { color: var(--ink-2); margin: 0; line-height: 1.55; }
+.note-body h2 { margin-top: 2rem; }
+.note-body pre { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.55; margin: 0 0 1.2rem; }
+.note-body pre code { background: none; border: 0; padding: 0; font-size: inherit; }
+.note-body ul, .note-body ol { padding-left: 1.4rem; margin: 0 0 1rem; }
+.note-body li { margin: 0 0 0.35rem; }
+.note-body a { color: var(--accent); }

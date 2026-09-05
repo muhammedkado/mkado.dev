@@ -17,4 +17,15 @@ const work = defineCollection({
   }),
 });
 
-export const collections = { work };
+// Engineering notes: short write-ups of things learned building the demos.
+const notes = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/notes' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+
+export const collections = { work, notes };

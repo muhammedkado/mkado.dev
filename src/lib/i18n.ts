@@ -69,6 +69,7 @@ const en = {
   footer: {
     line: 'Static Astro site, no client frameworks. Built',
     about: 'About this site',
+    notes: 'Notes',
     source: 'Source',
     experiments: 'Design experiments',
     dateLocale: 'en-GB',
@@ -132,6 +133,7 @@ const trUi: typeof en = {
   footer: {
     line: 'Statik Astro sitesi, istemci tarafında framework yok. Derleme:',
     about: 'Bu site hakkında',
+    notes: 'Notlar',
     source: 'Kaynak',
     experiments: 'Tasarım denemeleri',
     dateLocale: 'tr-TR',
