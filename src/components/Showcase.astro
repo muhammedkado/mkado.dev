@@ -1,5 +1,6 @@
 ---
 import { demos, demosLive } from '../data/site';
+import { t, demoCopy, type Lang } from '../lib/i18n';
 import { Picture } from 'astro:assets';
 // Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no image.
 const shotModules = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
@@ -7,6 +8,8 @@ const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.
 
 // Case-study pages exist for the slugs that have a file in src/content/work.
 const studies = new Set(Object.keys(import.meta.glob('../content/work/*.md')).map((p) => p.split('/').pop()!.replace('.md', '')));
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
 const isLive = (d: (typeof demos)[number]) => d.live ?? demosLive;
 const allLive = demos.every(isLive);
 ---
@@ -15,18 +18,18 @@ const allLive = demos.every(isLive);
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Six applications you can sign into</h2>
-        <p>Real deployments, each with its own database. Use the demo accounts, change whatever you like — everything resets overnight.</p>
+        <h2>{s.showcase.h2}</h2>
+        <p>{s.showcase.lead}</p>
       </div>
       {/* data-status-* : src/scripts/status.ts swaps in the live 5-minute probe (/status.json) */}
       <span class={`status ${allLive ? '' : 'soon'}`} data-status-pill>
         <span class="dot" aria-hidden="true"></span>
-        <span data-status-text>{allLive ? 'All systems up' : `${demos.filter(isLive).length} of ${demos.length} up`}</span>
+        <span data-status-text>{allLive ? s.showcase.allUp : s.showcase.someUp(demos.filter(isLive).length, demos.length)}</span>
       </span>
     </div>
 
     <div class="showcase">
-      <div class="tabs" role="tablist" aria-label="Applications" aria-orientation="vertical">
+      <div class="tabs" role="tablist" aria-label={s.showcase.tablist} aria-orientation="vertical">
         {demos.map((d, i) => (
           <button
             class={`tab ${isLive(d) ? 'is-live' : ''}`}
@@ -56,14 +59,14 @@ const allLive = demos.every(isLive);
                 <Picture src={shots[d.slug]} formats={['avif', 'webp']} widths={[640, 1280]} sizes="(max-width: 860px) 100vw, 640px" alt="" loading="lazy" decoding="async" />
               </a>
             )}
-            <p class="summary">{d.summary}</p>
+            <p class="summary">{demoCopy(d, lang).summary}</p>
             <div class="stack">{d.stack.map((s) => <span>{s}</span>)}</div>
 
             <div class="panel-actions">
-              <a class="btn btn-primary btn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">Open {d.name}{d.demoUrl && ' (signed in)'}</a>
+              <a class="btn btn-primary btn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">{s.showcase.open(d.name)}{d.demoUrl && s.showcase.signedIn}</a>
               {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
-              {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">Source code</a>}
-              {studies.has(d.slug) && <a class="btn btn-sm" href={`/work/${d.slug}/`}>Case study</a>}
+              {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">{s.showcase.source}</a>}
+              {studies.has(d.slug) && <a class="btn btn-sm" href={`/work/${d.slug}/`}>{s.showcase.caseStudy}</a>}
             </div>
 
             {d.credentials.length > 0 && (
@@ -71,16 +74,16 @@ const allLive = demos.every(isLive);
                 {d.credentials.map((c) => (
                   <div class="cred">
                     <span class="who">{c.label}</span>
-                    <span class="k">email</span>
+                    <span class="k">{s.showcase.email}</span>
                     <button type="button" class="copy" data-copy={c.user} title="Copy" aria-label={`Copy ${c.label} email ${c.user}`}>{c.user}</button>
-                    <span class="k">password</span>
+                    <span class="k">{s.showcase.password}</span>
                     <button type="button" class="copy" data-copy={c.pass} title="Copy" aria-label={`Copy ${c.label} password`}>{c.pass}</button>
                   </div>
                 ))}
               </div>
             )}
 
-            {d.note && <p class="note">{d.note}</p>}
+            {demoCopy(d, lang).note && <p class="note">{demoCopy(d, lang).note}</p>}
           </div>
         ))}
       </div>

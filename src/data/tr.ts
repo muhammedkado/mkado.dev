@@ -60,11 +60,11 @@ export const tr = {
       ],
     },
     {
-      title: 'Üretim kalitesinde beş uygulama',
+      title: 'Altı canlı uygulama',
       org: 'Bağımsız çalışma',
       where: 'mkado.dev üzerinde yayında',
       summary:
-        "Bir POS arka ofisi, bir fatura sistemi, bir emlak platformu, yapay zekâlı bir iş eşleştirici ve bir lastikçi PWA'sı — her biri kendi veritabanıyla uçtan uca geliştirildi ve herkesin giriş yapabileceği canlı demo olarak yayınlandı.",
+        "Bir POS arka ofisi, bir fatura sistemi, yönetim paneliyle bir emlak platformu, yapay zekâlı bir iş eşleştirici ve bir lastikçi PWA'sı — her biri kendi veritabanıyla uçtan uca geliştirildi ve herkesin açabileceği canlı demo olarak yayınlandı.",
       bullets: [],
     },
     {

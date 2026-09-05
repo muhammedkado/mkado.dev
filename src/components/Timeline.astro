@@ -1,27 +1,31 @@
 ---
-import { timeline } from '../data/site';
 import { tenureYears } from '../lib/tenure';
+import { t, timelineCopy, type Lang } from '../lib/i18n';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
+const entries = timelineCopy(lang);
 ---
 
 <section class="section" id="experience">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Experience</h2>
-        <p>From a computer-engineering degree to production RFID software that runs in hotels, hospitals and commercial laundries worldwide.</p>
+        <h2>{s.timeline.h2}</h2>
+        <p>{s.timeline.lead}</p>
       </div>
     </div>
 
     <div class="timeline">
       <span class="tl-progress" aria-hidden="true"></span>
       <ol class="tl-list">
-        {timeline.map((t) => (
+        {entries.map((t) => (
           <li class={`tl-item ${t.to === 'present' ? 'is-current' : ''}`}>
             <div class="tl-body">
               <p class="tl-when">
                 <span>{t.from} – {t.to}</span>
-                {t.startDate && <span><b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> yrs</span>}
-                <span class="kind">{t.kind}</span>
+                {t.startDate && <span><b data-tenure-start={t.startDate}>{tenureYears(t.startDate)}</b> {s.timeline.yrs}</span>}
+                <span class="kind">{s.timeline.kind[t.kind] ?? t.kind}</span>
               </p>
               <h3>{t.title}</h3>
               <p class="tl-org">

@@ -1,11 +1,14 @@
 ---
 import '../styles/global.css';
 import { profile } from '../data/site';
+import { t, type Lang } from '../lib/i18n';
 // Hashed URLs of the self-hosted font files, for <link rel=preload> (they are the LCP fonts).
 import bricolageWoff from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url';
 import instrumentWoff from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
+  lang?: Lang;
+  alternates?: Partial<Record<Lang, string>>; // hreflang pairs for pages that exist in both languages
   title?: string;
   description?: string;
   ogImage?: string; // absolute or site-relative; defaults to /og.png
@@ -13,6 +16,8 @@ interface Props {
 }
 
 const {
+  lang = 'en',
+  alternates,
   ogImage,
   jsonLd: jsonLdProp,
   title = `${profile.name} — ${profile.title}`,
@@ -36,13 +41,15 @@ const jsonLd = jsonLdProp ?? {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {alternates && Object.entries(alternates).map(([l, path]) => <link rel="alternate" hreflang={l} href={new URL(path, Astro.site ?? profile.siteUrl).toString()} />)}
+    {alternates?.en && <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, Astro.site ?? profile.siteUrl).toString()} />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preload" href={bricolageWoff} as="font" type="font/woff2" crossorigin />
@@ -58,7 +65,8 @@ const jsonLd = jsonLdProp ?? {
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Muhammed Kado, Computer Engineer in İstanbul: I build the web side of RFID systems that run in 30+ countries. Six live demos." />
     <meta property="og:site_name" content="mkado.dev" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={lang === 'tr' ? 'tr_TR' : 'en_US'} />
+    {alternates && lang === 'en' && alternates.tr && <meta property="og:locale:alternate" content="tr_TR" />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -83,7 +91,7 @@ const jsonLd = jsonLdProp ?? {
     <slot name="head" />
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{t(lang).skip}</a>
     <div id="a11y-live" class="sr-only" aria-live="polite"></div>
     <slot />
 

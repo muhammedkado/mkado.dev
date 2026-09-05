@@ -865,3 +865,7 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
 .work-card-body .stack span { font-size: 0.75rem; padding: 0.2rem 0.5rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); }
 .work-more { margin: 2.5rem 0 0; color: var(--ink-2); }
 @media (max-width: 640px) { .case { padding-top: 4.5rem; } .case-nav { flex-direction: column; } .case-nav a.next { text-align: left; } }
+
+/* Language switch in the header nav (EN <-> TR) */
+.nav .lang-switch { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; border: 1px solid var(--line-strong); border-radius: 6px; }
+.nav .lang-switch:hover { border-color: var(--accent); color: var(--accent); }

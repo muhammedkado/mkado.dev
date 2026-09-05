@@ -1,19 +1,23 @@
 ---
 import { profile } from '../data/site';
+import { t, type Lang } from '../lib/i18n';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
 const year = new Date().getFullYear();
-const built = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const built = new Date().toLocaleDateString(s.footer.dateLocale, { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 
 <footer class="ftr">
   <div class="wrap">
     <span>© {year} {profile.name}</span>
     <span>
-      Static Astro site, no client frameworks. Built {built}.
-      <a href="/about-this-site/">About this site</a>
+      {s.footer.line} {built}.
+      <a href="/about-this-site/">{s.footer.about}</a>
       <span aria-hidden="true">/</span>
-      <a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">Source</a>
+      <a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">{s.footer.source}</a>
       <span aria-hidden="true">/</span>
-      Design experiments: <a href="/v2/">Swiss</a>, <a href="/v3/">mkOS</a>
+      {s.footer.experiments}: <a href="/v2/">Swiss</a>, <a href="/v3/">mkOS</a>
     </span>
   </div>
 </footer>

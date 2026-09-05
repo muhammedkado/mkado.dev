@@ -1,34 +1,37 @@
 ---
-import { profile, languages } from '../data/site';
-const spoken = languages.map((l) => l.name).join(', ');
+import { profile } from '../data/site';
+import { t, type Lang } from '../lib/i18n';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
 ---
 
 <section class="section" id="contact">
   <div class="wrap contact-grid">
     <div>
-      <h2>Hiring a full-stack engineer?</h2>
-      <p>I'm open to full-time roles, remote or in İstanbul. Email is the fastest way to reach me.</p>
+      <h2>{s.contact.h2}</h2>
+      <p>{s.contact.lead}</p>
 
       <div class="email-row">
         <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
-        <button type="button" class="btn btn-sm copy" data-copy={profile.email}>Copy</button>
+        <button type="button" class="btn btn-sm copy" data-copy={profile.email}>{s.contact.copy}</button>
       </div>
 
       <div class="ways">
         <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
         <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
-        <a href={profile.whatsapp} target="_blank" rel="noopener">WhatsApp {profile.phone}</a>
-        <a href={profile.cv} download="Muhammed_Kado_CV.pdf">CV (PDF)</a>
+        <a href={profile.whatsapp} target="_blank" rel="noopener">{s.contact.whatsapp} {profile.phone}</a>
+        <a href={profile.cv} download="Muhammed_Kado_CV.pdf">{s.contact.cv}</a>
       </div>
     </div>
 
     <aside class="aside">
-      <span class="status"><span class="dot" aria-hidden="true"></span>Open to work</span>
+      <span class="status"><span class="dot" aria-hidden="true"></span>{s.openToWork}</span>
       <dl>
-        <dt>Based in</dt><dd>{profile.location}</dd>
-        <dt>Roles</dt><dd>Full-stack, back-end (PHP / Laravel), React front-end</dd>
-        <dt>Setup</dt><dd>Remote, or on-site in İstanbul</dd>
-        <dt>Languages</dt><dd>{spoken}</dd>
+        <dt>{s.contact.basedIn}</dt><dd>{s.location}</dd>
+        <dt>{s.contact.roles}</dt><dd>{s.contact.rolesValue}</dd>
+        <dt>{s.contact.setup}</dt><dd>{s.contact.setupValue}</dd>
+        <dt>{s.contact.languages}</dt><dd>{s.contact.spoken}</dd>
       </dl>
     </aside>
   </div>

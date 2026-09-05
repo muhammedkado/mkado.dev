@@ -2,7 +2,11 @@
 import { profile, experience, education } from '../data/site';
 import { tenureYears } from '../lib/tenure';
 import Reader from './Reader.astro';
+import { t, profileCopy, type Lang } from '../lib/i18n';
 
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
+const p = profileCopy(lang);
 const tenure = tenureYears(experience.startDate);
 ---
 
@@ -12,17 +16,17 @@ const tenure = tenureYears(experience.startDate);
       <p class="kicker rise" style="--delay: 0.05s">
         <strong>{profile.name}</strong>
         <span class="sep" aria-hidden="true">/</span>
-        <span>{profile.title}</span>
+        <span>{p.title}</span>
         <span class="sep" aria-hidden="true">/</span>
-        <span>{profile.role}</span>
+        <span>{p.role}</span>
       </p>
 
-      <h1 class="rise" style="--delay: 0.15s">{profile.headline}</h1>
-      <p class="lede rise" style="--delay: 0.28s">{profile.intro}</p>
+      <h1 class="rise" style="--delay: 0.15s">{p.headline}</h1>
+      <p class="lede rise" style="--delay: 0.28s">{p.intro}</p>
 
       <div class="cta rise" style="--delay: 0.4s">
-        <a class="btn btn-primary" href="#work">See the live work</a>
-        <a class="btn" href={profile.cv} download="Muhammed_Kado_CV.pdf">Download CV</a>
+        <a class="btn btn-primary" href="#work">{s.hero.seeWork}</a>
+        <a class="btn" href={profile.cv} download="Muhammed_Kado_CV.pdf">{s.hero.downloadCv}</a>
         <span class="textlinks">
           <a href={profile.github} target="_blank" rel="noopener">GitHub</a>
           <a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a>
@@ -30,18 +34,18 @@ const tenure = tenureYears(experience.startDate);
       </div>
 
       <p class="facts rise" style="--delay: 0.5s">
-        <span><b data-tenure-start={experience.startDate} data-countup>{tenure}</b> years at {experience.company}</span>
-        <span><b>{education.degree}</b>, {education.period}</span>
-        <span>{profile.location}</span>
+        {lang === 'tr'
+          ? <span>{experience.company}'de <b data-tenure-start={experience.startDate} data-countup>{tenure}</b> yıl</span>
+          : <span><b data-tenure-start={experience.startDate} data-countup>{tenure}</b> years at {experience.company}</span>}
+        <span><b>{s.hero.degree}</b>, {education.period}</span>
+        <span>{s.location}</span>
       </p>
     </div>
 
     <div class="reader-wrap rise" style="--delay: 0.2s">
       <Reader />
       <p class="readout">
-        <span>UHF RFID</span>
-        <span>readers, terminals, web platform</span>
-        <span>30+ countries</span>
+        {s.hero.readout.map((r) => <span>{r}</span>)}
       </p>
     </div>
   </div>

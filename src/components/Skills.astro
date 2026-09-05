@@ -1,5 +1,9 @@
 ---
 import { skills, demos, projects } from '../data/site';
+import { t, skillGroupName, type Lang } from '../lib/i18n';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
 
 // Tie each skill to the shipped work that actually uses it, so the chips are
 // evidence rather than a keyword list.
@@ -20,20 +24,20 @@ function usedIn(skill: string): string[] {
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>Skills</h2>
-        <p>A number next to a skill is how many of the projects on this page ship with it. Hover to see which.</p>
+        <h2>{s.skills.h2}</h2>
+        <p>{s.skills.lead}</p>
       </div>
     </div>
 
     <div class="skills">
       {skills.map((g) => (
         <div class="skill-group anim">
-          <h3>{g.group}</h3>
+          <h3>{skillGroupName(g.group, lang)}</h3>
           <div class="chips">
             {g.items.map((item) => {
               const where = usedIn(item);
               return where.length > 0 ? (
-                <span class="chip" title={`Used in: ${where.join(', ')}`}>
+                <span class="chip" title={`${s.skills.usedIn}: ${where.join(', ')}`}>
                   {item}
                   <span class="n">{where.length}</span>
                 </span>
@@ -46,6 +50,6 @@ function usedIn(skill: string): string[] {
       ))}
     </div>
 
-    <p class="skills-note">Day to day at USTEK: PHP, Laravel, Zend Framework 1, MySQL and REST APIs, against real RFID hardware.</p>
+    <p class="skills-note">{s.skills.note}</p>
   </div>
 </section>
