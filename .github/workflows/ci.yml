@@ -1,0 +1,29 @@
+# Build check for every push and pull request. Deploys are NOT done from CI:
+# the server never talks to GitHub by design (see README "Deploy").
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Sanity-check the output
+        run: |
+          test -f dist/index.html && test -f dist/tr/index.html && test -f dist/work/pos/index.html
+          grep -q 'data-status-dot="pos"' dist/index.html
+          echo "pages: $(find dist -name index.html | wc -l)"
+      - name: Regenerated diagrams must match the committed ones
+        run: |
+          python3 scripts/diagrams.py >/dev/null
+          git diff --exit-code -- src/assets/diagrams
