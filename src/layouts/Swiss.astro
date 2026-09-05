@@ -63,5 +63,7 @@ const description =
       import '../scripts/swiss-motion';
       import '../scripts/status';
     </script>
+    {/* Cloudflare Web Analytics: cookieless page views, production builds only. The token is a public beacon id. */}
+    {import.meta.env.PROD && <script is:inline type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: '31926c9ee1414970908a9b0c753ffe75' })}></script>}
   </body>
 </html>
