@@ -556,3 +556,6 @@ html.js .anim { opacity: 0; }
 /* Live status (src/scripts/status.ts) */
 [data-status-dot][data-state="down"], .status-pill[data-state="down"] .dot { background: #d97706 !important; animation: none !important; }
 .status-pill[data-state="down"] { color: #b45309; }
+/* Demo screenshots (scripts/shots.mjs) */
+.card .shot { display: block; margin: 0 0 14px; border: 1px solid rgba(15, 23, 42, .12); border-radius: 8px; overflow: hidden; }
+.card .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }

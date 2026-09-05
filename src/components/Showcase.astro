@@ -1,5 +1,9 @@
 ---
 import { demos, demosLive } from '../data/site';
+import { Picture } from 'astro:assets';
+// Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no image.
+const shotModules = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
+const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.split('/').pop()!.replace('.png', ''), m.default]));
 
 const isLive = (d: (typeof demos)[number]) => d.live ?? demosLive;
 const allLive = demos.every(isLive);
@@ -45,6 +49,11 @@ const allLive = demos.every(isLive);
               <h3>{d.name}</h3>
               <span class="period">{d.period}</span>
             </div>
+            {shots[d.slug] && (
+              <a class="shot" href={d.demoUrl ?? d.url} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+                <Picture src={shots[d.slug]} formats={['avif', 'webp']} widths={[640, 1280]} sizes="(max-width: 860px) 100vw, 640px" alt="" loading="lazy" decoding="async" />
+              </a>
+            )}
             <p class="summary">{d.summary}</p>
             <div class="stack">{d.stack.map((s) => <span>{s}</span>)}</div>
 

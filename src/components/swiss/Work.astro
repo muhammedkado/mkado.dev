@@ -1,5 +1,9 @@
 ---
 import { demos, demosLive, projects } from '../../data/site';
+import { Picture } from 'astro:assets';
+// Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no image.
+const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
+const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.split('/').pop()!.replace('.png', ''), m.default]));
 
 type Card = {
   key: string;
@@ -94,6 +98,11 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
               {statusLabel[c.status]}{c.period && `, ${c.period}`}
             </span>
           </div>
+          {shots[c.key] && (
+            <a class="shot" href={c.demoUrl ?? c.url} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+              <Picture src={shots[c.key]} formats={['avif', 'webp']} widths={[640, 1280]} sizes="(max-width: 700px) 100vw, 520px" alt="" loading="lazy" decoding="async" />
+            </a>
+          )}
           <p>{c.summary}</p>
           <div class="stack">{c.stack.map((s) => <span>{s}</span>)}</div>
 

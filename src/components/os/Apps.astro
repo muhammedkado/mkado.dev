@@ -3,6 +3,10 @@ import Window from './Window.astro';
 import T from './T.astro';
 import { demos, demosLive } from '../../data/site';
 import { tr } from '../../data/tr';
+import { Picture } from 'astro:assets';
+// Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no image.
+const shotModules = import.meta.glob<{ default: ImageMetadata }>('../../assets/shots/*.png', { eager: true });
+const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.split('/').pop()!.replace('.png', ''), m.default]));
 ---
 
 <Window id="apps" file="~/apps" en="Things I built that you can try right now (nothing to install: click Open)" tr="Hemen deneyebileceğiniz, yaptığım uygulamalar (kurulum yok: Aç'a tıklayın)">
@@ -24,6 +28,11 @@ import { tr } from '../../data/tr';
         <span class="app-name">{d.name}</span>
         <span class="app-year">{d.period}</span>
       </div>
+      {shots[d.slug] && (
+        <a class="shot" href={d.demoUrl ?? d.url} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+          <Picture src={shots[d.slug]} formats={['avif', 'webp']} widths={[640, 1280]} sizes="(max-width: 700px) 100vw, 560px" alt="" loading="lazy" decoding="async" />
+        </a>
+      )}
       <p class="app-desc"><T en={d.summary} tr={tr.demos[d.slug]?.summary ?? d.summary} /></p>
       <p class="app-stack"><span class="k"><T en="built with" tr="kullanılan teknolojiler" /></span> {d.stack.join(', ')}</p>
 

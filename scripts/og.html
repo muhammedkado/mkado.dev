@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- Open Graph / Twitter share image, 1200×630. Rendered by scripts/og.mjs
+     (headless Chrome) into public/og.png. Brand: docs/brand-guidelines.md —
+     Bricolage Grotesque + Instrument Sans, Cobalt Signal #1F4FD8, Live Green
+     #16A34A, the "mk" mark with pulse arcs (public/logo-mark.svg). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=block" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: "Instrument Sans", system-ui, sans-serif; color: #101828;
+    background:
+      radial-gradient(900px 520px at 88% 8%, rgba(31, 79, 216, .16), transparent 60%),
+      radial-gradient(700px 480px at 6% 100%, rgba(6, 182, 212, .14), transparent 60%),
+      #f7f7f5;
+    position: relative;
+  }
+  /* faint engineering grid */
+  .grid { position: absolute; inset: 0; background-image:
+      linear-gradient(rgba(16, 24, 40, .06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 24, 40, .06) 1px, transparent 1px);
+    background-size: 48px 48px; mask-image: linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.25)); }
+  /* pulse arcs, the brand's read-signal motif */
+  .arcs { position: absolute; right: -140px; top: -160px; width: 720px; height: 720px; }
+  .arcs circle { fill: none; stroke: #1F4FD8; stroke-width: 2; opacity: .18; }
+  .wrap { position: relative; padding: 64px 72px; height: 100%; display: flex; flex-direction: column; }
+  .top { display: flex; align-items: center; gap: 18px; }
+  .top img { width: 56px; height: 56px; }
+  .who { font-size: 26px; font-weight: 600; letter-spacing: -.01em; }
+  .who span { color: #475467; font-weight: 500; }
+  h1 { font-family: "Bricolage Grotesque", "Instrument Sans", sans-serif; font-weight: 700; font-size: 66px; line-height: 1.04;
+       letter-spacing: -.025em; margin-top: 54px; max-width: 980px; }
+  h1 em { font-style: normal; color: #1F4FD8; }
+  .sub { margin-top: 26px; font-size: 27px; color: #344054; max-width: 960px; line-height: 1.35; }
+  .bottom { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  .demos { display: flex; align-items: center; gap: 14px; font-size: 22px; color: #344054; font-weight: 500; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; background: #16A34A; box-shadow: 0 0 0 5px rgba(22, 163, 74, .18); }
+  .url { font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 30px; color: #1F4FD8; letter-spacing: -.01em; }
+</style>
+</head>
+<body>
+  <div class="grid"></div>
+  <svg class="arcs" viewBox="0 0 720 720" aria-hidden="true">
+    <circle cx="360" cy="360" r="150"/><circle cx="360" cy="360" r="230"/><circle cx="360" cy="360" r="310"/>
+  </svg>
+  <div class="wrap">
+    <div class="top">
+      <img src="../public/logo-mark.svg" alt="">
+      <div class="who">Muhammed Kado <span>· Computer Engineer, İstanbul</span></div>
+    </div>
+    <h1>I build the web side of <em>RFID systems</em> that run in 30+ countries.</h1>
+    <p class="sub">PHP · Laravel · React · PostgreSQL — six live applications you can open, signed in with one click.</p>
+    <div class="bottom">
+      <div class="demos"><span class="dot"></span> POS · Real estate · Invoicing · AI job search · Tire shop — all systems up</div>
+      <div class="url">mkado.dev</div>
+    </div>
+  </div>
+</body>
+</html>
