@@ -771,9 +771,19 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
 /* ---------- footer ---------- */
 
 .ftr { border-top: 1px solid var(--line); padding: 28px 0 44px; color: var(--ink-3); font-size: 0.86rem; }
-.ftr .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; }
+.ftr .wrap { display: grid; gap: 14px; }
 .ftr a { color: var(--ink-2); }
 .ftr a:hover { color: var(--accent); }
+/* Row 1: site links, then the two design experiments under a small label. */
+.ftr-links { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+.ftr-links a { font-weight: 500; }
+.ftr-exp { display: inline-flex; align-items: center; gap: 12px; }
+.ftr-exp-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+/* Row 2: copyright left, build date + live commit right. */
+.ftr-meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; }
+.ftr-build { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 6px; }
+.ftr-stamp { white-space: nowrap; }
+.ftr-build code { font-family: var(--font-mono); font-size: 0.85em; }
 
 /* ---------- responsive ---------- */
 

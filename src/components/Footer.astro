@@ -19,20 +19,24 @@ const commitUrl = `https://github.com/muhammedkado/mkado.dev/commit/${commit}`;
 
 <footer class="ftr">
   <div class="wrap">
-    <span>© {year} {profile.name}</span>
-    <span>
-      {s.footer.line} {built}{commit && <> · <a class="commit" href={commitUrl} target="_blank" rel="noopener" title={s.footer.commit}><code>{commit}</code></a></>}.
+    <nav class="ftr-links" aria-label={s.footer.nav}>
       <a href="/about-this-site/">{s.footer.about}</a>
-      <span aria-hidden="true">/</span>
       <a href="/notes/">{s.footer.notes}</a>
-      <span aria-hidden="true">/</span>
+      <a href="/rss.xml">{s.footer.rss}</a>
       <a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">{s.footer.source}</a>
-      <span aria-hidden="true">/</span>
-      {s.footer.experiments}: <a href="/v2/">Swiss</a>, <a href="/v3/">mkOS</a>
-    </span>
+      <span class="ftr-exp">
+        <span class="ftr-exp-label">{s.footer.experiments}</span>
+        <a href="/v2/">Swiss</a>
+        <a href="/v3/">mkOS</a>
+      </span>
+    </nav>
+    <div class="ftr-meta">
+      <span>© {year} {profile.name}</span>
+      <span class="ftr-build">
+        <span>{s.footer.line}</span>
+        {/* date + hash stay on one line; only the sentence before them wraps on phones */}
+        <span class="ftr-stamp">{built}{commit && <> · <a class="commit" href={commitUrl} target="_blank" rel="noopener" title={s.footer.commit}><code>{commit}</code></a></>}</span>
+      </span>
+    </div>
   </div>
 </footer>
-
-<style>
-  .commit code { font-family: var(--font-mono); font-size: 0.85em; }
-</style>
