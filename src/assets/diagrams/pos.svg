@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="pos-title pos-desc">
 <title id="pos-title">POS admin dashboard: how it is built</title>
-<desc id="pos-desc">A browser talks over HTTPS to nginx, which hands requests to a Laravel 10 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.</desc>
+<desc id="pos-desc">A browser talks over HTTPS to nginx, which hands requests to a Laravel 12 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.</desc>
 <defs>
 <marker id="pos-m" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
 <marker id="pos-ml" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
@@ -33,7 +33,7 @@
 <rect x="408" y="92" width="144" height="56" rx="6" class="dg-node focal"/>
 <rect x="416" y="98" width="25" height="12" rx="2" class="dg-tag"/>
 <text x="428" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
-<text x="480" y="124" class="dg-name" text-anchor="middle">Laravel 10</text>
+<text x="480" y="124" class="dg-name" text-anchor="middle">Laravel 12</text>
 <text x="480" y="138" class="dg-sub" text-anchor="middle">Laratrust roles, i18n</text>
 <rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
 <rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>

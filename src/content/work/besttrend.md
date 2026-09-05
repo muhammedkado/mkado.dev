@@ -6,7 +6,7 @@ order: 2
 problem: Property owners and agents in Syria list on Facebook groups and buyers scroll for hours. The platform needed structured listings (governorate → city → neighbourhood), photos on a CDN, three languages including right-to-left Arabic, and moderation so fake listings never reach the public.
 built:
   - React 19 + TypeScript single-page app (Vite, Tailwind, shadcn/ui) with i18next for Arabic (RTL), English and Kurdish, and a multi-step listing form with image upload.
-  - Laravel 10 REST API with Sanctum token auth, rate limits on sign-in and destructive routes, versioned under /api/v1 with legacy aliases kept for older clients.
+  - Laravel 12 REST API with Sanctum token auth, rate limits on sign-in and destructive routes, versioned under /api/v1 with legacy aliases kept for older clients.
   - PostgreSQL model around a Governorate → City → Neighbourhood hierarchy, property types, features and utilities as many-to-many, favourites and saved searches per user.
   - Listing photos on Bunny Storage (a CDN) through Spatie Media Library, so the API server never serves images itself.
   - Property statistics — views, favourites, inquiries — feeding an owner dashboard.

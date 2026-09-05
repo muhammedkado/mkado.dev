@@ -5,7 +5,7 @@ period: "2025"
 order: 5
 problem: Matching a CV to job postings by hand is slow and vague. The app turns a PDF into structured data, lets you correct it, and asks a language model to score each posting with a reason — while a public, sign-in-free demo cannot be allowed to run up an API bill.
 built:
-  - A three-step Laravel 10 wizard (Blade + Alpine.js, Tailwind via Vite) — upload, an editable profile, matches — with no SPA framework and no separate JSON API.
+  - A three-step Laravel 12 wizard (Blade + Alpine.js, Tailwind via Vite) — upload, an editable profile, matches — with no SPA framework and no separate JSON API.
   - PDF text extraction with smalot/pdfparser; the uploaded file is never stored.
   - Gemini calls for parsing, "enhance with AI" rewrites and match scoring, with the model's thinking budget set to zero so the token limit goes to the answer.
   - Live postings from the JSearch API with a sample-data fallback when no key is configured.

@@ -30,7 +30,7 @@
 <rect x="296" y="92" width="176" height="56" rx="6" class="dg-node app"/>
 <rect x="304" y="98" width="25" height="12" rx="2" class="dg-tag"/>
 <text x="316" y="107" class="dg-tag-text" text-anchor="middle">API</text>
-<text x="384" y="124" class="dg-name" text-anchor="middle">Laravel 10 REST API</text>
+<text x="384" y="124" class="dg-name" text-anchor="middle">Laravel 12 REST API</text>
 <text x="384" y="138" class="dg-sub" text-anchor="middle">Sanctum tokens, /api/v1</text>
 <rect x="584" y="92" width="144" height="56" rx="6" class="dg-mask"/>
 <rect x="584" y="92" width="144" height="56" rx="6" class="dg-node store"/>

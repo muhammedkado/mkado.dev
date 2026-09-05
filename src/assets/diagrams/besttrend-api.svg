@@ -39,7 +39,7 @@
 <rect x="296" y="152" width="160" height="56" rx="6" class="dg-node app"/>
 <rect x="304" y="158" width="30" height="12" rx="2" class="dg-tag"/>
 <text x="319" y="167" class="dg-tag-text" text-anchor="middle">CORE</text>
-<text x="376" y="184" class="dg-name" text-anchor="middle">Laravel 10 core</text>
+<text x="376" y="184" class="dg-name" text-anchor="middle">Laravel 12 core</text>
 <text x="376" y="198" class="dg-sub" text-anchor="middle">Spatie permissions, jobs</text>
 <rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
 <rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>

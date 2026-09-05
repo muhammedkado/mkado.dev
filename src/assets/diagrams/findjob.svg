@@ -30,7 +30,7 @@
 <rect x="232" y="132" width="160" height="56" rx="6" class="dg-node focal"/>
 <rect x="240" y="138" width="25" height="12" rx="2" class="dg-tag"/>
 <text x="252" y="147" class="dg-tag-text" text-anchor="middle">APP</text>
-<text x="312" y="164" class="dg-name" text-anchor="middle">Laravel 10</text>
+<text x="312" y="164" class="dg-name" text-anchor="middle">Laravel 12</text>
 <text x="312" y="178" class="dg-sub" text-anchor="middle">throttle 20/h, daily budget</text>
 <rect x="456" y="32" width="152" height="56" rx="6" class="dg-mask"/>
 <rect x="456" y="32" width="152" height="56" rx="6" class="dg-node external"/>

@@ -141,7 +141,7 @@ def pos():
     N = [
         node("browser", 24, 92, "Browser", "AdminLTE, EN / AR (RTL)", "UI", "input"),
         node("nginx", 216, 92, "nginx", "TLS, PHP-FPM pool", "EDGE", "external"),
-        node("app", 408, 92, "Laravel 10", "Laratrust roles, i18n", "APP", "focal"),
+        node("app", 408, 92, "Laravel 12", "Laratrust roles, i18n", "APP", "focal"),
         node("db", 600, 92, "MySQL", "products, clients, users", "DB", "store"),
         node("cron", 600, 212, "Nightly reseed", "03:00 UTC, migrate:fresh", "CRON", "async"),
     ]
@@ -150,14 +150,14 @@ def pos():
         edge("app", "db", "PDO"), edge("cron", "db", "RESET", "dashed"),
     ]
     render("pos", "POS admin dashboard: how it is built",
-           "A browser talks over HTTPS to nginx, which hands requests to a Laravel 10 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.",
+           "A browser talks over HTTPS to nginx, which hands requests to a Laravel 12 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.",
            768, 292, N, E)
 
 def besttrend():
     Z = [dict(label="besttrend.mkado.dev", x=16, y=52, w=208, h=136), dict(label="besttrend-api.mkado.dev", x=272, y=52, w=480, h=256)]
     N = [
         node("spa", 40, 92, "React 19 SPA", "Vite, TypeScript, i18next", "WEB", "focal", w=160),
-        node("api", 296, 92, "Laravel 10 REST API", "Sanctum tokens, /api/v1", "API", "app", w=176),
+        node("api", 296, 92, "Laravel 12 REST API", "Sanctum tokens, /api/v1", "API", "app", w=176),
         node("db", 584, 92, "PostgreSQL", "listings, users, leads", "DB", "store"),
         node("cdn", 584, 212, "Bunny Storage", "listing photos (CDN)", "EXT", "external"),
     ]
@@ -173,7 +173,7 @@ def besttrend_api():
     N = [
         node("admin", 40, 92, "AdminLTE admin panel", "Blade, RTL Arabic, moderation", "ADMIN", "focal", w=176),
         node("api", 40, 212, "Public REST API", "/api/v1, rate limits, Sanctum", "API", "app", w=176),
-        node("core", 296, 152, "Laravel 10 core", "Spatie permissions, jobs", "CORE", "app", w=160),
+        node("core", 296, 152, "Laravel 12 core", "Spatie permissions, jobs", "CORE", "app", w=160),
         node("db", 600, 92, "PostgreSQL", "properties, users, leads", "DB", "store"),
         node("cdn", 600, 212, "Bunny Storage", "photos (CDN)", "EXT", "external"),
         node("spa", 600, 332, "React app", "besttrend.mkado.dev", "WEB", "input"),
@@ -207,7 +207,7 @@ def invoice():
 def findjob():
     N = [
         node("wizard", 24, 132, "Wizard page", "Blade + Alpine.js, 3 steps", "UI", "input"),
-        node("app", 232, 132, "Laravel 10", "throttle 20/h, daily budget", "APP", "focal", w=160),
+        node("app", 232, 132, "Laravel 12", "throttle 20/h, daily budget", "APP", "focal", w=160),
         node("parser", 456, 32, "PDF parser", "text only, file not stored", "LIB", "external", w=152),
         node("gemini", 456, 132, "Gemini API", "parse, enhance, score", "AI", "external", w=152),
         node("jsearch", 456, 232, "JSearch API", "live job postings", "EXT", "external", w=152),

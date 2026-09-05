@@ -5,7 +5,7 @@ period: "2024"
 order: 1
 problem: A shop needs one place where staff manage what is on the shelves and who they sell to, where a cashier cannot delete the product catalogue, and where the owner sees stock and inventory value at a glance. It also had to work in Arabic, right-to-left, without a second codebase.
 built:
-  - Laravel 10 back office on AdminLTE with full CRUD for products, categories, clients and users, image uploads with resizing, and dashboard widgets for low stock and inventory value.
+  - Laravel 12 back office on AdminLTE with full CRUD for products, categories, clients and users, image uploads with resizing, and dashboard widgets for low stock and inventory value.
   - Roles and permissions with Laratrust — super admin, admin and a read-only viewer — checked per action in the controllers, not only hidden in the menu.
   - English and Arabic with mcamara/laravel-localization — locale-prefixed URLs, an RTL stylesheet layer for AdminLTE, translated validation messages.
   - Demo hardening for a public deployment — seeded accounts protected by middleware, registration closed, a one-click sign-in route, nightly re-seed.
