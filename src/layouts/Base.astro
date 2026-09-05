@@ -79,6 +79,8 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div id="a11y-live" class="sr-only" aria-live="polite"></div>
     <slot />
 
     <script is:inline>
@@ -117,6 +119,8 @@ const jsonLd = {
             var original = btn.textContent;
             btn.textContent = 'copied';
             btn.classList.add('copied');
+            var live = document.getElementById('a11y-live');
+            if (live) live.textContent = 'Copied to clipboard';
             setTimeout(function () {
               btn.textContent = original;
               btn.classList.remove('copied');

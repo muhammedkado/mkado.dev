@@ -124,9 +124,9 @@ const statusLabel = { live: 'live', soon: 'deploying', code: 'source only' };
                 <div class="cred">
                   <span class="who">{cr.label}</span>
                   <span class="k">email</span>
-                  <button type="button" class="copy" data-copy={cr.user} title="Copy">{cr.user}</button>
+                  <button type="button" class="copy" data-copy={cr.user} title="Copy" aria-label={`Copy ${cr.label} email ${cr.user}`}>{cr.user}</button>
                   <span class="k">password</span>
-                  <button type="button" class="copy" data-copy={cr.pass} title="Copy">{cr.pass}</button>
+                  <button type="button" class="copy" data-copy={cr.pass} title="Copy" aria-label={`Copy ${cr.label} password`}>{cr.pass}</button>
                 </div>
               ))}
             </details>

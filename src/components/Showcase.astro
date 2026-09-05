@@ -44,7 +44,7 @@ const allLive = demos.every(isLive);
 
       <div class="panels">
         {demos.map((d, i) => (
-          <div class="panel" role="tabpanel" id={`panel-${d.slug}`} aria-labelledby={`tab-${d.slug}`} hidden={i !== 0}>
+          <div class="panel" role="tabpanel" id={`panel-${d.slug}`} aria-labelledby={`tab-${d.slug}`} hidden={i !== 0} tabindex="0">
             <div class="panel-head">
               <h3>{d.name}</h3>
               <span class="period">{d.period}</span>
@@ -69,9 +69,9 @@ const allLive = demos.every(isLive);
                   <div class="cred">
                     <span class="who">{c.label}</span>
                     <span class="k">email</span>
-                    <button type="button" class="copy" data-copy={c.user} title="Copy">{c.user}</button>
+                    <button type="button" class="copy" data-copy={c.user} title="Copy" aria-label={`Copy ${c.label} email ${c.user}`}>{c.user}</button>
                     <span class="k">password</span>
-                    <button type="button" class="copy" data-copy={c.pass} title="Copy">{c.pass}</button>
+                    <button type="button" class="copy" data-copy={c.pass} title="Copy" aria-label={`Copy ${c.label} password`}>{c.pass}</button>
                   </div>
                 ))}
               </div>

@@ -49,9 +49,9 @@ const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.
             <div class="cred">
               <span class="who">{c.label}</span>
               <span class="k"><T en="email" tr="e-posta" /></span>
-              <button type="button" class="copy" data-copy={c.user} title="Copy">{c.user}</button>
+              <button type="button" class="copy" data-copy={c.user} title="Copy" aria-label={`Copy ${c.label} email ${c.user}`}>{c.user}</button>
               <span class="k"><T en="password" tr="şifre" /></span>
-              <button type="button" class="copy" data-copy={c.pass} title="Copy">{c.pass}</button>
+              <button type="button" class="copy" data-copy={c.pass} title="Copy" aria-label={`Copy ${c.label} password`}>{c.pass}</button>
             </div>
           ))}
         </details>

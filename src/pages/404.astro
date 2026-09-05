@@ -1,0 +1,35 @@
+---
+// Served by nginx for unknown paths (error_page 404 /404.html in deploy/nginx.conf).
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Backdrop from '../components/Backdrop.astro';
+import { profile } from '../data/site';
+---
+
+<Base title={`Page not found — ${profile.name}`} description="That page doesn't exist. The live demos, CV and contact details are one click away.">
+  <Backdrop />
+  <Header />
+  <main id="main" class="nf">
+    <div class="wrap">
+      <p class="nf-code" aria-hidden="true">404</p>
+      <h1>No tag read at this address.</h1>
+      <p class="nf-lead">The page you asked for doesn't exist here. Everything worth seeing is on the front page.</p>
+      <div class="nf-actions">
+        <a class="btn btn-primary" href="/#work">See the live demos</a>
+        <a class="btn" href="/">Front page</a>
+        <a class="btn" href={profile.cv}>Download CV</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .nf { min-height: 60vh; display: grid; place-items: center; padding: 6rem 0; }
+  .nf .wrap { max-width: 640px; text-align: left; }
+  .nf-code { font-family: var(--font-mono, ui-monospace, monospace); color: var(--ink-3); letter-spacing: 0.2em; margin: 0 0 0.75rem; }
+  .nf h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.1; margin: 0 0 1rem; }
+  .nf-lead { color: var(--ink-2); margin: 0 0 1.75rem; max-width: 46ch; }
+  .nf-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+</style>

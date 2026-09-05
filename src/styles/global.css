@@ -16,7 +16,7 @@
   --surface-2: #f0f1ef;
   --ink: #101828;
   --ink-2: #475467;
-  --ink-3: #8a94a6;
+  --ink-3: #667085; /* 4.7:1 on --bg; the old #8a94a6 failed AA */
   --line: #e4e7ec;
   --line-strong: #cbd2dc;
   --accent: #1f4fd8;
@@ -50,7 +50,7 @@
   --surface-2: #161e2e;
   --ink: #f1f4f9;
   --ink-2: #a3adbf;
-  --ink-3: #6b7688;
+  --ink-3: #8b95a7;
   --line: #202a3b;
   --line-strong: #2e3a50;
   --accent: #6d93ff;
@@ -764,3 +764,7 @@ html:not(.js) .tl-body { opacity: 1; transform: none; }
 .panel .shot { display: block; margin: 0 0 16px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface-2); }
 .panel .shot img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; }
 .panel .shot:hover img { filter: brightness(1.02); }
+/* Keyboard access: skip link (visible only when focused) and a screen-reader-only live region. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.skip-link { position: absolute; left: 1rem; top: -3rem; z-index: 100; padding: 0.55rem 0.9rem; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 600; transition: top 120ms ease; }
+.skip-link:focus { top: 1rem; outline: 2px solid #fff; outline-offset: 2px; }

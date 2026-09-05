@@ -7,7 +7,6 @@ export const profile = {
   name: 'Muhammed Kado',
   title: 'Computer Engineer',
   role: 'Full-Stack Developer',
-  stackLine: 'PHP · Laravel · React',
   location: 'İstanbul, Turkey (UTC+3)',
   email: 'eng.muhammedkado@gmail.com',
   phone: '+90 538 739 9262',
@@ -130,9 +129,9 @@ export const projects = [
     name: 'TimeZone.tools',
     summary: 'Time-zone converter, meeting planner and working-days calculator in seven languages with RTL support.',
     stack: ['React 19', 'Vite', 'Tailwind 4', 'i18next'],
-    url: 'https://besttrend-sy.com',
+    url: null, // no public deployment yet; the card links to the source
     repo: 'https://github.com/muhammedkado/timetool',
-    live: true,
+    live: false,
   },
   {
     name: 'Kado Job App',
@@ -220,14 +219,14 @@ export const timeline: TimelineEntry[] = [
   },
   {
     from: '2024',
-    to: '2026',
+    to: 'present',
     kind: 'projects',
-    title: 'Five production-style applications',
+    title: 'Six live applications',
     org: 'Independent work',
     where: 'live on mkado.dev',
     summary:
-      'A POS back office, an invoicing system, a real-estate platform, an AI job matcher and a tire-shop PWA — ' +
-      'each built end to end with its own database, and published as a live demo anyone can sign into.',
+      'A POS back office, an invoicing system, a real-estate platform with its admin panel, an AI job matcher and a ' +
+      'tire-shop PWA — each built end to end with its own database, and published as a live demo anyone can open.',
     bullets: [],
   },
   {
