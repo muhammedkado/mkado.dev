@@ -81,7 +81,7 @@ $email   = clean((string) ($input['email'] ?? ''));
 $message = clean((string) ($input['message'] ?? ''));
 $website = trim((string) ($input['website'] ?? ''));   // honeypot
 $token   = (string) ($input['token'] ?? '');
-$locale  = in_array($input['locale'] ?? 'en', ['en', 'tr'], true) ? $input['locale'] : 'en';
+$locale  = in_array($input['locale'] ?? '', ['en', 'tr'], true) ? (string) $input['locale'] : 'en';
 
 // A bot filled the hidden field. Answer exactly like success so it learns nothing.
 if ($website !== '') {

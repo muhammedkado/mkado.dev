@@ -100,9 +100,10 @@ if (form) {
     document.head.appendChild(s);
   }
 
-  for (const el of fields as (HTMLInputElement | HTMLTextAreaElement)[]) {
-    el.addEventListener('focus', mountCaptcha, { once: true });
-  }
+  // focusin bubbles (focus does not) and pointerdown covers a tap that has not
+  // landed in a field yet, so the widget is ready by the time anyone can submit.
+  form.addEventListener('focusin', mountCaptcha, { once: true });
+  form.addEventListener('pointerdown', mountCaptcha, { once: true });
 
   // ---- submit --------------------------------------------------------------
 
