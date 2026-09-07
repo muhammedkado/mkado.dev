@@ -3,6 +3,16 @@
 // Global switch for the whole board; a demo can opt out with `live: false`.
 export const demosLive = true; // live since 2026-09-04
 
+// Contact form (src/components/Contact.astro -> POST /api/contact).
+// The Turnstile *site* key is public and belongs in the built HTML; the matching
+// secret lives only in /etc/mkado/contact.env on the server. The default below is
+// Cloudflare's documented always-passes test key, so the form works in local dev.
+export const contactForm = {
+  endpoint: '/api/contact',
+  // TODO: replace with the real widget key from the Cloudflare dashboard.
+  turnstileSiteKey: '1x00000000000000000000AA',
+};
+
 export const profile = {
   name: 'Muhammed Kado',
   title: 'Computer Engineer',

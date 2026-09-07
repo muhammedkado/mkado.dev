@@ -1,9 +1,22 @@
 ---
-import { profile } from '../data/site';
+import { contactForm, profile } from '../data/site';
 import { t, type Lang } from '../lib/i18n';
 
 const { lang = 'en' } = Astro.props as { lang?: Lang };
 const s = t(lang);
+const f = s.contact.form;
+
+// The client script (src/scripts/contact.ts) reads its copy from these data
+// attributes, so only the active language ships to the browser.
+// `{email}` is filled in with what the visitor typed once the message is sent.
+const messages = JSON.stringify({
+  ...f.err,
+  sending: f.sending,
+  send: f.send,
+  okTitle: f.okTitle,
+  okBody: f.okBody('{email}'),
+  retry: f.retry,
+});
 ---
 
 <section class="section" id="contact">
@@ -23,16 +36,76 @@ const s = t(lang);
         <a href={profile.whatsapp} target="_blank" rel="noopener">{s.contact.whatsapp} {profile.phone}</a>
         <a href={profile.cv} download="Muhammed_Kado_CV.pdf">{s.contact.cv}</a>
       </div>
+
+      <aside class="aside">
+        <span class="status"><span class="dot" aria-hidden="true"></span>{s.openToWork}</span>
+        <dl>
+          <dt>{s.contact.basedIn}</dt><dd>{s.location}</dd>
+          <dt>{s.contact.roles}</dt><dd>{s.contact.rolesValue}</dd>
+          <dt>{s.contact.setup}</dt><dd>{s.contact.setupValue}</dd>
+          <dt>{s.contact.languages}</dt><dd>{s.contact.spoken}</dd>
+        </dl>
+      </aside>
     </div>
 
-    <aside class="aside">
-      <span class="status"><span class="dot" aria-hidden="true"></span>{s.openToWork}</span>
-      <dl>
-        <dt>{s.contact.basedIn}</dt><dd>{s.location}</dd>
-        <dt>{s.contact.roles}</dt><dd>{s.contact.rolesValue}</dd>
-        <dt>{s.contact.setup}</dt><dd>{s.contact.setupValue}</dd>
-        <dt>{s.contact.languages}</dt><dd>{s.contact.spoken}</dd>
-      </dl>
-    </aside>
+    <div class="cform-col">
+      <form
+        class="cform"
+        id="contact-form"
+        method="post"
+        action={contactForm.endpoint}
+        novalidate
+        data-endpoint={contactForm.endpoint}
+        data-sitekey={contactForm.turnstileSiteKey}
+        data-messages={messages}
+      >
+        <h3>{f.h3}</h3>
+
+        <div class="cfield">
+          <label for="cf-name">{f.name}</label>
+          <input type="text" id="cf-name" name="name" required minlength="2" maxlength="80" autocomplete="name" aria-describedby="cf-name-err" />
+          <p class="cform-err" id="cf-name-err" role="alert"></p>
+        </div>
+
+        <div class="cfield">
+          <label for="cf-email">{f.email}</label>
+          <input type="email" id="cf-email" name="email" required maxlength="160" autocomplete="email" inputmode="email" spellcheck="false" aria-describedby="cf-email-err" />
+          <p class="cform-err" id="cf-email-err" role="alert"></p>
+        </div>
+
+        <div class="cfield">
+          <label for="cf-message">{f.message}</label>
+          <textarea id="cf-message" name="message" required minlength="20" maxlength="2000" rows="5" aria-describedby="cf-message-hint cf-message-err"></textarea>
+          <div class="cform-meta">
+            <span class="cform-hint" id="cf-message-hint">{f.messageHint}</span>
+            <span class="cform-count" id="cf-count" aria-hidden="true">0 / 2000</span>
+          </div>
+          <p class="cform-err" id="cf-message-err" role="alert"></p>
+        </div>
+
+        {/* Honeypot: hidden from people, tempting to bots. A filled value is dropped silently. */}
+        <div class="cform-hp" aria-hidden="true">
+          <label for="cf-website">Website</label>
+          <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+
+        {/* Turnstile mounts here on first interaction, so the script is not loaded for readers who never write. */}
+        <div class="cform-captcha" id="cf-turnstile"></div>
+
+        <p class="cform-err cform-err-form" id="cf-form-err" role="alert"></p>
+
+        <button type="submit" class="btn btn-primary" id="cf-submit">{f.send}</button>
+        <p class="cform-note">{f.privacy}</p>
+      </form>
+
+      <div class="cform-done" id="cf-done" hidden tabindex="-1">
+        <span class="status"><span class="dot" aria-hidden="true"></span>{f.okTitle}</span>
+        <p id="cf-done-body"></p>
+      </div>
+
+      <noscript>
+        <p class="cform-note">{f.fallback} <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
+      </noscript>
+    </div>
   </div>
 </section>
