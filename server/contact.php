@@ -235,6 +235,8 @@ $resendKey = $cfg('RESEND_API_KEY');
 $tgToken   = $cfg('TELEGRAM_BOT_TOKEN');
 $tgChat    = $cfg('TELEGRAM_CHAT_ID');
 
+$notified = false;
+
 if ($resendKey !== '' && $to !== '') {
     [$sent, $status, $detail] = post(
         'https://api.resend.com/emails',
@@ -248,15 +250,22 @@ if ($resendKey !== '' && $to !== '') {
         ], JSON_UNESCAPED_UNICODE)
     );
     logLine($sent ? 'email sent' : sprintf('email FAILED status=%d %s', $status, $detail));
-} elseif ($tgToken !== '' && $tgChat !== '') {
+    $notified = $notified || $sent;
+}
+
+// Both channels can be on at once: e-mail is the record, Telegram is the push.
+if ($tgToken !== '' && $tgChat !== '') {
     [$sent, $status, $detail] = post(
         sprintf('https://api.telegram.org/bot%s/sendMessage', $tgToken),
         ['Content-Type: application/json'],
         json_encode(['chat_id' => $tgChat, 'text' => $subject . "\n\n" . $text, 'disable_web_page_preview' => true], JSON_UNESCAPED_UNICODE)
     );
     logLine($sent ? 'telegram sent' : sprintf('telegram FAILED status=%d %s', $status, $detail));
-} else {
-    logLine('stored, no notification channel configured: ' . $email);
+    $notified = $notified || $sent;
+}
+
+if (!$notified) {
+    logLine('stored but NOT notified: ' . $email);
 }
 
 respond(200, ['ok' => true]);
