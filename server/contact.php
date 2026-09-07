@@ -200,16 +200,27 @@ try {
 
 // ------------------------------------------------------------ notify second ---
 
-$to      = $cfg('CONTACT_TO');
+$to = $cfg('CONTACT_TO');
+
+// Local time, because that is the clock a reply gets written on. Rows in the
+// database stay UTC.
+$when = new DateTimeImmutable('now', new DateTimeZone('Europe/Istanbul'));
+
 $subject = sprintf('mkado.dev — %s', $name);
 $text    = sprintf(
-    "New message from the mkado.dev contact form.\n\nName:  %s\nEmail: %s\nLang:  %s\nIP:    %s\nTime:  %s\n\n%s\n",
+    "New message from the mkado.dev contact form.\n\n"
+    . "From:  %s <%s>\n"
+    . "Sent:  %s (Istanbul)\n"
+    . "Page:  %s   ·   IP %s\n\n"
+    . "%s\n\n"
+    . "--\nReply to this e-mail to answer %s directly.\n",
     $name,
     $email,
-    $locale,
+    $when->format('j M Y, H:i'),
+    $locale === 'tr' ? 'Turkish' : 'English',
     $ip,
-    gmdate('c'),
-    $message
+    $message,
+    $name
 );
 
 /** Fire an HTTP request and report whether it looked successful. */
