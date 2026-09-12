@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammed Kado — Blueprint</title>
+<meta name="description" content="I build the web side of RFID systems that run in 30+ countries.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#071a3f" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101828%22%2F%3E%3Cpath%20d%3D%22M40%2014a10%2010%200%200%201%2010%2010%22%20fill%3D%22none%22%20stroke%3D%22%236FD0FF%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.55%22%2F%3E%3Cpath%20d%3D%22M40%208a16%2016%200%200%201%2016%2016%22%20fill%3D%22none%22%20stroke%3D%22%236FD0FF%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.3%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2224%22%20r%3D%223%22%20fill%3D%22%236D93FF%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2249%22%20font-family%3D%22system-ui%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2230%22%20letter-spacing%3D%22-1.5%22%20fill%3D%22%23F1F4F9%22%3Emk%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;600;700;800&family=Red+Hat+Mono:wght@400;500;600&display=swap">
+<script>
+(function(){var h=document.documentElement;h.classList.add('js');
+try{var q=new URLSearchParams(location.search);var t=q.get('theme')||localStorage.getItem('theme');
+if(t==='dark'||t==='light')h.setAttribute('data-theme',t);if(q.get('bare'))h.classList.add('bare');}catch(e){}})();
+</script>
+<style>*,*::before,*::after{box-sizing:border-box;border:0 solid}html{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5}body{margin:0;line-height:inherit;min-height:100vh}h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ol,ul{list-style:none;margin:0;padding:0}img,svg,video{display:block;max-width:100%;height:auto}button,input,select,textarea{font:inherit;color:inherit;margin:0;padding:0;background:transparent}button{cursor:pointer}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1em}table{border-collapse:collapse;text-indent:0;border-color:inherit}:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}.mkc{position:fixed;right:12px;bottom:12px;z-index:1000;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,22,26,.86);color:#f4f5f7;font:600 12px/1 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}.mkc a,.mkc button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;color:inherit;white-space:nowrap}.mkc a:hover,.mkc button:hover{background:rgba(255,255,255,.14)}.mkc .n{opacity:.7;font-variant-numeric:tabular-nums}.mkc svg{width:14px;height:14px}.mkc button:focus-visible,.mkc a:focus-visible{outline:2px solid #fff;outline-offset:2px}.bare .mkc{display:none}@media print{.mkc{display:none}}
+
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#071a3f);--grid:light-dark(rgba(15,61,145,.10),rgba(230,238,255,.09));--surface:light-dark(#f3f6fc,#0c2454);--ink:light-dark(#0f3d91,#e6eeff);--ink-2:light-dark(#3c5a9c,#b9c8ea);--ink-3:light-dark(#56699a,#8da2cf);--line:light-dark(#b8c6e6,#2a4a8c);--line-2:light-dark(#0f3d91,#e6eeff);--hi:light-dark(#c2410c,#ffb454);--hi-ink:light-dark(#ffffff,#071a3f);--hi-soft:light-dark(#fdebe1,#3a2a12);--up:light-dark(#0f7a3a,#4ade80);--focus:var(--hi);
+--mark-bg:light-dark(#0f3d91,#e6eeff);--mark-fg:light-dark(#ffffff,#071a3f);--mark-pulse:var(--hi);--mark-dot:var(--hi);
+--display:"Red Hat Display",system-ui,sans-serif;--mono:"Red Hat Mono",ui-monospace,Menlo,Consolas,monospace;--ease:cubic-bezier(.2,.8,.2,1)}
+:root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--display);padding-inline:clamp(12px,3vw,40px);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px;background-attachment:fixed}
+.sheet{max-width:1320px;margin:16px auto 24px;border:1.5px solid var(--line-2);background:color-mix(in srgb,var(--bg) 80%,transparent);position:relative}
+.sheet::before{content:"";position:absolute;inset:6px;border:.5px solid var(--line);pointer-events:none}
+.pad{padding-inline:clamp(16px,3vw,40px)}
+.skip{position:absolute;left:16px;top:-48px;padding:10px 14px;background:var(--ink);color:var(--bg);z-index:50}.skip:focus{top:12px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+/* title block */
+.tb{display:grid;grid-template-columns:repeat(6,minmax(0,auto));border:1px solid var(--line-2);font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase}
+.tb div{padding:8px 12px;border-right:1px solid var(--line-2);display:grid;gap:3px;min-width:0}
+.tb div:last-child{border-right:0}
+.tb small{font-size:9px;color:var(--ink-3)}
+.tb b{font-weight:600;color:var(--ink);white-space:nowrap}
+.tb .status{display:flex;align-items:center;gap:6px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--up);flex:none}
+[data-state="down"]>.dot{background:#ef4444}
+@media (max-width:900px){.tb{grid-template-columns:repeat(3,minmax(0,1fr))}.tb div{border-bottom:1px solid var(--line-2)}.tb div:nth-child(3n){border-right:0}}
+/* top */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;border-bottom:1px solid var(--line-2)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand small{display:block;font:500 11px/1.4 var(--mono);letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+.nav{display:flex;gap:2px}
+.nav a{padding:7px 10px;font:500 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);border:1px solid transparent}
+.nav a:hover{border-color:var(--line-2);color:var(--ink)}
+@media (max-width:900px){.nav{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(24px,4vw,64px);padding-block:clamp(40px,6vw,88px) clamp(28px,4vw,56px);align-items:end}
+.hero h1{font-size:clamp(40px,7vw,104px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.hero .claim{margin-top:20px;font-size:clamp(16px,1.5vw,19px);color:var(--ink-2);max-width:52ch}
+.dim{margin-top:18px;max-width:640px;width:100%;height:auto;overflow:visible}
+.dim line,.dim path{stroke:var(--hi);stroke-width:1.2;fill:none}
+.dim text{font:600 11px var(--mono);fill:var(--hi);letter-spacing:.08em}
+html.js .dim .d{stroke-dasharray:700;stroke-dashoffset:700;animation:draw 1.6s var(--ease) forwards .3s}
+html.js .dim text{opacity:0;animation:fade .6s ease forwards 1.3s}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fade{to{opacity:1}}
+.cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid var(--line-2);font:600 11.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink);transition:background .2s,color .2s,transform .3s var(--ease)}
+.btn:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px)}
+.btn.hi{background:var(--hi);border-color:var(--hi);color:var(--hi-ink)}
+.btn.hi:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.btn svg{width:14px;height:14px}
+.hero .tbwrap{display:grid;gap:10px}
+.hero .tbwrap .tb{grid-template-columns:1fr 1fr}
+.hero .tbwrap .tb div:nth-child(2n){border-right:0}.hero .tbwrap .tb div{border-bottom:1px solid var(--line-2)}.hero .tbwrap .tb div:nth-last-child(-n+2){border-bottom:0}
+html.js .hero>*{opacity:0;animation:rise .8s var(--ease) forwards}html.js .hero>*:nth-child(2){animation-delay:.2s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (max-width:900px){.hero{grid-template-columns:1fr}}
+/* sections */
+.sec{padding-block:clamp(36px,5vw,72px);border-top:1px solid var(--line-2)}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px;margin-bottom:clamp(20px,3vw,36px)}
+.sec-head h2{font-size:clamp(24px,3vw,40px);line-height:1;text-transform:uppercase;letter-spacing:-.03em}
+.sec-head h2 small{display:block;font:500 11px/2 var(--mono);letter-spacing:.12em;color:var(--hi)}
+.sec-head p{color:var(--ink-2);max-width:52ch;font-size:14.5px}
+/* work: sticky drawing + specs */
+.work{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,48px);align-items:start}
+.drawing{position:sticky;top:16px;border:1px solid var(--line-2);background:var(--surface);padding:14px;display:grid}
+.drawing .dg-wrap{grid-area:1/1;opacity:0;visibility:hidden;transition:opacity .4s,visibility 0s .4s}
+.drawing .dg-wrap.is-on{opacity:1;visibility:visible;transition-delay:0s}
+.drawing .cap{display:flex;justify-content:space-between;gap:12px;padding-top:10px;border-top:1px solid var(--line);margin-top:8px}
+.dg{width:100%;height:auto}
+.dg-zone{fill:color-mix(in srgb,var(--ink) 3%,transparent);stroke:var(--line);stroke-width:1;stroke-dasharray:4 4}
+.dg-zone-label{fill:var(--ink-3);font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.dg-mask{fill:var(--surface)}
+.dg-node{fill:var(--surface);stroke:var(--ink);stroke-width:1}
+.dg-node.store{fill:color-mix(in srgb,var(--ink) 6%,var(--surface));stroke:var(--ink-2)}
+.dg-node.external{fill:color-mix(in srgb,var(--ink) 3%,var(--surface));stroke:var(--ink-3)}
+.dg-node.input{fill:color-mix(in srgb,var(--ink-2) 10%,var(--surface));stroke:var(--ink-3)}
+.dg-node.async{fill:var(--surface);stroke:var(--ink-3);stroke-dasharray:4 3}
+.dg-node.focal{fill:var(--hi-soft);stroke:var(--hi);stroke-width:1.2}
+.dg-name{fill:var(--ink);font-size:12px;font-weight:600;font-family:var(--display)}
+.dg-sub{fill:var(--ink-2);font-family:var(--mono);font-size:9px}
+.dg-tag{fill:none;stroke:var(--ink-3);stroke-width:.8}
+.dg-tag-text{fill:var(--ink-2);font-family:var(--mono);font-size:7px;letter-spacing:.08em}
+.dg-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.2}
+.dg-arrow.link{stroke:var(--hi)}.dg-arrow.dashed{stroke-dasharray:5 4}
+.dg-marker{fill:var(--ink-3)}.dg-marker.link{fill:var(--hi)}
+.dg-label{fill:var(--ink-3);font-family:var(--mono);font-size:8px;letter-spacing:.06em}
+html.js .draw .dg-arrow{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.8s var(--ease) forwards .2s}
+html.js .draw .dg-node{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1.4s var(--ease) forwards}
+html.js .draw text,html.js .draw .dg-marker,html.js .draw .dg-tag{opacity:0;animation:fade .5s ease forwards .9s}
+.specs{display:grid;gap:clamp(14px,2vw,22px)}
+.spec{border:1px solid var(--line-2);background:color-mix(in srgb,var(--surface) 70%,transparent);scroll-margin-top:16px}
+.spec .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--line-2);font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.spec .bar .st{display:inline-flex;align-items:center;gap:6px;color:var(--ink-3)}
+.spec.is-on .bar{background:var(--hi);color:var(--hi-ink)}.spec.is-on .bar .st{color:var(--hi-ink)}
+.spec .in{padding:14px;display:grid;gap:12px}
+.spec h3{font-size:22px;line-height:1.1}
+.spec p{color:var(--ink-2);font-size:14px}
+.spec .fig{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start}
+.spec .fig img{border:1px solid var(--line-2)}
+.spec .fig .mono{align-self:end}
+.spec .inline-dg{display:none;border:1px solid var(--line);background:var(--surface);padding:8px}
+.spec dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
+.spec dt{font:500 10.5px/1.8 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.spec dd code{font-family:var(--mono);font-size:12px}
+.spec dd button{display:inline-flex;align-items:center;gap:4px;margin-left:6px;padding:1px 6px;border:1px solid var(--line);font:600 10px/1.4 var(--mono);color:var(--ink-3)}
+.spec dd button:hover{color:var(--ink);border-color:var(--ink)}.spec dd button.copied{color:var(--up);border-color:var(--up)}
+.spec .acts{display:flex;flex-wrap:wrap;gap:6px}
+@media (max-width:1000px){.work{grid-template-columns:1fr}.drawing{display:none}.spec .inline-dg{display:block}}
+/* deployment */
+.deploy{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:clamp(20px,3vw,48px);align-items:start}
+.deploy .dgbox{border:1px solid var(--line-2);background:var(--surface);padding:14px}
+.callouts{display:grid;gap:0;counter-reset:co}
+.callouts div{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
+.callouts div::before{counter-increment:co;content:counter(co);width:22px;height:22px;border-radius:50%;border:1.2px solid var(--hi);color:var(--hi);font:600 10.5px/20px var(--mono);text-align:center}
+.callouts dt{font-weight:700;margin-bottom:2px}.callouts dd{color:var(--ink-2)}
+@media (max-width:900px){.deploy{grid-template-columns:1fr}}
+/* tables */
+.tw{overflow-x:auto;border:1px solid var(--line-2)}
+table{width:100%;min-width:640px;font-size:13.5px}
+th{text-align:left;font:600 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:10px 12px;border-bottom:1px solid var(--line-2);background:var(--surface)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.k{font-family:var(--mono);font-size:12px;white-space:nowrap;color:var(--hi);font-weight:600}
+td b{font-weight:700}
+td small{display:block;color:var(--ink-2);margin-top:3px}
+td ul{display:grid;gap:3px;color:var(--ink-2)}
+.bom td.q{font-family:var(--mono);font-weight:600;text-align:center;width:60px}
+.bom td.u{color:var(--ink-2);font-size:12.5px}
+/* notes + contact */
+.nt{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.nt a{border:1px solid var(--line-2);padding:14px;display:grid;gap:8px;transition:background .2s}
+.nt a:hover{background:var(--surface)}
+.nt .mono{color:var(--hi)}
+.nt h3{font-size:17px;line-height:1.25}
+.nt p{font-size:13.5px;color:var(--ink-2)}
+@media (max-width:900px){.nt{grid-template-columns:1fr}}
+.ct{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,3vw,48px)}
+.ct h2{font-size:clamp(26px,3vw,40px);line-height:1;text-transform:uppercase;letter-spacing:-.03em}
+.ct p{margin-top:12px;color:var(--ink-2);max-width:44ch}
+.ct .links{margin-top:18px;display:grid;gap:6px}
+.ct .links a{display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:14px;padding:8px 0;border-bottom:1px solid var(--line)}
+.ct .links a span:first-child{font:500 10.5px/1.8 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.ct .links a:hover span:last-child{color:var(--hi)}
+form{display:grid;gap:12px;border:1px solid var(--line-2);padding:16px;background:var(--surface)}
+.field{display:grid;gap:5px}
+.field label{font:500 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field textarea{width:100%;padding:10px 12px;border:1px solid var(--line-2);background:var(--bg);color:var(--ink);font-family:var(--display);transition:box-shadow .2s}
+.field input:focus,.field textarea:focus{outline:none;box-shadow:0 0 0 3px var(--hi-soft);border-color:var(--hi)}
+.field textarea{min-height:120px;resize:vertical}
+form .btn{justify-self:start}
+.fn{font:400 11px/1.6 var(--mono);color:var(--ink-3)}
+.sent{padding:12px;border:1px solid var(--up);font-size:14px}
+@media (max-width:800px){.ct{grid-template-columns:1fr}}
+footer{padding-block:20px 20px;border-top:1px solid var(--line-2)}
+footer .tb{margin-top:12px}
+footer .links{display:flex;flex-wrap:wrap;gap:6px 18px;font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+footer .links a:hover{color:var(--ink)}
+html.js [data-reveal]{opacity:0;transform:translateY(10px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 50ms)}
+html.js [data-reveal].is-in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="sheet">
+<header class="top pad">
+  <a class="brand" href="#top"><svg class="" width="32" height="32" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="var(--mark-bg,#101828)"/><path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".3"/><circle cx="40" cy="24" r="3" fill="var(--mark-dot,#6D93FF)"/><text x="12" y="49" font-family="Red Hat Display, system-ui, sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="var(--mark-fg,#F1F4F9)">mk</text></svg><span>Muhammed Kado<small>Full-Stack Developer · İstanbul · UTC+3</small></span></a>
+  <nav class="nav" aria-label="Sections"><a href="#work">Work</a><a href="#how">How it runs</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#notes">Notes</a><a href="#contact">Contact</a></nav>
+</header>
+<main id="main">
+<section class="hero pad" id="top">
+  <div>
+    <p class="mono">Sheet 1 · General arrangement</p>
+    <h1>Muhammed<br>Kado</h1>
+    <p class="claim">I build the web side of RFID systems that run in 30+ countries. Full-stack developer. PHP and Laravel by day at USTEK RFID, React and Next.js on my own time. At USTEK: a laundry-management platform for commercial laundries, hotels and hospitals, on top of UHF readers and terminals.</p>
+    <svg class="dim" viewBox="0 0 640 74" aria-hidden="true">
+      <path class="d" d="M2 12v40M2 32h300M302 12v40"/><path class="d" d="M2 32l8-4v8zM302 32l-8-4v8z"/>
+      <text x="152" y="24" text-anchor="middle">30+ COUNTRIES · USTEK RFID PLATFORM</text>
+      <path class="d" d="M330 12v40M330 32h308M638 12v40"/><path class="d" d="M330 32l8-4v8zM638 32l-8-4v8z"/>
+      <text x="484" y="24" text-anchor="middle">3 YRS 3 MO · MAY 2023 → NOW</text>
+      <path class="d" d="M2 62h636"/><text x="320" y="72" text-anchor="middle">SEVEN LIVE APPLICATIONS · ALL DIMENSIONS VERIFIED EVERY 5 MIN</text>
+    </svg>
+    <div class="cta"><a class="btn hi" href="#work">Open sheets <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a><a class="btn" href="/cv.pdf">CV, PDF</a><a class="btn" href="https://github.com/muhammedkado" target="_blank" rel="noopener">GitHub</a><a class="btn" href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank" rel="noopener">LinkedIn</a></div>
+  </div>
+  <div class="tbwrap"><div class="tb" aria-label="Title block">
+  <div><small>Drawing</small><b>mkado.dev</b></div>
+  <div><small>Drawn by</small><b>M. Kado, computer engineer</b></div>
+  <div><small>Rev</small><b>2026-09</b></div>
+  <div><small>Scale</small><b>1 : 1, live</b></div>
+  <div><small>Sheets</small><b>7 apps · 8 diagrams</b></div>
+  <div><small>Status</small><b class="status" data-status-pill data-state="up"><span class="dot"></span><span data-status-text>All systems up</span></b></div>
+</div></div>
+</section>
+
+<section class="sec pad" id="work">
+  <div class="sec-head" data-reveal><h2><small>Sheets 2–8</small>Seven applications</h2><p>Each sheet is a live app: its architecture on the left, its spec and demo account on the right. Diagrams are the ones from the case studies.</p></div>
+  <div class="work">
+    <aside class="drawing" aria-hidden="true">
+      <div class="dg-wrap is-on draw" data-dg="pos"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="pos-title-stk pos-desc-stk">
+<title id="pos-title-stk">POS admin dashboard: how it is built</title>
+<desc id="pos-desc-stk">A browser talks over HTTPS to nginx, which hands requests to a Laravel 12 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.</desc>
+<defs>
+<marker id="pos-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="pos-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,120 H216" class="dg-arrow link" marker-end="url(#pos-ml)"/>
+<path d="M360,120 H408" class="dg-arrow" marker-end="url(#pos-m)"/>
+<path d="M552,120 H600" class="dg-arrow" marker-end="url(#pos-m)"/>
+<path d="M672,212 V148" class="dg-arrow dashed" marker-end="url(#pos-m)"/>
+<rect x="174" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="192" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="361" y="100" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="384" y="109" class="dg-label" text-anchor="middle">FASTCGI</text>
+<rect x="564" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="576" y="109" class="dg-label" text-anchor="middle">PDO</text>
+<rect x="680" y="174" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="684" y="183" class="dg-label" text-anchor="start">RESET</text>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="107" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="124" class="dg-name" text-anchor="middle">Browser</text>
+<text x="96" y="138" class="dg-sub" text-anchor="middle">AdminLTE, EN / AR (RTL)</text>
+<rect x="216" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="216" y="92" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="224" y="98" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="239" y="107" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="288" y="124" class="dg-name" text-anchor="middle">nginx</text>
+<text x="288" y="138" class="dg-sub" text-anchor="middle">TLS, PHP-FPM pool</text>
+<rect x="408" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="408" y="92" width="144" height="56" rx="6" class="dg-node focal"/>
+<rect x="416" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="428" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="480" y="124" class="dg-name" text-anchor="middle">Laravel 12</text>
+<text x="480" y="138" class="dg-sub" text-anchor="middle">Laratrust roles, i18n</text>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="608" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="618" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="672" y="124" class="dg-name" text-anchor="middle">MySQL</text>
+<text x="672" y="138" class="dg-sub" text-anchor="middle">products, clients, users</text>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="608" y="218" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="623" y="227" class="dg-tag-text" text-anchor="middle">CRON</text>
+<text x="672" y="244" class="dg-name" text-anchor="middle">Nightly reseed</text>
+<text x="672" y="258" class="dg-sub" text-anchor="middle">03:00 UTC, migrate:fresh</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 01 · POS Admin Dashboard</span><span class="mono">Rev 2024</span></div></div><div class="dg-wrap" data-dg="besttrend"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 324" class="dg" role="img" aria-labelledby="besttrend-title-stk besttrend-desc-stk">
+<title id="besttrend-title-stk">BestTrend: the app, its API and storage</title>
+<desc id="besttrend-desc-stk">The React single-page app calls a Laravel REST API with Sanctum tokens; the API owns a PostgreSQL database and uploads listing photos to Bunny Storage, a CDN. The admin panel that shares the API has its own page.</desc>
+<defs>
+<marker id="besttrend-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="besttrend-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="208" height="136" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="130" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">besttrend.mkado.dev</text>
+<rect x="272" y="52" width="480" height="256" rx="8" class="dg-zone"/>
+<rect x="284" y="46" width="155" height="12" class="dg-mask"/>
+<text x="290" y="56" class="dg-zone-label">besttrend-api.mkado.dev</text>
+<path d="M200,120 H296" class="dg-arrow link" marker-end="url(#besttrend-ml)"/>
+<path d="M472,111 H584" class="dg-arrow" marker-end="url(#besttrend-m)"/>
+<path d="M472,129 H520 Q528,129 528,137 V232 Q528,240 536,240 H584" class="dg-arrow" marker-end="url(#besttrend-m)"/>
+<rect x="212" y="100" width="73" height="12" rx="2" class="dg-mask"/>
+<text x="248" y="109" class="dg-label" text-anchor="middle">JSON + TOKEN</text>
+<rect x="502" y="91" width="51" height="12" rx="2" class="dg-mask"/>
+<text x="528" y="100" class="dg-label" text-anchor="middle">ELOQUENT</text>
+<rect x="536" y="220" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="556" y="229" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 SPA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">Vite, TypeScript, i18next</text>
+<rect x="296" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="296" y="92" width="176" height="56" rx="6" class="dg-node app"/>
+<rect x="304" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="316" y="107" class="dg-tag-text" text-anchor="middle">API</text>
+<text x="384" y="124" class="dg-name" text-anchor="middle">Laravel 12 REST API</text>
+<text x="384" y="138" class="dg-sub" text-anchor="middle">Sanctum tokens, /api/v1</text>
+<rect x="584" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="584" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="592" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="602" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="656" y="124" class="dg-name" text-anchor="middle">PostgreSQL</text>
+<text x="656" y="138" class="dg-sub" text-anchor="middle">listings, users, leads</text>
+<rect x="584" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="584" y="212" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="592" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="604" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="656" y="244" class="dg-name" text-anchor="middle">Bunny Storage</text>
+<text x="656" y="258" class="dg-sub" text-anchor="middle">listing photos (CDN)</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 02 · BestTrend SY</span><span class="mono">Rev 2025</span></div></div><div class="dg-wrap" data-dg="besttrend-api"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 404" class="dg" role="img" aria-labelledby="besttrend-api-title-stk besttrend-api-desc-stk">
+<title id="besttrend-api-title-stk">BestTrend admin panel and API: one core, two doors</title>
+<desc id="besttrend-api-desc-stk">An AdminLTE admin panel with session login and a public, rate-limited REST API with Sanctum tokens sit on the same Laravel core, which owns PostgreSQL and uploads photos to Bunny Storage; the React app is a client of the API.</desc>
+<defs>
+<marker id="besttrend-api-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="besttrend-api-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="544" height="256" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="155" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">besttrend-api.mkado.dev</text>
+<path d="M216,120 H248 Q256,120 256,128 V163 Q256,171 264,171 H296" class="dg-arrow" marker-end="url(#besttrend-api-m)"/>
+<path d="M216,240 H248 Q256,240 256,232 V197 Q256,189 264,189 H296" class="dg-arrow link" marker-end="url(#besttrend-api-ml)"/>
+<path d="M456,171 H520 Q528,171 528,163 V128 Q528,120 536,120 H600" class="dg-arrow" marker-end="url(#besttrend-api-m)"/>
+<path d="M456,189 H520 Q528,189 528,197 V232 Q528,240 536,240 H600" class="dg-arrow" marker-end="url(#besttrend-api-m)"/>
+<path d="M600,360 H136 Q128,360 128,352 V268" class="dg-arrow link" marker-end="url(#besttrend-api-ml)"/>
+<rect x="213" y="100" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="236" y="109" class="dg-label" text-anchor="middle">SESSION</text>
+<rect x="218" y="220" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="236" y="229" class="dg-label" text-anchor="middle">TOKEN</text>
+<rect x="552" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="564" y="109" class="dg-label" text-anchor="middle">SQL</text>
+<rect x="544" y="220" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="564" y="229" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="349" y="340" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="364" y="349" class="dg-label" text-anchor="middle">JSON</text>
+<rect x="40" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="176" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="66" y="107" class="dg-tag-text" text-anchor="middle">ADMIN</text>
+<text x="128" y="124" class="dg-name" text-anchor="middle">AdminLTE admin panel</text>
+<text x="128" y="138" class="dg-sub" text-anchor="middle">Blade, RTL Arabic, moderation</text>
+<rect x="40" y="212" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="212" width="176" height="56" rx="6" class="dg-node app"/>
+<rect x="48" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="227" class="dg-tag-text" text-anchor="middle">API</text>
+<text x="128" y="244" class="dg-name" text-anchor="middle">Public REST API</text>
+<text x="128" y="258" class="dg-sub" text-anchor="middle">/api/v1, rate limits, Sanctum</text>
+<rect x="296" y="152" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="296" y="152" width="160" height="56" rx="6" class="dg-node app"/>
+<rect x="304" y="158" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="319" y="167" class="dg-tag-text" text-anchor="middle">CORE</text>
+<text x="376" y="184" class="dg-name" text-anchor="middle">Laravel 12 core</text>
+<text x="376" y="198" class="dg-sub" text-anchor="middle">Spatie permissions, jobs</text>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="608" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="618" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="672" y="124" class="dg-name" text-anchor="middle">PostgreSQL</text>
+<text x="672" y="138" class="dg-sub" text-anchor="middle">properties, users, leads</text>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="608" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="620" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="672" y="244" class="dg-name" text-anchor="middle">Bunny Storage</text>
+<text x="672" y="258" class="dg-sub" text-anchor="middle">photos (CDN)</text>
+<rect x="600" y="332" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="332" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="608" y="338" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="620" y="347" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="672" y="364" class="dg-name" text-anchor="middle">React app</text>
+<text x="672" y="378" class="dg-sub" text-anchor="middle">besttrend.mkado.dev</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 03 · BestTrend Admin &amp; API</span><span class="mono">Rev 2025</span></div></div><div class="dg-wrap" data-dg="invoice"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="invoice-title-stk invoice-desc-stk">
+<title id="invoice-title-stk">Invoice system: plain PHP with two libraries</title>
+<desc id="invoice-desc-stk">The browser talks to a framework-free PHP 8 application that uses PDO prepared statements against MySQL, renders invoices to PDF with TCPDF and can e-mail them with PHPMailer, which is disabled on the public demo.</desc>
+<defs>
+<marker id="invoice-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="invoice-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,120 H232" class="dg-arrow link" marker-end="url(#invoice-ml)"/>
+<path d="M408,120 H616" class="dg-arrow" marker-end="url(#invoice-m)"/>
+<path d="M291,148 V172 Q291,180 299,180 H312 Q320,180 320,188 V212" class="dg-arrow" marker-end="url(#invoice-m)"/>
+<path d="M349,148 V172 Q349,180 357,180 H504 Q512,180 512,188 V212" class="dg-arrow dashed" marker-end="url(#invoice-m)"/>
+<rect x="182" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="200" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="500" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="512" y="109" class="dg-label" text-anchor="middle">SQL</text>
+<rect x="286" y="160" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="306" y="169" class="dg-label" text-anchor="middle">RENDER</text>
+<rect x="416" y="160" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="430" y="169" class="dg-label" text-anchor="middle">SEND</text>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="107" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="124" class="dg-name" text-anchor="middle">Browser</text>
+<text x="96" y="138" class="dg-sub" text-anchor="middle">hand-written CSS + JS</text>
+<rect x="232" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="92" width="176" height="56" rx="6" class="dg-node focal"/>
+<rect x="240" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="320" y="124" class="dg-name" text-anchor="middle">Plain PHP 8</text>
+<text x="320" y="138" class="dg-sub" text-anchor="middle">no framework, sessions + CSRF</text>
+<rect x="616" y="92" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="616" y="92" width="128" height="56" rx="6" class="dg-node store"/>
+<rect x="624" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="634" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="680" y="124" class="dg-name" text-anchor="middle">MySQL</text>
+<text x="680" y="138" class="dg-sub" text-anchor="middle">PDO prepared statements</text>
+<rect x="232" y="212" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="212" width="176" height="56" rx="6" class="dg-node external"/>
+<rect x="240" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="227" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="320" y="244" class="dg-name" text-anchor="middle">TCPDF</text>
+<text x="320" y="258" class="dg-sub" text-anchor="middle">print / download</text>
+<rect x="440" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="440" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="448" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="460" y="227" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="512" y="244" class="dg-name" text-anchor="middle">PHPMailer</text>
+<text x="512" y="258" class="dg-sub" text-anchor="middle">e-mail (off on the demo)</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 04 · Invoice System</span><span class="mono">Rev 2025</span></div></div><div class="dg-wrap" data-dg="findjob"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 332" class="dg" role="img" aria-labelledby="findjob-title-stk findjob-desc-stk">
+<title id="findjob-title-stk">Find Job with AI: the wizard behind the page</title>
+<desc id="findjob-desc-stk">A three-step Blade and Alpine.js wizard posts to a Laravel application that extracts text from the PDF, asks Gemini to parse, enhance and score the profile, pulls live postings from JSearch, and falls back to sample data once the shared daily budget is spent.</desc>
+<defs>
+<marker id="findjob-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="findjob-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,160 H232" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<path d="M312,132 V68 Q312,60 320,60 H456" class="dg-arrow" marker-end="url(#findjob-m)"/>
+<path d="M392,160 H456" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<path d="M285,188 V212 Q285,220 277,220 H112 Q104,220 104,228 V252" class="dg-arrow dashed" marker-end="url(#findjob-m)"/>
+<path d="M339,188 V252 Q339,260 347,260 H456" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<rect x="180" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="200" y="149" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="372" y="40" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="384" y="49" class="dg-label" text-anchor="middle">PDF</text>
+<rect x="404" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="424" y="149" class="dg-label" text-anchor="middle">PROMPT</text>
+<rect x="161" y="200" width="67" height="12" rx="2" class="dg-mask"/>
+<text x="194" y="209" class="dg-label" text-anchor="middle">OVER BUDGET</text>
+<rect x="380" y="240" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="398" y="249" class="dg-label" text-anchor="middle">QUERY</text>
+<rect x="24" y="132" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="132" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="138" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="147" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="164" class="dg-name" text-anchor="middle">Wizard page</text>
+<text x="96" y="178" class="dg-sub" text-anchor="middle">Blade + Alpine.js, 3 steps</text>
+<rect x="232" y="132" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="132" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="240" y="138" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="147" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="312" y="164" class="dg-name" text-anchor="middle">Laravel 12</text>
+<text x="312" y="178" class="dg-sub" text-anchor="middle">throttle 20/h, daily budget</text>
+<rect x="456" y="32" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="32" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="38" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="47" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="532" y="64" class="dg-name" text-anchor="middle">PDF parser</text>
+<text x="532" y="78" class="dg-sub" text-anchor="middle">text only, file not stored</text>
+<rect x="456" y="132" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="132" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="138" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="474" y="147" class="dg-tag-text" text-anchor="middle">AI</text>
+<text x="532" y="164" class="dg-name" text-anchor="middle">Gemini API</text>
+<text x="532" y="178" class="dg-sub" text-anchor="middle">parse, enhance, score</text>
+<rect x="456" y="232" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="232" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="238" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="247" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="532" y="264" class="dg-name" text-anchor="middle">JSearch API</text>
+<text x="532" y="278" class="dg-sub" text-anchor="middle">live job postings</text>
+<rect x="24" y="252" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="252" width="160" height="56" rx="6" class="dg-node async"/>
+<rect x="32" y="258" width="50" height="12" rx="2" class="dg-tag"/>
+<text x="57" y="267" class="dg-tag-text" text-anchor="middle">FALLBACK</text>
+<text x="104" y="284" class="dg-name" text-anchor="middle">Sample data</text>
+<text x="104" y="298" class="dg-sub" text-anchor="middle">fallback when budget is spent</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 05 · Find Job with AI</span><span class="mono">Rev 2025</span></div></div><div class="dg-wrap" data-dg="tireshop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 316" class="dg" role="img" aria-labelledby="tireshop-title-stk tireshop-desc-stk">
+<title id="tireshop-title-stk">Tire shop PWA: local first, cloud optional</title>
+<desc id="tireshop-desc-stk">The installable React app keeps inventory, sales and expenses in the browser's localStorage in local demo mode; with Supabase configured it syncs to a hosted PostgreSQL database and an edge function sends low-stock alerts to a Telegram bot.</desc>
+<defs>
+<marker id="tireshop-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="tireshop-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="208" height="248" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="217" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">local demo mode (portfolio build)</text>
+<rect x="432" y="52" width="320" height="248" rx="8" class="dg-zone"/>
+<rect x="444" y="46" width="142" height="12" class="dg-mask"/>
+<text x="450" y="56" class="dg-zone-label">cloud mode (optional)</text>
+<path d="M120,148 V212" class="dg-arrow" marker-end="url(#tireshop-m)"/>
+<path d="M200,120 H456" class="dg-arrow link dashed" marker-end="url(#tireshop-ml)"/>
+<path d="M528,148 V212" class="dg-arrow dashed" marker-end="url(#tireshop-m)"/>
+<path d="M600,240 H624" class="dg-arrow dashed" marker-end="url(#tireshop-m)"/>
+<rect x="128" y="174" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="132" y="183" class="dg-label" text-anchor="start">SAVE</text>
+<rect x="313" y="100" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="328" y="109" class="dg-label" text-anchor="middle">SYNC</text>
+<rect x="536" y="174" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="540" y="183" class="dg-label" text-anchor="start">TRIGGER</text>
+<rect x="594" y="220" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="612" y="229" class="dg-label" text-anchor="middle">ALERT</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 PWA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">Vite, Tailwind 4, Arabic RTL</text>
+<rect x="40" y="212" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="212" width="160" height="56" rx="6" class="dg-node store"/>
+<rect x="48" y="218" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="66" y="227" class="dg-tag-text" text-anchor="middle">STORE</text>
+<text x="120" y="244" class="dg-name" text-anchor="middle">localStorage</text>
+<text x="120" y="258" class="dg-sub" text-anchor="middle">inventory, sales, expenses</text>
+<rect x="456" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="92" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="107" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="528" y="124" class="dg-name" text-anchor="middle">Supabase</text>
+<text x="528" y="138" class="dg-sub" text-anchor="middle">auth + PostgreSQL</text>
+<rect x="456" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="464" y="218" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="474" y="227" class="dg-tag-text" text-anchor="middle">FN</text>
+<text x="528" y="244" class="dg-name" text-anchor="middle">Edge Function</text>
+<text x="528" y="258" class="dg-sub" text-anchor="middle">low-stock check</text>
+<rect x="624" y="212" width="112" height="56" rx="6" class="dg-mask"/>
+<rect x="624" y="212" width="112" height="56" rx="6" class="dg-node external"/>
+<rect x="632" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="644" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="680" y="244" class="dg-name" text-anchor="middle">Telegram bot</text>
+<text x="680" y="258" class="dg-sub" text-anchor="middle">alerts the owner</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 06 · Tire Shop PWA</span><span class="mono">Rev 2025</span></div></div><div class="dg-wrap" data-dg="timezone"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 316" class="dg" role="img" aria-labelledby="timezone-title-stk timezone-desc-stk">
+<title id="timezone-title-stk">TimeZone.tools: everything happens in the browser</title>
+<desc id="timezone-desc-stk">A React single-page app computes conversions and working days with the browser's Intl API, loads its seven translation files at runtime, keeps state in the URL so links are shareable, and is served as plain static files behind Cloudflare — there is no backend.</desc>
+<defs>
+<marker id="timezone-m-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="timezone-ml-stk" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M120,92 V68 Q120,60 128,60 H272" class="dg-arrow" marker-end="url(#timezone-m)"/>
+<path d="M200,120 H228 Q236,120 236,128 V152 Q236,160 244,160 H272" class="dg-arrow link" marker-end="url(#timezone-ml)"/>
+<path d="M120,148 V252 Q120,260 128,260 H272" class="dg-arrow dashed" marker-end="url(#timezone-m)"/>
+<path d="M528,160 H432" class="dg-arrow dashed" marker-end="url(#timezone-m)"/>
+<rect x="173" y="40" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="196" y="49" class="dg-label" text-anchor="middle">COMPUTE</text>
+<rect x="200" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="218" y="109" class="dg-label" text-anchor="middle">FETCH</text>
+<rect x="176" y="240" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="196" y="249" class="dg-label" text-anchor="middle">ENCODE</text>
+<rect x="460" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="480" y="149" class="dg-label" text-anchor="middle">SERVES</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 SPA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">wouter routes, i18next</text>
+<rect x="272" y="32" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="32" width="160" height="56" rx="6" class="dg-node external"/>
+<rect x="280" y="38" width="45" height="12" rx="2" class="dg-tag"/>
+<text x="302" y="47" class="dg-tag-text" text-anchor="middle">BROWSER</text>
+<text x="352" y="64" class="dg-name" text-anchor="middle">Intl API</text>
+<text x="352" y="78" class="dg-sub" text-anchor="middle">browser time zones, formats</text>
+<rect x="272" y="132" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="132" width="160" height="56" rx="6" class="dg-node store"/>
+<rect x="280" y="138" width="40" height="12" rx="2" class="dg-tag"/>
+<text x="300" y="147" class="dg-tag-text" text-anchor="middle">STATIC</text>
+<text x="352" y="164" class="dg-name" text-anchor="middle">/locales/*.json</text>
+<text x="352" y="178" class="dg-sub" text-anchor="middle">7 languages, RTL for ar</text>
+<rect x="272" y="232" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="232" width="160" height="56" rx="6" class="dg-node async"/>
+<rect x="280" y="238" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="298" y="247" class="dg-tag-text" text-anchor="middle">STATE</text>
+<text x="352" y="264" class="dg-name" text-anchor="middle">URL state</text>
+<text x="352" y="278" class="dg-sub" text-anchor="middle">shareable links, no backend</text>
+<rect x="528" y="132" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="528" y="132" width="176" height="56" rx="6" class="dg-node external"/>
+<rect x="536" y="138" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="551" y="147" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="616" y="164" class="dg-name" text-anchor="middle">nginx + Cloudflare</text>
+<text x="616" y="178" class="dg-sub" text-anchor="middle">static files, 1y cache</text>
+</svg>
+<div class="cap"><span class="mono">Sheet 07 · TimeZone.tools</span><span class="mono">Rev 2025</span></div></div>
+    </aside>
+    <div class="specs"><article class="spec is-on" data-slug="pos" id="s-pos">
+  <div class="bar"><span>Sheet 01 · POS back office</span><span class="st"><span class="dot" data-status-dot="pos" data-state="up" title="pos: up" aria-hidden="true"></span>up · 2024</span></div>
+  <div class="in">
+    <h3>POS Admin Dashboard</h3>
+    <p>One place where staff manage the shelves and the customers, where a cashier cannot delete the catalogue, and the owner sees stock value at a glance.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="pos-title-inl pos-desc-inl">
+<title id="pos-title-inl">POS admin dashboard: how it is built</title>
+<desc id="pos-desc-inl">A browser talks over HTTPS to nginx, which hands requests to a Laravel 12 application with Laratrust roles and Arabic/English localisation; the app reads and writes MySQL, and a nightly cron job re-seeds the database.</desc>
+<defs>
+<marker id="pos-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="pos-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,120 H216" class="dg-arrow link" marker-end="url(#pos-ml)"/>
+<path d="M360,120 H408" class="dg-arrow" marker-end="url(#pos-m)"/>
+<path d="M552,120 H600" class="dg-arrow" marker-end="url(#pos-m)"/>
+<path d="M672,212 V148" class="dg-arrow dashed" marker-end="url(#pos-m)"/>
+<rect x="174" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="192" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="361" y="100" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="384" y="109" class="dg-label" text-anchor="middle">FASTCGI</text>
+<rect x="564" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="576" y="109" class="dg-label" text-anchor="middle">PDO</text>
+<rect x="680" y="174" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="684" y="183" class="dg-label" text-anchor="start">RESET</text>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="107" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="124" class="dg-name" text-anchor="middle">Browser</text>
+<text x="96" y="138" class="dg-sub" text-anchor="middle">AdminLTE, EN / AR (RTL)</text>
+<rect x="216" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="216" y="92" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="224" y="98" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="239" y="107" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="288" y="124" class="dg-name" text-anchor="middle">nginx</text>
+<text x="288" y="138" class="dg-sub" text-anchor="middle">TLS, PHP-FPM pool</text>
+<rect x="408" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="408" y="92" width="144" height="56" rx="6" class="dg-node focal"/>
+<rect x="416" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="428" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="480" y="124" class="dg-name" text-anchor="middle">Laravel 12</text>
+<text x="480" y="138" class="dg-sub" text-anchor="middle">Laratrust roles, i18n</text>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="608" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="618" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="672" y="124" class="dg-name" text-anchor="middle">MySQL</text>
+<text x="672" y="138" class="dg-sub" text-anchor="middle">products, clients, users</text>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="608" y="218" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="623" y="227" class="dg-tag-text" text-anchor="middle">CRON</text>
+<text x="672" y="244" class="dg-name" text-anchor="middle">Nightly reseed</text>
+<text x="672" y="258" class="dg-sub" text-anchor="middle">03:00 UTC, migrate:fresh</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 1 · Back office · EN · AR (RTL)</span></div>
+    <dl>
+      <dt>Materials</dt><dd>Laravel 12 · MySQL · Laratrust · AdminLTE</dd>
+      <dt>Admin</dt><dd><code>admin@app.com</code><button type="button" data-copy="admin@app.com" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>password</code><button type="button" data-copy="password" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd><dt>Super admin</dt><dd><code>superadmin@app.com</code><button type="button" data-copy="superadmin@app.com" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>password</code><button type="button" data-copy="password" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
+      <dt>Note</dt><dd>Registration is closed; use an account above. Data resets nightly.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://pos.mkado.dev/demo/admin" target="_blank" rel="noopener">Open signed in <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/pos/">Case study</a><a class="btn" href="https://github.com/muhammedkado/POS-Project-Admin-LTE-Dashboard-" target="_blank" rel="noopener">Source</a></div>
+  </div>
+</article><article class="spec" data-slug="besttrend" id="s-besttrend">
+  <div class="bar"><span>Sheet 02 · Real-estate platform</span><span class="st"><span class="dot" data-status-dot="besttrend" data-state="up" title="besttrend: up" aria-hidden="true"></span>up · 2025</span></div>
+  <div class="in">
+    <h3>BestTrend SY</h3>
+    <p>Owners list on Facebook groups and buyers scroll for hours. Structured listings, photos on a CDN, three languages, one admin panel.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 324" class="dg" role="img" aria-labelledby="besttrend-title-inl besttrend-desc-inl">
+<title id="besttrend-title-inl">BestTrend: the app, its API and storage</title>
+<desc id="besttrend-desc-inl">The React single-page app calls a Laravel REST API with Sanctum tokens; the API owns a PostgreSQL database and uploads listing photos to Bunny Storage, a CDN. The admin panel that shares the API has its own page.</desc>
+<defs>
+<marker id="besttrend-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="besttrend-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="208" height="136" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="130" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">besttrend.mkado.dev</text>
+<rect x="272" y="52" width="480" height="256" rx="8" class="dg-zone"/>
+<rect x="284" y="46" width="155" height="12" class="dg-mask"/>
+<text x="290" y="56" class="dg-zone-label">besttrend-api.mkado.dev</text>
+<path d="M200,120 H296" class="dg-arrow link" marker-end="url(#besttrend-ml)"/>
+<path d="M472,111 H584" class="dg-arrow" marker-end="url(#besttrend-m)"/>
+<path d="M472,129 H520 Q528,129 528,137 V232 Q528,240 536,240 H584" class="dg-arrow" marker-end="url(#besttrend-m)"/>
+<rect x="212" y="100" width="73" height="12" rx="2" class="dg-mask"/>
+<text x="248" y="109" class="dg-label" text-anchor="middle">JSON + TOKEN</text>
+<rect x="502" y="91" width="51" height="12" rx="2" class="dg-mask"/>
+<text x="528" y="100" class="dg-label" text-anchor="middle">ELOQUENT</text>
+<rect x="536" y="220" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="556" y="229" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 SPA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">Vite, TypeScript, i18next</text>
+<rect x="296" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="296" y="92" width="176" height="56" rx="6" class="dg-node app"/>
+<rect x="304" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="316" y="107" class="dg-tag-text" text-anchor="middle">API</text>
+<text x="384" y="124" class="dg-name" text-anchor="middle">Laravel 12 REST API</text>
+<text x="384" y="138" class="dg-sub" text-anchor="middle">Sanctum tokens, /api/v1</text>
+<rect x="584" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="584" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="592" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="602" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="656" y="124" class="dg-name" text-anchor="middle">PostgreSQL</text>
+<text x="656" y="138" class="dg-sub" text-anchor="middle">listings, users, leads</text>
+<rect x="584" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="584" y="212" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="592" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="604" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="656" y="244" class="dg-name" text-anchor="middle">Bunny Storage</text>
+<text x="656" y="258" class="dg-sub" text-anchor="middle">listing photos (CDN)</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 2 · Platform · AR · EN · KU</span></div>
+    <dl>
+      <dt>Materials</dt><dd>Laravel 12 API · Sanctum · PostgreSQL · React 19 · TypeScript · Tailwind</dd>
+      <dt>Property owner</dt><dd><code>demo@besttrend.mkado.dev</code><button type="button" data-copy="demo@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd><dt>Admin panel</dt><dd><code>admin@besttrend.mkado.dev</code><button type="button" data-copy="admin@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
+      <dt>Note</dt><dd>Private repository, code available on request. Sign in as the property owner to add a listing.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://besttrend.mkado.dev" target="_blank" rel="noopener">Open <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/besttrend/">Case study</a></div>
+  </div>
+</article><article class="spec" data-slug="besttrend-api" id="s-besttrend-api">
+  <div class="bar"><span>Sheet 03 · Admin panel + REST API</span><span class="st"><span class="dot" data-status-dot="besttrend-api" data-state="up" title="besttrend-api: up" aria-hidden="true"></span>up · 2025</span></div>
+  <div class="in">
+    <h3>BestTrend Admin &amp; API</h3>
+    <p>One Laravel core serving two clients with opposite needs: a token-based JSON API for the app and a session-based staff back office with granular permissions.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 404" class="dg" role="img" aria-labelledby="besttrend-api-title-inl besttrend-api-desc-inl">
+<title id="besttrend-api-title-inl">BestTrend admin panel and API: one core, two doors</title>
+<desc id="besttrend-api-desc-inl">An AdminLTE admin panel with session login and a public, rate-limited REST API with Sanctum tokens sit on the same Laravel core, which owns PostgreSQL and uploads photos to Bunny Storage; the React app is a client of the API.</desc>
+<defs>
+<marker id="besttrend-api-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="besttrend-api-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="544" height="256" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="155" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">besttrend-api.mkado.dev</text>
+<path d="M216,120 H248 Q256,120 256,128 V163 Q256,171 264,171 H296" class="dg-arrow" marker-end="url(#besttrend-api-m)"/>
+<path d="M216,240 H248 Q256,240 256,232 V197 Q256,189 264,189 H296" class="dg-arrow link" marker-end="url(#besttrend-api-ml)"/>
+<path d="M456,171 H520 Q528,171 528,163 V128 Q528,120 536,120 H600" class="dg-arrow" marker-end="url(#besttrend-api-m)"/>
+<path d="M456,189 H520 Q528,189 528,197 V232 Q528,240 536,240 H600" class="dg-arrow" marker-end="url(#besttrend-api-m)"/>
+<path d="M600,360 H136 Q128,360 128,352 V268" class="dg-arrow link" marker-end="url(#besttrend-api-ml)"/>
+<rect x="213" y="100" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="236" y="109" class="dg-label" text-anchor="middle">SESSION</text>
+<rect x="218" y="220" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="236" y="229" class="dg-label" text-anchor="middle">TOKEN</text>
+<rect x="552" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="564" y="109" class="dg-label" text-anchor="middle">SQL</text>
+<rect x="544" y="220" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="564" y="229" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="349" y="340" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="364" y="349" class="dg-label" text-anchor="middle">JSON</text>
+<rect x="40" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="176" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="66" y="107" class="dg-tag-text" text-anchor="middle">ADMIN</text>
+<text x="128" y="124" class="dg-name" text-anchor="middle">AdminLTE admin panel</text>
+<text x="128" y="138" class="dg-sub" text-anchor="middle">Blade, RTL Arabic, moderation</text>
+<rect x="40" y="212" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="212" width="176" height="56" rx="6" class="dg-node app"/>
+<rect x="48" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="227" class="dg-tag-text" text-anchor="middle">API</text>
+<text x="128" y="244" class="dg-name" text-anchor="middle">Public REST API</text>
+<text x="128" y="258" class="dg-sub" text-anchor="middle">/api/v1, rate limits, Sanctum</text>
+<rect x="296" y="152" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="296" y="152" width="160" height="56" rx="6" class="dg-node app"/>
+<rect x="304" y="158" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="319" y="167" class="dg-tag-text" text-anchor="middle">CORE</text>
+<text x="376" y="184" class="dg-name" text-anchor="middle">Laravel 12 core</text>
+<text x="376" y="198" class="dg-sub" text-anchor="middle">Spatie permissions, jobs</text>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="92" width="144" height="56" rx="6" class="dg-node store"/>
+<rect x="608" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="618" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="672" y="124" class="dg-name" text-anchor="middle">PostgreSQL</text>
+<text x="672" y="138" class="dg-sub" text-anchor="middle">properties, users, leads</text>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="212" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="608" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="620" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="672" y="244" class="dg-name" text-anchor="middle">Bunny Storage</text>
+<text x="672" y="258" class="dg-sub" text-anchor="middle">photos (CDN)</text>
+<rect x="600" y="332" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="600" y="332" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="608" y="338" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="620" y="347" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="672" y="364" class="dg-name" text-anchor="middle">React app</text>
+<text x="672" y="378" class="dg-sub" text-anchor="middle">besttrend.mkado.dev</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 3 · API + back office · AR · EN</span></div>
+    <dl>
+      <dt>Materials</dt><dd>Laravel 12 · Sanctum · PostgreSQL · AdminLTE · REST API</dd>
+      <dt>Admin panel</dt><dd><code>admin@besttrend.mkado.dev</code><button type="button" data-copy="admin@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
+      <dt>Note</dt><dd>The public API is open too: try /api/v1/properties.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://besttrend-api.mkado.dev/admin/demo" target="_blank" rel="noopener">Open signed in <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/besttrend-api/">Case study</a></div>
+  </div>
+</article><article class="spec" data-slug="invoice" id="s-invoice">
+  <div class="bar"><span>Sheet 04 · Invoicing</span><span class="st"><span class="dot" data-status-dot="invoice" data-state="up" title="invoice: up" aria-hidden="true"></span>up · 2025</span></div>
+  <div class="in">
+    <h3>Invoice System</h3>
+    <p>Invoices that look right and a list that shows who still owes money, written without a framework to show sessions, CSRF and prepared statements done by hand.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 292" class="dg" role="img" aria-labelledby="invoice-title-inl invoice-desc-inl">
+<title id="invoice-title-inl">Invoice system: plain PHP with two libraries</title>
+<desc id="invoice-desc-inl">The browser talks to a framework-free PHP 8 application that uses PDO prepared statements against MySQL, renders invoices to PDF with TCPDF and can e-mail them with PHPMailer, which is disabled on the public demo.</desc>
+<defs>
+<marker id="invoice-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="invoice-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,120 H232" class="dg-arrow link" marker-end="url(#invoice-ml)"/>
+<path d="M408,120 H616" class="dg-arrow" marker-end="url(#invoice-m)"/>
+<path d="M291,148 V172 Q291,180 299,180 H312 Q320,180 320,188 V212" class="dg-arrow" marker-end="url(#invoice-m)"/>
+<path d="M349,148 V172 Q349,180 357,180 H504 Q512,180 512,188 V212" class="dg-arrow dashed" marker-end="url(#invoice-m)"/>
+<rect x="182" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="200" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="500" y="100" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="512" y="109" class="dg-label" text-anchor="middle">SQL</text>
+<rect x="286" y="160" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="306" y="169" class="dg-label" text-anchor="middle">RENDER</text>
+<rect x="416" y="160" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="430" y="169" class="dg-label" text-anchor="middle">SEND</text>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="92" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="107" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="124" class="dg-name" text-anchor="middle">Browser</text>
+<text x="96" y="138" class="dg-sub" text-anchor="middle">hand-written CSS + JS</text>
+<rect x="232" y="92" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="92" width="176" height="56" rx="6" class="dg-node focal"/>
+<rect x="240" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="320" y="124" class="dg-name" text-anchor="middle">Plain PHP 8</text>
+<text x="320" y="138" class="dg-sub" text-anchor="middle">no framework, sessions + CSRF</text>
+<rect x="616" y="92" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="616" y="92" width="128" height="56" rx="6" class="dg-node store"/>
+<rect x="624" y="98" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="634" y="107" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="680" y="124" class="dg-name" text-anchor="middle">MySQL</text>
+<text x="680" y="138" class="dg-sub" text-anchor="middle">PDO prepared statements</text>
+<rect x="232" y="212" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="212" width="176" height="56" rx="6" class="dg-node external"/>
+<rect x="240" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="227" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="320" y="244" class="dg-name" text-anchor="middle">TCPDF</text>
+<text x="320" y="258" class="dg-sub" text-anchor="middle">print / download</text>
+<rect x="440" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="440" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="448" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="460" y="227" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="512" y="244" class="dg-name" text-anchor="middle">PHPMailer</text>
+<text x="512" y="258" class="dg-sub" text-anchor="middle">e-mail (off on the demo)</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 4 · Business app · EN</span></div>
+    <dl>
+      <dt>Materials</dt><dd>PHP 8 · MySQL · PDO · TCPDF · PHPMailer</dd>
+      <dt>Demo</dt><dd><code>demo@invoice.mkado.dev</code><button type="button" data-copy="demo@invoice.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
+      <dt>Note</dt><dd>Plain PHP, no framework: prepared statements, CSRF tokens, per-user data.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://invoice.mkado.dev/demo.php" target="_blank" rel="noopener">Open signed in <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/invoice/">Case study</a><a class="btn" href="https://github.com/muhammedkado/invoice-system-php" target="_blank" rel="noopener">Source</a></div>
+  </div>
+</article><article class="spec" data-slug="findjob" id="s-findjob">
+  <div class="bar"><span>Sheet 05 · AI job matcher</span><span class="st"><span class="dot" data-status-dot="findjob" data-state="up" title="findjob: up" aria-hidden="true"></span>up · 2025</span></div>
+  <div class="in">
+    <h3>Find Job with AI</h3>
+    <p>Matching a CV to postings by hand is slow and vague. Turn the PDF into structured data, let the user correct it, score each posting with a reason, and keep the demo cost on a leash.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 332" class="dg" role="img" aria-labelledby="findjob-title-inl findjob-desc-inl">
+<title id="findjob-title-inl">Find Job with AI: the wizard behind the page</title>
+<desc id="findjob-desc-inl">A three-step Blade and Alpine.js wizard posts to a Laravel application that extracts text from the PDF, asks Gemini to parse, enhance and score the profile, pulls live postings from JSearch, and falls back to sample data once the shared daily budget is spent.</desc>
+<defs>
+<marker id="findjob-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="findjob-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M168,160 H232" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<path d="M312,132 V68 Q312,60 320,60 H456" class="dg-arrow" marker-end="url(#findjob-m)"/>
+<path d="M392,160 H456" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<path d="M285,188 V212 Q285,220 277,220 H112 Q104,220 104,228 V252" class="dg-arrow dashed" marker-end="url(#findjob-m)"/>
+<path d="M339,188 V252 Q339,260 347,260 H456" class="dg-arrow link" marker-end="url(#findjob-ml)"/>
+<rect x="180" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="200" y="149" class="dg-label" text-anchor="middle">UPLOAD</text>
+<rect x="372" y="40" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="384" y="49" class="dg-label" text-anchor="middle">PDF</text>
+<rect x="404" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="424" y="149" class="dg-label" text-anchor="middle">PROMPT</text>
+<rect x="161" y="200" width="67" height="12" rx="2" class="dg-mask"/>
+<text x="194" y="209" class="dg-label" text-anchor="middle">OVER BUDGET</text>
+<rect x="380" y="240" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="398" y="249" class="dg-label" text-anchor="middle">QUERY</text>
+<rect x="24" y="132" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="132" width="144" height="56" rx="6" class="dg-node input"/>
+<rect x="32" y="138" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="42" y="147" class="dg-tag-text" text-anchor="middle">UI</text>
+<text x="96" y="164" class="dg-name" text-anchor="middle">Wizard page</text>
+<text x="96" y="178" class="dg-sub" text-anchor="middle">Blade + Alpine.js, 3 steps</text>
+<rect x="232" y="132" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="232" y="132" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="240" y="138" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="252" y="147" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="312" y="164" class="dg-name" text-anchor="middle">Laravel 12</text>
+<text x="312" y="178" class="dg-sub" text-anchor="middle">throttle 20/h, daily budget</text>
+<rect x="456" y="32" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="32" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="38" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="47" class="dg-tag-text" text-anchor="middle">LIB</text>
+<text x="532" y="64" class="dg-name" text-anchor="middle">PDF parser</text>
+<text x="532" y="78" class="dg-sub" text-anchor="middle">text only, file not stored</text>
+<rect x="456" y="132" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="132" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="138" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="474" y="147" class="dg-tag-text" text-anchor="middle">AI</text>
+<text x="532" y="164" class="dg-name" text-anchor="middle">Gemini API</text>
+<text x="532" y="178" class="dg-sub" text-anchor="middle">parse, enhance, score</text>
+<rect x="456" y="232" width="152" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="232" width="152" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="238" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="247" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="532" y="264" class="dg-name" text-anchor="middle">JSearch API</text>
+<text x="532" y="278" class="dg-sub" text-anchor="middle">live job postings</text>
+<rect x="24" y="252" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="24" y="252" width="160" height="56" rx="6" class="dg-node async"/>
+<rect x="32" y="258" width="50" height="12" rx="2" class="dg-tag"/>
+<text x="57" y="267" class="dg-tag-text" text-anchor="middle">FALLBACK</text>
+<text x="104" y="284" class="dg-name" text-anchor="middle">Sample data</text>
+<text x="104" y="298" class="dg-sub" text-anchor="middle">fallback when budget is spent</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 5 · AI tool · EN</span></div>
+    <dl>
+      <dt>Materials</dt><dd>Laravel 12 · Gemini API · Alpine.js · Tailwind</dd>
+      
+      <dt>Note</dt><dd>No sign-in. Try the sample CV, or upload your own PDF.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://findjob.mkado.dev" target="_blank" rel="noopener">Open <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/findjob/">Case study</a><a class="btn" href="https://github.com/muhammedkado/find_job_with_ai" target="_blank" rel="noopener">Source</a></div>
+  </div>
+</article><article class="spec" data-slug="tireshop" id="s-tireshop">
+  <div class="bar"><span>Sheet 06 · Tire-shop PWA</span><span class="st"><span class="dot" data-status-dot="tireshop" data-state="up" title="tireshop: up" aria-hidden="true"></span>up · 2025</span></div>
+  <div class="in">
+    <h3>Tire Shop PWA</h3>
+    <p>A small tire shop runs on a phone. Today’s sales and profit at a glance, low-stock warnings, expenses, and no login screen on day one.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 316" class="dg" role="img" aria-labelledby="tireshop-title-inl tireshop-desc-inl">
+<title id="tireshop-title-inl">Tire shop PWA: local first, cloud optional</title>
+<desc id="tireshop-desc-inl">The installable React app keeps inventory, sales and expenses in the browser's localStorage in local demo mode; with Supabase configured it syncs to a hosted PostgreSQL database and an edge function sends low-stock alerts to a Telegram bot.</desc>
+<defs>
+<marker id="tireshop-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="tireshop-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="208" height="248" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="217" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">local demo mode (portfolio build)</text>
+<rect x="432" y="52" width="320" height="248" rx="8" class="dg-zone"/>
+<rect x="444" y="46" width="142" height="12" class="dg-mask"/>
+<text x="450" y="56" class="dg-zone-label">cloud mode (optional)</text>
+<path d="M120,148 V212" class="dg-arrow" marker-end="url(#tireshop-m)"/>
+<path d="M200,120 H456" class="dg-arrow link dashed" marker-end="url(#tireshop-ml)"/>
+<path d="M528,148 V212" class="dg-arrow dashed" marker-end="url(#tireshop-m)"/>
+<path d="M600,240 H624" class="dg-arrow dashed" marker-end="url(#tireshop-m)"/>
+<rect x="128" y="174" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="132" y="183" class="dg-label" text-anchor="start">SAVE</text>
+<rect x="313" y="100" width="30" height="12" rx="2" class="dg-mask"/>
+<text x="328" y="109" class="dg-label" text-anchor="middle">SYNC</text>
+<rect x="536" y="174" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="540" y="183" class="dg-label" text-anchor="start">TRIGGER</text>
+<rect x="594" y="220" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="612" y="229" class="dg-label" text-anchor="middle">ALERT</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 PWA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">Vite, Tailwind 4, Arabic RTL</text>
+<rect x="40" y="212" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="212" width="160" height="56" rx="6" class="dg-node store"/>
+<rect x="48" y="218" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="66" y="227" class="dg-tag-text" text-anchor="middle">STORE</text>
+<text x="120" y="244" class="dg-name" text-anchor="middle">localStorage</text>
+<text x="120" y="258" class="dg-sub" text-anchor="middle">inventory, sales, expenses</text>
+<rect x="456" y="92" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="92" width="144" height="56" rx="6" class="dg-node external"/>
+<rect x="464" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="476" y="107" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="528" y="124" class="dg-name" text-anchor="middle">Supabase</text>
+<text x="528" y="138" class="dg-sub" text-anchor="middle">auth + PostgreSQL</text>
+<rect x="456" y="212" width="144" height="56" rx="6" class="dg-mask"/>
+<rect x="456" y="212" width="144" height="56" rx="6" class="dg-node async"/>
+<rect x="464" y="218" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="474" y="227" class="dg-tag-text" text-anchor="middle">FN</text>
+<text x="528" y="244" class="dg-name" text-anchor="middle">Edge Function</text>
+<text x="528" y="258" class="dg-sub" text-anchor="middle">low-stock check</text>
+<rect x="624" y="212" width="112" height="56" rx="6" class="dg-mask"/>
+<rect x="624" y="212" width="112" height="56" rx="6" class="dg-node external"/>
+<rect x="632" y="218" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="644" y="227" class="dg-tag-text" text-anchor="middle">EXT</text>
+<text x="680" y="244" class="dg-name" text-anchor="middle">Telegram bot</text>
+<text x="680" y="258" class="dg-sub" text-anchor="middle">alerts the owner</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 6 · PWA · AR (RTL)</span></div>
+    <dl>
+      <dt>Materials</dt><dd>React 19 · TypeScript · Vite · Tailwind 4</dd>
+      
+      <dt>Note</dt><dd>No sign-in. Runs in local demo mode; data stays in your browser.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://tireshop.mkado.dev" target="_blank" rel="noopener">Open <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/tireshop/">Case study</a><a class="btn" href="https://github.com/muhammedkado/tire-shop" target="_blank" rel="noopener">Source</a></div>
+  </div>
+</article><article class="spec" data-slug="timezone" id="s-timezone">
+  <div class="bar"><span>Sheet 07 · Time-zone toolkit</span><span class="st"><span class="dot" data-status-dot="timezone" data-state="up" title="timezone: up" aria-hidden="true"></span>up · 2025</span></div>
+  <div class="in">
+    <h3>TimeZone.tools</h3>
+    <p>Remote teams keep asking the same three questions: what time is it there, when can we all meet, and how many working days until a date.</p>
+    <div class="inline-dg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 316" class="dg" role="img" aria-labelledby="timezone-title-inl timezone-desc-inl">
+<title id="timezone-title-inl">TimeZone.tools: everything happens in the browser</title>
+<desc id="timezone-desc-inl">A React single-page app computes conversions and working days with the browser's Intl API, loads its seven translation files at runtime, keeps state in the URL so links are shareable, and is served as plain static files behind Cloudflare — there is no backend.</desc>
+<defs>
+<marker id="timezone-m-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="timezone-ml-inl" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<path d="M120,92 V68 Q120,60 128,60 H272" class="dg-arrow" marker-end="url(#timezone-m)"/>
+<path d="M200,120 H228 Q236,120 236,128 V152 Q236,160 244,160 H272" class="dg-arrow link" marker-end="url(#timezone-ml)"/>
+<path d="M120,148 V252 Q120,260 128,260 H272" class="dg-arrow dashed" marker-end="url(#timezone-m)"/>
+<path d="M528,160 H432" class="dg-arrow dashed" marker-end="url(#timezone-m)"/>
+<rect x="173" y="40" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="196" y="49" class="dg-label" text-anchor="middle">COMPUTE</text>
+<rect x="200" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="218" y="109" class="dg-label" text-anchor="middle">FETCH</text>
+<rect x="176" y="240" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="196" y="249" class="dg-label" text-anchor="middle">ENCODE</text>
+<rect x="460" y="140" width="40" height="12" rx="2" class="dg-mask"/>
+<text x="480" y="149" class="dg-label" text-anchor="middle">SERVES</text>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="92" width="160" height="56" rx="6" class="dg-node focal"/>
+<rect x="48" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="60" y="107" class="dg-tag-text" text-anchor="middle">APP</text>
+<text x="120" y="124" class="dg-name" text-anchor="middle">React 19 SPA</text>
+<text x="120" y="138" class="dg-sub" text-anchor="middle">wouter routes, i18next</text>
+<rect x="272" y="32" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="32" width="160" height="56" rx="6" class="dg-node external"/>
+<rect x="280" y="38" width="45" height="12" rx="2" class="dg-tag"/>
+<text x="302" y="47" class="dg-tag-text" text-anchor="middle">BROWSER</text>
+<text x="352" y="64" class="dg-name" text-anchor="middle">Intl API</text>
+<text x="352" y="78" class="dg-sub" text-anchor="middle">browser time zones, formats</text>
+<rect x="272" y="132" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="132" width="160" height="56" rx="6" class="dg-node store"/>
+<rect x="280" y="138" width="40" height="12" rx="2" class="dg-tag"/>
+<text x="300" y="147" class="dg-tag-text" text-anchor="middle">STATIC</text>
+<text x="352" y="164" class="dg-name" text-anchor="middle">/locales/*.json</text>
+<text x="352" y="178" class="dg-sub" text-anchor="middle">7 languages, RTL for ar</text>
+<rect x="272" y="232" width="160" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="232" width="160" height="56" rx="6" class="dg-node async"/>
+<rect x="280" y="238" width="35" height="12" rx="2" class="dg-tag"/>
+<text x="298" y="247" class="dg-tag-text" text-anchor="middle">STATE</text>
+<text x="352" y="264" class="dg-name" text-anchor="middle">URL state</text>
+<text x="352" y="278" class="dg-sub" text-anchor="middle">shareable links, no backend</text>
+<rect x="528" y="132" width="176" height="56" rx="6" class="dg-mask"/>
+<rect x="528" y="132" width="176" height="56" rx="6" class="dg-node external"/>
+<rect x="536" y="138" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="551" y="147" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="616" y="164" class="dg-name" text-anchor="middle">nginx + Cloudflare</text>
+<text x="616" y="178" class="dg-sub" text-anchor="middle">static files, 1y cache</text>
+</svg>
+</div>
+    <div class="fig"><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 7 · Utility · 7 languages · RTL</span></div>
+    <dl>
+      <dt>Materials</dt><dd>React 19 · TypeScript · Vite · Tailwind 4 · i18next</dd>
+      
+      <dt>Note</dt><dd>No sign-in. Everything runs in your browser.</dd>
+    </dl>
+    <div class="acts"><a class="btn hi" href="https://timezone.mkado.dev" target="_blank" rel="noopener">Open <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a class="btn" href="/work/timezone/">Case study</a><a class="btn" href="https://github.com/muhammedkado/timetool" target="_blank" rel="noopener">Source</a></div>
+  </div>
+</article></div>
+  </div>
+</section>
+
+<section class="sec pad" id="how">
+  <div class="sec-head" data-reveal><h2><small>Sheet 9 · Deployment</small>Seven applications on one free virtual machine</h2><p>Everything on this site runs on one Always-Free Oracle Cloud VM behind Cloudflare, deploys with a single command over SSH, and resets itself every night.</p></div>
+  <div class="deploy">
+    <div class="dgbox draw" data-reveal><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 452" class="dg" role="img" aria-labelledby="deployment-title-dep deployment-desc-dep">
+<title id="deployment-title-dep">How this site and its six demos are deployed</title>
+<desc id="deployment-desc-dep">A workstation script pushes code over SSH and uploads local builds; visitors reach the Oracle Cloud VM through Cloudflare's edge, where nginx routes each host to a PHP-FPM pool or a static directory, every app has its own database, and cron jobs re-seed the demos nightly, back up and probe health every five minutes.</desc>
+<defs>
+<marker id="deployment-m-dep" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker"/></marker>
+<marker id="deployment-ml-dep" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0,8 3,0 6" class="dg-marker link"/></marker>
+</defs>
+<rect x="16" y="52" width="176" height="232" rx="8" class="dg-zone"/>
+<rect x="28" y="46" width="80" height="12" class="dg-mask"/>
+<text x="34" y="56" class="dg-zone-label">workstation</text>
+<rect x="248" y="52" width="176" height="136" rx="8" class="dg-zone"/>
+<rect x="260" y="46" width="74" height="12" class="dg-mask"/>
+<text x="266" y="56" class="dg-zone-label">Cloudflare</text>
+<rect x="480" y="52" width="272" height="384" rx="8" class="dg-zone"/>
+<rect x="492" y="46" width="229" height="12" class="dg-mask"/>
+<text x="498" y="56" class="dg-zone-label">Oracle Cloud VM (Ubuntu 24.04, ARM)</text>
+<path d="M400,120 H504" class="dg-arrow link" marker-end="url(#deployment-ml)"/>
+<path d="M168,216 H504" class="dg-arrow link" marker-end="url(#deployment-ml)"/>
+<path d="M616,148 V188" class="dg-arrow" marker-end="url(#deployment-m)"/>
+<path d="M616,244 V284" class="dg-arrow" marker-end="url(#deployment-m)"/>
+<path d="M616,380 V340" class="dg-arrow dashed" marker-end="url(#deployment-m)"/>
+<rect x="434" y="100" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="452" y="109" class="dg-label" text-anchor="middle">HTTPS</text>
+<rect x="294" y="196" width="84" height="12" rx="2" class="dg-mask"/>
+<text x="336" y="205" class="dg-label" text-anchor="middle">SSH · GIT PUSH</text>
+<rect x="624" y="162" width="46" height="12" rx="2" class="dg-mask"/>
+<text x="628" y="171" class="dg-label" text-anchor="start">FASTCGI</text>
+<rect x="624" y="258" width="24" height="12" rx="2" class="dg-mask"/>
+<text x="628" y="267" class="dg-label" text-anchor="start">SQL</text>
+<rect x="624" y="354" width="35" height="12" rx="2" class="dg-mask"/>
+<text x="628" y="363" class="dg-label" text-anchor="start">RESET</text>
+<rect x="272" y="92" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="272" y="92" width="128" height="56" rx="6" class="dg-node external"/>
+<rect x="280" y="98" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="295" y="107" class="dg-tag-text" text-anchor="middle">EDGE</text>
+<text x="336" y="124" class="dg-name" text-anchor="middle">Edge proxy</text>
+<text x="336" y="138" class="dg-sub" text-anchor="middle">DNS, TLS, cache, WAF</text>
+<rect x="40" y="188" width="128" height="56" rx="6" class="dg-mask"/>
+<rect x="40" y="188" width="128" height="56" rx="6" class="dg-node input"/>
+<rect x="48" y="194" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="63" y="203" class="dg-tag-text" text-anchor="middle">TOOL</text>
+<text x="104" y="220" class="dg-name" text-anchor="middle">deploy.sh</text>
+<text x="104" y="234" class="dg-sub" text-anchor="middle">git push over ssh, local builds</text>
+<rect x="504" y="92" width="224" height="56" rx="6" class="dg-mask"/>
+<rect x="504" y="92" width="224" height="56" rx="6" class="dg-node focal"/>
+<rect x="512" y="98" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="524" y="107" class="dg-tag-text" text-anchor="middle">WEB</text>
+<text x="616" y="124" class="dg-name" text-anchor="middle">nginx</text>
+<text x="616" y="138" class="dg-sub" text-anchor="middle">one vhost per app, Origin CA</text>
+<rect x="504" y="188" width="224" height="56" rx="6" class="dg-mask"/>
+<rect x="504" y="188" width="224" height="56" rx="6" class="dg-node app"/>
+<rect x="512" y="194" width="25" height="12" rx="2" class="dg-tag"/>
+<text x="524" y="203" class="dg-tag-text" text-anchor="middle">PHP</text>
+<text x="616" y="220" class="dg-name" text-anchor="middle">PHP-FPM pools</text>
+<text x="616" y="234" class="dg-sub" text-anchor="middle">pos · invoice · findjob · besttrend</text>
+<rect x="504" y="284" width="224" height="56" rx="6" class="dg-mask"/>
+<rect x="504" y="284" width="224" height="56" rx="6" class="dg-node store"/>
+<rect x="512" y="290" width="20" height="12" rx="2" class="dg-tag"/>
+<text x="522" y="299" class="dg-tag-text" text-anchor="middle">DB</text>
+<text x="616" y="316" class="dg-name" text-anchor="middle">PostgreSQL · MySQL · SQLite</text>
+<text x="616" y="330" class="dg-sub" text-anchor="middle">one database per app</text>
+<rect x="504" y="380" width="224" height="40" rx="6" class="dg-mask"/>
+<rect x="504" y="380" width="224" height="40" rx="6" class="dg-node async"/>
+<rect x="512" y="386" width="30" height="12" rx="2" class="dg-tag"/>
+<text x="527" y="395" class="dg-tag-text" text-anchor="middle">JOBS</text>
+<text x="616" y="404" class="dg-name" text-anchor="middle">cron</text>
+<text x="616" y="418" class="dg-sub" text-anchor="middle">reseed 03:00 · backup · status */5</text>
+</svg>
+</div>
+    <dl class="callouts" data-reveal><div><div><dt>Hosting</dt><dd>One Always-Free Oracle Cloud VM, nginx and php-fpm, behind Cloudflare</dd></div></div><div><div><dt>Deploy</dt><dd>One command over SSH. The server never talks to GitHub: no token, no deploy key</dd></div></div><div><div><dt>Reset</dt><dd>Demo data is re-seeded nightly, so every visitor gets a clean account</dd></div></div><div><div><dt>Health</dt><dd>Every five minutes a probe checks each app and writes a small JSON file; the status dots read it</dd></div></div><div><div><dt>Mail</dt><dd>Contact form stores first, then notifies; Turnstile keeps the bots out</dd></div></div><div style="border:0;padding-top:16px"><div><a class="btn" href="/about-this-site">How this site is run <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></div></dl>
+  </div>
+</section>
+
+<section class="sec pad" id="experience">
+  <div class="sec-head" data-reveal><h2><small>Revision history</small>Experience</h2><p>Newest revision first. The current one is still open.</p></div>
+  <div class="tw" data-reveal><table><thead><tr><th>Rev</th><th>Period</th><th>Description</th><th>Where</th></tr></thead><tbody>
+    <tr><td class="k">C · open</td><td style="white-space:nowrap">2023 – present<small>3 yrs 3 mo, counting</small></td><td><b>Full Stack Developer</b>, USTEK RFID<small>USTEK builds RFID-based laundry management for commercial laundries, hotels and healthcare, deployed in more than 30 countries. I work on the web platform that sits on top of the readers and terminals.</small><ul style="margin-top:6px"><li>— Built and extended REST APIs and web interfaces in PHP, Laravel and Zend Framework 1 for real-time RFID inventory tracking, automated billing and logistics.</li><li>— Implemented linen and garment lifecycle features: warehouse monitoring, uniform rental management and scrub dispensing.</li><li>— Worked with the hardware team to keep data flowing reliably between UHF RFID terminals, readers and the platform.</li><li>— Refactored error-prone modules, cutting production incidents for clients around the world.</li></ul></td><td>İstanbul</td></tr><tr><td class="k">B</td><td style="white-space:nowrap">2024 – present</td><td><b>Seven live applications</b>, Independent work<small>A POS back office, an invoicing system, a real-estate platform with its admin panel, an AI job matcher, a tire-shop PWA and a time-zone toolkit, each built end to end and published as a live demo anyone can open.</small></td><td>live on mkado.dev</td></tr><tr><td class="k">A</td><td style="white-space:nowrap">2019 – 2024</td><td><b>B.Sc. Computer Engineering</b>, Burdur Mehmet Akif Ersoy University<small>Graduation project: Kado Job App, a job-board and staffing Android app with an admin panel (Flutter, Bloc, Firebase).</small></td><td>Burdur</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="sec pad" id="skills">
+  <div class="sec-head" data-reveal><h2><small>Bill of materials</small>Skills</h2><p>Quantity is the number of projects on this sheet that use the item. Languages: Kurdish, Arabic, Turkish (native), English (professional).</p></div>
+  <div class="tw bom" data-reveal><table><thead><tr><th>Group</th><th>Item</th><th style="text-align:center">Qty</th><th>Used in</th></tr></thead><tbody>
+    <tr><td class="k" rowspan="6">Back end</td><td><b>PHP</b></td><td class="q">2</td><td class="u">Invoice System, USTEK RFID platform</td></tr><tr><td><b>Laravel</b></td><td class="q">5</td><td class="u">POS Admin Dashboard, BestTrend SY, BestTrend Admin &amp; API, Find Job with AI, USTEK RFID platform</td></tr><tr><td><b>Zend Framework 1</b></td><td class="q">1</td><td class="u">USTEK RFID platform</td></tr><tr><td><b>REST API design</b></td><td class="q">2</td><td class="u">BestTrend Admin &amp; API, USTEK RFID platform</td></tr><tr><td><b>OOP</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td><b>Sanctum</b></td><td class="q">2</td><td class="u">BestTrend SY, BestTrend Admin &amp; API</td></tr><tr><td class="k" rowspan="8">Front end</td><td><b>React</b></td><td class="q">4</td><td class="u">BestTrend SY, Tire Shop PWA, TimeZone.tools, Olive &amp; Co</td></tr><tr><td><b>Next.js</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td><b>TypeScript</b></td><td class="q">5</td><td class="u">BestTrend SY, Tire Shop PWA, TimeZone.tools, Olive &amp; Co, mkado.dev</td></tr><tr><td><b>JavaScript</b></td><td class="q">7</td><td class="u">BestTrend SY, Find Job with AI, Tire Shop PWA, TimeZone.tools, Olive &amp; Co, USTEK RFID platform, mkado.dev</td></tr><tr><td><b>HTML / CSS / SASS</b></td><td class="q">8</td><td class="u">POS Admin Dashboard, BestTrend SY, BestTrend Admin &amp; API, Find Job with AI, Tire Shop PWA, TimeZone.tools, Olive &amp; Co, USTEK RFID platform</td></tr><tr><td><b>Tailwind</b></td><td class="q">5</td><td class="u">BestTrend SY, Find Job with AI, Tire Shop PWA, TimeZone.tools, Olive &amp; Co</td></tr><tr><td><b>Bootstrap</b></td><td class="q">1</td><td class="u">USTEK RFID platform</td></tr><tr><td><b>jQuery</b></td><td class="q">1</td><td class="u">USTEK RFID platform</td></tr><tr><td class="k" rowspan="4">Data</td><td><b>MySQL</b></td><td class="q">3</td><td class="u">POS Admin Dashboard, Invoice System, USTEK RFID platform</td></tr><tr><td><b>PostgreSQL</b></td><td class="q">2</td><td class="u">BestTrend SY, BestTrend Admin &amp; API</td></tr><tr><td><b>SQLite</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td><b>Firebase</b></td><td class="q">1</td><td class="u">Kado Job App</td></tr><tr><td class="k" rowspan="6">Cloud &amp; tools</td><td><b>Linux / nginx</b></td><td class="q">2</td><td class="u">USTEK RFID platform, mkado.dev</td></tr><tr><td><b>Git</b></td><td class="q">1</td><td class="u">mkado.dev</td></tr><tr><td><b>Azure</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td><b>AWS</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td><b>Vercel</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td><b>n8n</b></td><td class="q">—</td><td class="u">—</td></tr><tr><td class="k" rowspan="3">Domain</td><td><b>RFID systems</b></td><td class="q">1</td><td class="u">USTEK RFID platform</td></tr><tr><td><b>Hardware integration</b></td><td class="q">1</td><td class="u">USTEK RFID platform</td></tr><tr><td><b>Multilingual &amp; RTL interfaces</b></td><td class="q">6</td><td class="u">POS Admin Dashboard, BestTrend SY, BestTrend Admin &amp; API, Tire Shop PWA, TimeZone.tools, USTEK RFID platform</td></tr><tr><td class="k" rowspan="2">Mobile</td><td><b>Flutter</b></td><td class="q">1</td><td class="u">Kado Job App</td></tr><tr><td><b>Bloc</b></td><td class="q">1</td><td class="u">Kado Job App</td></tr>
+  </tbody></table></div>
+</section>
+
+<section class="sec pad" id="notes">
+  <div class="sec-head" data-reveal><h2><small>Detail sheets</small>Notes</h2><p>What broke in production, and the fix.</p></div>
+  <div class="nt"><a href="/notes/billing-automation-correctness/" data-reveal><span class="mono">Detail 1 · 2026-09-05</span><h3>Billing automation that must be correct with no one watching</h3><p>Lessons from building unattended, recurring invoicing on a production platform: idempotent runs, double-fire guards, date boundaries, and tests that pin the money.</p></a><a href="/notes/rtl-adminlte/" data-reveal><span class="mono">Detail 2 · 2026-09-05</span><h3>RTL with AdminLTE 3: what actually breaks</h3><p>Translating the strings is the easy half. Three layout bugs I hit making an AdminLTE admin panel work in Arabic, and the fix for each.</p></a><a href="/notes/six-demos-free-vm/" data-reveal><span class="mono">Detail 3 · 2026-09-05</span><h3>Live demos on Oracle’s free tier, deployed over SSH</h3><p>How this portfolio’s applications run on one Always-Free VM behind Cloudflare, deploy with one command without giving the server any GitHub access, and reset themselves every night.</p></a></div>
+</section>
+
+<section class="sec pad" id="contact">
+  <div class="ct">
+    <div data-reveal>
+      <p class="mono">Request for quotation</p>
+      <h2>Hiring a full-stack engineer?</h2>
+      <p>Open to full-time roles, remote or in İstanbul, and to freelance work. I reply within a day.</p>
+      <div class="links">
+        <a href="mailto:eng.muhammedkado@gmail.com"><span>Email</span><span>eng.muhammedkado@gmail.com</span></a>
+        <a href="https://wa.me/905387399262" target="_blank" rel="noopener"><span>WhatsApp</span><span>+90 538 739 9262</span></a>
+        <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank" rel="noopener"><span>LinkedIn</span><span>in/muhammed-kado</span></a>
+        <a href="/cv.pdf"><span>CV</span><span>PDF</span></a>
+      </div>
+    </div>
+    <form action="/api/contact" method="post" data-reveal novalidate>
+      <div class="field"><label for="cf-name">Name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" required></textarea></div>
+      <button class="btn hi" type="submit">Send</button>
+      <p class="fn">Turnstile · stored first · forwarded second</p>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="pad">
+  <div class="links"><a href="/about-this-site">About this site</a><a href="/notes/">Notes</a><a href="/rss.xml">RSS</a><a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">Source</a><span>© 2026 Muhammed Kado</span></div>
+  <div class="tb" aria-label="Title block">
+  <div><small>Drawing</small><b>mkado.dev</b></div>
+  <div><small>Drawn by</small><b>M. Kado, computer engineer</b></div>
+  <div><small>Rev</small><b>2026-09</b></div>
+  <div><small>Scale</small><b>1 : 1, live</b></div>
+  <div><small>Sheets</small><b>7 apps · 8 diagrams</b></div>
+  <div><small>Status</small><b class="status" data-status-pill data-state="up"><span class="dot"></span><span data-status-text>All systems up</span></b></div>
+</div>
+</footer>
+</div>
+<nav class="mkc" aria-label="Candidate designs">
+<a href="index.html"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>All designs</span></a>
+<span class="n" style="padding:0 6px">07 / 07</span>
+<button type="button" data-mkc-toggle aria-label="Switch between dark and light"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></button>
+</nav>
+<script>(function(){var h=document.documentElement,b=document.querySelector('[data-mkc-toggle]');if(!b)return;
+b.addEventListener('click',function(){var cur=h.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var n=cur==='dark'?'light':'dark';h.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}})})();</script>
+<script>(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('[data-reveal]').forEach(function(e){e.classList.add('is-in')});return}
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+document.querySelectorAll('[data-reveal]').forEach(function(e,i){var k=e.parentElement?Array.prototype.indexOf.call(e.parentElement.children,e):i;e.style.setProperty('--i',k);io.observe(e)})})();</script>
+<script>(function(){document.addEventListener('click',function(e){var b=e.target.closest('button[data-copy]');if(!b)return;var t=b.getAttribute('data-copy');function done(ok){b.classList.add(ok?'copied':'copy-failed');b.setAttribute('aria-label',ok?'Copied':'Copy failed, select it instead');setTimeout(function(){b.classList.remove('copied','copy-failed');b.setAttribute('aria-label','Copy')},1400)}
+try{navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(false)})}catch(err){done(false)}})})();</script>
+<script>
+(function(){
+  var specs=[].slice.call(document.querySelectorAll('.spec')),wraps=[].slice.call(document.querySelectorAll('.drawing .dg-wrap'));
+  function activate(slug){specs.forEach(function(s){s.classList.toggle('is-on',s.dataset.slug===slug)});wraps.forEach(function(w){var on=w.dataset.dg===slug;if(on&&!w.classList.contains('is-on')){w.classList.remove('draw');void w.offsetWidth;w.classList.add('draw')}w.classList.toggle('is-on',on)})}
+  if('IntersectionObserver' in window&&matchMedia('(min-width:1001px)').matches){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)activate(e.target.dataset.slug)})},{rootMargin:'-40% 0px -50% 0px'});specs.forEach(function(s){io.observe(s)})}
+  var f=document.querySelector('form');f&&f.addEventListener('submit',function(e){e.preventDefault();var m=document.createElement('p');m.className='sent';m.textContent='Design mockup: on the built site this posts to /api/contact.';f.replaceChildren(m)});
+})();
+</script>
+</body>
+</html>

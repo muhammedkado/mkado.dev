@@ -1,0 +1,265 @@
+<title>Ten Directions for mkado.dev</title>
+<style>
+:root{color-scheme:light dark;
+--bg:light-dark(#f3f2ee,#101214);--card:light-dark(#fbfbf9,#181b1f);--ink:light-dark(#16181c,#eceef1);--ink-2:light-dark(#4f545c,#a4abb6);--ink-3:light-dark(#6a707a,#8b929c);--line:light-dark(#dcdcd6,#2a2f36);--accent:light-dark(#1f4fd8,#7c9bff);--accent-ink:light-dark(#fff,#0b0f17);--focus:var(--accent);
+--font-display:"Host Grotesk",system-ui,sans-serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+:root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--font-body);padding-inline:clamp(16px,4vw,48px);padding-block:32px 96px}
+.wrap{max-width:1240px;margin:0 auto}
+header{display:grid;gap:14px;max-width:760px;margin-bottom:40px}
+.eyebrow{font:600 12px/1 var(--font-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+h1{font:600 clamp(30px,4.6vw,54px)/1.02 var(--font-display);letter-spacing:-.025em;text-wrap:balance}
+header p{color:var(--ink-2);max-width:62ch}
+header ul{display:grid;gap:6px;color:var(--ink-2);padding-left:18px;list-style:disc}
+.grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(min(100%,560px),1fr))}
+.card{display:grid;grid-template-rows:auto 1fr;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
+.shots a{display:block;position:relative;background:var(--card);aspect-ratio:16/10;overflow:hidden}
+.shots img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.shots a:hover img{transform:scale(1.03)}
+.shots small{position:absolute;left:8px;bottom:8px;padding:3px 7px;border-radius:6px;background:rgba(0,0,0,.6);color:#fff;font:600 10px/1 var(--font-body);letter-spacing:.08em;text-transform:uppercase}
+.body{display:grid;gap:14px;padding:20px 22px 22px}
+.title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.num{font:600 12px/1 var(--font-body);letter-spacing:.1em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+h2{font:600 24px/1.1 var(--font-display);letter-spacing:-.02em}
+.concept{color:var(--ink-2);font-style:italic}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:14px;color:var(--ink-2)}
+dt{color:var(--ink-3);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding-top:2px}
+.says{font-size:15px;color:var(--ink);border-left:3px solid var(--accent);padding-left:12px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;border:1px solid var(--line);transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.btn.primary:hover{filter:brightness(1.08)}
+.phones{display:flex;gap:8px}
+.phones a{display:block;width:72px;aspect-ratio:390/700;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.phones img{width:100%;height:auto}
+.foot{margin-top:56px;color:var(--ink-3);font-size:14px;max-width:70ch}
+a:focus-visible,button:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+@media (max-width:560px){.shots{grid-template-columns:1fr}.shots a:last-child{display:none}}
+</style>
+<div class="wrap">
+<header>
+  <p class="eyebrow">mkado.dev · portfolio redesign · 10 candidates</p>
+  <h1>Ten directions for the same seven applications</h1>
+  <p>Every page below shows the same facts: the claim, the seven live demos with their status dots and one-click sign-ins, how the site is run, the USTEK years, skills with evidence, the notes, and a contact form. What changes is the decision: layout, type, canvas and motion. Pick one and I build it across the whole site, in English and Turkish, with the live status probe and the contact form wired in.</p>
+  <ul>
+    <li>Open each design and use the pill in the bottom-right corner to switch dark and light.</li>
+    <li>Resize the window, or open a page on your phone. The small previews are full-length phone captures.</li>
+    <li>Screenshots are the real demos. Copy buttons, forms and status dots are live in the built site, static here.</li>
+  </ul>
+</header>
+<div class="grid">
+<article class="card" id="d01">
+  <div class="shots">
+    <a href="01-signal-index.html?theme=light"><img src="previews/01-signal-index-light-1440.jpg" alt="Signal Index, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="01-signal-index.html?theme=dark"><img src="previews/01-signal-index-dark-1440.jpg" alt="Signal Index, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">01</span><h2>Signal Index</h2><span class="concept">editorial · precise · warm</span></div>
+    <dl>
+      <dt>Layout</dt><dd>Numbered index of the seven apps; hover previews in a sticky panel on wide screens, rows expand on tap</dd>
+      <dt>Canvas</dt><dd>Warm paper / ink night, cobalt as the only colour</dd>
+      <dt>Type</dt><dd>Fraunces (soft serif, optical sizes) + Schibsted Grotesk</dd>
+      <dt>Motion</dt><dd>Headline words rise in sequence, row rules draw on hover, clip-reveal previews</dd>
+    </dl>
+    <p class="says">You read like a considered engineer who writes things down: calm, precise, no gimmicks. The most résumé-like of the ten while still having a voice.</p>
+    <div class="actions">
+      <a class="btn primary" href="01-signal-index.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="01-signal-index.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/01-signal-index-light-390.jpg" title="Phone, light"><img src="previews/01-signal-index-light-390.jpg" alt="" loading="lazy"></a><a href="previews/01-signal-index-dark-390.jpg" title="Phone, dark"><img src="previews/01-signal-index-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d02">
+  <div class="shots">
+    <a href="02-control-room.html?theme=light"><img src="previews/02-control-room-light-1440.jpg" alt="Control Room, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="02-control-room.html?theme=dark"><img src="previews/02-control-room-dark-1440.jpg" alt="Control Room, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">02</span><h2>Control Room</h2><span class="concept">telemetry · calm · dark-first</span></div>
+    <dl>
+      <dt>Layout</dt><dd>Split work section: project info pinned on the left while the seven screenshots stream past on the right</dd>
+      <dt>Canvas</dt><dd>Graphite / cool white; green is reserved for &quot;up&quot;</dd>
+      <dt>Type</dt><dd>Sora + Martian Mono readouts</dd>
+      <dt>Motion</dt><dd>Pulse ring, live clock, pinned panel crossfades in sync with the scrolling media</dd>
+    </dl>
+    <p class="says">You run production systems and you are comfortable with the ops side. Reads as a backend engineer who ships and monitors, not a designer who codes.</p>
+    <div class="actions">
+      <a class="btn primary" href="02-control-room.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="02-control-room.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/02-control-room-light-390.jpg" title="Phone, light"><img src="previews/02-control-room-light-390.jpg" alt="" loading="lazy"></a><a href="previews/02-control-room-dark-390.jpg" title="Phone, dark"><img src="previews/02-control-room-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d03">
+  <div class="shots">
+    <a href="03-swiss-ledger.html?theme=light"><img src="previews/03-swiss-ledger-light-1440.jpg" alt="Swiss Ledger, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="03-swiss-ledger.html?theme=dark"><img src="previews/03-swiss-ledger-dark-1440.jpg" alt="Swiss Ledger, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">03</span><h2>Swiss Ledger</h2><span class="concept">grid · objective · résumé</span></div>
+    <dl>
+      <dt>Layout</dt><dd>Strict 12-column grid; the work is a real table with a thumbnail strip, demo accounts are a ledger</dd>
+      <dt>Canvas</dt><dd>White / black, one red rule</dd>
+      <dt>Type</dt><dd>Host Grotesk only, three weights</dd>
+      <dt>Motion</dt><dd>Rules draw in, red nav marker, nothing else</dd>
+    </dl>
+    <p class="says">You are rigorous and you respect the reader’s time. The closest thing to a printed CV that still feels designed. Recruiters will love it; it takes no risks.</p>
+    <div class="actions">
+      <a class="btn primary" href="03-swiss-ledger.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="03-swiss-ledger.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/03-swiss-ledger-light-390.jpg" title="Phone, light"><img src="previews/03-swiss-ledger-light-390.jpg" alt="" loading="lazy"></a><a href="previews/03-swiss-ledger-dark-390.jpg" title="Phone, dark"><img src="previews/03-swiss-ledger-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d04">
+  <div class="shots">
+    <a href="04-gallery-wall.html?theme=light"><img src="previews/04-gallery-wall-light-1440.jpg" alt="Gallery Wall, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="04-gallery-wall.html?theme=dark"><img src="previews/04-gallery-wall-dark-1440.jpg" alt="Gallery Wall, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">04</span><h2>Gallery Wall</h2><span class="concept">media-first · bright · tactile</span></div>
+    <dl>
+      <dt>Layout</dt><dd>A tight-guttered wall of the seven screenshots at mixed sizes; captions slide up on hover, everything else is short bands below</dd>
+      <dt>Canvas</dt><dd>Off-white / charcoal, cyan accent</dd>
+      <dt>Type</dt><dd>Gabarito + Figtree</dd>
+      <dt>Motion</dt><dd>Tiles scale in as you scroll, hover zoom, captions slide up</dd>
+    </dl>
+    <p class="says">You have shipped a lot of visible product and you are proud of it. Fast to scan on a phone. Best if the screenshots are strong; weaker if you want the story to lead.</p>
+    <div class="actions">
+      <a class="btn primary" href="04-gallery-wall.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="04-gallery-wall.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/04-gallery-wall-light-390.jpg" title="Phone, light"><img src="previews/04-gallery-wall-light-390.jpg" alt="" loading="lazy"></a><a href="previews/04-gallery-wall-dark-390.jpg" title="Phone, dark"><img src="previews/04-gallery-wall-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d05">
+  <div class="shots">
+    <a href="05-reel.html?theme=light"><img src="previews/05-reel-light-1440.jpg" alt="Reel, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="05-reel.html?theme=dark"><img src="previews/05-reel-dark-1440.jpg" alt="Reel, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">05</span><h2>Reel</h2><span class="concept">cinematic · horizontal · bold</span></div>
+    <dl>
+      <dt>Layout</dt><dd>Horizontal reel of the seven apps (native scroll-snap, keyboard and touch), then credits, a dark band and a skills marquee</dd>
+      <dt>Canvas</dt><dd>Cream / deep navy, amber accent</dd>
+      <dt>Type</dt><dd>Syne + Hanken Grotesk</dd>
+      <dt>Motion</dt><dd>Headline lines rise, per-panel parallax, progress bar and counter, pausable marquee</dd>
+    </dl>
+    <p class="says">You want to be remembered. Confident and a little theatrical, still readable. Best for a client audience; recruiters get the point in five seconds.</p>
+    <div class="actions">
+      <a class="btn primary" href="05-reel.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="05-reel.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/05-reel-light-390.jpg" title="Phone, light"><img src="previews/05-reel-light-390.jpg" alt="" loading="lazy"></a><a href="previews/05-reel-dark-390.jpg" title="Phone, dark"><img src="previews/05-reel-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d06">
+  <div class="shots">
+    <a href="06-chapters.html?theme=light"><img src="previews/06-chapters-light-1440.jpg" alt="Chapters, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="06-chapters.html?theme=dark"><img src="previews/06-chapters-dark-1440.jpg" alt="Chapters, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">06</span><h2>Chapters</h2><span class="concept">one project per screen</span></div>
+    <dl>
+      <dt>Layout</dt><dd>A cover with a contents list, seven full-height chapters with CSS scroll-snap, then a colophon for everything else</dd>
+      <dt>Canvas</dt><dd>Neutral grey; each app owns one accent colour</dd>
+      <dt>Type</dt><dd>Anybody (wide) + Public Sans</dd>
+      <dt>Motion</dt><dd>Chapter number and rule animate in as each chapter arrives, side indicator follows</dd>
+    </dl>
+    <p class="says">Each project gets a full stage and its own colour. Strong for storytelling; the reader has to scroll seven screens to reach the CV, so it favours patient readers.</p>
+    <div class="actions">
+      <a class="btn primary" href="06-chapters.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="06-chapters.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/06-chapters-light-390.jpg" title="Phone, light"><img src="previews/06-chapters-light-390.jpg" alt="" loading="lazy"></a><a href="previews/06-chapters-dark-390.jpg" title="Phone, dark"><img src="previews/06-chapters-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d07">
+  <div class="shots">
+    <a href="07-blueprint.html?theme=light"><img src="previews/07-blueprint-light-1440.jpg" alt="Blueprint, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="07-blueprint.html?theme=dark"><img src="previews/07-blueprint-dark-1440.jpg" alt="Blueprint, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">07</span><h2>Blueprint</h2><span class="concept">engineering drawing</span></div>
+    <dl>
+      <dt>Layout</dt><dd>A drawing sheet: title block, the real architecture diagrams pinned beside the spec of each app, revision history and a bill of materials</dd>
+      <dt>Canvas</dt><dd>White paper with blue ink / blueprint blue with pale lines</dd>
+      <dt>Type</dt><dd>Red Hat Display + Red Hat Mono</dd>
+      <dt>Motion</dt><dd>Dimension lines and diagrams draw themselves in, sheets highlight as they pass</dd>
+    </dl>
+    <p class="says">You think in systems and you already drew the diagrams. The most &quot;engineer&quot; of the ten, unmistakably yours because it uses your own drawings. A little dense on a phone.</p>
+    <div class="actions">
+      <a class="btn primary" href="07-blueprint.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="07-blueprint.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/07-blueprint-light-390.jpg" title="Phone, light"><img src="previews/07-blueprint-light-390.jpg" alt="" loading="lazy"></a><a href="previews/07-blueprint-dark-390.jpg" title="Phone, dark"><img src="previews/07-blueprint-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d08">
+  <div class="shots">
+    <a href="08-broadsheet.html?theme=light"><img src="previews/08-broadsheet-light-1440.jpg" alt="Broadsheet, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="08-broadsheet.html?theme=dark"><img src="previews/08-broadsheet-dark-1440.jpg" alt="Broadsheet, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">08</span><h2>Broadsheet</h2><span class="concept">the newspaper of the work</span></div>
+    <dl>
+      <dt>Layout</dt><dd>A front page: nameplate, lead story with drop cap and columns, an index of the seven apps, a status box; then the apps as illustrated stories, a profile, classifieds, opinion and letters</dd>
+      <dt>Canvas</dt><dd>Newsprint / near-black, one red</dd>
+      <dt>Type</dt><dd>Newsreader (optical sizes) + Libre Franklin</dd>
+      <dt>Motion</dt><dd>Pausable status ticker, columns settle in, headline underlines</dd>
+    </dl>
+    <p class="says">You write and you have a point of view. Warm, literate, distinctive without a single animation trick. It will divide people: memorable to some, a costume to others.</p>
+    <div class="actions">
+      <a class="btn primary" href="08-broadsheet.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="08-broadsheet.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/08-broadsheet-light-390.jpg" title="Phone, light"><img src="previews/08-broadsheet-light-390.jpg" alt="" loading="lazy"></a><a href="previews/08-broadsheet-dark-390.jpg" title="Phone, dark"><img src="previews/08-broadsheet-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d09">
+  <div class="shots">
+    <a href="09-atelier.html?theme=light"><img src="previews/09-atelier-light-1440.jpg" alt="Atelier, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="09-atelier.html?theme=dark"><img src="previews/09-atelier-dark-1440.jpg" alt="Atelier, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">09</span><h2>Atelier</h2><span class="concept">quiet luxury · slow</span></div>
+    <dl>
+      <dt>Layout</dt><dd>One project on the stage at a time with previous/next and thumbnails; everything else is a centred column with vast margins</dd>
+      <dt>Canvas</dt><dd>Cream / espresso, a muted brass</dd>
+      <dt>Type</dt><dd>Cormorant Garamond + Onest</dd>
+      <dt>Motion</dt><dd>Slow crossfades between projects, subtle parallax on the stage, 700 ms easing throughout</dd>
+    </dl>
+    <p class="says">You are calm, selective and confident enough to show one thing at a time. Reads as senior. Slower to scan than the others; a recruiter in a hurry may not click through all seven.</p>
+    <div class="actions">
+      <a class="btn primary" href="09-atelier.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="09-atelier.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/09-atelier-light-390.jpg" title="Phone, light"><img src="previews/09-atelier-light-390.jpg" alt="" loading="lazy"></a><a href="previews/09-atelier-dark-390.jpg" title="Phone, dark"><img src="previews/09-atelier-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+<article class="card" id="d10">
+  <div class="shots">
+    <a href="10-monolith.html?theme=light"><img src="previews/10-monolith-light-1440.jpg" alt="Monolith, light theme, desktop" width="720" height="450" loading="lazy"><small>Light</small></a>
+    <a href="10-monolith.html?theme=dark"><img src="previews/10-monolith-dark-1440.jpg" alt="Monolith, dark theme, desktop" width="720" height="450" loading="lazy"><small>Dark</small></a>
+  </div>
+  <div class="body">
+    <div class="title"><span class="num">10</span><h2>Monolith</h2><span class="concept">mono · hover-alive</span></div>
+    <dl>
+      <dt>Layout</dt><dd>Huge names in a list with a preview that follows the cursor (rows expand on tap); one inverted block holds the whole CV; the email address closes the page</dd>
+      <dt>Canvas</dt><dd>Black and white only; green means &quot;live&quot; and nothing else</dd>
+      <dt>Type</dt><dd>Familjen Grotesk + Instrument Serif italic</dd>
+      <dt>Motion</dt><dd>Words rise on load, magnetic button, cursor-following preview, names slide on hover</dd>
+    </dl>
+    <p class="says">Confident, minimal, a little cool. The kind of site a senior engineer at a design-literate company would have. Least colourful; the type has to carry it, and it does.</p>
+    <div class="actions">
+      <a class="btn primary" href="10-monolith.html">Open design <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="10-monolith.html?theme=dark">Open in dark</a>
+      <span class="phones" aria-label="Phone previews"><a href="previews/10-monolith-light-390.jpg" title="Phone, light"><img src="previews/10-monolith-light-390.jpg" alt="" loading="lazy"></a><a href="previews/10-monolith-dark-390.jpg" title="Phone, dark"><img src="previews/10-monolith-dark-390.jpg" alt="" loading="lazy"></a></span>
+    </div>
+  </div>
+</article>
+</div>
+<p class="foot">Built from <code>design-system/candidates-2026-09/</code> in the mkado.dev repository. Fonts load from Google Fonts in these mockups; the built site self-hosts the winner's fonts.</p>
+</div>

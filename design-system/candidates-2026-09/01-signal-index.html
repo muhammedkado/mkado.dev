@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammed Kado — Signal Index</title>
+<meta name="description" content="I build the web side of RFID systems that run in 30+ countries.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1116" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101828%22%2F%3E%3Cpath%20d%3D%22M40%2014a10%2010%200%200%201%2010%2010%22%20fill%3D%22none%22%20stroke%3D%22%236FD0FF%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.55%22%2F%3E%3Cpath%20d%3D%22M40%208a16%2016%200%200%201%2016%2016%22%20fill%3D%22none%22%20stroke%3D%22%236FD0FF%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%22.3%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2224%22%20r%3D%223%22%20fill%3D%22%236D93FF%22%2F%3E%3Ctext%20x%3D%2212%22%20y%3D%2249%22%20font-family%3D%22system-ui%2Csans-serif%22%20font-weight%3D%22700%22%20font-size%3D%2230%22%20letter-spacing%3D%22-1.5%22%20fill%3D%22%23F1F4F9%22%3Emk%3C%2Ftext%3E%3C%2Fsvg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+<script>
+(function(){var h=document.documentElement;h.classList.add('js');
+try{var q=new URLSearchParams(location.search);var t=q.get('theme')||localStorage.getItem('theme');
+if(t==='dark'||t==='light')h.setAttribute('data-theme',t);if(q.get('bare'))h.classList.add('bare');}catch(e){}})();
+</script>
+<style>*,*::before,*::after{box-sizing:border-box;border:0 solid}html{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5}body{margin:0;line-height:inherit;min-height:100vh}h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ol,ul{list-style:none;margin:0;padding:0}img,svg,video{display:block;max-width:100%;height:auto}button,input,select,textarea{font:inherit;color:inherit;margin:0;padding:0;background:transparent}button{cursor:pointer}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1em}table{border-collapse:collapse;text-indent:0;border-color:inherit}:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}.mkc{position:fixed;right:12px;bottom:12px;z-index:1000;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,22,26,.86);color:#f4f5f7;font:600 12px/1 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}.mkc a,.mkc button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;color:inherit;white-space:nowrap}.mkc a:hover,.mkc button:hover{background:rgba(255,255,255,.14)}.mkc .n{opacity:.7;font-variant-numeric:tabular-nums}.mkc svg{width:14px;height:14px}.mkc button:focus-visible,.mkc a:focus-visible{outline:2px solid #fff;outline-offset:2px}.bare .mkc{display:none}@media print{.mkc{display:none}}
+
+:root{color-scheme:light dark;
+--bg:light-dark(#f5f1ea,#0e1116);--surface:light-dark(#fbf9f4,#151920);--ink:light-dark(#1a1814,#f1ece2);--ink-2:light-dark(#5b5750,#b8b1a5);--ink-3:light-dark(#6b665e,#8e877b);--line:light-dark(#ded8cc,#262b33);--line-2:light-dark(#cbc4b6,#343a44);--accent:light-dark(#1f3fd8,#7c9bff);--accent-ink:light-dark(#ffffff,#0b0f17);--accent-soft:light-dark(#e6ebfb,#1a2340);--up:light-dark(#15803d,#4ade80);--focus:var(--accent);
+--mark-bg:light-dark(#1a1814,#f1ece2);--mark-fg:light-dark(#f5f1ea,#0e1116);--mark-pulse:var(--accent);--mark-dot:var(--accent);
+--display:"Fraunces",Georgia,"Times New Roman",serif;--body:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+--ease:cubic-bezier(.16,1,.3,1);--unit:8px;--wrap:1180px}
+:root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);padding-inline:clamp(16px,4vw,56px);font-feature-settings:"ss01"}
+.wrap{max-width:var(--wrap);margin:0 auto}
+.skip{position:absolute;left:16px;top:-48px;padding:10px 14px;background:var(--ink);color:var(--bg);border-radius:6px;z-index:50}.skip:focus{top:12px}
+.label{font:600 11.5px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.serif{font-family:var(--display);font-variation-settings:"SOFT" 40,"WONK" 0}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+em{font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1}
+a{transition:color .25s var(--ease)}
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;letter-spacing:-.01em}
+.brand small{display:block;font-weight:400;color:var(--ink-3);font-size:12.5px;letter-spacing:.02em}
+.nav{display:flex;gap:4px}
+.nav a{padding:8px 12px;border-radius:999px;font-size:14px;color:var(--ink-2)}
+.nav a:hover{color:var(--ink);background:var(--surface)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px 7px 9px;border:1px solid var(--line);border-radius:999px;font-size:12.5px;color:var(--ink-2);background:var(--surface);white-space:nowrap}
+.pill .dot,.dot{width:8px;height:8px;border-radius:50%;background:var(--up);box-shadow:0 0 0 0 color-mix(in srgb,var(--up) 45%,transparent);animation:ping 2.4s var(--ease) infinite}
+[data-state="down"] .dot,.dot[data-state="down"]{background:#dc2626;animation:none}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--up) 45%,transparent)}70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (max-width:900px){.nav{display:none}.pill span:last-child{display:none}.pill{padding:8px}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(24px,5vw,80px);align-items:end;padding-block:clamp(56px,9vw,120px) clamp(40px,6vw,80px)}
+.hero h1{font-size:clamp(40px,6.4vw,88px);line-height:.98;font-variation-settings:"opsz" 144,"SOFT" 40;margin-top:20px}
+.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .w>span{display:inline-block}
+html.js .hero h1 .w>span{transform:translateY(105%);animation:up 1.1s var(--ease) forwards;animation-delay:calc(var(--i) * 55ms + 120ms)}
+@keyframes up{to{transform:none}}
+.hero .lede{margin-top:28px;font-size:clamp(17px,1.5vw,20px);line-height:1.5;color:var(--ink-2);max-width:56ch}
+.hero .lede,.hero .cta,.masthead{opacity:0;transform:translateY(12px)}
+html.js .hero .lede,html.js .hero .cta,html.js .masthead{animation:rise .9s var(--ease) forwards}
+html:not(.js) .hero .lede,html:not(.js) .hero .cta,html:not(.js) .masthead{opacity:1;transform:none}
+html.js .hero .lede{animation-delay:.55s}html.js .hero .cta{animation-delay:.7s}html.js .masthead{animation-delay:.8s}
+@keyframes rise{to{opacity:1;transform:none}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 20px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid var(--line-2);color:var(--ink);transition:transform .35s var(--ease),background .25s,border-color .25s,color .25s}
+.btn:hover{transform:translateY(-2px);border-color:var(--ink)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translate(2px,-2px)}
+.btn.down:hover svg{transform:translateY(3px)}
+.masthead{border-top:1px solid var(--ink);padding-top:16px;display:grid;gap:0}
+.masthead div{display:grid;grid-template-columns:110px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;align-items:baseline}
+.masthead b{font-weight:600;font-variant-numeric:tabular-nums}
+.masthead .big{font:400 30px/1 var(--display);font-variation-settings:"opsz" 48}
+.masthead .big small{font:500 12px/1 var(--body);color:var(--ink-3);margin-left:6px;letter-spacing:.04em}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.masthead{max-width:520px}}
+/* section head */
+.sec{padding-block:clamp(48px,7vw,96px);border-top:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:end;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head h2{font-size:clamp(28px,3.6vw,46px);line-height:1.05;font-variation-settings:"opsz" 96,"SOFT" 40}
+.sec-head p{color:var(--ink-2);max-width:60ch}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr}}
+/* index */
+.index{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,42%);gap:clamp(24px,4vw,64px);align-items:start}
+.rows{border-top:1px solid var(--ink)}
+.row{border-bottom:1px solid var(--line)}
+.row-btn{width:100%;display:grid;grid-template-columns:44px minmax(0,1fr) auto;grid-template-areas:"num name meta";align-items:baseline;gap:6px 16px;padding:18px 0;text-align:left;position:relative;transition:color .2s}
+.row-btn .num{font:500 13px/1 var(--body);color:var(--ink-3);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.row-btn .name{font:400 clamp(22px,2.4vw,30px)/1.1 var(--display);font-variation-settings:"opsz" 48,"SOFT" 40;grid-area:name;transition:transform .5s var(--ease)}
+.row-btn .meta{grid-area:meta;display:flex;gap:14px;align-items:center;font-size:13px;color:var(--ink-3);white-space:nowrap}
+.row-btn .meta .kind{color:var(--ink-2)}
+.row-btn .meta .st{display:inline-flex;align-items:center;gap:6px}
+.row-btn .chev{width:18px;height:18px;transition:transform .4s var(--ease)}
+.row-btn[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.row-btn::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease)}
+.row:hover .row-btn::after,.row.is-on .row-btn::after,.row-btn:focus-visible::after{transform:scaleX(1)}
+.row:hover .row-btn .name,.row.is-on .row-btn .name{transform:translateX(6px)}
+.row-btn:focus-visible{outline:none}.row-btn:focus-visible .name{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
+.panel{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;padding:4px 0 26px 60px}
+.panel[hidden]{display:none}
+.panel .shotwrap{display:none}
+.panel p{color:var(--ink-2);max-width:62ch}
+.panel .stack{display:flex;flex-wrap:wrap;gap:6px}
+.panel .stack span{font-size:12.5px;padding:4px 9px;border:1px solid var(--line-2);border-radius:999px;color:var(--ink-2)}
+.creds{display:grid;gap:6px;font-size:13.5px}
+.cred{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;color:var(--ink-2)}
+.cred b{color:var(--ink);font-weight:600;min-width:110px}
+.cred code{font-size:12.5px;padding:2px 6px;border-radius:4px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.copy{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:600;color:var(--ink-2);border:1px solid var(--line-2)}
+.copy:hover{color:var(--ink);border-color:var(--ink)}.copy.copied{color:var(--up);border-color:var(--up)}
+.panel .acts{display:flex;flex-wrap:wrap;gap:10px}
+.panel .acts .btn{padding:10px 16px;font-size:14px}
+.panel .note{font-size:13px;color:var(--ink-3)}
+@media (max-width:1023px){.index{grid-template-columns:1fr}.preview{display:none}.panel{padding-left:0}.panel .shotwrap{display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}.row-btn{grid-template-columns:44px minmax(0,1fr);grid-template-areas:"num name" "num meta"}.row-btn .meta{white-space:normal;flex-wrap:wrap;gap:8px 12px}}
+.preview{position:sticky;top:24px}
+.preview .frame{position:relative;aspect-ratio:1440/900;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);box-shadow:0 30px 60px -30px rgba(20,16,8,.35)}
+.preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;clip-path:inset(0 0 100% 0);transition:clip-path .8s var(--ease);will-change:clip-path}
+.preview img.is-on{clip-path:inset(0 0 0 0);z-index:1}
+.preview .cap{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding-top:14px;font-size:14px;color:var(--ink-2)}
+.preview .cap b{font:500 13px/1 var(--body);color:var(--ink-3);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.preview .cap span{transition:opacity .4s var(--ease)}
+/* how it runs */
+.how{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,80px)}
+.how h2{font-size:clamp(28px,3.6vw,46px);line-height:1.05;font-variation-settings:"opsz" 96}
+.how .lead{margin-top:18px;color:var(--ink-2);font-size:17px}
+.facts{border-top:1px solid var(--ink)}
+.facts div{display:grid;grid-template-columns:100px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.facts dt{color:var(--ink-3);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding-top:4px}
+.facts dd{color:var(--ink-2)}
+.how .more{margin-top:22px}
+@media (max-width:760px){.how{grid-template-columns:1fr}}
+/* experience */
+.tl{border-top:1px solid var(--ink)}
+.tl article{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px 24px;padding:26px 0;border-bottom:1px solid var(--line)}
+.tl .when{font:500 13px/1.6 var(--body);color:var(--ink-3);letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.tl .when b{display:block;font:400 26px/1 var(--display);color:var(--ink);letter-spacing:0;margin-top:6px;font-variation-settings:"opsz" 48}
+.tl .when small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:6px;color:var(--accent)}
+.tl h3{font-size:clamp(21px,2.2vw,26px);line-height:1.15;font-variation-settings:"opsz" 48,"SOFT" 40}
+.tl .org{color:var(--ink-2);margin-top:4px;font-size:15px}
+.tl .org a{text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line-2)}.tl .org a:hover{text-decoration-color:var(--ink)}
+.tl p{margin-top:12px;color:var(--ink-2);max-width:66ch}
+.tl ul{margin-top:12px;display:grid;gap:8px;max-width:66ch;color:var(--ink-2);font-size:15px}
+.tl li{padding-left:18px;position:relative}.tl li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--ink-3)}
+@media (max-width:640px){.tl article{grid-template-columns:1fr}}
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:28px 32px}
+.skills h3{font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.skills li{display:flex;justify-content:space-between;gap:12px;padding:7px 0;font-size:15.5px;border-bottom:1px dotted var(--line)}
+.skills li b{font:400 13px/1.4 var(--display);color:var(--accent);font-variant-numeric:tabular-nums;font-variation-settings:"opsz" 14}
+.skills li b[title]{cursor:help;border-bottom:1px dotted var(--accent)}
+.skills .hint{margin-top:22px;color:var(--ink-3);font-size:13.5px;max-width:60ch}
+/* notes */
+.notes{border-top:1px solid var(--ink)}
+.notes a{display:grid;grid-template-columns:120px minmax(0,1fr) 24px;gap:16px 24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.notes time{font:500 13px/1.6 var(--body);color:var(--ink-3);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.notes h3{font-size:clamp(20px,2vw,24px);line-height:1.2;font-variation-settings:"opsz" 48,"SOFT" 40;transition:color .25s}
+.notes a:hover h3{color:var(--accent)}
+.notes p{margin-top:6px;color:var(--ink-2);font-size:15px;max-width:66ch}
+.notes .tags{margin-top:8px;display:flex;gap:6px;flex-wrap:wrap}.notes .tags span{font-size:12px;color:var(--ink-3)}
+.notes svg{width:18px;height:18px;color:var(--ink-3);transition:transform .35s var(--ease)}.notes a:hover svg{transform:translate(3px,-3px);color:var(--accent)}
+@media (max-width:640px){.notes a{grid-template-columns:1fr}.notes svg{display:none}}
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,80px)}
+.contact h2{font-size:clamp(34px,4.6vw,64px);line-height:1;font-variation-settings:"opsz" 144,"SOFT" 40}
+.contact .lead{margin-top:18px;color:var(--ink-2);font-size:17px;max-width:46ch}
+.links{margin-top:28px;display:grid;gap:2px}
+.links a{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.links a svg{width:18px;height:18px;color:var(--ink-3)}.links a:hover{color:var(--accent)}
+.links a span:last-child{margin-left:auto;color:var(--ink-3);font-size:13px}
+form{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label{font:600 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field textarea{width:100%;padding:12px 14px;border:1px solid var(--line-2);border-radius:8px;background:var(--surface);color:var(--ink);transition:border-color .25s,box-shadow .25s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field textarea{min-height:140px;resize:vertical}
+form .btn{justify-self:start}
+.form-note{font-size:13px;color:var(--ink-3)}
+.sent{padding:14px 16px;border:1px solid var(--up);border-radius:8px;color:var(--ink);font-size:14.5px}
+@media (max-width:760px){.contact{grid-template-columns:1fr}}
+/* footer */
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;padding-block:28px 40px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-3)}
+footer a:hover{color:var(--ink)}
+/* reveals */
+html.js [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--i,0) * 70ms)}
+html.js [data-reveal].is-in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="#top"><svg class="" width="34" height="34" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="var(--mark-bg,#101828)"/><path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".3"/><circle cx="40" cy="24" r="3" fill="var(--mark-dot,#6D93FF)"/><text x="12" y="49" font-family="Schibsted Grotesk, system-ui, sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="var(--mark-fg,#F1F4F9)">mk</text></svg><span>Muhammed Kado<small>Full-Stack Developer · İstanbul, Turkey</small></span></a>
+  <nav class="nav" aria-label="Sections"><a href="#work">Work</a><a href="#how">How it runs</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#notes">Notes</a><a href="#contact">Contact</a></nav>
+  <span class="pill" data-status-pill data-state="up"><span class="dot" aria-hidden="true"></span><span data-status-text>All systems up · checked 2 min ago</span></span>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div>
+    <p class="label">Computer Engineer · Full-Stack Developer · UTC+3</p>
+    <h1><span class="w" style="--i:0"><span>I</span></span> <span class="w" style="--i:1"><span>build</span></span> <span class="w" style="--i:2"><span>the</span></span> <span class="w" style="--i:3"><span>web</span></span> <span class="w" style="--i:4"><span>side</span></span> <span class="w" style="--i:5"><span>of</span></span> <span class="w" style="--i:6"><span><em>RFID</em></span></span> <span class="w" style="--i:7"><span><em>systems</em></span></span> <span class="w" style="--i:8"><span>that</span></span> <span class="w" style="--i:9"><span>run</span></span> <span class="w" style="--i:10"><span>in</span></span> <span class="w" style="--i:11"><span>30+</span></span> <span class="w" style="--i:12"><span>countries.</span></span></h1>
+    <p class="lede">Full-stack developer. PHP and Laravel by day at USTEK RFID, React and Next.js on my own time. Since 2023 that has meant a laundry-management platform for commercial laundries, hotels and hospitals. The seven applications below are deployed and yours to try.</p>
+    <div class="cta">
+      <a class="btn primary down" href="#work">See the live work <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      <a class="btn" href="/cv.pdf">Download CV <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12M6 9l6 6 6-6M4 21h16"/></svg></a>
+      <a class="btn" href="https://github.com/muhammedkado" target="_blank" rel="noopener">GitHub <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </div>
+  <dl class="masthead" aria-label="At a glance">
+    <div><dt class="label">At USTEK</dt><dd class="big"><b>3</b><small>yrs</small> <b>3</b><small>mo</small></dd></div>
+    <div><dt class="label">Live apps</dt><dd><b>7</b> · all systems up</dd></div>
+    <div><dt class="label">Ships in</dt><dd>30+ countries via USTEK RFID</dd></div>
+    <div><dt class="label">Languages</dt><dd>Kurdish · Arabic · Turkish · English</dd></div>
+    <div><dt class="label">Open to</dt><dd>Full-time, remote or İstanbul · freelance</dd></div>
+  </dl>
+</section>
+
+<section class="sec" id="work">
+  <div class="sec-head" data-reveal>
+    <h2>Index of live work</h2>
+    <p>Seven applications you can open right now. Each row has a signed-in demo, its credentials as a fallback, and a case study of the problem it solves. Data resets every night.</p>
+  </div>
+  <div class="index">
+    <ol class="rows" data-reveal><li class="row is-on" data-slug="pos">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-pos" id="r-pos">
+    <span class="num">01</span>
+    <span class="name">POS Admin Dashboard</span>
+    <span class="meta"><span class="kind">Back office</span><span>2024</span><span class="st"><span class="dot" data-status-dot="pos" data-state="up" title="pos: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-pos" role="region" aria-labelledby="r-pos" hidden>
+    <div class="shotwrap"><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>Back office for a point-of-sale system: products, categories, clients and users with role-based permissions, in English and Arabic (RTL).</p>
+    <div class="stack"><span>Laravel 12</span><span>MySQL</span><span>Laratrust</span><span>AdminLTE</span></div>
+    <div class="creds"><div class="cred"><b>Admin</b><code>admin@app.com</code><button class="copy" type="button" data-copy="admin@app.com" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>user</button><code>password</code><button class="copy" type="button" data-copy="password" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>pass</button></div><div class="cred"><b>Super admin</b><code>superadmin@app.com</code><button class="copy" type="button" data-copy="superadmin@app.com" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>user</button><code>password</code><button class="copy" type="button" data-copy="password" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>pass</button></div></div>
+    <div class="acts">
+      <a class="btn primary" href="https://pos.mkado.dev/demo/admin" target="_blank" rel="noopener">Open signed in <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/pos/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://github.com/muhammedkado/POS-Project-Admin-LTE-Dashboard-" target="_blank" rel="noopener">Source <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1s-1.2-.3-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
+    </div>
+    <p class="note">Registration is closed; use an account above. Data resets nightly.</p>
+  </div>
+</li>
+<li class="row" data-slug="besttrend">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-besttrend" id="r-besttrend">
+    <span class="num">02</span>
+    <span class="name">BestTrend SY</span>
+    <span class="meta"><span class="kind">Platform</span><span>2025</span><span class="st"><span class="dot" data-status-dot="besttrend" data-state="up" title="besttrend: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-besttrend" role="region" aria-labelledby="r-besttrend" hidden>
+    <div class="shotwrap"><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>Real-estate platform for Syria: listings with photos and maps, search and saved searches, favourites, owner analytics, and an admin panel for moderation. Arabic, English and Kurdish.</p>
+    <div class="stack"><span>Laravel 12 API</span><span>Sanctum</span><span>PostgreSQL</span><span>React 19</span><span>TypeScript</span><span>Tailwind</span></div>
+    <div class="creds"><div class="cred"><b>Property owner</b><code>demo@besttrend.mkado.dev</code><button class="copy" type="button" data-copy="demo@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>user</button><code>demo1234</code><button class="copy" type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>pass</button></div><div class="cred"><b>Admin panel</b><code>admin@besttrend.mkado.dev</code><button class="copy" type="button" data-copy="admin@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>user</button><code>demo1234</code><button class="copy" type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>pass</button></div></div>
+    <div class="acts">
+      <a class="btn primary" href="https://besttrend.mkado.dev" target="_blank" rel="noopener">Open the app <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/besttrend/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      
+    </div>
+    <p class="note">Private repository, code available on request. Sign in as the property owner to add a listing.</p>
+  </div>
+</li>
+<li class="row" data-slug="besttrend-api">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-besttrend-api" id="r-besttrend-api">
+    <span class="num">03</span>
+    <span class="name">BestTrend Admin &amp; API</span>
+    <span class="meta"><span class="kind">API + back office</span><span>2025</span><span class="st"><span class="dot" data-status-dot="besttrend-api" data-state="up" title="besttrend-api: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-besttrend-api" role="region" aria-labelledby="r-besttrend-api" hidden>
+    <div class="shotwrap"><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>The other half of BestTrend: an AdminLTE back office for moderating listings, users and reports, on top of the Laravel REST API the app itself runs on.</p>
+    <div class="stack"><span>Laravel 12</span><span>Sanctum</span><span>PostgreSQL</span><span>AdminLTE</span><span>REST API</span></div>
+    <div class="creds"><div class="cred"><b>Admin panel</b><code>admin@besttrend.mkado.dev</code><button class="copy" type="button" data-copy="admin@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>user</button><code>demo1234</code><button class="copy" type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>pass</button></div></div>
+    <div class="acts">
+      <a class="btn primary" href="https://besttrend-api.mkado.dev/admin/demo" target="_blank" rel="noopener">Open signed in <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/besttrend-api/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      
+    </div>
+    <p class="note">The public API is open too: try /api/v1/properties.</p>
+  </div>
+</li>
+<li class="row" data-slug="invoice">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-invoice" id="r-invoice">
+    <span class="num">04</span>
+    <span class="name">Invoice System</span>
+    <span class="meta"><span class="kind">Business app</span><span>2025</span><span class="st"><span class="dot" data-status-dot="invoice" data-state="up" title="invoice: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-invoice" role="region" aria-labelledby="r-invoice" hidden>
+    <div class="shotwrap"><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>Create invoices with line items and live totals, track outstanding, paid and late payments, print to PDF and email the customer.</p>
+    <div class="stack"><span>PHP 8</span><span>MySQL</span><span>PDO</span><span>TCPDF</span><span>PHPMailer</span></div>
+    <div class="creds"><div class="cred"><b>Demo</b><code>demo@invoice.mkado.dev</code><button class="copy" type="button" data-copy="demo@invoice.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>user</button><code>demo1234</code><button class="copy" type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>pass</button></div></div>
+    <div class="acts">
+      <a class="btn primary" href="https://invoice.mkado.dev/demo.php" target="_blank" rel="noopener">Open signed in <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/invoice/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://github.com/muhammedkado/invoice-system-php" target="_blank" rel="noopener">Source <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1s-1.2-.3-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
+    </div>
+    <p class="note">Plain PHP, no framework: prepared statements, CSRF tokens, per-user data.</p>
+  </div>
+</li>
+<li class="row" data-slug="findjob">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-findjob" id="r-findjob">
+    <span class="num">05</span>
+    <span class="name">Find Job with AI</span>
+    <span class="meta"><span class="kind">AI tool</span><span>2025</span><span class="st"><span class="dot" data-status-dot="findjob" data-state="up" title="findjob: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-findjob" role="region" aria-labelledby="r-findjob" hidden>
+    <div class="shotwrap"><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>Upload a CV, get it parsed into an editable profile by Gemini, then see it scored against real job postings.</p>
+    <div class="stack"><span>Laravel 12</span><span>Gemini API</span><span>Alpine.js</span><span>Tailwind</span></div>
+    
+    <div class="acts">
+      <a class="btn primary" href="https://findjob.mkado.dev" target="_blank" rel="noopener">Open the app <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/findjob/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://github.com/muhammedkado/find_job_with_ai" target="_blank" rel="noopener">Source <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1s-1.2-.3-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
+    </div>
+    <p class="note">No sign-in. Try the sample CV, or upload your own PDF.</p>
+  </div>
+</li>
+<li class="row" data-slug="tireshop">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-tireshop" id="r-tireshop">
+    <span class="num">06</span>
+    <span class="name">Tire Shop PWA</span>
+    <span class="meta"><span class="kind">PWA</span><span>2025</span><span class="st"><span class="dot" data-status-dot="tireshop" data-state="up" title="tireshop: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-tireshop" role="region" aria-labelledby="r-tireshop" hidden>
+    <div class="shotwrap"><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>Mobile-first PWA for running a car-tire shop: inventory, sales and invoices, expenses, and profit reports. Arabic, RTL.</p>
+    <div class="stack"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind 4</span></div>
+    
+    <div class="acts">
+      <a class="btn primary" href="https://tireshop.mkado.dev" target="_blank" rel="noopener">Open the app <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/tireshop/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://github.com/muhammedkado/tire-shop" target="_blank" rel="noopener">Source <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1s-1.2-.3-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
+    </div>
+    <p class="note">No sign-in. Runs in local demo mode; data stays in your browser.</p>
+  </div>
+</li>
+<li class="row" data-slug="timezone">
+  <button class="row-btn" type="button" aria-expanded="false" aria-controls="p-timezone" id="r-timezone">
+    <span class="num">07</span>
+    <span class="name">TimeZone.tools</span>
+    <span class="meta"><span class="kind">Utility</span><span>2025</span><span class="st"><span class="dot" data-status-dot="timezone" data-state="up" title="timezone: up" aria-hidden="true"></span><span class="sr-only">up</span></span><svg class="chev" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+  </button>
+  <div class="panel" id="p-timezone" role="region" aria-labelledby="r-timezone" hidden>
+    <div class="shotwrap"><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" ></div>
+    <p>Time-zone converter, meeting planner and working-days calculator in seven languages, with right-to-left Arabic. The kind of small tool people keep in a tab all day.</p>
+    <div class="stack"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind 4</span><span>i18next</span></div>
+    
+    <div class="acts">
+      <a class="btn primary" href="https://timezone.mkado.dev" target="_blank" rel="noopener">Open the app <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <a class="btn" href="/work/timezone/">Case study <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn" href="https://github.com/muhammedkado/timetool" target="_blank" rel="noopener">Source <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1s-1.2-.3-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.5 3.3 6.7 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
+    </div>
+    <p class="note">No sign-in. Everything runs in your browser.</p>
+  </div>
+</li></ol>
+    <aside class="preview" aria-hidden="true">
+      <div class="frame"><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="pos" class="is-on"><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="besttrend"><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="besttrend-api"><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="invoice"><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="findjob"><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="tireshop"><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" data-for="timezone"></div>
+      <div class="cap"><b data-cap-num>01</b><span data-cap-text>One place where staff manage the shelves and the customers, where a cashier cannot delete the catalogue, and the owner sees stock value at a glance.</span></div>
+    </aside>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="how">
+    <div data-reveal>
+      <p class="label">How it runs</p>
+      <h2>Seven applications on one free virtual machine</h2>
+      <p class="lead">Everything on this site runs on one Always-Free Oracle Cloud VM behind Cloudflare, deploys with a single command over SSH, and resets itself every night.</p>
+      <p class="more"><a class="btn" href="/about-this-site">How this site is run <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+    <dl class="facts" data-reveal><div><dt>Hosting</dt><dd>One Always-Free Oracle Cloud VM, nginx and php-fpm, behind Cloudflare</dd></div><div><dt>Deploy</dt><dd>One command over SSH. The server never talks to GitHub: no token, no deploy key</dd></div><div><dt>Reset</dt><dd>Demo data is re-seeded nightly, so every visitor gets a clean account</dd></div><div><dt>Health</dt><dd>Every five minutes a probe checks each app and writes a small JSON file; the status dots read it</dd></div><div><dt>Mail</dt><dd>Contact form stores first, then notifies; Turnstile keeps the bots out</dd></div></dl>
+  </div>
+</section>
+
+<section class="sec" id="experience">
+  <div class="sec-head" data-reveal><h2>Experience</h2><p>From a computer-engineering degree to production systems used in more than thirty countries.</p></div>
+  <div class="tl">
+    <article data-reveal>
+      <div class="when">2023 — present<b>3 yrs 3 mo</b><small>and counting</small></div>
+      <div><h3>Full Stack Developer</h3><p class="org"><a href="https://ustek-rfid.com" target="_blank" rel="noopener">USTEK RFID</a> · İstanbul</p><p>USTEK builds RFID-based laundry management for commercial laundries, hotels and healthcare, deployed in more than 30 countries. I work on the web platform that sits on top of the readers and terminals.</p><ul><li>Built and extended REST APIs and web interfaces in PHP, Laravel and Zend Framework 1 for real-time RFID inventory tracking, automated billing and logistics.</li><li>Implemented linen and garment lifecycle features: warehouse monitoring, uniform rental management and scrub dispensing.</li><li>Worked with the hardware team to keep data flowing reliably between UHF RFID terminals, readers and the platform.</li><li>Refactored error-prone modules, cutting production incidents for clients around the world.</li></ul></div>
+    </article><article data-reveal>
+      <div class="when">2024 — present</div>
+      <div><h3>Seven live applications</h3><p class="org">Independent work · live on mkado.dev</p><p>A POS back office, an invoicing system, a real-estate platform with its admin panel, an AI job matcher, a tire-shop PWA and a time-zone toolkit, each built end to end and published as a live demo anyone can open.</p></div>
+    </article><article data-reveal>
+      <div class="when">2019 — 2024</div>
+      <div><h3>B.Sc. Computer Engineering</h3><p class="org">Burdur Mehmet Akif Ersoy University · Burdur</p><p>Graduation project: Kado Job App, a job-board and staffing Android app with an admin panel (Flutter, Bloc, Firebase).</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec" id="skills">
+  <div class="sec-head" data-reveal><h2>Skills, with evidence</h2><p>The number next to a skill is how many of the projects on this page ship it. Hover it to see which.</p></div>
+  <div class="skills">
+    <div data-reveal><h3>Back end</h3><ul><li><span>PHP</span><b title="Invoice System, USTEK RFID platform">2</b></li><li><span>Laravel</span><b title="POS Admin Dashboard, BestTrend SY, BestTrend Admin &amp; API, Find Job with AI, USTEK RFID platform">5</b></li><li><span>Zend Framework 1</span><b title="USTEK RFID platform">1</b></li><li><span>REST API design</span><b title="BestTrend Admin &amp; API, USTEK RFID platform">2</b></li><li><span>OOP</span></li><li><span>Sanctum</span><b title="BestTrend SY, BestTrend Admin &amp; API">2</b></li></ul></div><div data-reveal><h3>Front end</h3><ul><li><span>React</span><b title="BestTrend SY, Tire Shop PWA, TimeZone.tools, Olive &amp; Co">4</b></li><li><span>Next.js</span></li><li><span>TypeScript</span><b title="BestTrend SY, Tire Shop PWA, TimeZone.tools, Olive &amp; Co, mkado.dev">5</b></li><li><span>JavaScript</span><b title="BestTrend SY, Find Job with AI, Tire Shop PWA, TimeZone.tools, Olive &amp; Co, USTEK RFID platform, mkado.dev">7</b></li><li><span>HTML / CSS / SASS</span><b title="POS Admin Dashboard, BestTrend SY, BestTrend Admin &amp; API, Find Job with AI, Tire Shop PWA, TimeZone.tools, Olive &amp; Co, USTEK RFID platform">8</b></li><li><span>Tailwind</span><b title="BestTrend SY, Find Job with AI, Tire Shop PWA, TimeZone.tools, Olive &amp; Co">5</b></li><li><span>Bootstrap</span><b title="USTEK RFID platform">1</b></li><li><span>jQuery</span><b title="USTEK RFID platform">1</b></li></ul></div><div data-reveal><h3>Data</h3><ul><li><span>MySQL</span><b title="POS Admin Dashboard, Invoice System, USTEK RFID platform">3</b></li><li><span>PostgreSQL</span><b title="BestTrend SY, BestTrend Admin &amp; API">2</b></li><li><span>SQLite</span></li><li><span>Firebase</span><b title="Kado Job App">1</b></li></ul></div><div data-reveal><h3>Cloud &amp; tools</h3><ul><li><span>Linux / nginx</span><b title="USTEK RFID platform, mkado.dev">2</b></li><li><span>Git</span><b title="mkado.dev">1</b></li><li><span>Azure</span></li><li><span>AWS</span></li><li><span>Vercel</span></li><li><span>n8n</span></li></ul></div><div data-reveal><h3>Domain</h3><ul><li><span>RFID systems</span><b title="USTEK RFID platform">1</b></li><li><span>Hardware integration</span><b title="USTEK RFID platform">1</b></li><li><span>Multilingual &amp; RTL interfaces</span><b title="POS Admin Dashboard, BestTrend SY, BestTrend Admin &amp; API, Tire Shop PWA, TimeZone.tools, USTEK RFID platform">6</b></li></ul></div><div data-reveal><h3>Mobile</h3><ul><li><span>Flutter</span><b title="Kado Job App">1</b></li><li><span>Bloc</span><b title="Kado Job App">1</b></li></ul></div>
+  </div>
+  <p class="hint">Native Kurdish, Arabic and Turkish; professional English. Every app above ships in at least two languages, five of them right-to-left.</p>
+</section>
+
+<section class="sec" id="notes">
+  <div class="sec-head" data-reveal><h2>Notes</h2><p>Short write-ups of things that broke, and what fixed them.</p></div>
+  <div class="notes" data-reveal>
+    <a href="/notes/billing-automation-correctness/"><time datetime="2026-09-05">5 Sept 2026</time><div><h3>Billing automation that must be correct with no one watching</h3><p>Lessons from building unattended, recurring invoicing on a production platform: idempotent runs, double-fire guards, date boundaries, and tests that pin the money.</p><div class="tags"><span>#laravel</span><span>#billing</span><span>#testing</span><span>#reliability</span></div></div><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="/notes/rtl-adminlte/"><time datetime="2026-09-05">5 Sept 2026</time><div><h3>RTL with AdminLTE 3: what actually breaks</h3><p>Translating the strings is the easy half. Three layout bugs I hit making an AdminLTE admin panel work in Arabic, and the fix for each.</p><div class="tags"><span>#laravel</span><span>#adminlte</span><span>#rtl</span><span>#css</span></div></div><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a><a href="/notes/six-demos-free-vm/"><time datetime="2026-09-05">5 Sept 2026</time><div><h3>Live demos on Oracle’s free tier, deployed over SSH</h3><p>How this portfolio’s applications run on one Always-Free VM behind Cloudflare, deploy with one command without giving the server any GitHub access, and reset themselves every night.</p><div class="tags"><span>#devops</span><span>#nginx</span><span>#cloudflare</span><span>#deployment</span></div></div><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="contact">
+    <div data-reveal>
+      <p class="label">Contact</p>
+      <h2>Hiring a full-stack engineer?</h2>
+      <p class="lead">Open to full-time roles, remote or in İstanbul, and to freelance work. A message here reaches me directly; I reply within a day.</p>
+      <div class="links">
+        <a href="mailto:eng.muhammedkado@gmail.com"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>eng.muhammedkado@gmail.com</span><span>Email</span></a>
+        <a href="https://wa.me/905387399262" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.6-4A8 8 0 1 1 20 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 1a4 4 0 0 1-2-2l1-1-1-2z"/></svg><span>+90 538 739 9262</span><span>WhatsApp</span></a>
+        <a href="https://linkedin.com/in/muhammed-kado-21355b1a9" target="_blank" rel="noopener"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg><span>linkedin.com/in/muhammed-kado</span><span>LinkedIn</span></a>
+        <a href="/cv.pdf"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg><span>Curriculum vitae, PDF</span><span>Download</span></a>
+      </div>
+    </div>
+    <form action="/api/contact" method="post" data-reveal novalidate>
+      <div class="field"><label for="cf-name">Your name</label><input id="cf-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="cf-email">Email</label><input id="cf-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="cf-msg">Message</label><textarea id="cf-msg" name="message" required placeholder="What are you building, and where would I fit?"></textarea></div>
+      <button class="btn primary" type="submit">Send message <svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="form-note">Protected by Cloudflare Turnstile. Stored first, then forwarded, so nothing gets lost.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 Muhammed Kado · İstanbul</span>
+  <span><a href="/about-this-site">About this site</a> · <a href="/notes/">Notes</a> · <a href="/rss.xml">RSS</a> · <a href="https://github.com/muhammedkado/mkado.dev" target="_blank" rel="noopener">Source</a></span>
+</footer>
+</div>
+<nav class="mkc" aria-label="Candidate designs">
+<a href="index.html"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>All designs</span></a>
+<span class="n" style="padding:0 6px">01 / 01</span>
+<button type="button" data-mkc-toggle aria-label="Switch between dark and light"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></button>
+</nav>
+<script>(function(){var h=document.documentElement,b=document.querySelector('[data-mkc-toggle]');if(!b)return;
+b.addEventListener('click',function(){var cur=h.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');var n=cur==='dark'?'light':'dark';h.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}})})();</script>
+<script>(function(){if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('[data-reveal]').forEach(function(e){e.classList.add('is-in')});return}
+var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+document.querySelectorAll('[data-reveal]').forEach(function(e,i){var k=e.parentElement?Array.prototype.indexOf.call(e.parentElement.children,e):i;e.style.setProperty('--i',k);io.observe(e)})})();</script>
+<script>(function(){document.addEventListener('click',function(e){var b=e.target.closest('button[data-copy]');if(!b)return;var t=b.getAttribute('data-copy');function done(ok){b.classList.add(ok?'copied':'copy-failed');b.setAttribute('aria-label',ok?'Copied':'Copy failed, select it instead');setTimeout(function(){b.classList.remove('copied','copy-failed');b.setAttribute('aria-label','Copy')},1400)}
+try{navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(false)})}catch(err){done(false)}})})();</script>
+<script>
+(function(){
+  var rows=[].slice.call(document.querySelectorAll('.row'));var imgs=[].slice.call(document.querySelectorAll('.preview img'));
+  var capN=document.querySelector('[data-cap-num]'),capT=document.querySelector('[data-cap-text]');
+  var problems={"pos":"One place where staff manage the shelves and the customers, where a cashier cannot delete the catalogue, and the owner sees stock value at a glance.","besttrend":"Owners list on Facebook groups and buyers scroll for hours. Structured listings, photos on a CDN, three languages, one admin panel.","besttrend-api":"One Laravel core serving two clients with opposite needs: a token-based JSON API for the app and a session-based staff back office with granular permissions.","invoice":"Invoices that look right and a list that shows who still owes money, written without a framework to show sessions, CSRF and prepared statements done by hand.","findjob":"Matching a CV to postings by hand is slow and vague. Turn the PDF into structured data, let the user correct it, score each posting with a reason, and keep the demo cost on a leash.","tireshop":"A small tire shop runs on a phone. Today’s sales and profit at a glance, low-stock warnings, expenses, and no login screen on day one.","timezone":"Remote teams keep asking the same three questions: what time is it there, when can we all meet, and how many working days until a date."};
+  function show(row){var s=row.dataset.slug;rows.forEach(function(r){r.classList.toggle('is-on',r===row)});imgs.forEach(function(im){im.classList.toggle('is-on',im.dataset.for===s)});
+    if(capN){capN.textContent=String(rows.indexOf(row)+1).padStart(2,'0')}if(capT){capT.style.opacity=0;setTimeout(function(){capT.textContent=problems[s];capT.style.opacity=1},160)}}
+  rows.forEach(function(row){var btn=row.querySelector('.row-btn'),panel=row.querySelector('.panel');
+    row.addEventListener('mouseenter',function(){show(row)});btn.addEventListener('focus',function(){show(row)});
+    btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';
+      rows.forEach(function(r){r.querySelector('.row-btn').setAttribute('aria-expanded','false');r.querySelector('.panel').hidden=true});
+      if(!open){btn.setAttribute('aria-expanded','true');panel.hidden=false;show(row)}})});
+  var f=document.querySelector('form');f&&f.addEventListener('submit',function(e){e.preventDefault();var m=document.createElement('p');m.className='sent';m.textContent='Design mockup: on the built site this posts to /api/contact, stores the message and notifies me.';f.replaceChildren(m)});
+})();
+</script>
+</body>
+</html>
