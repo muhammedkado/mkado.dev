@@ -53,6 +53,12 @@ html.js .hero>*{opacity:0;animation:rise 1.4s var(--ease) forwards;animation-del
 .slide .frame img{width:100%;height:100%;object-fit:cover;object-position:top;transform:translateY(var(--py,0)) scale(1.04);transition:transform .2s linear}
 .slide .frame a{position:absolute;inset:0}
 .slide .frame a:focus-visible{outline:2px solid var(--brass);outline-offset:-2px}
+/* generated media: the stage opens on each key visual (the screenshot on hover or focus); a linen plate behind the hero */
+.slide .frame img.kv{position:absolute;inset:0;object-position:center;transition:opacity var(--slow) var(--ease),transform .2s linear}
+.slide .frame:hover img.kv,.slide .frame:focus-within img.kv{opacity:0}
+@media (hover:none){.slide .frame img.kv{display:none}}
+.hero.has-plate{--plate-o:.45;--plate-o-dark:.28}
+.top .name svg{display:inline-block;vertical-align:-5px;margin-right:10px}
 .slide .text{display:grid;gap:14px;justify-items:center;text-align:center;max-width:60ch}
 .slide .text .n{font:500 11px/1 var(--sans);letter-spacing:.24em;color:var(--brass)}
 .slide h3{font-size:clamp(30px,3.4vw,46px);line-height:1.05;font-weight:400}
@@ -145,7 +151,7 @@ export default {
     const t = h.tenure(c.experience.startDate);
     const slides = c.demos
       .map((d, i) => `<article class="slide${i === 0 ? ' is-on' : ''}" data-i="${i}" aria-hidden="${i === 0 ? 'false' : 'true'}">
-  <div class="frame">${h.shot(d)}<a href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}"></a></div>
+  <div class="frame">${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}<a href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}"></a></div>
   <div class="text">
     <span class="n">${String(i + 1).padStart(2, '0')} — ${String(c.demos.length).padStart(2, '0')}</span>
     <h3>${h.esc(d.name)}</h3>
@@ -163,24 +169,25 @@ export default {
 <div class="wrap">
 <header class="top">
   ${h.statusPill('status', 'All systems up')}
-  <a class="name" href="#top">${h.esc(c.profile.name)}</a>
+  <a class="name" href="#top">${h.hasLogo ? h.mark({ size: 24 }) : ''}${h.esc(c.profile.name)}</a>
   <nav aria-label="Sections">${c.nav.map((n) => `<a href="${n.href}">${n.label}</a>`).join('')}</nav>
 </header>
 <main id="main">
-<section class="hero" id="top">
+<section class="hero${h.plateClass('plate-atelier')}" id="top">
   <p class="sc" style="--i:0">${h.esc(c.profile.title)} · ${h.esc(c.profile.role)} · İstanbul</p>
   <h1 style="--i:1">The web side of <em>RFID systems</em>, in thirty countries and counting.</h1>
   <div class="rule" style="--i:2"></div>
   <p class="who" style="--i:3">${h.esc(c.profile.plain)} At USTEK: a laundry-management platform for commercial laundries, hotels and hospitals. Seven applications below, each deployed and open.</p>
   <div class="tenure" style="--i:4"><div><b>${t.years}<span style="font-size:.5em"> yrs</span> ${t.months}<span style="font-size:.5em"> mo</span></b><span class="sc">at USTEK RFID</span></div><div><b>7</b><span class="sc">live applications</span></div><div><b>4</b><span class="sc">languages</span></div></div>
   <div class="cta" style="--i:5"><a class="lnk" href="#work">Selected work ${h.icon('arrow-down')}</a><a class="lnk" href="${c.profile.cv}">Curriculum vitae</a><a class="lnk" href="${c.profile.github}" target="_blank" rel="noopener">GitHub</a></div>
+  ${h.plate('plate-atelier')}
 </section>
 
 <section class="sec" id="work">
   <div class="sec-head" data-reveal><p class="sc">Selected work</p><h2>Seven applications, one at a time</h2><p>Each is deployed and yours to open, with a demo account where one is needed. Demo data resets nightly.</p></div>
   <div class="stage" aria-live="polite">${slides}</div>
   <div class="ctl"><button type="button" data-prev>${h.icon('arrow-left')} Previous</button><span class="count"><span data-count>01</span> / ${String(c.demos.length).padStart(2, '0')}</span><button type="button" data-next>Next ${h.icon('arrow-right')}</button></div>
-  <div class="thumbs" role="tablist" aria-label="Choose a project">${c.demos.map((d, i) => `<button type="button" role="tab" data-go="${i}" aria-label="${h.esc(d.name)}" aria-current="${i === 0 ? 'true' : 'false'}">${h.shot(d, 'width="64" height="40"')}</button>`).join('')}</div>
+  <div class="thumbs" role="tablist" aria-label="Choose a project">${c.demos.map((d, i) => `<button type="button" role="tab" data-go="${i}" aria-label="${h.esc(d.name)}" aria-current="${i === 0 ? 'true' : 'false'}">${h.hasMedia(d.visual) ? h.keyVisual(d) : h.shot(d, 'width="64" height="40"')}</button>`).join('')}</div>
 </section>
 
 <section class="sec" id="experience">
@@ -241,7 +248,7 @@ ${h.copyScript}
   document.querySelector('[data-prev]').addEventListener('click',function(){go(cur-1)});document.querySelector('[data-next]').addEventListener('click',function(){go(cur+1)});
   thumbs.forEach(function(t){t.addEventListener('click',function(){go(+t.dataset.go)})});
   document.addEventListener('keydown',function(e){if(e.target.closest('input,textarea'))return;if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
-  if(!reduce){var stage=document.querySelector('.stage'),raf=null;function par(){raf=null;var r=stage.getBoundingClientRect();var p=(r.top+r.height/2-innerHeight/2)/innerHeight;slides[cur].querySelector('img').style.setProperty('--py',(p*-24).toFixed(1)+'px')}addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(par)},{passive:true});par()}
+  if(!reduce){var stage=document.querySelector('.stage'),raf=null;function par(){raf=null;var r=stage.getBoundingClientRect();var p=(r.top+r.height/2-innerHeight/2)/innerHeight;slides[cur].querySelector('.frame').style.setProperty('--py',(p*-24).toFixed(1)+'px')}addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(par)},{passive:true});par()}
   var f=document.querySelector('form');f&&f.addEventListener('submit',function(e){e.preventDefault();var m=document.createElement('p');m.className='sent';m.textContent='Design mockup: on the built site this posts to /api/contact.';f.replaceChildren(m)});
 })();
 </script>

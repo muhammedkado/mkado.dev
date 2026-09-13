@@ -37,3 +37,6 @@ for (const d of designs) {
 writeFileSync(join(root, 'index.html'), gallery.render(designs, content, h, { full: true }));
 writeFileSync(join(root, 'artifact.html'), gallery.render(designs, content, h, { full: false }));
 console.log(`gallery: index.html + artifact.html (${designs.length} designs, ${wrote} rebuilt)`);
+// Generated media is optional: pages fall back to screenshots or no plate until media.mjs has produced it.
+const missing = h.mediaMissing();
+if (missing.length) console.log(`media not generated yet (${missing.length}): ${missing.join(', ')}`);

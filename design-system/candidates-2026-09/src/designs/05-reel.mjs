@@ -66,6 +66,12 @@ html.js .hero .side>*{opacity:0;animation:rise .9s var(--ease) forwards;animatio
 .panel .frame{position:relative;aspect-ratio:1440/900;overflow:hidden;border-radius:6px;background:var(--surface);box-shadow:0 40px 80px -50px rgba(0,0,0,.55)}
 .panel .frame img{width:110%;max-width:none;height:100%;object-fit:cover;object-position:top;transform:translateX(var(--px,0));will-change:transform}
 .panel .frame .num{position:absolute;left:14px;bottom:8px;font:800 clamp(64px,9vw,140px)/1 var(--display);letter-spacing:-.06em;color:var(--amber);mix-blend-mode:normal;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+/* generated media: key visuals on the reel frames (the screenshot on hover or focus); a haze plate behind the hero */
+.panel .frame img.kv{position:absolute;left:0;top:0;object-position:center;transition:opacity .5s var(--ease)}
+.panel .frame:hover img.kv,.panel:focus-within .frame img.kv{opacity:0}
+@media (hover:none){.panel .frame img.kv{display:none}}
+.hero.has-plate{--plate-o:.3;--plate-o-dark:.65}
+.hero.has-plate .side{background:color-mix(in srgb,var(--bg) 82%,transparent);padding:16px 18px;border-radius:8px}
 .panel .info{display:grid;gap:12px;padding-bottom:6px}
 .panel h3{font-size:clamp(24px,2.8vw,40px);line-height:1;letter-spacing:-.03em}
 .panel .kind{font:600 12px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:8px}
@@ -162,7 +168,7 @@ export default {
     const t = h.tenure(c.experience.startDate);
     const panels = c.demos
       .map((d, i) => `<article class="panel" data-i="${i}" aria-label="${String(i + 1)} of ${c.demos.length}: ${h.esc(d.name)}">
-  <div class="frame">${h.shot(d)}<span class="num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span></div>
+  <div class="frame">${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}<span class="num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span></div>
   <div class="info">
     <div class="kind">${h.statusDot(d.slug)}${h.esc(d.kind)} · ${d.period} · ${h.esc(d.langs)}</div>
     <h3>${h.esc(d.name)}</h3>
@@ -185,13 +191,14 @@ export default {
   ${h.statusPill('pill')}
 </header>
 <main id="main">
-<section class="hero pad" id="top">
+<section class="hero pad${h.plateClass('plate-reel')}" id="top">
   <h1><span class="line"><span style="--i:0">Seven live</span></span><span class="line"><span style="--i:1">apps.</span></span><span class="line"><span style="--i:2"><span class="a">One</span> engineer.</span></span></h1>
   <div class="side">
     <p style="--i:0">${h.esc(c.profile.headline)} ${h.esc(c.profile.plain)}</p>
     <div class="stat" style="--i:1"><b>${t.years}.${Math.round((t.months / 12) * 10)}</b><span>years at USTEK RFID, counting</span></div>
     <div class="cta" style="--i:2"><a class="btn amber" href="#work">Play the reel ${h.icon('arrow-right')}</a><a class="btn" href="${c.profile.cv}">CV</a><a class="btn" href="${c.profile.github}" target="_blank" rel="noopener">GitHub</a></div>
   </div>
+  ${h.plate('plate-reel')}
 </section>
 
 <section id="work" aria-label="The reel">
@@ -267,7 +274,7 @@ ${h.copyScript}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,raf=null;
   function update(){raf=null;var max=reel.scrollWidth-reel.clientWidth;var p=max>0?reel.scrollLeft/max:0;prog.style.setProperty('--p',(0.143+p*0.857).toFixed(3));
     var mid=reel.scrollLeft+reel.clientWidth*0.35,idx=0;panels.forEach(function(pl,i){if(pl.offsetLeft<=mid)idx=i;
-      if(!reduce){var rel=(pl.offsetLeft-reel.scrollLeft)/reel.clientWidth;pl.querySelector('img').style.setProperty('--px',(-rel*40).toFixed(1)+'px')}});
+      if(!reduce){var rel=(pl.offsetLeft-reel.scrollLeft)/reel.clientWidth;pl.querySelector('.frame').style.setProperty('--px',(-rel*40).toFixed(1)+'px')}});
     count.textContent=String(idx+1).padStart(2,'0')}
   reel.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(update)},{passive:true});update();
   function go(dir){var w=panels[0].getBoundingClientRect().width+parseFloat(getComputedStyle(reel).columnGap||getComputedStyle(reel).gap||16);reel.scrollBy({left:dir*w,behavior:reduce?'auto':'smooth'})}

@@ -52,6 +52,18 @@ h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;text-wra
 .lead h2{font-size:clamp(30px,3.6vw,48px);line-height:1.02;font-variation-settings:"opsz" 48;font-weight:600}
 .lead .deck{font-size:clamp(17px,1.5vw,20px);line-height:1.35;font-style:italic;color:var(--ink-2);margin-top:12px;font-variation-settings:"opsz" 24}
 .lead .byline{margin-top:12px;padding-bottom:12px;border-bottom:1px solid var(--rule)}
+/* generated media: a lead illustration in greyscale; each story is illustrated, with the live screenshot on hover */
+.lead .photo{margin-top:14px}
+.lead .photo img{width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--line);filter:grayscale(1) contrast(1.06)}
+:root[data-theme="dark"] .lead .photo img{filter:grayscale(1) contrast(1.02) brightness(.85)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lead .photo img{filter:grayscale(1) contrast(1.02) brightness(.85)}}
+.lead .photo figcaption{font:500 11px/1.5 var(--sans);color:var(--ink-3);margin-top:6px;letter-spacing:.02em}
+.story .pic{position:relative}
+.story .pic img.kv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s var(--ease)}
+.story .pic:hover img.kv,.story:focus-within .pic img.kv{opacity:0}
+.story .cap-touch{display:none}
+@media (hover:none){.story .pic img.kv{display:none}.story .cap-hover{display:none}.story .cap-touch{display:inline}}
+.mast .dateline .ed{display:inline-flex;align-items:center;gap:8px}
 .lead .body{column-count:2;column-gap:26px;column-rule:1px solid var(--line);margin-top:14px;font-size:15.5px;line-height:1.55;text-align:justify;hyphens:auto}
 .lead .body p{margin-bottom:.8em;break-inside:avoid}
 .lead .body p:first-child::first-letter{font-size:3.6em;line-height:.8;float:left;padding:6px 8px 0 0;font-weight:700;color:var(--red)}
@@ -175,7 +187,7 @@ export default {
     const today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     const stories = c.demos
       .map((d, i) => `<article class="story" data-reveal id="st-${d.slug}">
-  <figure>${h.shot(d)}<figcaption><span>${h.esc(d.name)}, ${d.period}. Screenshot of the live app.</span><span>${h.statusDot(d.slug)} up</span></figcaption></figure>
+  <figure><div class="pic">${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}</div><figcaption><span>${h.esc(d.name)}, ${d.period}. ${h.hasMedia(d.visual) ? '<span class="cap-hover">Illustration; hover for the live app.</span><span class="cap-touch">Screenshot of the live app.</span>' : 'Screenshot of the live app.'}</span><span>${h.statusDot(d.slug)} up</span></figcaption></figure>
   <p class="kicker">${h.esc(d.kind)} · ${h.esc(d.langs)}</p>
   <h3><a href="/work/${d.slug}/">${h.esc(d.name)}</a></h3>
   <p class="deck">${h.esc(d.problem)}</p>
@@ -193,7 +205,7 @@ export default {
   <div class="track">${[0, 1].map(() => `<span data-status-pill data-state="up"><span class="dot"></span><span data-status-text>All systems up · checked 2 min ago</span></span>${c.demos.map((d) => `<span>${h.statusDot(d.slug)}${h.esc(d.name)} · up</span>`).join('')}<span>${t.short} at USTEK RFID · counting</span>`).join('')}</div>
 </div>
 <header class="mast">
-  <div class="dateline"><span>${today}</span><span>İstanbul edition · Vol. 1, No. 7</span><span>${c.profile.tz} · Free</span></div>
+  <div class="dateline"><span>${today}</span><span class="ed">${h.hasLogo ? h.mark({ size: 18 }) : ''}İstanbul edition · Vol. 1, No. 7</span><span>${c.profile.tz} · Free</span></div>
   <h1>Muhammed Kado</h1>
   <div class="tag"><span>${h.esc(c.profile.role)}</span><span>·</span><span>The web side of RFID systems</span><span>·</span><span>Est. 2023, İstanbul</span></div>
   <nav aria-label="Sections">${c.nav.map((n) => `<a href="${n.href}">${n.label}</a>`).join('')}</nav>
@@ -212,6 +224,7 @@ export default {
     <h2>${h.esc(c.profile.headline)}</h2>
     <p class="deck">Seven applications, deployed and open to anyone; a laundry-management platform in more than thirty countries; and a habit of writing down what broke.</p>
     <p class="byline">By ${h.esc(c.profile.name)} · İstanbul</p>
+    ${h.hasMedia('plate-broadsheet') ? `<figure class="photo">${h.picture('plate-broadsheet', { alt: 'Illustration: rows of linen carts on a commercial laundry floor', sizes: '(min-width: 961px) 50vw, 100vw', loading: 'eager' })}<figcaption>Illustration of a commercial laundry, the kind of floor the USTEK RFID platform tracks. Generated image.</figcaption></figure>` : ''}
     <div class="body">
       <p>${h.esc(c.profile.intro)}</p>
       <p>${h.esc(c.experience.summary)} ${h.esc(c.experience.bullets[0])}</p>

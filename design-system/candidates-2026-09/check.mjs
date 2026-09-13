@@ -53,15 +53,18 @@ const AUDIT = `(function(){
   function ratio(a,b){var l1=lum(a),l2=lum(b);return (Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05)}
   function bgOf(el){var e=el,layers=[];while(e&&e!==document){var cs=getComputedStyle(e);var c=parse(cs.backgroundColor);if(cs.backgroundImage&&cs.backgroundImage!=='none'&&!(c&&c.a>=1&&/gradient/.test(cs.backgroundImage)))return{unknown:true};if(c&&c.a>0){layers.push(c);if(c.a>=1)break}e=e.parentElement}
     var bg={r:255,g:255,b:255,a:1};var html=parse(getComputedStyle(document.documentElement).backgroundColor);if(html&&html.a>0)bg=blend(html,bg);for(var i=layers.length-1;i>=0;i--)bg=blend(layers[i],bg);return bg}
-  var bad=[],unknown=0,checked=0,seen=new Set();
+  var bad=[],unknown=0,checked=0,overMedia=0,seen=new Set();
   var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);var n;
   while((n=walker.nextNode())){if(!n.nodeValue.trim())continue;var el=n.parentElement;if(!el||seen.has(el))continue;seen.add(el);
     if(el.closest('.mkc,script,style,[aria-hidden="true"]'))continue;var cs=getComputedStyle(el);if(cs.visibility==='hidden'||cs.display==='none')continue;
     var r=el.getBoundingClientRect();if(r.width===0||r.height===0)continue;var op=1,e=el;while(e&&e!==document.body){op*=parseFloat(getComputedStyle(e).opacity);e=e.parentElement}if(op<.05)continue;
-    var fg=parse(cs.color);if(!fg)continue;var bg=bgOf(el);if(bg.unknown){unknown++;continue}
+    var fg=parse(cs.color);if(!fg)continue;
+    // Text inside a container with a generated plate or image layer: the blend is invisible to getComputedStyle, so count it for a manual look.
+    var host=el.closest('.has-plate');if(host&&host.querySelector(':scope > .plate img')){overMedia++}
+    var bg=bgOf(el);if(bg.unknown){unknown++;continue}
     if(fg.a<1)fg=blend(fg,bg);var size=parseFloat(cs.fontSize),bold=parseInt(cs.fontWeight,10)>=700;var large=size>=24||(bold&&size>=18.66);var need=large?3:4.5;var rr=ratio(fg,bg);checked++;
     if(rr<need)bad.push({text:n.nodeValue.trim().slice(0,40),ratio:+rr.toFixed(2),need:need,size:Math.round(size),sel:el.tagName.toLowerCase()+(el.className&&typeof el.className==='string'?'.'+el.className.trim().split(/\\s+/).slice(0,2).join('.'):'')})}
-  return JSON.stringify({bad:bad,unknown:unknown,checked:checked})})()`;
+  return JSON.stringify({bad:bad,unknown:unknown,checked:checked,overMedia:overMedia})})()`;
 
 const profile = mkdtempSync(join(tmpdir(), 'mkado-check-'));
 let chrome, problems = 0;
@@ -85,10 +88,11 @@ try {
       const { result } = await cdp.send('Runtime.evaluate', { expression: AUDIT, returnByValue: true });
       const r = JSON.parse(result.value);
       const tag = `${file.replace(/\.html$/, '').padEnd(22)} ${theme.padEnd(5)}`;
-      if (!r.bad.length) console.log(`ok   ${tag} ${String(r.checked).padStart(4)} checked, ${r.unknown} over gradients`);
+      const media = r.overMedia ? `, ${r.overMedia} over generated media (look manually)` : '';
+      if (!r.bad.length) console.log(`ok   ${tag} ${String(r.checked).padStart(4)} checked, ${r.unknown} over gradients${media}`);
       else {
         problems += r.bad.length;
-        console.log(`WARN ${tag} ${r.bad.length} below target (${r.checked} checked, ${r.unknown} over gradients)`);
+        console.log(`WARN ${tag} ${r.bad.length} below target (${r.checked} checked, ${r.unknown} over gradients${media})`);
         for (const b of r.bad.slice(0, 12)) console.log(`       ${String(b.ratio).padStart(5)} < ${b.need}  ${b.size}px  ${b.sel.padEnd(28)} "${b.text}"`);
         if (r.bad.length > 12) console.log(`       … ${r.bad.length - 12} more`);
       }

@@ -80,6 +80,10 @@ html.js .hero .row{opacity:0;animation:rise .9s var(--ease) forwards .7s}
 .float img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .3s}
 .float img.is-on{opacity:1}
 .float .lbl{position:absolute;left:10px;bottom:10px;padding:5px 8px;background:var(--ink);color:var(--bg);font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase}
+/* generated media: the cursor preview shows key visuals in black and white (opened rows keep the screenshot); a faint plate behind the hero */
+.float.has-kv img{object-position:center;filter:grayscale(1) contrast(1.05)}
+.hero.has-plate{--plate-o:.22;--plate-o-dark:.16}
+.top .mk svg{display:block}
 @media (hover:none),(max-width:900px){.float{display:none}}
 /* monolith block */
 .block{background:var(--block-bg);color:var(--block-ink);margin-inline:calc(-1 * clamp(16px,4vw,56px));padding-inline:clamp(16px,4vw,56px);padding-block:clamp(48px,7vw,96px)}
@@ -188,23 +192,24 @@ export default {
 <a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header class="top">
-  <a class="mk" href="#top" aria-label="Muhammed Kado">MK</a>
+  <a class="mk" href="#top" aria-label="Muhammed Kado">${h.hasLogo ? h.mark({ size: 30 }) : 'MK'}</a>
   <nav aria-label="Sections"><a href="#work">Work</a><a href="#facts">Facts</a><a href="#skills">Skills</a><a href="#notes">Notes</a><a href="#contact">Contact</a></nav>
   ${h.statusPill('status', 'All systems live')}
 </header>
 <main id="main">
-<section class="hero" id="top">
+<section class="hero${h.plateClass('plate-monolith')}" id="top">
   <h1>${seg('Muhammed Kado')}<br>${seg('builds the web side of RFID systems that run in thirty countries.', 'it')}</h1>
   <div class="row">
     <p>${h.esc(c.profile.role)} in İstanbul. PHP and Laravel at USTEK RFID since 2023; React and Next.js on his own time. Seven applications below, deployed and open.</p>
     <a class="btn" data-magnet href="#work">Start with the work ${h.icon('arrow-down')}</a>
   </div>
+  ${h.plate('plate-monolith')}
 </section>
 
 <section class="sec" id="work">
   <div class="sec-head" data-reveal><h2>Seven live applications</h2><p>Hover to preview, click to open the details. Demo data resets nightly.</p></div>
   <ol class="list" data-reveal>${rows}</ol>
-  <div class="float" aria-hidden="true">${c.demos.map((d, i) => h.shot(d, `data-for="${d.slug}"${i === 0 ? ' class="is-on"' : ''}`)).join('')}<span class="lbl" data-float-lbl>${h.esc(c.demos[0].name)}</span></div>
+  <div class="float${c.demos.every((d) => h.hasMedia(d.visual)) ? ' has-kv' : ''}" aria-hidden="true">${c.demos.map((d, i) => h.keyVisual(d, `data-for="${d.slug}"${i === 0 ? ' class="is-on"' : ''}`)).join('')}<span class="lbl" data-float-lbl>${h.esc(c.demos[0].name)}</span></div>
 </section>
 
 <section class="block" id="facts">

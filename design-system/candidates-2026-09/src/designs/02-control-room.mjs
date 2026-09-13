@@ -98,6 +98,11 @@ html.js .hero>*:nth-child(2){animation-delay:.25s}
 .proj .media img{width:100%;height:100%;object-fit:cover;object-position:top}
 .proj .media .tag{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:8px;padding:6px 9px;border-radius:6px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);font:500 11px/1 var(--mono);color:var(--ink);letter-spacing:.06em}
 .proj .info{display:none}
+/* generated media: a telemetry plate inside the console; key visuals cover the stream, the project in view shows its screenshot */
+.console.has-plate{--plate-o:.3;--plate-o-dark:.5;--plate-mask:linear-gradient(180deg,#000 10%,transparent 75%);overflow:hidden}
+.proj .media img.kv{position:absolute;inset:0;object-position:center;transition:opacity .6s var(--ease)}
+.proj.is-on .media img.kv,.proj .media:hover img.kv,.proj .media:focus-visible img.kv{opacity:0}
+@media (max-width:1023px){.proj .media img.kv{display:none}}
 @media (max-width:1023px){.split{grid-template-columns:1fr}.panel{display:none}.proj .info{display:block;padding:14px 2px 6px}.proj .info h3{font-size:22px;font-weight:700}.proj .info .kind{font:400 12px/1.5 var(--mono);color:var(--ink-3)}.proj .info p{margin-top:8px;color:var(--ink-2);font-size:14.5px}}
 /* how it runs: a status table */
 .ops{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(24px,4vw,56px)}
@@ -201,7 +206,7 @@ export default {
 
     const stream = c.demos
       .map((d, i) => `<article class="proj${i === 0 ? ' is-on' : ''}" data-slug="${d.slug}" id="w-${d.slug}">
-  <a class="media" href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}">${h.shot(d)}<span class="tag">${h.statusDot(d.slug)}${String(i + 1).padStart(2, '0')} · ${h.esc(d.short.toUpperCase())}</span></a>
+  <a class="media" href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}">${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}<span class="tag">${h.statusDot(d.slug)}${String(i + 1).padStart(2, '0')} · ${h.esc(d.short.toUpperCase())}</span></a>
   <div class="info"><h3>${h.esc(d.name)}</h3><div class="kind">${h.esc(d.kind)} · ${d.period} · ${h.esc(d.stack.slice(0, 3).join(' · '))}</div><p>${h.esc(d.problem)}</p>
     <div class="acts"><a class="btn primary" href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener">${d.demoUrl ? 'Open signed in' : 'Open the app'} ${h.icon('arrow-up-right')}</a><a class="btn" href="/work/${d.slug}/">Case study</a></div>
     ${d.credentials.length ? `<div class="creds">${d.credentials.map((cr) => `<div class="cred"><b>${h.esc(cr.label)}</b><code>${h.esc(cr.user)}</code><code>${h.esc(cr.pass)}</code></div>`).join('')}</div>` : ''}
@@ -231,7 +236,7 @@ export default {
       <a class="btn" href="${c.profile.github}" target="_blank" rel="noopener">${h.icon('github')} GitHub</a>
     </div>
   </div>
-  <div class="console" aria-label="Live readouts">
+  <div class="console${h.plateClass('plate-control-room')}" aria-label="Live readouts">
     <svg class="pulse" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="28"/><circle cx="32" cy="32" r="28"/><circle class="core" cx="32" cy="32" r="3"/></svg>
     <div class="head"><span class="label">Readouts</span><span class="mono" style="color:var(--ink-3)">rfid://mkado.dev</span></div>
     <div class="metrics">
@@ -240,6 +245,7 @@ export default {
       <div class="metric"><div class="label">Deployed in</div><div class="v">30<small>+ COUNTRIES</small></div><div class="sub">USTEK RFID platform</div></div>
       <div class="metric"><div class="label">Languages</div><div class="v">4<small>SPOKEN</small></div><div class="sub">KU · AR · TR · EN</div></div>
     </div>
+    ${h.plate('plate-control-room')}
   </div>
 </section>
 

@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Higgsfield originals; re-fetch with media.mjs from media/manifest.json
+design-system/candidates-2026-09/media-src/
+# Brandkit review thumbnails and board renders (regenerate with brandkit/media-review.mjs)
+design-system/candidates-2026-09/brandkit/reviews/thumbs/
+design-system/candidates-2026-09/brandkit/reviews/media.*

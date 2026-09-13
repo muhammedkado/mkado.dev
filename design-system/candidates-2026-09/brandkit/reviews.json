@@ -1,0 +1,64 @@
+{
+  "reviews": [
+    {
+      "stage": "palette",
+      "name": "Ink and Signal",
+      "premise": "Continuity with the current mark: a near-black ink, warm paper, and one cool signal blue with a lighter pulse tone for hairlines and hover states.",
+      "keywords": ["precise", "technical", "calm"],
+      "palette": [
+        { "hex": "#101828", "name": "Ink" },
+        { "hex": "#F7F7F5", "name": "Paper" },
+        { "hex": "#6D93FF", "name": "Signal" },
+        { "hex": "#6FD0FF", "name": "Pulse" },
+        { "hex": "#22C55E", "name": "Live" }
+      ],
+      "logo_ideas": [
+        "mk ribbon monogram, the m's last stem shared with the k",
+        "a dot with three quarter-circle arcs, the outer one split",
+        "a square RFID inlay spiral ending in a centre chip"
+      ],
+      "background_color": "#F7F7F5",
+      "text_color": "#101828"
+    },
+    {
+      "stage": "palette",
+      "name": "Graphite and Amber",
+      "premise": "Warmer and more editorial: graphite instead of blue-black, bone paper, and a single amber signal so the status green stays the only other colour.",
+      "keywords": ["editorial", "warm", "confident"],
+      "palette": [
+        { "hex": "#16181C", "name": "Graphite" },
+        { "hex": "#F3F0E9", "name": "Bone" },
+        { "hex": "#F2B33D", "name": "Amber" },
+        { "hex": "#4F545C", "name": "Slate" },
+        { "hex": "#22C55E", "name": "Live" }
+      ],
+      "logo_ideas": [
+        "mk ribbon monogram, the m's last stem shared with the k",
+        "a dot with three quarter-circle arcs, the outer one split",
+        "a square RFID inlay spiral ending in a centre chip"
+      ],
+      "background_color": "#F3F0E9",
+      "text_color": "#16181C"
+    },
+    {
+      "stage": "palette",
+      "name": "Night and Mint",
+      "premise": "Cooler systems feel: a deep night blue, fog-white paper, mint doubling as the accent and the live status colour, cobalt for links.",
+      "keywords": ["systems", "cool", "alert"],
+      "palette": [
+        { "hex": "#0B0F17", "name": "Night" },
+        { "hex": "#EEF1F5", "name": "Fog" },
+        { "hex": "#34D399", "name": "Mint" },
+        { "hex": "#1F4FD8", "name": "Cobalt" },
+        { "hex": "#8A93A6", "name": "Steel" }
+      ],
+      "logo_ideas": [
+        "mk ribbon monogram, the m's last stem shared with the k",
+        "a dot with three quarter-circle arcs, the outer one split",
+        "a square RFID inlay spiral ending in a centre chip"
+      ],
+      "background_color": "#EEF1F5",
+      "text_color": "#0B0F17"
+    }
+  ]
+}

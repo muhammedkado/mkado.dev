@@ -2,12 +2,15 @@
 // escaping, the <head>, the theme contract, icons, the logo mark, status
 // attributes, screenshots and a generic reveal observer. Each design brings
 // its own CSS, section order and scripts.
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import content from './content.mjs';
+import { assets as briefAssets } from './media-brief.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repo = join(here, '..', '..', '..');
+const candidates = join(here, '..');
 
 export const esc = (s) =>
   String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -43,7 +46,53 @@ export const revealScript = `<script>(function(){if(!('IntersectionObserver' in 
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('is-in');io.unobserve(en.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
 document.querySelectorAll('[data-reveal]').forEach(function(e,i){var k=e.parentElement?Array.prototype.indexOf.call(e.parentElement.children,e):i;e.style.setProperty('--i',k);io.observe(e)})})();</script>`;
 
-const favicon = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#101828"/><path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="#6FD0FF" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="#6FD0FF" stroke-width="2.4" stroke-linecap="round" opacity=".3"/><circle cx="40" cy="24" r="3" fill="#6D93FF"/><text x="12" y="49" font-family="system-ui,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="#F1F4F9">mk</text></svg>')}`;
+/** The approved brand mark from the Higgsfield brandkit flow (media/logo-mark.svg, paints mapped to var(--mark-*) by media.mjs --logo). */
+const logoMarkPath = join(candidates, 'media', 'logo-mark.svg');
+const logoMark = existsSync(logoMarkPath) ? readFileSync(logoMarkPath, 'utf8').trim() : null;
+
+/** Inner artwork of the mark: the brand SVG nested in the 64-unit tile, or the original RFID pulse. */
+function markArt(font) {
+  if (logoMark) return logoMark.replace(/<svg\b/i, '<svg x="8" y="8" width="48" height="48"');
+  return `<path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".3"/><circle cx="40" cy="24" r="3" fill="var(--mark-dot,#6D93FF)"/><text x="12" y="49" font-family="${esc(font)}" font-weight="700" font-size="30" letter-spacing="-1.5" fill="var(--mark-fg,#F1F4F9)">mk</text>`;
+}
+
+const favicon = (() => {
+  const fixed = markArt('system-ui,sans-serif')
+    .replace(/var\(--mark-fg(?:,[^)]*)?\)/g, '#F1F4F9').replace(/var\(--mark-pulse(?:,[^)]*)?\)/g, '#6FD0FF').replace(/var\(--mark-dot(?:,[^)]*)?\)/g, '#6D93FF');
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#101828"/>${fixed}</svg>`)}`;
+})();
+
+/** Shared tokens every design gets: one accent per demo (--a-<slug>) and the brand palette (--brand-*). */
+function tokensCss() {
+  const acc = content.demos.map((d) => `--a-${d.slug}:light-dark(${d.accent.light},${d.accent.dark})`).join(';');
+  const b = content.brand?.palette;
+  const brand = b ? `;--brand:${b.accent};--brand-ink:${b.ink};--brand-paper:${b.paper};--brand-soft:${b.support};--brand-up:${b.up}` : '';
+  return `:root{${acc}${brand}}`;
+}
+
+/** Atmosphere plates: one generated image per design, blended into the canvas and adapted to the other theme without a second generation.
+ *  .has-plate isolates the blend and paints its own background; the plate's `ground` says which theme it was made for.
+ *  The container rules sit in :where() so a design's own position, background and z-index always win.
+ *  Per design: --plate-o / --plate-o-dark (opacity), --plate-mask (edge fade), --plate-pos, --plate-inset, --plate-under. */
+// closest-side reaches full transparency at every edge of the container, so a plate never shows a box; move the
+// image with --plate-pos rather than moving the mask.
+const plateMask = 'radial-gradient(closest-side,#000 45%,transparent 100%)';
+const plateCss = `picture{display:contents}
+:where(.has-plate){position:relative;isolation:isolate;background-color:var(--plate-under,var(--bg))}
+:where(.has-plate>*:not(.plate)){position:relative;z-index:1}
+.plate{position:absolute;inset:var(--plate-inset,0);z-index:0;overflow:hidden;pointer-events:none;-webkit-mask-image:var(--plate-mask,${plateMask});mask-image:var(--plate-mask,${plateMask})}
+.plate img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--plate-pos,center);opacity:var(--plate-o,.5)}
+.plate--light{mix-blend-mode:multiply}
+.plate--dark{mix-blend-mode:multiply}.plate--dark img{filter:invert(1) hue-rotate(180deg)}
+:root[data-theme=dark] .plate img{opacity:var(--plate-o-dark,.3)}
+:root[data-theme=dark] .plate--light{mix-blend-mode:screen}:root[data-theme=dark] .plate--light img{filter:invert(1) hue-rotate(180deg)}
+:root[data-theme=dark] .plate--dark{mix-blend-mode:screen}:root[data-theme=dark] .plate--dark img{filter:none}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme=light]) .plate img{opacity:var(--plate-o-dark,.3)}
+:root:not([data-theme=light]) .plate--light{mix-blend-mode:screen}:root:not([data-theme=light]) .plate--light img{filter:invert(1) hue-rotate(180deg)}
+:root:not([data-theme=light]) .plate--dark{mix-blend-mode:screen}:root:not([data-theme=light]) .plate--dark img{filter:none}
+}
+@media print{.plate{display:none}}`;
 
 /** Doctype through </head>. The design closes <html> itself. */
 export function head({ title, description, fonts = [], light = '#f7f7f5', dark = '#0b0f17', css = '' }) {
@@ -63,19 +112,61 @@ ${fonts.length ? `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${fontsUrl(fonts)}">` : ''}
 ${themeScript}
-<style>${reset}${candidateCss}
+<style>${reset}${candidateCss}${tokensCss()}${plateCss}
 ${css}</style>
 </head>`;
 }
 
-/** The RFID-pulse logo mark, colours through --mark-bg / --mark-fg / --mark-pulse so each design can tint it. */
+/** The logo mark, colours through --mark-bg / --mark-fg / --mark-pulse / --mark-dot so each design can tint it. */
 export function mark({ size = 40, font = 'inherit', cls = '' } = {}) {
-  return `<svg class="${cls}" width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="var(--mark-bg,#101828)"/><path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".3"/><circle cx="40" cy="24" r="3" fill="var(--mark-dot,#6D93FF)"/><text x="12" y="49" font-family="${esc(font)}" font-weight="700" font-size="30" letter-spacing="-1.5" fill="var(--mark-fg,#F1F4F9)">mk</text></svg>`;
+  return `<svg class="${cls}" width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="var(--mark-bg,#101828)"/>${markArt(font)}</svg>`;
 }
 
 /** Screenshot of a demo, from the copied shots/ folder. */
 export function shot(demo, attrs = '') {
   return `<img src="shots/${demo.slug}.png" alt="${esc(demo.name)}, screenshot" width="1440" height="900" loading="lazy" decoding="async" ${attrs}>`;
+}
+
+/** Generated media, described by media/manifest.json (written by media.mjs). A missing asset renders nothing
+ *  (or the screenshot, for key visuals) and is reported by mediaMissing(), so the build stays green before credits are spent. */
+const manifestPath = join(candidates, 'media', 'manifest.json');
+const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : { assets: {} };
+const missing = new Set();
+function asset(id) {
+  const a = manifest.assets?.[id];
+  if (a && a.src && a.outputs?.length) return a;
+  missing.add(id);
+  return null;
+}
+export const mediaMissing = () => [...missing].sort();
+export const hasMedia = (id) => !!manifest.assets?.[id]?.outputs?.length;
+
+/** <picture> with AVIF and WebP at 800 and 1600 wide; class and attrs go on the <img>, like shot(). */
+export function picture(id, { alt = '', sizes = '(min-width: 1024px) 50vw, 100vw', attrs = '', loading = 'lazy', priority = false } = {}) {
+  const a = asset(id);
+  if (!a) return '';
+  const set = (ext) => `media/${id}-800.${ext} 800w, media/${id}-1600.${ext} 1600w`;
+  return `<picture><source type="image/avif" srcset="${set('avif')}" sizes="${sizes}"><source type="image/webp" srcset="${set('webp')}" sizes="${sizes}"><img src="media/${id}-1600.webp" width="${a.outWidth ?? 1600}" height="${a.outHeight ?? 900}" alt="${esc(alt)}" loading="${loading}" decoding="async"${priority ? ' fetchpriority="high"' : ''} ${attrs}></picture>`;
+}
+
+/** An atmosphere plate behind a `.has-plate` container. ground: the theme the image was made for (defaults to the brief). */
+export function plate(id, { ground, cls = '', pos } = {}) {
+  if (!asset(id)) return '';
+  const g = ground ?? briefAssets.find((a) => a.id === id)?.ground ?? 'light';
+  return `<div class="plate plate--${g}${cls ? ' ' + cls : ''}" aria-hidden="true"${pos ? ` style="--plate-pos:${pos}"` : ''}>${picture(id, { sizes: '100vw', loading: 'eager', priority: true })}</div>`;
+}
+
+/** ' has-plate' when the plate exists, so a container only changes once there is something to put behind it. */
+export const plateClass = (id) => (hasMedia(id) ? ' has-plate' : '');
+
+/** True once a brand mark has been approved and processed (media/logo-mark.svg). Designs that show no mark today add one only then. */
+export const hasLogo = !!logoMark;
+
+/** The demo's generated key visual; falls back to the screenshot unless fallback:false (overlay use). */
+export function keyVisual(demo, attrs = '', { fallback = true } = {}) {
+  const id = demo.visual ?? `kv-${demo.slug}`;
+  if (asset(id)) return picture(id, { alt: `${demo.name}, key visual`, attrs });
+  return fallback ? shot(demo, attrs) : '';
 }
 
 /** The status contract Phase B keeps: src/scripts/status.ts patches these attributes. */
@@ -147,4 +238,4 @@ export function icon(name, cls = '') {
 export const copyScript = `<script>(function(){document.addEventListener('click',function(e){var b=e.target.closest('button[data-copy]');if(!b)return;var t=b.getAttribute('data-copy');function done(ok){b.classList.add(ok?'copied':'copy-failed');b.setAttribute('aria-label',ok?'Copied':'Copy failed, select it instead');setTimeout(function(){b.classList.remove('copied','copy-failed');b.setAttribute('aria-label','Copy')},1400)}
 try{navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(false)})}catch(err){done(false)}})})();</script>`;
 
-export default { esc, fontsUrl, themeScript, reset, candidateBar, revealScript, head, mark, shot, statusDot, statusPill, diagram, tenure, fmtDate, icon, copyScript };
+export default { esc, fontsUrl, themeScript, reset, candidateBar, revealScript, head, mark, hasLogo, shot, picture, plate, plateClass, keyVisual, hasMedia, mediaMissing, statusDot, statusPill, diagram, tenure, fmtDate, icon, copyScript };

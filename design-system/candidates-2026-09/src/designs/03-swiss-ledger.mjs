@@ -25,7 +25,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.02em}
 /* top */
 .top{padding-block:18px 0}
 .top .g{align-items:center}
-.top .name{font-size:15px;font-weight:600}
+.top .name{font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px}.top .name svg{flex:none}
 .top .meta{font-size:12.5px;color:var(--ink-3)}
 .top nav{display:flex;gap:18px;justify-content:flex-end;font-size:13px}
 .top nav a{position:relative;padding-block:4px}
@@ -67,6 +67,14 @@ html.js .hero [data-in]{opacity:0;animation:in .7s var(--ease) forwards;animatio
 .thumbs a:hover,.thumbs a.is-on{border-color:var(--red)}
 .thumbs a:hover img{transform:scale(1.04)}
 .thumbs a span{position:absolute;left:0;top:0;padding:3px 6px;background:var(--bg);font-size:11px;font-weight:600;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* generated media: key visuals in grey on the thumbnail strip (the screenshot on hover or row focus); one plate as a figure under the hero */
+.thumbs a img.kv{position:absolute;inset:0;object-position:center;filter:grayscale(1) contrast(1.05);transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.thumbs a:hover img.kv,.thumbs a.is-on img.kv,.thumbs a:focus-visible img.kv{opacity:0}
+.band{margin-top:clamp(28px,4vw,48px);border-top:3px solid var(--red);aspect-ratio:1440/400;overflow:hidden;background:var(--surface)}
+.band img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.02)}
+:root[data-theme="dark"] .band img{filter:grayscale(1) invert(1) contrast(1.02)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .band img{filter:grayscale(1) invert(1) contrast(1.02)}}
+@media (max-width:560px){.band{aspect-ratio:16/9}}
 @media (max-width:900px){.thumbs{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media (max-width:560px){.thumbs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* table */
@@ -190,7 +198,7 @@ export default {
 <div class="wrap">
 <header class="top">
   <div class="g">
-    <div class="c3"><div class="name">${h.esc(c.profile.name)}</div><div class="meta">${h.esc(c.profile.role)} · ${h.esc(c.profile.location)}</div></div>
+    <div class="c3"><div class="name">${h.hasLogo ? h.mark({ size: 22 }) : ''}${h.esc(c.profile.name)}</div><div class="meta">${h.esc(c.profile.role)} · ${h.esc(c.profile.location)}</div></div>
     <div class="c3">${h.statusPill('status', 'All systems up · 2 min ago')}</div>
     <nav class="c6" aria-label="Sections">${c.nav.map((n) => `<a href="${n.href}">${n.label}</a>`).join('')}</nav>
   </div>
@@ -218,11 +226,12 @@ export default {
       <div class="cta"><a class="btn red" href="#work">Work ${h.icon('arrow-down')}</a><a class="btn" href="${c.profile.cv}">CV, PDF</a><a class="btn" href="${c.profile.github}" target="_blank" rel="noopener">GitHub</a><a class="btn" href="${c.profile.linkedin}" target="_blank" rel="noopener">LinkedIn</a></div>
     </div>
   </div>
+  ${h.hasMedia('plate-swiss-ledger') ? `<figure class="band" data-in style="--i:4" aria-hidden="true">${h.picture('plate-swiss-ledger', { sizes: '100vw', loading: 'eager' })}</figure>` : ''}
 </section>
 
 <section class="sec" id="work">
   <div class="head" data-reveal><span class="n">1</span><h2>Live applications</h2><p>Seven, each deployed and open. Data resets nightly.</p></div>
-  <div class="thumbs" data-reveal>${c.demos.map((d, i) => `<a href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" data-thumb="${d.slug}" aria-label="${h.esc(d.name)}">${h.shot(d)}<span>${String(i + 1).padStart(2, '0')}</span></a>`).join('')}</div>
+  <div class="thumbs" data-reveal>${c.demos.map((d, i) => `<a href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" data-thumb="${d.slug}" aria-label="${h.esc(d.name)}">${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}<span>${String(i + 1).padStart(2, '0')}</span></a>`).join('')}</div>
   <div class="tablewrap" data-reveal>
     <table>
       <thead><tr><th>№</th><th>Application</th><th>Type</th><th>Stack</th><th>Year</th><th>Status</th><th>Links</th></tr></thead>

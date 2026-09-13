@@ -1,0 +1,13 @@
+{
+  "approval_summary": "User selected palette 1, Ink and Signal, at checkpoint 2 (2026-09-13).",
+  "palette": {
+    "colors": [
+      { "hex": "#101828", "name": "Ink", "role": "text" },
+      { "hex": "#F7F7F5", "name": "Paper", "role": "background" },
+      { "hex": "#6D93FF", "name": "Signal", "role": "primary" },
+      { "hex": "#6FD0FF", "name": "Pulse", "role": "support" },
+      { "hex": "#22C55E", "name": "Live", "role": "support" }
+    ],
+    "gradients": []
+  }
+}

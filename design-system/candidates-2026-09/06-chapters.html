@@ -18,11 +18,25 @@
 try{var q=new URLSearchParams(location.search);var t=q.get('theme')||localStorage.getItem('theme');
 if(t==='dark'||t==='light')h.setAttribute('data-theme',t);if(q.get('bare'))h.classList.add('bare');}catch(e){}})();
 </script>
-<style>*,*::before,*::after{box-sizing:border-box;border:0 solid}html{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5}body{margin:0;line-height:inherit;min-height:100vh}h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ol,ul{list-style:none;margin:0;padding:0}img,svg,video{display:block;max-width:100%;height:auto}button,input,select,textarea{font:inherit;color:inherit;margin:0;padding:0;background:transparent}button{cursor:pointer}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1em}table{border-collapse:collapse;text-indent:0;border-color:inherit}:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}.mkc{position:fixed;right:12px;bottom:12px;z-index:1000;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,22,26,.86);color:#f4f5f7;font:600 12px/1 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}.mkc a,.mkc button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;color:inherit;white-space:nowrap}.mkc a:hover,.mkc button:hover{background:rgba(255,255,255,.14)}.mkc .n{opacity:.7;font-variant-numeric:tabular-nums}.mkc svg{width:14px;height:14px}.mkc button:focus-visible,.mkc a:focus-visible{outline:2px solid #fff;outline-offset:2px}.bare .mkc{display:none}@media print{.mkc{display:none}}
+<style>*,*::before,*::after{box-sizing:border-box;border:0 solid}html{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5}body{margin:0;line-height:inherit;min-height:100vh}h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ol,ul{list-style:none;margin:0;padding:0}img,svg,video{display:block;max-width:100%;height:auto}button,input,select,textarea{font:inherit;color:inherit;margin:0;padding:0;background:transparent}button{cursor:pointer}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1em}table{border-collapse:collapse;text-indent:0;border-color:inherit}:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}.mkc{position:fixed;right:12px;bottom:12px;z-index:1000;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,22,26,.86);color:#f4f5f7;font:600 12px/1 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}.mkc a,.mkc button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;color:inherit;white-space:nowrap}.mkc a:hover,.mkc button:hover{background:rgba(255,255,255,.14)}.mkc .n{opacity:.7;font-variant-numeric:tabular-nums}.mkc svg{width:14px;height:14px}.mkc button:focus-visible,.mkc a:focus-visible{outline:2px solid #fff;outline-offset:2px}.bare .mkc{display:none}@media print{.mkc{display:none}}:root{--a-pos:light-dark(#b45309,#f59e0b);--a-besttrend:light-dark(#0e7490,#22d3ee);--a-besttrend-api:light-dark(#0f766e,#2dd4bf);--a-invoice:light-dark(#7c3aed,#a78bfa);--a-findjob:light-dark(#be185d,#f472b6);--a-tireshop:light-dark(#b91c1c,#f87171);--a-timezone:light-dark(#1d4ed8,#60a5fa);--brand:#6D93FF;--brand-ink:#101828;--brand-paper:#F7F7F5;--brand-soft:#6FD0FF;--brand-up:#22C55E}picture{display:contents}
+:where(.has-plate){position:relative;isolation:isolate;background-color:var(--plate-under,var(--bg))}
+:where(.has-plate>*:not(.plate)){position:relative;z-index:1}
+.plate{position:absolute;inset:var(--plate-inset,0);z-index:0;overflow:hidden;pointer-events:none;-webkit-mask-image:var(--plate-mask,radial-gradient(closest-side,#000 45%,transparent 100%));mask-image:var(--plate-mask,radial-gradient(closest-side,#000 45%,transparent 100%))}
+.plate img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--plate-pos,center);opacity:var(--plate-o,.5)}
+.plate--light{mix-blend-mode:multiply}
+.plate--dark{mix-blend-mode:multiply}.plate--dark img{filter:invert(1) hue-rotate(180deg)}
+:root[data-theme=dark] .plate img{opacity:var(--plate-o-dark,.3)}
+:root[data-theme=dark] .plate--light{mix-blend-mode:screen}:root[data-theme=dark] .plate--light img{filter:invert(1) hue-rotate(180deg)}
+:root[data-theme=dark] .plate--dark{mix-blend-mode:screen}:root[data-theme=dark] .plate--dark img{filter:none}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme=light]) .plate img{opacity:var(--plate-o-dark,.3)}
+:root:not([data-theme=light]) .plate--light{mix-blend-mode:screen}:root:not([data-theme=light]) .plate--light img{filter:invert(1) hue-rotate(180deg)}
+:root:not([data-theme=light]) .plate--dark{mix-blend-mode:screen}:root:not([data-theme=light]) .plate--dark img{filter:none}
+}
+@media print{.plate{display:none}}
 
 :root{color-scheme:light dark;
 --bg:light-dark(#f2f2f2,#141414);--surface:light-dark(#ffffff,#1c1c1c);--ink:light-dark(#161616,#f0f0f0);--ink-2:light-dark(#4b4b4b,#b9b9b9);--ink-3:light-dark(#6b6b6b,#8f8f8f);--line:light-dark(#d6d6d6,#2a2a2a);--line-2:light-dark(#161616,#f0f0f0);--up:light-dark(#15803d,#4ade80);--focus:var(--ink);
---a-pos:light-dark(#b45309,#f59e0b);--a-besttrend:light-dark(#0e7490,#22d3ee);--a-besttrend-api:light-dark(#0f766e,#2dd4bf);--a-invoice:light-dark(#7c3aed,#a78bfa);--a-findjob:light-dark(#be185d,#f472b6);--a-tireshop:light-dark(#b91c1c,#f87171);--a-timezone:light-dark(#1d4ed8,#60a5fa);
 --mark-bg:light-dark(#161616,#f0f0f0);--mark-fg:light-dark(#f2f2f2,#141414);--mark-pulse:light-dark(#6b6b6b,#8f8f8f);--mark-dot:var(--up);
 --display:"Anybody",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--ease:cubic-bezier(.2,.8,.2,1)}
 :root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
@@ -93,6 +107,11 @@ html.js .cover .claim{animation-delay:.15s}html.js .cover .cta{animation-delay:.
 .ch .frame img{width:100%;height:100%;object-fit:cover;object-position:top}
 .ch .frame a{position:absolute;inset:0}
 .ch .frame a:focus-visible{outline:3px solid var(--ch);outline-offset:-3px}
+/* generated media: each chapter opens on its key visual (the screenshot on hover or focus); a studio plate across the cover */
+.ch .frame img.kv{position:absolute;inset:0;object-position:center;transition:opacity .6s var(--ease)}
+.ch .frame:hover img.kv,.ch .frame:focus-within img.kv{opacity:0}
+@media (hover:none){.ch .frame img.kv{display:none}}
+.cover.has-plate{--plate-o:.5;--plate-o-dark:.3;--plate-inset:0 calc(-1 * clamp(16px,4vw,64px));--plate-mask:linear-gradient(180deg,#000 55%,transparent)}
 html.js .ch .num,html.js .ch h2,html.js .ch .body,html.js .ch .media{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 html.js .ch .rule{transform:scaleX(0);transition:transform 1s var(--ease) .15s}
 html.js .ch.is-in .num,html.js .ch.is-in h2,html.js .ch.is-in .body,html.js .ch.is-in .media{opacity:1;transform:none}
@@ -155,7 +174,7 @@ footer a:hover{color:var(--ink)}
   <a href="#colophon" data-for="colophon"><span>Colophon</span><i></i></a>
 </nav>
 <main id="main">
-<section class="cover" id="cover">
+<section class="cover has-plate" id="cover">
   <header class="top">
     <a class="brand" href="#cover"><svg class="" width="30" height="30" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="var(--mark-bg,#101828)"/><path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".55"/><path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="var(--mark-pulse,#6FD0FF)" stroke-width="2.4" stroke-linecap="round" opacity=".3"/><circle cx="40" cy="24" r="3" fill="var(--mark-dot,#6D93FF)"/><text x="12" y="49" font-family="Anybody, system-ui, sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="var(--mark-fg,#F1F4F9)">mk</text></svg><span>Muhammed Kado</span></a>
     <span class="pill" data-status-pill data-state="up"><span class="dot" aria-hidden="true"></span><span data-status-text>All systems up · checked 2 min ago</span></span>
@@ -173,12 +192,13 @@ footer a:hover{color:var(--ink)}
     </nav>
   </div>
   <div class="foot"><span><b>3 yrs 3 mo</b> at USTEK RFID, counting</span><span>Deployed in <b>30+ countries</b></span><span>İstanbul, Turkey · UTC+3</span></div>
+  <div class="plate plate--light" aria-hidden="true"><picture><source type="image/avif" srcset="media/plate-chapters-800.avif 800w, media/plate-chapters-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="media/plate-chapters-800.webp 800w, media/plate-chapters-1600.webp 1600w" sizes="100vw"><img src="media/plate-chapters-1600.webp" width="1600" height="900" alt="" loading="eager" decoding="async" fetchpriority="high" ></picture></div>
 </section>
 
 <section class="ch" id="ch-pos" style="--ch:var(--a-pos)" aria-labelledby="h-pos">
   <div class="head"><span class="num" aria-hidden="true">01</span><div class="rule"></div><h2 id="h-pos">POS Admin Dashboard</h2>
     <div class="kind"><span><span class="dot" data-status-dot="pos" data-state="up" title="pos: up" aria-hidden="true"></span>up</span><span>Back office</span><span>2024</span><span>EN · AR (RTL)</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://pos.mkado.dev/demo/admin" target="_blank" rel="noopener" aria-label="Open POS Admin Dashboard"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-pos-800.avif 800w, media/kv-pos-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-pos-800.webp 800w, media/kv-pos-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-pos-1600.webp" width="1600" height="900" alt="POS Admin Dashboard, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://pos.mkado.dev/demo/admin" target="_blank" rel="noopener" aria-label="Open POS Admin Dashboard"></a></div></div>
   <div class="body">
     <p>One place where staff manage the shelves and the customers, where a cashier cannot delete the catalogue, and the owner sees stock value at a glance.</p>
     <div class="stack"><span>Laravel 12</span><span>MySQL</span><span>Laratrust</span><span>AdminLTE</span></div>
@@ -189,7 +209,7 @@ footer a:hover{color:var(--ink)}
 </section><section class="ch" id="ch-besttrend" style="--ch:var(--a-besttrend)" aria-labelledby="h-besttrend">
   <div class="head"><span class="num" aria-hidden="true">02</span><div class="rule"></div><h2 id="h-besttrend">BestTrend SY</h2>
     <div class="kind"><span><span class="dot" data-status-dot="besttrend" data-state="up" title="besttrend: up" aria-hidden="true"></span>up</span><span>Platform</span><span>2025</span><span>AR · EN · KU</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://besttrend.mkado.dev" target="_blank" rel="noopener" aria-label="Open BestTrend SY"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-besttrend-800.avif 800w, media/kv-besttrend-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-besttrend-800.webp 800w, media/kv-besttrend-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-besttrend-1600.webp" width="1600" height="900" alt="BestTrend SY, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://besttrend.mkado.dev" target="_blank" rel="noopener" aria-label="Open BestTrend SY"></a></div></div>
   <div class="body">
     <p>Owners list on Facebook groups and buyers scroll for hours. Structured listings, photos on a CDN, three languages, one admin panel.</p>
     <div class="stack"><span>Laravel 12 API</span><span>Sanctum</span><span>PostgreSQL</span><span>React 19</span><span>TypeScript</span><span>Tailwind</span></div>
@@ -200,7 +220,7 @@ footer a:hover{color:var(--ink)}
 </section><section class="ch" id="ch-besttrend-api" style="--ch:var(--a-besttrend-api)" aria-labelledby="h-besttrend-api">
   <div class="head"><span class="num" aria-hidden="true">03</span><div class="rule"></div><h2 id="h-besttrend-api">BestTrend Admin &amp; API</h2>
     <div class="kind"><span><span class="dot" data-status-dot="besttrend-api" data-state="up" title="besttrend-api: up" aria-hidden="true"></span>up</span><span>API + back office</span><span>2025</span><span>AR · EN</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://besttrend-api.mkado.dev/admin/demo" target="_blank" rel="noopener" aria-label="Open BestTrend Admin &amp; API"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-besttrend-api-800.avif 800w, media/kv-besttrend-api-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-besttrend-api-800.webp 800w, media/kv-besttrend-api-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-besttrend-api-1600.webp" width="1600" height="900" alt="BestTrend Admin &amp; API, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://besttrend-api.mkado.dev/admin/demo" target="_blank" rel="noopener" aria-label="Open BestTrend Admin &amp; API"></a></div></div>
   <div class="body">
     <p>One Laravel core serving two clients with opposite needs: a token-based JSON API for the app and a session-based staff back office with granular permissions.</p>
     <div class="stack"><span>Laravel 12</span><span>Sanctum</span><span>PostgreSQL</span><span>AdminLTE</span><span>REST API</span></div>
@@ -211,7 +231,7 @@ footer a:hover{color:var(--ink)}
 </section><section class="ch" id="ch-invoice" style="--ch:var(--a-invoice)" aria-labelledby="h-invoice">
   <div class="head"><span class="num" aria-hidden="true">04</span><div class="rule"></div><h2 id="h-invoice">Invoice System</h2>
     <div class="kind"><span><span class="dot" data-status-dot="invoice" data-state="up" title="invoice: up" aria-hidden="true"></span>up</span><span>Business app</span><span>2025</span><span>EN</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://invoice.mkado.dev/demo.php" target="_blank" rel="noopener" aria-label="Open Invoice System"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-invoice-800.avif 800w, media/kv-invoice-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-invoice-800.webp 800w, media/kv-invoice-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-invoice-1600.webp" width="1600" height="900" alt="Invoice System, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://invoice.mkado.dev/demo.php" target="_blank" rel="noopener" aria-label="Open Invoice System"></a></div></div>
   <div class="body">
     <p>Invoices that look right and a list that shows who still owes money, written without a framework to show sessions, CSRF and prepared statements done by hand.</p>
     <div class="stack"><span>PHP 8</span><span>MySQL</span><span>PDO</span><span>TCPDF</span><span>PHPMailer</span></div>
@@ -222,7 +242,7 @@ footer a:hover{color:var(--ink)}
 </section><section class="ch" id="ch-findjob" style="--ch:var(--a-findjob)" aria-labelledby="h-findjob">
   <div class="head"><span class="num" aria-hidden="true">05</span><div class="rule"></div><h2 id="h-findjob">Find Job with AI</h2>
     <div class="kind"><span><span class="dot" data-status-dot="findjob" data-state="up" title="findjob: up" aria-hidden="true"></span>up</span><span>AI tool</span><span>2025</span><span>EN</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://findjob.mkado.dev" target="_blank" rel="noopener" aria-label="Open Find Job with AI"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-findjob-800.avif 800w, media/kv-findjob-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-findjob-800.webp 800w, media/kv-findjob-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-findjob-1600.webp" width="1600" height="900" alt="Find Job with AI, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://findjob.mkado.dev" target="_blank" rel="noopener" aria-label="Open Find Job with AI"></a></div></div>
   <div class="body">
     <p>Matching a CV to postings by hand is slow and vague. Turn the PDF into structured data, let the user correct it, score each posting with a reason, and keep the demo cost on a leash.</p>
     <div class="stack"><span>Laravel 12</span><span>Gemini API</span><span>Alpine.js</span><span>Tailwind</span></div>
@@ -233,7 +253,7 @@ footer a:hover{color:var(--ink)}
 </section><section class="ch" id="ch-tireshop" style="--ch:var(--a-tireshop)" aria-labelledby="h-tireshop">
   <div class="head"><span class="num" aria-hidden="true">06</span><div class="rule"></div><h2 id="h-tireshop">Tire Shop PWA</h2>
     <div class="kind"><span><span class="dot" data-status-dot="tireshop" data-state="up" title="tireshop: up" aria-hidden="true"></span>up</span><span>PWA</span><span>2025</span><span>AR (RTL)</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://tireshop.mkado.dev" target="_blank" rel="noopener" aria-label="Open Tire Shop PWA"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-tireshop-800.avif 800w, media/kv-tireshop-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-tireshop-800.webp 800w, media/kv-tireshop-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-tireshop-1600.webp" width="1600" height="900" alt="Tire Shop PWA, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://tireshop.mkado.dev" target="_blank" rel="noopener" aria-label="Open Tire Shop PWA"></a></div></div>
   <div class="body">
     <p>A small tire shop runs on a phone. Today’s sales and profit at a glance, low-stock warnings, expenses, and no login screen on day one.</p>
     <div class="stack"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind 4</span></div>
@@ -244,7 +264,7 @@ footer a:hover{color:var(--ink)}
 </section><section class="ch" id="ch-timezone" style="--ch:var(--a-timezone)" aria-labelledby="h-timezone">
   <div class="head"><span class="num" aria-hidden="true">07</span><div class="rule"></div><h2 id="h-timezone">TimeZone.tools</h2>
     <div class="kind"><span><span class="dot" data-status-dot="timezone" data-state="up" title="timezone: up" aria-hidden="true"></span>up</span><span>Utility</span><span>2025</span><span>7 languages · RTL</span></div></div>
-  <div class="media"><div class="frame"><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><a href="https://timezone.mkado.dev" target="_blank" rel="noopener" aria-label="Open TimeZone.tools"></a></div></div>
+  <div class="media"><div class="frame"><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><picture><source type="image/avif" srcset="media/kv-timezone-800.avif 800w, media/kv-timezone-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-timezone-800.webp 800w, media/kv-timezone-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-timezone-1600.webp" width="1600" height="900" alt="TimeZone.tools, key visual" loading="lazy" decoding="async" class="kv"></picture><a href="https://timezone.mkado.dev" target="_blank" rel="noopener" aria-label="Open TimeZone.tools"></a></div></div>
   <div class="body">
     <p>Remote teams keep asking the same three questions: what time is it there, when can we all meet, and how many working days until a date.</p>
     <div class="stack"><span>React 19</span><span>TypeScript</span><span>Vite</span><span>Tailwind 4</span><span>i18next</span></div>
@@ -290,7 +310,7 @@ footer a:hover{color:var(--ink)}
 </main>
 <nav class="mkc" aria-label="Candidate designs">
 <a href="index.html"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>All designs</span></a>
-<span class="n" style="padding:0 6px">06 / 07</span>
+<span class="n" style="padding:0 6px">06 / 10</span>
 <button type="button" data-mkc-toggle aria-label="Switch between dark and light"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></button>
 </nav>
 <script>(function(){var h=document.documentElement,b=document.querySelector('[data-mkc-toggle]');if(!b)return;

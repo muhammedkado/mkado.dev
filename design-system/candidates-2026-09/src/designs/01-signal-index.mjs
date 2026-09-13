@@ -106,6 +106,13 @@ html.js .hero .lede{animation-delay:.55s}html.js .hero .cta{animation-delay:.7s}
 .preview .cap{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding-top:14px;font-size:14px;color:var(--ink-2)}
 .preview .cap b{font:500 13px/1 var(--body);color:var(--ink-3);letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .preview .cap span{transition:opacity .4s var(--ease)}
+/* generated media: a paper plate behind the hero; key visuals in the preview, the screenshot once a row is opened */
+.hero.has-plate{--plate-o:.45;--plate-o-dark:.35}
+.preview.has-kv img.kv{object-position:center}
+.preview.has-kv img.shot{clip-path:inset(0 0 100% 0);z-index:0}
+.preview.has-kv.show-shot img.shot.is-on{clip-path:inset(0 0 0 0);z-index:2}
+.preview.has-kv.show-shot img.kv{clip-path:inset(0 0 100% 0)}
+.preview .hint{display:none}.preview.has-kv .hint{display:block;margin-top:6px;font-size:12.5px;color:var(--ink-3)}
 /* how it runs */
 .how{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,80px)}
 .how h2{font-size:clamp(28px,3.6vw,46px);line-height:1.05;font-variation-settings:"opsz" 96}
@@ -228,7 +235,7 @@ export default {
 </header>
 
 <main id="main">
-<section class="hero" id="top">
+<section class="hero${h.plateClass('plate-signal-index')}" id="top">
   <div>
     <p class="label">${h.esc(c.profile.title)} · ${h.esc(c.profile.role)} · ${h.esc(c.profile.tz)}</p>
     <h1>${headline}</h1>
@@ -246,6 +253,7 @@ export default {
     <div><dt class="label">Languages</dt><dd>Kurdish · Arabic · Turkish · English</dd></div>
     <div><dt class="label">Open to</dt><dd>Full-time, remote or İstanbul · freelance</dd></div>
   </dl>
+  ${h.plate('plate-signal-index')}
 </section>
 
 <section class="sec" id="work">
@@ -255,9 +263,10 @@ export default {
   </div>
   <div class="index">
     <ol class="rows" data-reveal>${rows}</ol>
-    <aside class="preview" aria-hidden="true">
-      <div class="frame">${c.demos.map((d, i) => h.shot(d, `data-for="${d.slug}"${i === 0 ? ' class="is-on"' : ''}`)).join('')}</div>
+    <aside class="preview${c.demos.every((d) => h.hasMedia(d.visual)) ? ' has-kv' : ''}" aria-hidden="true">
+      <div class="frame">${c.demos.map((d, i) => h.keyVisual(d, `class="kv${i === 0 ? ' is-on' : ''}" data-for="${d.slug}"`, { fallback: false }) + h.shot(d, `class="shot${i === 0 ? ' is-on' : ''}" data-for="${d.slug}"`)).join('')}</div>
       <div class="cap"><b data-cap-num>01</b><span data-cap-text>${h.esc(c.demos[0].problem)}</span></div>
+      <p class="hint">Open a row to see the live screenshot.</p>
     </aside>
   </div>
 </section>
@@ -334,7 +343,7 @@ ${h.copyScript}
 <script>
 (function(){
   var rows=[].slice.call(document.querySelectorAll('.row'));var imgs=[].slice.call(document.querySelectorAll('.preview img'));
-  var capN=document.querySelector('[data-cap-num]'),capT=document.querySelector('[data-cap-text]');
+  var capN=document.querySelector('[data-cap-num]'),capT=document.querySelector('[data-cap-text]'),pv=document.querySelector('.preview');
   var problems=${JSON.stringify(Object.fromEntries(c.demos.map((d) => [d.slug, d.problem])))};
   function show(row){var s=row.dataset.slug;rows.forEach(function(r){r.classList.toggle('is-on',r===row)});imgs.forEach(function(im){im.classList.toggle('is-on',im.dataset.for===s)});
     if(capN){capN.textContent=String(rows.indexOf(row)+1).padStart(2,'0')}if(capT){capT.style.opacity=0;setTimeout(function(){capT.textContent=problems[s];capT.style.opacity=1},160)}}
@@ -342,7 +351,7 @@ ${h.copyScript}
     row.addEventListener('mouseenter',function(){show(row)});btn.addEventListener('focus',function(){show(row)});
     btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';
       rows.forEach(function(r){r.querySelector('.row-btn').setAttribute('aria-expanded','false');r.querySelector('.panel').hidden=true});
-      if(!open){btn.setAttribute('aria-expanded','true');panel.hidden=false;show(row)}})});
+      if(!open){btn.setAttribute('aria-expanded','true');panel.hidden=false;show(row)}if(pv)pv.classList.toggle('show-shot',!open)})});
   var f=document.querySelector('form');f&&f.addEventListener('submit',function(e){e.preventDefault();var m=document.createElement('p');m.className='sent';m.textContent='Design mockup: on the built site this posts to /api/contact, stores the message and notifies me.';f.replaceChildren(m)});
 })();
 </script>

@@ -48,6 +48,11 @@ html.js .intro>*{opacity:0;animation:rise .8s var(--ease) forwards}html.js .intr
 .tile:hover img{transform:scale(1.035)}
 .tile .open{position:absolute;inset:0;z-index:1}
 .tile .open:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+/* generated media: the screenshots stay the wall; a tile's key visual fades in behind its caption on hover; a plate behind the intro */
+.tile img.kv{position:absolute;inset:0;object-position:center;opacity:0;transition:opacity .6s var(--ease),transform .9s var(--ease)}
+.tile:hover img.kv,.tile:focus-within img.kv{opacity:1}
+@media (hover:none){.tile img.kv{display:none}}
+.intro.has-plate{--plate-o:.6;--plate-o-dark:.35}
 .tile .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 16px 14px;color:#fff;background:linear-gradient(180deg,transparent,rgba(10,12,14,.78) 60%);pointer-events:none;display:grid;gap:8px}
 .tile .cap .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .tile .cap h3{font-size:clamp(17px,1.6vw,22px);line-height:1.1;color:#fff}
@@ -146,7 +151,7 @@ export default {
     const t = h.tenure(c.experience.startDate);
     const tiles = c.demos
       .map((d, i) => `<article class="tile t-${d.slug}" data-reveal>
-  ${h.shot(d)}
+  ${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}
   <a class="open" href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}${d.demoUrl ? ', signed in' : ''}"></a>
   <div class="cap">
     <div class="row"><h3>${h.esc(d.name)}</h3><span class="kind">${h.statusDot(d.slug)}${h.esc(d.kind)} · ${d.period}</span></div>
@@ -169,12 +174,13 @@ export default {
   ${h.statusPill('pill')}
 </header>
 <main id="main">
-<section class="intro" id="top">
+<section class="intro${h.plateClass('plate-gallery-wall')}" id="top">
   <h1>Seven apps you can open. <span>Built end to end</span>, running right now.</h1>
   <div class="side">
     <p>${h.esc(c.profile.headline)} ${h.esc(c.profile.plain)}</p>
     <div class="cta"><a class="btn primary" href="#work">See the wall ${h.icon('arrow-down')}</a><a class="btn" href="${c.profile.cv}">${h.icon('download')} CV</a><a class="btn" href="${c.profile.github}" target="_blank" rel="noopener">${h.icon('github')} GitHub</a></div>
   </div>
+  ${h.plate('plate-gallery-wall')}
 </section>
 
 <section id="work" aria-label="Live applications">

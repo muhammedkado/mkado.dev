@@ -33,6 +33,12 @@ src/gallery.mjs      the gallery template
 src/designs/         one module per design, fully self-contained (own CSS, structure and scripts)
 shots/               the seven demo screenshots, copied from src/assets/shots at build time
 previews/            output of shoot.mjs, used by the gallery
+media.mjs            Higgsfield generation: cost gate, download, sharp to AVIF/WebP, manifest, logo post-processing
+higgsfield-oauth.mjs sign-in for the Higgsfield MCP (device code), used by media.mjs
+src/media-brief.mjs  every generated asset: model, params, prompt (7 key visuals, 10 plates, 3 logo candidates)
+media/               optimised outputs + manifest.json (committed)
+media-src/           originals and raw job responses (gitignored; re-fetch from the manifest URLs)
+brandkit/            Higgsfield brandkit state: approved palette, brand lock, review boards
 ```
 
 ```
@@ -53,4 +59,28 @@ node design-system/candidates-2026-09/check.mjs        # contrast below 4.5:1 (3
 - Fonts come from Google Fonts here only. Production CSP is `font-src 'self'`, so the winner's
   faces are installed from fontsource when it is built into the Astro site.
 - `artifact.html` is the gallery without the document wrapper, for publishing as a claude.ai
-  artifact together with the ten pages, `shots/` and `previews/`.
+  artifact together with the ten pages, `shots/`, `previews/` and `media/`.
+
+## Generated media (Higgsfield)
+
+```
+node design-system/candidates-2026-09/media.mjs --balance          # credits left
+node design-system/candidates-2026-09/media.mjs --plan --cap 100   # cost of what is missing, no spend
+node design-system/candidates-2026-09/media.mjs --only kv-pos      # generate (refuses past the cap)
+node design-system/candidates-2026-09/media.mjs --import kv-pos=<url> --cost 3   # a result made elsewhere
+node design-system/candidates-2026-09/media.mjs --logo media-src/logo-2.svg      # approved mark → media/logo-mark.svg
+```
+
+- Media is optional. Until an asset exists, pages render exactly as before and `build.mjs` lists
+  what is missing. Helpers: `h.plate(id)` + `h.plateClass(id)` for a hero plate,
+  `h.keyVisual(demo, attrs, { fallback })` for a project cover, `h.picture(id)` for a plain figure.
+- One image per asset serves both themes. A plate made for a light ground multiplies on light and
+  is inverted and screened on dark (and the reverse for a dark ground); tune per design with
+  `--plate-o`, `--plate-o-dark`, `--plate-mask`.
+- Key visuals cover the screenshots on hover-capable screens; the live screenshot shows on hover or
+  focus, and touch screens keep the screenshot (Gallery Wall inverts this; Monolith's cursor preview
+  and Swiss Ledger's strip show covers only).
+- `check.mjs` cannot see through a blend, so it counts text over generated media separately; look at
+  those spots in both themes.
+- Production CSP is `img-src 'self' data:`: only the optimised copies in `media/` are ever referenced,
+  never Higgsfield URLs.

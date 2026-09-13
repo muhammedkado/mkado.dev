@@ -18,7 +18,22 @@
 try{var q=new URLSearchParams(location.search);var t=q.get('theme')||localStorage.getItem('theme');
 if(t==='dark'||t==='light')h.setAttribute('data-theme',t);if(q.get('bare'))h.classList.add('bare');}catch(e){}})();
 </script>
-<style>*,*::before,*::after{box-sizing:border-box;border:0 solid}html{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5}body{margin:0;line-height:inherit;min-height:100vh}h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ol,ul{list-style:none;margin:0;padding:0}img,svg,video{display:block;max-width:100%;height:auto}button,input,select,textarea{font:inherit;color:inherit;margin:0;padding:0;background:transparent}button{cursor:pointer}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1em}table{border-collapse:collapse;text-indent:0;border-color:inherit}:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}.mkc{position:fixed;right:12px;bottom:12px;z-index:1000;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,22,26,.86);color:#f4f5f7;font:600 12px/1 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}.mkc a,.mkc button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;color:inherit;white-space:nowrap}.mkc a:hover,.mkc button:hover{background:rgba(255,255,255,.14)}.mkc .n{opacity:.7;font-variant-numeric:tabular-nums}.mkc svg{width:14px;height:14px}.mkc button:focus-visible,.mkc a:focus-visible{outline:2px solid #fff;outline-offset:2px}.bare .mkc{display:none}@media print{.mkc{display:none}}
+<style>*,*::before,*::after{box-sizing:border-box;border:0 solid}html{-webkit-text-size-adjust:100%;tab-size:4;line-height:1.5}body{margin:0;line-height:inherit;min-height:100vh}h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}ol,ul{list-style:none;margin:0;padding:0}img,svg,video{display:block;max-width:100%;height:auto}button,input,select,textarea{font:inherit;color:inherit;margin:0;padding:0;background:transparent}button{cursor:pointer}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:1em}table{border-collapse:collapse;text-indent:0;border-color:inherit}:focus-visible{outline:2px solid var(--focus,currentColor);outline-offset:3px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}.mkc{position:fixed;right:12px;bottom:12px;z-index:1000;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px;background:rgba(20,22,26,.86);color:#f4f5f7;font:600 12px/1 system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}.mkc a,.mkc button{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;color:inherit;white-space:nowrap}.mkc a:hover,.mkc button:hover{background:rgba(255,255,255,.14)}.mkc .n{opacity:.7;font-variant-numeric:tabular-nums}.mkc svg{width:14px;height:14px}.mkc button:focus-visible,.mkc a:focus-visible{outline:2px solid #fff;outline-offset:2px}.bare .mkc{display:none}@media print{.mkc{display:none}}:root{--a-pos:light-dark(#b45309,#f59e0b);--a-besttrend:light-dark(#0e7490,#22d3ee);--a-besttrend-api:light-dark(#0f766e,#2dd4bf);--a-invoice:light-dark(#7c3aed,#a78bfa);--a-findjob:light-dark(#be185d,#f472b6);--a-tireshop:light-dark(#b91c1c,#f87171);--a-timezone:light-dark(#1d4ed8,#60a5fa);--brand:#6D93FF;--brand-ink:#101828;--brand-paper:#F7F7F5;--brand-soft:#6FD0FF;--brand-up:#22C55E}picture{display:contents}
+:where(.has-plate){position:relative;isolation:isolate;background-color:var(--plate-under,var(--bg))}
+:where(.has-plate>*:not(.plate)){position:relative;z-index:1}
+.plate{position:absolute;inset:var(--plate-inset,0);z-index:0;overflow:hidden;pointer-events:none;-webkit-mask-image:var(--plate-mask,radial-gradient(closest-side,#000 45%,transparent 100%));mask-image:var(--plate-mask,radial-gradient(closest-side,#000 45%,transparent 100%))}
+.plate img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--plate-pos,center);opacity:var(--plate-o,.5)}
+.plate--light{mix-blend-mode:multiply}
+.plate--dark{mix-blend-mode:multiply}.plate--dark img{filter:invert(1) hue-rotate(180deg)}
+:root[data-theme=dark] .plate img{opacity:var(--plate-o-dark,.3)}
+:root[data-theme=dark] .plate--light{mix-blend-mode:screen}:root[data-theme=dark] .plate--light img{filter:invert(1) hue-rotate(180deg)}
+:root[data-theme=dark] .plate--dark{mix-blend-mode:screen}:root[data-theme=dark] .plate--dark img{filter:none}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme=light]) .plate img{opacity:var(--plate-o-dark,.3)}
+:root:not([data-theme=light]) .plate--light{mix-blend-mode:screen}:root:not([data-theme=light]) .plate--light img{filter:invert(1) hue-rotate(180deg)}
+:root:not([data-theme=light]) .plate--dark{mix-blend-mode:screen}:root:not([data-theme=light]) .plate--dark img{filter:none}
+}
+@media print{.plate{display:none}}
 
 :root{color-scheme:light dark;
 --bg:light-dark(#ffffff,#071a3f);--grid:light-dark(rgba(15,61,145,.10),rgba(230,238,255,.09));--surface:light-dark(#f3f6fc,#0c2454);--ink:light-dark(#0f3d91,#e6eeff);--ink-2:light-dark(#3c5a9c,#b9c8ea);--ink-3:light-dark(#56699a,#8da2cf);--line:light-dark(#b8c6e6,#2a4a8c);--line-2:light-dark(#0f3d91,#e6eeff);--hi:light-dark(#c2410c,#ffb454);--hi-ink:light-dark(#ffffff,#071a3f);--hi-soft:light-dark(#fdebe1,#3a2a12);--up:light-dark(#0f7a3a,#4ade80);--focus:var(--hi);
@@ -117,6 +132,11 @@ html.js .draw text,html.js .draw .dg-marker,html.js .draw .dg-tag{opacity:0;anim
 .spec .fig{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start}
 .spec .fig img{border:1px solid var(--line-2)}
 .spec .fig .mono{align-self:end}
+/* generated media: each sheet pairs a concept figure with the screenshot; a vellum plate behind the hero */
+.spec .fig.has-kv{grid-template-columns:120px 120px 1fr}
+.spec .fig.has-kv img{width:100%;aspect-ratio:1440/900;object-fit:cover}
+@media (max-width:560px){.spec .fig.has-kv{grid-template-columns:1fr 1fr}.spec .fig.has-kv .mono{grid-column:1 / -1}}
+.hero.has-plate{--plate-o:.4;--plate-o-dark:.3}
 .spec .inline-dg{display:none;border:1px solid var(--line);background:var(--surface);padding:8px}
 .spec dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
 .spec dt{font:500 10.5px/1.8 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
@@ -186,7 +206,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
   <nav class="nav" aria-label="Sections"><a href="#work">Work</a><a href="#how">How it runs</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#notes">Notes</a><a href="#contact">Contact</a></nav>
 </header>
 <main id="main">
-<section class="hero pad" id="top">
+<section class="hero pad has-plate" id="top">
   <div>
     <p class="mono">Sheet 1 · General arrangement</p>
     <h1>Muhammed<br>Kado</h1>
@@ -208,6 +228,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
   <div><small>Sheets</small><b>7 apps · 8 diagrams</b></div>
   <div><small>Status</small><b class="status" data-status-pill data-state="up"><span class="dot"></span><span data-status-text>All systems up</span></b></div>
 </div></div>
+  <div class="plate plate--light" aria-hidden="true"><picture><source type="image/avif" srcset="media/plate-blueprint-800.avif 800w, media/plate-blueprint-1600.avif 1600w" sizes="100vw"><source type="image/webp" srcset="media/plate-blueprint-800.webp 800w, media/plate-blueprint-1600.webp 1600w" sizes="100vw"><img src="media/plate-blueprint-1600.webp" width="1600" height="900" alt="" loading="eager" decoding="async" fetchpriority="high" ></picture></div>
 </section>
 
 <section class="sec pad" id="work">
@@ -646,7 +667,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="672" y="258" class="dg-sub" text-anchor="middle">03:00 UTC, migrate:fresh</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 1 · Back office · EN · AR (RTL)</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-pos-800.avif 800w, media/kv-pos-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-pos-800.webp 800w, media/kv-pos-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-pos-1600.webp" width="1600" height="900" alt="POS Admin Dashboard, key visual" loading="lazy" decoding="async" ></picture><img src="shots/pos.png" alt="POS Admin Dashboard, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 1a concept · 1b screen · Back office · EN · AR (RTL)</span></div>
     <dl>
       <dt>Materials</dt><dd>Laravel 12 · MySQL · Laratrust · AdminLTE</dd>
       <dt>Admin</dt><dd><code>admin@app.com</code><button type="button" data-copy="admin@app.com" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>password</code><button type="button" data-copy="password" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd><dt>Super admin</dt><dd><code>superadmin@app.com</code><button type="button" data-copy="superadmin@app.com" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>password</code><button type="button" data-copy="password" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
@@ -707,7 +728,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="656" y="258" class="dg-sub" text-anchor="middle">listing photos (CDN)</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 2 · Platform · AR · EN · KU</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-besttrend-800.avif 800w, media/kv-besttrend-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-besttrend-800.webp 800w, media/kv-besttrend-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-besttrend-1600.webp" width="1600" height="900" alt="BestTrend SY, key visual" loading="lazy" decoding="async" ></picture><img src="shots/besttrend.png" alt="BestTrend SY, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 2a concept · 2b screen · Platform · AR · EN · KU</span></div>
     <dl>
       <dt>Materials</dt><dd>Laravel 12 API · Sanctum · PostgreSQL · React 19 · TypeScript · Tailwind</dd>
       <dt>Property owner</dt><dd><code>demo@besttrend.mkado.dev</code><button type="button" data-copy="demo@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd><dt>Admin panel</dt><dd><code>admin@besttrend.mkado.dev</code><button type="button" data-copy="admin@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
@@ -783,7 +804,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="672" y="378" class="dg-sub" text-anchor="middle">besttrend.mkado.dev</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 3 · API + back office · AR · EN</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-besttrend-api-800.avif 800w, media/kv-besttrend-api-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-besttrend-api-800.webp 800w, media/kv-besttrend-api-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-besttrend-api-1600.webp" width="1600" height="900" alt="BestTrend Admin &amp; API, key visual" loading="lazy" decoding="async" ></picture><img src="shots/besttrend-api.png" alt="BestTrend Admin &amp; API, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 3a concept · 3b screen · API + back office · AR · EN</span></div>
     <dl>
       <dt>Materials</dt><dd>Laravel 12 · Sanctum · PostgreSQL · AdminLTE · REST API</dd>
       <dt>Admin panel</dt><dd><code>admin@besttrend.mkado.dev</code><button type="button" data-copy="admin@besttrend.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
@@ -847,7 +868,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="512" y="258" class="dg-sub" text-anchor="middle">e-mail (off on the demo)</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 4 · Business app · EN</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-invoice-800.avif 800w, media/kv-invoice-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-invoice-800.webp 800w, media/kv-invoice-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-invoice-1600.webp" width="1600" height="900" alt="Invoice System, key visual" loading="lazy" decoding="async" ></picture><img src="shots/invoice.png" alt="Invoice System, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 4a concept · 4b screen · Business app · EN</span></div>
     <dl>
       <dt>Materials</dt><dd>PHP 8 · MySQL · PDO · TCPDF · PHPMailer</dd>
       <dt>Demo</dt><dd><code>demo@invoice.mkado.dev</code><button type="button" data-copy="demo@invoice.mkado.dev" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button> <code>demo1234</code><button type="button" data-copy="demo1234" aria-label="Copy"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></dd>
@@ -920,7 +941,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="104" y="298" class="dg-sub" text-anchor="middle">fallback when budget is spent</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 5 · AI tool · EN</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-findjob-800.avif 800w, media/kv-findjob-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-findjob-800.webp 800w, media/kv-findjob-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-findjob-1600.webp" width="1600" height="900" alt="Find Job with AI, key visual" loading="lazy" decoding="async" ></picture><img src="shots/findjob.png" alt="Find Job with AI, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 5a concept · 5b screen · AI tool · EN</span></div>
     <dl>
       <dt>Materials</dt><dd>Laravel 12 · Gemini API · Alpine.js · Tailwind</dd>
       
@@ -990,7 +1011,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="680" y="258" class="dg-sub" text-anchor="middle">alerts the owner</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 6 · PWA · AR (RTL)</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-tireshop-800.avif 800w, media/kv-tireshop-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-tireshop-800.webp 800w, media/kv-tireshop-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-tireshop-1600.webp" width="1600" height="900" alt="Tire Shop PWA, key visual" loading="lazy" decoding="async" ></picture><img src="shots/tireshop.png" alt="Tire Shop PWA, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 6a concept · 6b screen · PWA · AR (RTL)</span></div>
     <dl>
       <dt>Materials</dt><dd>React 19 · TypeScript · Vite · Tailwind 4</dd>
       
@@ -1054,7 +1075,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 <text x="616" y="178" class="dg-sub" text-anchor="middle">static files, 1y cache</text>
 </svg>
 </div>
-    <div class="fig"><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 7 · Utility · 7 languages · RTL</span></div>
+    <div class="fig has-kv"><picture><source type="image/avif" srcset="media/kv-timezone-800.avif 800w, media/kv-timezone-1600.avif 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><source type="image/webp" srcset="media/kv-timezone-800.webp 800w, media/kv-timezone-1600.webp 1600w" sizes="(min-width: 1024px) 50vw, 100vw"><img src="media/kv-timezone-1600.webp" width="1600" height="900" alt="TimeZone.tools, key visual" loading="lazy" decoding="async" ></picture><img src="shots/timezone.png" alt="TimeZone.tools, screenshot" width="1440" height="900" loading="lazy" decoding="async" ><span class="mono">Fig. 7a concept · 7b screen · Utility · 7 languages · RTL</span></div>
     <dl>
       <dt>Materials</dt><dd>React 19 · TypeScript · Vite · Tailwind 4 · i18next</dd>
       
@@ -1198,7 +1219,7 @@ html.js [data-reveal].is-in{opacity:1;transform:none}
 </div>
 <nav class="mkc" aria-label="Candidate designs">
 <a href="index.html"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>All designs</span></a>
-<span class="n" style="padding:0 6px">07 / 07</span>
+<span class="n" style="padding:0 6px">07 / 10</span>
 <button type="button" data-mkc-toggle aria-label="Switch between dark and light"><svg class="" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg></button>
 </nav>
 <script>(function(){var h=document.documentElement,b=document.querySelector('[data-mkc-toggle]');if(!b)return;

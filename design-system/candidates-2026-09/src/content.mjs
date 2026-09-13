@@ -62,6 +62,8 @@ export const languages = [
 export const demos = [
   {
     slug: 'pos',
+    visual: 'kv-pos',
+    accent: { light: '#b45309', dark: '#f59e0b' },
     name: 'POS Admin Dashboard',
     short: 'POS back office',
     kind: 'Back office',
@@ -81,6 +83,8 @@ export const demos = [
   },
   {
     slug: 'besttrend',
+    visual: 'kv-besttrend',
+    accent: { light: '#0e7490', dark: '#22d3ee' },
     name: 'BestTrend SY',
     short: 'Real-estate platform',
     kind: 'Platform',
@@ -100,6 +104,8 @@ export const demos = [
   },
   {
     slug: 'besttrend-api',
+    visual: 'kv-besttrend-api',
+    accent: { light: '#0f766e', dark: '#2dd4bf' },
     name: 'BestTrend Admin & API',
     short: 'Admin panel + REST API',
     kind: 'API + back office',
@@ -116,6 +122,8 @@ export const demos = [
   },
   {
     slug: 'invoice',
+    visual: 'kv-invoice',
+    accent: { light: '#7c3aed', dark: '#a78bfa' },
     name: 'Invoice System',
     short: 'Invoicing',
     kind: 'Business app',
@@ -132,6 +140,8 @@ export const demos = [
   },
   {
     slug: 'findjob',
+    visual: 'kv-findjob',
+    accent: { light: '#be185d', dark: '#f472b6' },
     name: 'Find Job with AI',
     short: 'AI job matcher',
     kind: 'AI tool',
@@ -148,6 +158,8 @@ export const demos = [
   },
   {
     slug: 'tireshop',
+    visual: 'kv-tireshop',
+    accent: { light: '#b91c1c', dark: '#f87171' },
     name: 'Tire Shop PWA',
     short: 'Tire-shop PWA',
     kind: 'PWA',
@@ -164,6 +176,8 @@ export const demos = [
   },
   {
     slug: 'timezone',
+    visual: 'kv-timezone',
+    accent: { light: '#1d4ed8', dark: '#60a5fa' },
     name: 'TimeZone.tools',
     short: 'Time-zone toolkit',
     kind: 'Utility',
@@ -289,5 +303,14 @@ export const nav = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export const content = { profile, experience, education, languages, demos, projects, proof, skills: skillsWithEvidence, notes, timeline, nav };
+// Brand kit from the Higgsfield brandkit flow (design-system/candidates-2026-09/brandkit/).
+// palette and logo are filled in at the palette and logo checkpoints; type is recorded for
+// Phase B only (the ten candidates keep their own faces, type is a comparison axis).
+export const brand = {
+  palette: { name: 'Ink and Signal', ink: '#101828', paper: '#F7F7F5', accent: '#6D93FF', support: '#6FD0FF', up: '#22C55E' },
+  logo: null,    // { jobId, svg: 'media/logo-original.svg', mark: 'media/logo-mark.svg' }
+  type: null,    // { display, body, links }
+};
+
+export const content = { profile, experience, education, languages, demos, projects, proof, skills: skillsWithEvidence, notes, timeline, nav, brand };
 export default content;

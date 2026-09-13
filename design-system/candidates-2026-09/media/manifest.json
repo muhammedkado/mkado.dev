@@ -1,0 +1,634 @@
+{
+  "version": 1,
+  "cap": 100,
+  "spent": 27,
+  "balanceBefore": 110,
+  "balanceAfter": null,
+  "assets": {
+    "plate-signal-index": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Macro photograph of a sheet of uncoated cream paper stock under raking window light, faint laid-paper texture, the soft shadow of a window mullion crossing diagonally, one thin cobalt pencil rule near the bottom edge, neutral warm tones, low contrast, tack-sharp grain, uninhabited, no text.",
+      "promptSha": "c979fc1688f9",
+      "jobId": "242bba5e-10de-4d43-bcca-ff21cc0d94a0",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161048_242bba5e-10de-4d43-bcca-ff21cc0d94a0.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:12:40.925Z",
+      "src": "media-src/plate-signal-index.png",
+      "outputs": [
+        "media/plate-signal-index-1600.avif",
+        "media/plate-signal-index-1600.webp",
+        "media/plate-signal-index-800.avif",
+        "media/plate-signal-index-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Macro photograph of a sheet of uncoated cream paper stock under raking window light, faint laid-paper texture, the soft shadow of a window mullion crossing diagonally, one thin cobalt pencil rule near the bottom edge, neutral warm tones, low contrast, tack-sharp grain, uninhabited, no text.",
+          "promptSha": "c979fc1688f9",
+          "jobId": "d43bc72f-9ef3-4598-8ee3-4300dfb1c4df",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_d43bc72f-9ef3-4598-8ee3-4300dfb1c4df.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-signal-index.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-swiss-ledger": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Overhead photograph of a blank white sheet of layout paper on a bright light table, faint light-grey grid lines, one corner slightly lifted with a crisp soft shadow, pure neutral greys, extremely minimal, even light, uninhabited, no text.",
+      "promptSha": "005eca2c17c6",
+      "jobId": "b34262ef-bc3a-419a-a0f9-e65a3b05cf06",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161437_b34262ef-bc3a-419a-a0f9-e65a3b05cf06.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:14:41.699Z",
+      "src": "media-src/plate-swiss-ledger.png",
+      "outputs": [
+        "media/plate-swiss-ledger-1600.avif",
+        "media/plate-swiss-ledger-1600.webp",
+        "media/plate-swiss-ledger-800.avif",
+        "media/plate-swiss-ledger-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Overhead photograph of a blank white sheet of layout paper on a bright light table, faint light-grey grid lines, one corner slightly lifted with a crisp soft shadow, pure neutral greys, extremely minimal, even light, uninhabited, no text.",
+          "promptSha": "005eca2c17c6",
+          "jobId": "8d76e99f-7c17-453f-9ac7-a392b13acaf7",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_8d76e99f-7c17-453f-9ac7-a392b13acaf7.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-swiss-ledger.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-gallery-wall": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Photograph of a white gallery wall lit from above by a soft skylight, gentle top-to-bottom light gradient, faint plaster texture, one thin picture rail along the top edge, the shadow of an unseen frame's corner at the right, neutral, minimal, uninhabited, no text.",
+      "promptSha": "d5b5da669620",
+      "jobId": "1a7a5d28-8b31-44f5-833f-4171e8bfe3b4",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_1a7a5d28-8b31-44f5-833f-4171e8bfe3b4.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:15:55.165Z",
+      "src": "media-src/plate-gallery-wall.png",
+      "outputs": [
+        "media/plate-gallery-wall-1600.avif",
+        "media/plate-gallery-wall-1600.webp",
+        "media/plate-gallery-wall-800.avif",
+        "media/plate-gallery-wall-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "history": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Photograph of a white gallery wall lit from above by a soft skylight, gentle top-to-bottom light gradient, faint plaster texture, one thin picture rail along the top edge, the shadow of an unseen frame's corner at the right, neutral, minimal, uninhabited, no text.",
+          "promptSha": "d5b5da669620",
+          "jobId": "8dd0afab-b883-4f03-b976-7126fa2fdd61",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161440_8dd0afab-b883-4f03-b976-7126fa2fdd61.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:14:41.699Z",
+          "src": "media-src/plate-gallery-wall.prev-2026-09-13T16-28-31-074Z.png",
+          "outputs": [
+            "media/plate-gallery-wall-1600.avif",
+            "media/plate-gallery-wall-1600.webp",
+            "media/plate-gallery-wall-800.avif",
+            "media/plate-gallery-wall-800.webp"
+          ],
+          "via": "mcp",
+          "width": 2048,
+          "height": 1152,
+          "outWidth": 1600,
+          "outHeight": 900
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-reel": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Cinematic atmosphere plate: a dark stage filled with thin haze, one soft horizontal anamorphic light streak in warm amber crossing the frame, gentle falloff into deep navy shadows, fine film grain, wide composition, no objects, uninhabited, no text.",
+      "promptSha": "2206242f837d",
+      "jobId": "4da6bf70-1a29-4dc1-94df-30fd003cc730",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161439_4da6bf70-1a29-4dc1-94df-30fd003cc730.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:14:41.699Z",
+      "src": "media-src/plate-reel.png",
+      "outputs": [
+        "media/plate-reel-1600.avif",
+        "media/plate-reel-1600.webp",
+        "media/plate-reel-800.avif",
+        "media/plate-reel-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Cinematic atmosphere plate: a dark stage filled with thin haze, one soft horizontal anamorphic light streak in warm amber crossing the frame, gentle falloff into deep navy shadows, fine film grain, wide composition, no objects, uninhabited, no text.",
+          "promptSha": "2206242f837d",
+          "jobId": "8c280c35-616f-4de2-a9b1-2e88b1d9fb20",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_8c280c35-616f-4de2-a9b1-2e88b1d9fb20.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-reel.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-chapters": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Neutral light-grey seamless studio backdrop with a soft gradient from a top light, faint woven fabric texture, a single shallow fold line running vertically at one third, calm and even, uninhabited, no text.",
+      "promptSha": "a9eed31e9ccd",
+      "jobId": "354ad922-419e-4f9b-ba02-884eccbfb5e1",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161437_354ad922-419e-4f9b-ba02-884eccbfb5e1.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:14:41.699Z",
+      "src": "media-src/plate-chapters.png",
+      "outputs": [
+        "media/plate-chapters-1600.avif",
+        "media/plate-chapters-1600.webp",
+        "media/plate-chapters-800.avif",
+        "media/plate-chapters-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Neutral light-grey seamless studio backdrop with a soft gradient from a top light, faint woven fabric texture, a single shallow fold line running vertically at one third, calm and even, uninhabited, no text.",
+          "promptSha": "a9eed31e9ccd",
+          "jobId": "293a9d9a-b090-48d6-98de-671a427b913c",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_293a9d9a-b090-48d6-98de-671a427b913c.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-chapters.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-blueprint": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Flat scan of lightly aged drafting vellum, faint fibre texture, two subtle fold creases forming a soft cross, a slight warm-grey tone lighter at the centre, even light, no marks, uninhabited, no text.",
+      "promptSha": "bcd175e471b6",
+      "jobId": "4ff68e4c-a3d1-4288-8e6d-8fd196021737",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161554_4ff68e4c-a3d1-4288-8e6d-8fd196021737.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:15:55.165Z",
+      "src": "media-src/plate-blueprint.png",
+      "outputs": [
+        "media/plate-blueprint-1600.avif",
+        "media/plate-blueprint-1600.webp",
+        "media/plate-blueprint-800.avif",
+        "media/plate-blueprint-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "history": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Flat scan of lightly aged drafting vellum, faint fibre texture, two subtle fold creases forming a soft cross, a slight warm-grey tone lighter at the centre, even light, no marks, uninhabited, no text.",
+          "promptSha": "bcd175e471b6",
+          "jobId": "a064d804-dbb0-4fe0-9503-38206911b024",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161508_a064d804-dbb0-4fe0-9503-38206911b024.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:08.855Z",
+          "src": "media-src/plate-blueprint.prev-2026-09-13T16-28-32-880Z.png",
+          "outputs": [
+            "media/plate-blueprint-1600.avif",
+            "media/plate-blueprint-1600.webp",
+            "media/plate-blueprint-800.avif",
+            "media/plate-blueprint-800.webp"
+          ],
+          "via": "mcp",
+          "width": 2048,
+          "height": 1152,
+          "outWidth": 1600,
+          "outHeight": 900
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-broadsheet": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Black-and-white press photograph with visible halftone grain: a bright industrial laundry hall, rows of tall wire linen carts receding in perspective, a handheld reader resting on a folded stack of white towels in the foreground, hard daylight from high windows, documentary style, uninhabited, no text, no logos.",
+      "promptSha": "c1d25b59acb6",
+      "jobId": "f6c35c5c-9e97-4f62-8a25-f3e66c939c8e",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161508_f6c35c5c-9e97-4f62-8a25-f3e66c939c8e.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:15:08.855Z",
+      "src": "media-src/plate-broadsheet.png",
+      "outputs": [
+        "media/plate-broadsheet-1600.avif",
+        "media/plate-broadsheet-1600.webp",
+        "media/plate-broadsheet-800.avif",
+        "media/plate-broadsheet-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Black-and-white press photograph with visible halftone grain: a bright industrial laundry hall, rows of tall wire linen carts receding in perspective, a handheld reader resting on a folded stack of white towels in the foreground, hard daylight from high windows, documentary style, uninhabited, no text, no logos.",
+          "promptSha": "c1d25b59acb6",
+          "jobId": "2b4d4820-1516-4445-92d7-fcf3a2eba334",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_2b4d4820-1516-4445-92d7-fcf3a2eba334.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-broadsheet.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-atelier": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "Soft-focus photograph of raw linen canvas in warm cream light, fine visible weave, a gentle vignette toward the edges, a faint brass-toned reflection at the lower right, extremely quiet, uninhabited, no text.",
+      "promptSha": "6426e0505b87",
+      "jobId": "ca917cfe-65c2-4bdc-824c-835e2003feda",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161508_ca917cfe-65c2-4bdc-824c-835e2003feda.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:15:08.855Z",
+      "src": "media-src/plate-atelier.png",
+      "outputs": [
+        "media/plate-atelier-1600.avif",
+        "media/plate-atelier-1600.webp",
+        "media/plate-atelier-800.avif",
+        "media/plate-atelier-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "Soft-focus photograph of raw linen canvas in warm cream light, fine visible weave, a gentle vignette toward the edges, a faint brass-toned reflection at the lower right, extremely quiet, uninhabited, no text.",
+          "promptSha": "6426e0505b87",
+          "jobId": "2795e0f2-fe1e-459f-875b-13cacddc54d7",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_2795e0f2-fe1e-459f-875b-13cacddc54d7.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-atelier.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-monolith": {
+      "model": "soul_location",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "prompt": "High-contrast black-and-white photograph: a single tall polished stone slab standing on a smooth concrete floor in an empty white studio, hard side light, one long clean shadow, everything else pure white, minimal, uninhabited, no text.",
+      "promptSha": "f46744862378",
+      "jobId": "363d889a-2dd1-4fa1-b4e1-45927b77b22d",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161508_363d889a-2dd1-4fa1-b4e1-45927b77b22d.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:15:08.855Z",
+      "src": "media-src/plate-monolith.png",
+      "outputs": [
+        "media/plate-monolith-1600.avif",
+        "media/plate-monolith-1600.webp",
+        "media/plate-monolith-800.avif",
+        "media/plate-monolith-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [
+        {
+          "model": "soul_location",
+          "params": {
+            "aspect_ratio": "16:9"
+          },
+          "prompt": "High-contrast black-and-white photograph: a single tall polished stone slab standing on a smooth concrete floor in an empty white studio, hard side light, one long clean shadow, everything else pure white, minimal, uninhabited, no text.",
+          "promptSha": "f46744862378",
+          "jobId": "5e2ec3fd-7161-49ef-99b9-7e42d85b6479",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161553_5e2ec3fd-7161-49ef-99b9-7e42d85b6479.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:15:55.165Z",
+          "src": "media-src/plate-monolith.alt1.png",
+          "outputs": [],
+          "via": "mcp"
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-pos": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: a tidy grid of small matte boxes on a low shelf, one box lifted and tilted, a thin amber ribbon threading the shelf rows like an aisle, a single round amber token in front. Accent colour: warm amber.",
+      "promptSha": "7b1cf461b65e",
+      "jobId": "34ebaeba-cb46-48b2-9a7d-6743ea46eb2d",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_34ebaeba-cb46-48b2-9a7d-6743ea46eb2d.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-pos.png",
+      "outputs": [
+        "media/kv-pos-1600.avif",
+        "media/kv-pos-1600.webp",
+        "media/kv-pos-800.avif",
+        "media/kv-pos-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-besttrend": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: three simple house-shaped blocks of different heights on a shallow map-like plane with faint contour lines, a single cyan pin standing beside the tallest block, a folded paper card leaning at its base. Accent colour: cyan.",
+      "promptSha": "6c5110289824",
+      "jobId": "630e490e-4b0c-4d18-9557-98276c128759",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_630e490e-4b0c-4d18-9557-98276c128759.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-besttrend.png",
+      "outputs": [
+        "media/kv-besttrend-1600.avif",
+        "media/kv-besttrend-1600.webp",
+        "media/kv-besttrend-800.avif",
+        "media/kv-besttrend-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-besttrend-api": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: two identical stacks of rounded slabs mirrored across a thin vertical rod, joined by one taut teal cord passing through a small ring; one slab in each stack is a hollow frame. Accent colour: teal.",
+      "promptSha": "4035ed457c05",
+      "jobId": "6508a6fd-6e92-41da-83a0-a12f28c5cdfb",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_6508a6fd-6e92-41da-83a0-a12f28c5cdfb.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-besttrend-api.png",
+      "outputs": [
+        "media/kv-besttrend-api-1600.avif",
+        "media/kv-besttrend-api-1600.webp",
+        "media/kv-besttrend-api-800.avif",
+        "media/kv-besttrend-api-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-invoice": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: a neat fan of blank paper sheets with a violet stripe along one edge, a small brass paper clip, and a row of three coins descending in size; one sheet lifted by a corner casting a soft shadow. Accent colour: violet.",
+      "promptSha": "5cdf2a184293",
+      "jobId": "4136f9a5-489f-48c0-8112-1a04e62b7cd4",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161743_4136f9a5-489f-48c0-8112-1a04e62b7cd4.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-invoice.png",
+      "outputs": [
+        "media/kv-invoice-1600.avif",
+        "media/kv-invoice-1600.webp",
+        "media/kv-invoice-800.avif",
+        "media/kv-invoice-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-findjob": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: a matte sphere resting in the exact notch of a wave-shaped block, a scattering of smaller graphite spheres nearby, one of them magenta and aligned with a thin magenta line pointing to the notch. Accent colour: magenta.",
+      "promptSha": "b428c6568f22",
+      "jobId": "2fda7bfa-60b9-4470-a13e-62702392f01e",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_2fda7bfa-60b9-4470-a13e-62702392f01e.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-findjob.png",
+      "outputs": [
+        "media/kv-findjob-1600.avif",
+        "media/kv-findjob-1600.webp",
+        "media/kv-findjob-800.avif",
+        "media/kv-findjob-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-tireshop": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: a stack of four black rubber-textured rings leaning against a rounded block, one ring rolled forward, a small red wedge standing upright, tread hinted by fine grooves. Accent colour: red.",
+      "promptSha": "3369db68b0e4",
+      "jobId": "1f6190dc-8e23-46a1-afba-5f995124af8b",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_1f6190dc-8e23-46a1-afba-5f995124af8b.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-tireshop.png",
+      "outputs": [
+        "media/kv-tireshop-1600.avif",
+        "media/kv-tireshop-1600.webp",
+        "media/kv-tireshop-800.avif",
+        "media/kv-tireshop-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "kv-timezone": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract editorial key visual, one still-life composition of simple geometric objects on a seamless studio ground, soft diffused light, subtle paper grain, matte materials, restrained palette: warm off-white, graphite, and one accent colour. Centred subject, generous negative space, 35mm lens, tack-sharp. Uninhabited scene, no text, no letters, no logos, no screens, no user interface. Subject: three thin discs standing on edge at different rotations like clock faces without numerals, each with a single cobalt hand, their cast shadows overlapping on the ground to suggest offsets, a slender horizon line behind. Accent colour: cobalt blue.",
+      "promptSha": "83ec0b502b48",
+      "jobId": "20a7656f-dd23-4cf8-8784-5ed22cd8024b",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_20a7656f-dd23-4cf8-8784-5ed22cd8024b.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:17:44.014Z",
+      "src": "media-src/kv-timezone.png",
+      "outputs": [
+        "media/kv-timezone-1600.avif",
+        "media/kv-timezone-1600.webp",
+        "media/kv-timezone-800.avif",
+        "media/kv-timezone-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    },
+    "plate-control-room": {
+      "model": "soul_cinematic",
+      "params": {
+        "aspect_ratio": "16:9",
+        "quality": "2k"
+      },
+      "prompt": "Abstract telemetry backdrop: a fine dot-matrix grid on charcoal, faint concentric radar rings fading outward from the lower left, two thin horizontal scan lines, a soft cool blue-grey glow at that corner, subtle film grain, flat and even, no bright highlights, uninhabited, no text.",
+      "promptSha": "76ee9563e417",
+      "jobId": "a7768b0e-8847-4e4f-ae41-f6f5ae9a63e3",
+      "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161837_a7768b0e-8847-4e4f-ae41-f6f5ae9a63e3.png",
+      "cost": 1,
+      "createdAt": "2026-09-13T16:18:38.248Z",
+      "src": "media-src/plate-control-room.png",
+      "outputs": [
+        "media/plate-control-room-1600.avif",
+        "media/plate-control-room-1600.webp",
+        "media/plate-control-room-800.avif",
+        "media/plate-control-room-800.webp"
+      ],
+      "via": "mcp",
+      "alts": [],
+      "history": [
+        {
+          "model": "soul_cinematic",
+          "params": {
+            "aspect_ratio": "16:9",
+            "quality": "2k"
+          },
+          "prompt": "Abstract telemetry backdrop: a fine dot-matrix grid on charcoal, faint concentric radar rings fading outward from the lower left, two thin horizontal scan lines, a soft cool blue-grey glow at that corner, subtle film grain, flat and even, no bright highlights, uninhabited, no text.",
+          "promptSha": "76ee9563e417",
+          "jobId": "b1391365-ec6d-4113-a764-1453d54a37e4",
+          "url": "https://d8j0ntlcm91z4.cloudfront.net/user_3JHDPxByoI3DetnzlCJ0iXytljp/hf_20260913_161742_b1391365-ec6d-4113-a764-1453d54a37e4.png",
+          "cost": 1,
+          "createdAt": "2026-09-13T16:17:44.014Z",
+          "src": "media-src/plate-control-room.prev-2026-09-13T16-28-28-911Z.png",
+          "outputs": [
+            "media/plate-control-room-1600.avif",
+            "media/plate-control-room-1600.webp",
+            "media/plate-control-room-800.avif",
+            "media/plate-control-room-800.webp"
+          ],
+          "via": "mcp",
+          "width": 2048,
+          "height": 1152,
+          "outWidth": 1600,
+          "outHeight": 900
+        }
+      ],
+      "width": 2048,
+      "height": 1152,
+      "outWidth": 1600,
+      "outHeight": 900
+    }
+  },
+  "logo": null
+}

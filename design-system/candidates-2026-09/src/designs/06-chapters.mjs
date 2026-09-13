@@ -7,7 +7,6 @@
 const css = `
 :root{color-scheme:light dark;
 --bg:light-dark(#f2f2f2,#141414);--surface:light-dark(#ffffff,#1c1c1c);--ink:light-dark(#161616,#f0f0f0);--ink-2:light-dark(#4b4b4b,#b9b9b9);--ink-3:light-dark(#6b6b6b,#8f8f8f);--line:light-dark(#d6d6d6,#2a2a2a);--line-2:light-dark(#161616,#f0f0f0);--up:light-dark(#15803d,#4ade80);--focus:var(--ink);
---a-pos:light-dark(#b45309,#f59e0b);--a-besttrend:light-dark(#0e7490,#22d3ee);--a-besttrend-api:light-dark(#0f766e,#2dd4bf);--a-invoice:light-dark(#7c3aed,#a78bfa);--a-findjob:light-dark(#be185d,#f472b6);--a-tireshop:light-dark(#b91c1c,#f87171);--a-timezone:light-dark(#1d4ed8,#60a5fa);
 --mark-bg:light-dark(#161616,#f0f0f0);--mark-fg:light-dark(#f2f2f2,#141414);--mark-pulse:light-dark(#6b6b6b,#8f8f8f);--mark-dot:var(--up);
 --display:"Anybody",system-ui,sans-serif;--body:"Public Sans",system-ui,sans-serif;--ease:cubic-bezier(.2,.8,.2,1)}
 :root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
@@ -78,6 +77,11 @@ html.js .cover .claim{animation-delay:.15s}html.js .cover .cta{animation-delay:.
 .ch .frame img{width:100%;height:100%;object-fit:cover;object-position:top}
 .ch .frame a{position:absolute;inset:0}
 .ch .frame a:focus-visible{outline:3px solid var(--ch);outline-offset:-3px}
+/* generated media: each chapter opens on its key visual (the screenshot on hover or focus); a studio plate across the cover */
+.ch .frame img.kv{position:absolute;inset:0;object-position:center;transition:opacity .6s var(--ease)}
+.ch .frame:hover img.kv,.ch .frame:focus-within img.kv{opacity:0}
+@media (hover:none){.ch .frame img.kv{display:none}}
+.cover.has-plate{--plate-o:.5;--plate-o-dark:.3;--plate-inset:0 calc(-1 * clamp(16px,4vw,64px));--plate-mask:linear-gradient(180deg,#000 55%,transparent)}
 html.js .ch .num,html.js .ch h2,html.js .ch .body,html.js .ch .media{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
 html.js .ch .rule{transform:scaleX(0);transition:transform 1s var(--ease) .15s}
 html.js .ch.is-in .num,html.js .ch.is-in h2,html.js .ch.is-in .body,html.js .ch.is-in .media{opacity:1;transform:none}
@@ -152,7 +156,7 @@ export default {
       .map((d, i) => `<section class="ch" id="ch-${d.slug}" style="--ch:var(--a-${d.slug})" aria-labelledby="h-${d.slug}">
   <div class="head"><span class="num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><div class="rule"></div><h2 id="h-${d.slug}">${h.esc(d.name)}</h2>
     <div class="kind"><span>${h.statusDot(d.slug)}up</span><span>${h.esc(d.kind)}</span><span>${d.period}</span><span>${h.esc(d.langs)}</span></div></div>
-  <div class="media"><div class="frame">${h.shot(d)}<a href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}"></a></div></div>
+  <div class="media"><div class="frame">${h.shot(d)}${h.keyVisual(d, 'class="kv"', { fallback: false })}<a href="${d.demoUrl ?? d.url}" target="_blank" rel="noopener" aria-label="Open ${h.esc(d.name)}"></a></div></div>
   <div class="body">
     <p>${h.esc(d.problem)}</p>
     <div class="stack">${d.stack.map((s) => `<span>${h.esc(s)}</span>`).join('')}</div>
@@ -172,7 +176,7 @@ export default {
   <a href="#colophon" data-for="colophon"><span>Colophon</span><i></i></a>
 </nav>
 <main id="main">
-<section class="cover" id="cover">
+<section class="cover${h.plateClass('plate-chapters')}" id="cover">
   <header class="top">
     <a class="brand" href="#cover">${h.mark({ size: 30, font: 'Anybody, system-ui, sans-serif' })}<span>${h.esc(c.profile.name)}</span></a>
     ${h.statusPill('pill')}
@@ -190,6 +194,7 @@ export default {
     </nav>
   </div>
   <div class="foot"><span><b>${t.short}</b> at USTEK RFID, counting</span><span>Deployed in <b>30+ countries</b></span><span>${h.esc(c.profile.location)} · ${c.profile.tz}</span></div>
+  ${h.plate('plate-chapters')}
 </section>
 
 ${chapters}

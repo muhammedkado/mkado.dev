@@ -102,6 +102,11 @@ html.js .draw text,html.js .draw .dg-marker,html.js .draw .dg-tag{opacity:0;anim
 .spec .fig{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:start}
 .spec .fig img{border:1px solid var(--line-2)}
 .spec .fig .mono{align-self:end}
+/* generated media: each sheet pairs a concept figure with the screenshot; a vellum plate behind the hero */
+.spec .fig.has-kv{grid-template-columns:120px 120px 1fr}
+.spec .fig.has-kv img{width:100%;aspect-ratio:1440/900;object-fit:cover}
+@media (max-width:560px){.spec .fig.has-kv{grid-template-columns:1fr 1fr}.spec .fig.has-kv .mono{grid-column:1 / -1}}
+.hero.has-plate{--plate-o:.4;--plate-o-dark:.3}
 .spec .inline-dg{display:none;border:1px solid var(--line);background:var(--surface);padding:8px}
 .spec dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px}
 .spec dt{font:500 10.5px/1.8 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
@@ -198,7 +203,7 @@ export default {
     <h3>${h.esc(d.name)}</h3>
     <p>${h.esc(d.problem)}</p>
     <div class="inline-dg">${dg(d.slug, 'inl')}</div>
-    <div class="fig">${h.shot(d)}<span class="mono">Fig. ${i + 1} · ${h.esc(d.kind)} · ${h.esc(d.langs)}</span></div>
+    <div class="fig${h.hasMedia(d.visual) ? ' has-kv' : ''}">${h.keyVisual(d, '', { fallback: false })}${h.shot(d)}<span class="mono">Fig. ${i + 1}${h.hasMedia(d.visual) ? `a concept · ${i + 1}b screen` : ''} · ${h.esc(d.kind)} · ${h.esc(d.langs)}</span></div>
     <dl>
       <dt>Materials</dt><dd>${h.esc(d.stack.join(' · '))}</dd>
       ${d.credentials.map((cr) => `<dt>${h.esc(cr.label)}</dt><dd><code>${h.esc(cr.user)}</code><button type="button" data-copy="${h.esc(cr.user)}" aria-label="Copy">${h.icon('copy')}</button> <code>${h.esc(cr.pass)}</code><button type="button" data-copy="${h.esc(cr.pass)}" aria-label="Copy">${h.icon('copy')}</button></dd>`).join('')}
@@ -218,7 +223,7 @@ export default {
   <nav class="nav" aria-label="Sections">${c.nav.map((n) => `<a href="${n.href}">${n.label}</a>`).join('')}</nav>
 </header>
 <main id="main">
-<section class="hero pad" id="top">
+<section class="hero pad${h.plateClass('plate-blueprint')}" id="top">
   <div>
     <p class="mono">Sheet 1 · General arrangement</p>
     <h1>Muhammed<br>Kado</h1>
@@ -233,6 +238,7 @@ export default {
     <div class="cta"><a class="btn hi" href="#work">Open sheets ${h.icon('arrow-down')}</a><a class="btn" href="${c.profile.cv}">CV, PDF</a><a class="btn" href="${c.profile.github}" target="_blank" rel="noopener">GitHub</a><a class="btn" href="${c.profile.linkedin}" target="_blank" rel="noopener">LinkedIn</a></div>
   </div>
   <div class="tbwrap">${tb()}</div>
+  ${h.plate('plate-blueprint')}
 </section>
 
 <section class="sec pad" id="work">
