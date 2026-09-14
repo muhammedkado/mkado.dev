@@ -6,6 +6,8 @@
 #   mariadb-<date>.sql.gz   every MariaDB database except staging
 #   jobs-<date>.sql.gz      the live registration database on its own
 #   postgres-<date>.sql.gz  every PostgreSQL database
+#   chatwoot-<date>.sql.gz  Chatwoot's own PostgreSQL (Docker, crm.mkado.dev)
+#   chatwoot-storage-<date>.tar.gz  Chatwoot attachments (stays on this machine)
 #   secrets-<date>.tar.gz   the env files holding the keys (root-only, stays here)
 #
 # The *.sql.gz files are also copied to Google Drive when the rclone remote
@@ -31,13 +33,25 @@ mariadb-dump --databases jobs --single-transaction --quick | gzip > "$DIR/jobs-$
 
 sudo -u postgres pg_dumpall | gzip > "$DIR/postgres-$STAMP.sql.gz"
 
+# Chatwoot (crm.mkado.dev) runs its own PostgreSQL inside Docker, so pg_dumpall
+# above never sees it. Dump through the container, and pack the attachments
+# volume next to it. Skipped while the stack is not running.
+CW=/opt/chatwoot/docker-compose.yml
+if [ -f "$CW" ] && docker compose -f "$CW" ps --status running --services 2>/dev/null | grep -qx postgres; then
+  docker compose -f "$CW" exec -T postgres pg_dump -U postgres -d chatwoot </dev/null     | gzip > "$DIR/chatwoot-$STAMP.sql.gz"
+  tar -czf "$DIR/chatwoot-storage-$STAMP.tar.gz" -C /var/lib/docker/volumes/chatwoot_storage_data/_data . 2>/dev/null
+  chmod 600 "$DIR/chatwoot-storage-$STAMP.tar.gz"
+fi
+
 # A dump of `jobs` without CRYPTO_KEY and INDEX_KEY is unreadable ciphertext, so
 # the keys are worth as much as the rows. Root-only, and never copied off-site.
-tar -czf "$DIR/secrets-$STAMP.tar.gz" -C / etc/jobs/jobs.env etc/mkado/contact.env 2>/dev/null
+# Chatwoot's SECRET_KEY_BASE signs its tokens; without it a restored dump logs everyone out.
+tar -czf "$DIR/secrets-$STAMP.tar.gz" -C / etc/jobs/jobs.env etc/mkado/contact.env opt/chatwoot/.env 2>/dev/null
 chmod 600 "$DIR/secrets-$STAMP.tar.gz"
 
 find "$DIR" -name '*.sql.gz' -mtime +$KEEP_DAYS -delete
 find "$DIR" -name 'secrets-*.tar.gz' -mtime +$KEEP_DAYS -delete
+find "$DIR" -name 'chatwoot-storage-*.tar.gz' -mtime +$KEEP_DAYS -delete
 
 # One line a night, so a job that quietly stopped working can be noticed.
 echo "$(date -u +%FT%TZ) local ok: $(ls -1 "$DIR"/*-"$STAMP".* 2>/dev/null | wc -l) written today, $(ls -1 "$DIR" | wc -l) kept, $(du -sh "$DIR" | cut -f1) on disk"
