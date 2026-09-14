@@ -1,0 +1,13 @@
+---
+// The mark: "mk" drawn as one monoline stroke, the k's arm ending in the blue
+// read dot. Colours come from the tokens (ink tile, paper stroke, blue on ink),
+// so it prints correctly in both themes. Fixed-colour copies for other software:
+// public/logo-mark.svg and public/favicon.svg.
+const { size = 30, class: cls = 'mark' } = Astro.props as { size?: number; class?: string };
+---
+
+<svg class={cls} width={size} height={size} viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+  <rect width="64" height="64" rx="14" fill="var(--ink)" />
+  <path d="M9 46V33c0-4 3-7 7-7s7 3 7 7v13M23 33c0-4 3-7 7-7s7 3 7 7v13M44 46V16M44 38l9-9M46 36l9 10" fill="none" stroke="var(--paper)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="55" cy="27" r="3.4" fill="var(--accent-on-ink)" />
+</svg>

@@ -1,10 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
   <title id="t">Muhammed Kado</title>
-  <rect width="64" height="64" rx="14" fill="#101828"/>
-  <!-- read pulses: the RFID motif -->
-  <path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="#6FD0FF" stroke-width="2.4" stroke-linecap="round" opacity="0.55"/>
-  <path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="#6FD0FF" stroke-width="2.4" stroke-linecap="round" opacity="0.3"/>
-  <circle cx="40" cy="24" r="3" fill="#6D93FF"/>
-  <!-- mk -->
-  <text x="12" y="49" font-family="'Bricolage Grotesque','Space Grotesk',system-ui,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="#F1F4F9">mk</text>
+  <rect width="64" height="64" rx="14" fill="#17181c"/>
+  <!-- mk as one monoline stroke; the k's arm ends in the read dot -->
+  <path d="M9 46V33c0-4 3-7 7-7s7 3 7 7v13M23 33c0-4 3-7 7-7s7 3 7 7v13M44 46V16M44 38l9-9M46 36l9 10" fill="none" stroke="#f4f3ed" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="55" cy="27" r="3.4" fill="#6f8bff"/>
 </svg>
