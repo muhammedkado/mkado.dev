@@ -112,8 +112,11 @@ async function shoot(d) {
     return { ok: false, url, error: e.message };
   } finally {
     chrome?.proc.kill();
-    await sleep(200);
-    rmSync(profile, { recursive: true, force: true });
+    await sleep(500);
+    // Windows may still hold the profile for a moment after the kill; never let cleanup fail the run.
+    try {
+      rmSync(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 400 });
+    } catch {}
   }
 }
 
