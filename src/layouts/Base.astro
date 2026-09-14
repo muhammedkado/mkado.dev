@@ -3,8 +3,8 @@ import '../styles/global.css';
 import { profile } from '../data/site';
 import { t, type Lang } from '../lib/i18n';
 // Hashed URLs of the self-hosted font files, for <link rel=preload> (they are the LCP fonts).
-import bricolageWoff from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-opsz-normal.woff2?url';
-import instrumentWoff from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
+import serifWoff from '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url';
+import sansWoff from '@fontsource-variable/instrument-sans/files/instrument-sans-latin-wght-normal.woff2?url';
 
 interface Props {
   lang?: Lang;
@@ -53,8 +53,8 @@ const jsonLd = jsonLdProp ?? {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="alternate" type="application/rss+xml" title="Engineering notes — Muhammed Kado" href="/rss.xml" />
-    <link rel="preload" href={bricolageWoff} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={instrumentWoff} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifWoff} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={sansWoff} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:type" content="website" />
@@ -73,7 +73,7 @@ const jsonLd = jsonLdProp ?? {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={og} />
     <meta name="twitter:image:alt" content="Muhammed Kado, Computer Engineer: seven live demos you can open." />
-    <meta name="theme-color" content="#f7f7f5" />
+    <meta name="theme-color" content="#f4f3ed" />
 
 
     <script is:inline>
@@ -85,7 +85,7 @@ const jsonLd = jsonLdProp ?? {
         if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
           document.documentElement.setAttribute('data-theme', 'dark');
           var m = document.querySelector('meta[name="theme-color"]');
-          if (m) m.setAttribute('content', '#0b0f17'); // URL bar on Android follows the page background
+          if (m) m.setAttribute('content', '#121317'); // URL bar on Android follows the page background
         }
       } catch (e) {}
     </script>

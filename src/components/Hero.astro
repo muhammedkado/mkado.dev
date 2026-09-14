@@ -1,7 +1,8 @@
 ---
-import { profile, experience, education } from '../data/site';
+import { Picture } from 'astro:assets';
+import heroArt from '../assets/art/hero.webp';
+import { profile, experience, demos, languages } from '../data/site';
 import { tenureYears } from '../lib/tenure';
-import Reader from './Reader.astro';
 import { t, profileCopy, type Lang } from '../lib/i18n';
 
 const { lang = 'en' } = Astro.props as { lang?: Lang };
@@ -12,19 +13,12 @@ const tenure = tenureYears(experience.startDate);
 
 <section class="hero" id="top">
   <div class="wrap hero-grid">
-    <div>
-      <p class="kicker rise" style="--delay: 0.05s">
-        <strong>{profile.name}</strong>
-        <span class="sep" aria-hidden="true">/</span>
-        <span>{p.title}</span>
-        <span class="sep" aria-hidden="true">/</span>
-        <span>{p.role}</span>
-      </p>
+    <div class="hero-copy">
+      <p class="kicker rise" style="--delay: 0.05s">{p.title}, {s.hero.city}</p>
+      <h1 class="rise" style="--delay: 0.12s">{p.headline}</h1>
+      <p class="lede rise" style="--delay: 0.24s">{p.intro}</p>
 
-      <h1 class="rise" style="--delay: 0.15s">{p.headline}</h1>
-      <p class="lede rise" style="--delay: 0.28s">{p.intro}</p>
-
-      <div class="cta rise" style="--delay: 0.4s">
+      <div class="cta rise" style="--delay: 0.34s">
         <a class="btn btn-primary" href="#work">{s.hero.seeWork}</a>
         <a class="btn" href={profile.cv} download="Muhammed_Kado_CV.pdf">{s.hero.downloadCv}</a>
         <span class="textlinks">
@@ -33,20 +27,21 @@ const tenure = tenureYears(experience.startDate);
         </span>
       </div>
 
-      <p class="facts rise" style="--delay: 0.5s">
-        {lang === 'tr'
-          ? <span>{experience.company}'de <b data-tenure-start={experience.startDate} data-countup>{tenure}</b> yıl</span>
-          : <span><b data-tenure-start={experience.startDate} data-countup>{tenure}</b> years at {experience.company}</span>}
-        <span><b>{s.hero.degree}</b>, {education.period}</span>
-        <span>{s.location}</span>
-      </p>
+      <ul class="facts rise" style="--delay: 0.44s">
+        <li><b data-tenure-start={experience.startDate} data-countup>{tenure}</b><span>{s.hero.facts.tenure}</span></li>
+        <li><b>{demos.length}</b><span>{s.hero.facts.apps}</span></li>
+        <li><b>30+</b><span>{s.hero.facts.countries}</span></li>
+        <li><b>{languages.length}</b><span>{s.hero.facts.languages}</span></li>
+      </ul>
     </div>
 
-    <div class="reader-wrap rise" style="--delay: 0.2s">
-      <Reader />
-      <p class="readout">
-        {s.hero.readout.map((r) => <span>{r}</span>)}
-      </p>
-    </div>
+    {/* The print prints itself on load (clip-path), then the reader pulses once: global.css .hero-print / .pulse */}
+    <figure class="print hero-print rise" style="--delay: 0.18s">
+      <Picture src={heroArt} formats={['avif', 'webp']} fallbackFormat="webp" widths={[560, 900, 1400]} sizes="(min-width: 768px) 42vw, 100vw" alt={s.hero.artAlt} loading="eager" fetchpriority="high" decoding="async" />
+      <svg class="pulse" viewBox="0 0 100 75" aria-hidden="true">
+        <circle cx="27" cy="39" r="34" />
+        <circle cx="27" cy="39" r="34" />
+      </svg>
+    </figure>
   </div>
 </section>

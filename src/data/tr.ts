@@ -1,6 +1,6 @@
-// Turkish copy for the /v2 (mkOS) page. English lives in site.ts; the UI chrome
-// is bilingual inline in the components. Keyed to match site.ts so the two
-// stay in step: demos by slug, timeline by index, skills by group name.
+// Turkish copy for the /tr/ home page and the /v3 (mkOS) page. English lives in
+// site.ts; the UI chrome is in src/lib/i18n.ts. Keyed to match site.ts so the
+// two stay in step: demos by slug, timeline by index, skills by group name.
 
 export const tr = {
   profile: {
@@ -8,7 +8,7 @@ export const tr = {
     role: 'Full-Stack Geliştirici',
     headline: "30'dan fazla ülkede kullanılan RFID tabanlı sistemlerin web arayüzlerini geliştiriyorum.",
     intro:
-      "İstanbul'da yaşayan full-stack bir bilgisayar mühendisiyim. 2023'ten bu yana USTEK RFID bünyesinde, 30'u aşkın ülkede hizmet veren çamaşırhane yönetim platformunun web arayüzlerini ve REST API'lerini PHP, Laravel ve Zend Framework ile geliştiriyorum. Ayrıca, React ve Next.js ile projeler üretiyorum. Aşağıdaki altı uygulama, doğrudan denemeniz için yayında.",
+      "İstanbul'da yaşayan full-stack bir bilgisayar mühendisiyim. 2023'ten bu yana USTEK RFID bünyesinde, 30'u aşkın ülkede hizmet veren çamaşırhane yönetim platformunun web arayüzlerini ve REST API'lerini PHP, Laravel ve Zend Framework ile geliştiriyorum. Ayrıca, React ve Next.js ile projeler üretiyorum. Aşağıdaki yedi uygulama, doğrudan denemeniz için yayında.",
     plain:
       'Kısacası: Otel ve çamaşırhanelerin tekstil envanterlerini RFID teknolojisiyle otomatik takip edebilmeleri için gereken web tabanlı yönetim sistemlerini tasarlayıp geliştiriyorum.',
   },
@@ -22,7 +22,12 @@ export const tr = {
     besttrend: {
       summary:
         'Suriye emlak platformu: Fotoğraflı ve harita destekli ilanlar, gelişmiş arama, favoriler, ilan sahibi istatistikleri ve kapsamlı yönetim paneli. Arapça, İngilizce ve Kürtçe dil desteği.',
-      note: 'Özel proje: Kaynak kod istek üzerine paylaşılır.',
+      note: 'Özel proje: Kaynak kod istek üzerine paylaşılır. İlan eklemek için ilan sahibi hesabıyla giriş yapın.',
+    },
+    'besttrend-api': {
+      summary:
+        "BestTrend'in diğer yarısı: İlanları, kullanıcıları ve şikâyetleri yönetmek için AdminLTE tabanlı arka ofis; uygulamanın kendisinin de kullandığı Laravel REST API'nin üstünde çalışır.",
+      note: 'Açık API de deneyebilirsiniz: /api/v1/properties.',
     },
     invoice: {
       summary:
@@ -38,6 +43,11 @@ export const tr = {
       summary:
         'Mobil uyumlu lastikçi yönetim sistemi (PWA): Stok, satış, faturalama, gider ve kâr takibi. Arapça (RTL) dil desteği.',
       note: 'Giriş gerekmez: Yerel demo modunda çalışır, veriler tarayıcınızda kalır.',
+    },
+    timezone: {
+      summary:
+        'Saat dilimi dönüştürücü, toplantı planlayıcı ve iş günü hesaplayıcı; yedi dilde, sağdan sola Arapça dahil. İnsanların gün boyu bir sekmede açık tuttuğu türden küçük bir araç.',
+      note: 'Giriş gerekmez: Her şey tarayıcınızda çalışır.',
     },
   } as Record<string, { summary: string; note: string }>,
 
@@ -56,11 +66,11 @@ export const tr = {
       ],
     },
     {
-      title: 'Altı canlı uygulama',
+      title: 'Yedi canlı uygulama',
       org: 'Bağımsız çalışma',
       where: 'mkado.dev üzerinde yayında',
       summary:
-        "POS arka ofisi, fatura sistemi, emlak platformu, yapay zeka destekli iş eşleştirici ve lastikçi PWA'sı: Her biri kendi veritabanıyla uçtan uca geliştirildi ve canlı demo olarak yayımlandı.",
+        "POS arka ofisi, fatura sistemi, yönetim paneliyle birlikte bir emlak platformu, yapay zeka destekli iş eşleştirici, lastikçi PWA'sı ve saat dilimi araçları: Her biri uçtan uca geliştirildi ve herkesin açabileceği canlı demo olarak yayımlandı.",
       bullets: [],
     },
     {

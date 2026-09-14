@@ -2,9 +2,12 @@
 import { demos, demosLive } from '../data/site';
 import { t, demoCopy, type Lang } from '../lib/i18n';
 import { Picture } from 'astro:assets';
-// Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no image.
+// Dashboard screenshots captured by scripts/shots.mjs; a demo without one just renders no frame.
 const shotModules = import.meta.glob<{ default: ImageMetadata }>('../assets/shots/*.png', { eager: true });
 const shots = Object.fromEntries(Object.entries(shotModules).map(([p, m]) => [p.split('/').pop()!.replace('.png', ''), m.default]));
+// One two-ink print per application (scripts/art.mjs -> src/assets/art/spot-<slug>.webp).
+const spotModules = import.meta.glob<{ default: ImageMetadata }>('../assets/art/spot-*.webp', { eager: true });
+const spots = Object.fromEntries(Object.entries(spotModules).map(([p, m]) => [p.split('/').pop()!.replace(/^spot-|\.webp$/g, ''), m.default]));
 
 // Case-study pages exist for the slugs that have a file in src/content/work.
 const studies = new Set(Object.keys(import.meta.glob('../content/work/*.md')).map((p) => p.split('/').pop()!.replace('.md', '')));
@@ -28,97 +31,61 @@ const allLive = demos.every(isLive);
       </span>
     </div>
 
-    <div class="showcase">
-      <div class="tabs" role="tablist" aria-label={s.showcase.tablist} aria-orientation="vertical">
-        {demos.map((d, i) => (
-          <button
-            class={`tab ${isLive(d) ? 'is-live' : ''}`}
-            role="tab"
-            type="button"
-            id={`tab-${d.slug}`}
-            aria-controls={`panel-${d.slug}`}
-            aria-selected={i === 0 ? 'true' : 'false'}
-            tabindex={i === 0 ? 0 : -1}
-          >
-            <span class="dot" aria-hidden="true" data-status-dot={d.slug}></span>
-            <span class="name">{d.name}</span>
-            <span class="meta">{d.stack[0]}</span>
-          </button>
-        ))}
-      </div>
+    {/* Every application is one row; the first is open so the page shows a screenshot at once. Native <details>: keyboard and no JS. */}
+    <div class="catalog">
+      {demos.map((d, i) => {
+        const copy = demoCopy(d, lang);
+        const open = d.demoUrl ?? d.url;
+        return (
+          <details class="item" id={`app-${d.slug}`} open={i === 0}>
+            <summary>
+              <span class="spot">{spots[d.slug] && <Picture src={spots[d.slug]} formats={['avif', 'webp']} fallbackFormat="webp" widths={[192, 384]} sizes="96px" alt="" loading="lazy" decoding="async" />}</span>
+              <span class="item-main">
+                <h3 class="item-name">{d.name}</h3>
+                <span class="item-line">{copy.summary}</span>
+              </span>
+              <span class="item-meta">
+                <span class="item-status"><span class="dot" aria-hidden="true" data-status-dot={d.slug}></span>{d.period}</span>
+                <span class="item-toggle" aria-hidden="true"></span>
+              </span>
+            </summary>
 
-      <div class="panels">
-        {demos.map((d, i) => (
-          <div class="panel" role="tabpanel" id={`panel-${d.slug}`} aria-labelledby={`tab-${d.slug}`} hidden={i !== 0} tabindex="0">
-            <div class="panel-head">
-              <h3>{d.name}</h3>
-              <span class="period">{d.period}</span>
-            </div>
-            {shots[d.slug] && (
-              <a class="shot" href={d.demoUrl ?? d.url} target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
-                <Picture src={shots[d.slug]} formats={['avif', 'webp']} widths={[640, 1280]} sizes="(max-width: 860px) 100vw, 640px" alt="" loading="lazy" decoding="async" />
-              </a>
-            )}
-            <p class="summary">{demoCopy(d, lang).summary}</p>
-            <div class="stack">{d.stack.map((s) => <span>{s}</span>)}</div>
+            <div class="item-body">
+              {shots[d.slug] && (
+                <a class="frame" href={open} target="_blank" rel="noopener" aria-label={`${s.showcase.open(d.name)}${d.demoUrl ? s.showcase.signedIn : ''}`}>
+                  <Picture src={shots[d.slug]} formats={['avif', 'webp']} widths={[640, 1280]} sizes="(max-width: 900px) 100vw, 520px" alt="" loading="lazy" decoding="async" />
+                </a>
+              )}
+              <div class="item-text">
+                <p class="stack-line">{s.showcase.stackLabel} {d.stack.join(', ')}.</p>
 
-            <div class="panel-actions">
-              <a class="btn btn-primary btn-sm" href={d.demoUrl ?? d.url} target="_blank" rel="noopener">{s.showcase.open(d.name)}{d.demoUrl && s.showcase.signedIn}</a>
-              {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
-              {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">{s.showcase.source}</a>}
-              {studies.has(d.slug) && <a class="btn btn-sm" href={`${lang === 'tr' ? '/tr' : ''}/work/${d.slug}/`}>{s.showcase.caseStudy}</a>}
-            </div>
+                <div class="actions">
+                  <a class="btn btn-primary btn-sm" href={open} target="_blank" rel="noopener">{s.showcase.open(d.name)}{d.demoUrl && s.showcase.signedIn}</a>
+                  {d.extra && <a class="btn btn-sm" href={d.extra.url} target="_blank" rel="noopener">{d.extra.label}</a>}
+                  {studies.has(d.slug) && <a class="btn btn-sm" href={`${lang === 'tr' ? '/tr' : ''}/work/${d.slug}/`}>{s.showcase.caseStudy}</a>}
+                  {d.repo && <a class="btn btn-sm" href={d.repo} target="_blank" rel="noopener">{s.showcase.source}</a>}
+                </div>
 
-            {d.credentials.length > 0 && (
-              <div class="creds">
-                {d.credentials.map((c) => (
-                  <div class="cred">
-                    <span class="who">{c.label}</span>
-                    <span class="k">{s.showcase.email}</span>
-                    <button type="button" class="copy" data-copy={c.user} title="Copy" aria-label={`Copy ${c.label} email ${c.user}`}>{c.user}</button>
-                    <span class="k">{s.showcase.password}</span>
-                    <button type="button" class="copy" data-copy={c.pass} title="Copy" aria-label={`Copy ${c.label} password`}>{c.pass}</button>
+                {d.credentials.length > 0 && (
+                  <div class="creds">
+                    {d.credentials.map((c) => (
+                      <div class="cred">
+                        <span class="who">{c.label}</span>
+                        <span class="k">{s.showcase.email}</span>
+                        <button type="button" class="copy" data-copy={c.user} title="Copy" aria-label={`Copy ${c.label} email ${c.user}`}>{c.user}</button>
+                        <span class="k">{s.showcase.password}</span>
+                        <button type="button" class="copy" data-copy={c.pass} title="Copy" aria-label={`Copy ${c.label} password`}>{c.pass}</button>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            )}
+                )}
 
-            {demoCopy(d, lang).note && <p class="note">{demoCopy(d, lang).note}</p>}
-          </div>
-        ))}
-      </div>
+                {copy.note && <p class="item-note">{copy.note}</p>}
+              </div>
+            </div>
+          </details>
+        );
+      })}
     </div>
   </div>
 </section>
-
-<script>
-  document.querySelectorAll<HTMLElement>('[role="tablist"]').forEach((list) => {
-    const tabs = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
-
-    const select = (tab: HTMLButtonElement) => {
-      tabs.forEach((t) => {
-        const on = t === tab;
-        t.setAttribute('aria-selected', String(on));
-        t.tabIndex = on ? 0 : -1;
-        const panel = document.getElementById(t.getAttribute('aria-controls') ?? '');
-        if (panel) panel.hidden = !on;
-      });
-    };
-
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => select(tab));
-      tab.addEventListener('keydown', (ev) => {
-        const i = tabs.indexOf(tab);
-        let j: number | null = null;
-        if (ev.key === 'ArrowDown' || ev.key === 'ArrowRight') j = (i + 1) % tabs.length;
-        if (ev.key === 'ArrowUp' || ev.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
-        if (ev.key === 'Home') j = 0;
-        if (ev.key === 'End') j = tabs.length - 1;
-        if (j === null) return;
-        ev.preventDefault();
-        tabs[j].focus();
-        select(tabs[j]);
-      });
-    });
-  });
-</script>

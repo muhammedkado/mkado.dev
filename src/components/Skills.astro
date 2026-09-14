@@ -5,18 +5,16 @@ import { t, skillGroupName, type Lang } from '../lib/i18n';
 const { lang = 'en' } = Astro.props as { lang?: Lang };
 const s = t(lang);
 
-// Tie each skill to the shipped work that actually uses it, so the chips are
-// evidence rather than a keyword list.
+// Tie each skill to the shipped work that actually uses it: the small number
+// after a skill is evidence, not a keyword list.
 const shipped = [
   ...demos.map((d) => ({ name: d.name, stack: d.stack })),
   ...projects.map((p) => ({ name: p.name, stack: p.stack })),
 ];
 
 function usedIn(skill: string): string[] {
-  const s = skill.toLowerCase();
-  return shipped
-    .filter((p) => p.stack.some((t) => t.toLowerCase().includes(s)))
-    .map((p) => p.name);
+  const k = skill.toLowerCase();
+  return shipped.filter((p) => p.stack.some((st) => st.toLowerCase().includes(k))).map((p) => p.name);
 }
 ---
 
@@ -31,21 +29,20 @@ function usedIn(skill: string): string[] {
 
     <div class="skills">
       {skills.map((g) => (
-        <div class="skill-group anim">
+        <div class="skill-group">
           <h3>{skillGroupName(g.group, lang)}</h3>
-          <div class="chips">
+          <ul class="skill-list">
             {g.items.map((item) => {
               const where = usedIn(item);
               return where.length > 0 ? (
-                <span class="chip" title={`${s.skills.usedIn}: ${where.join(', ')}`}>
-                  {item}
-                  <span class="n">{where.length}</span>
-                </span>
+                <li class="skill" title={`${s.skills.usedIn}: ${where.join(', ')}`}>
+                  {item}<sup class="n">{where.length}</sup>
+                </li>
               ) : (
-                <span class="chip">{item}</span>
+                <li class="skill">{item}</li>
               );
             })}
-          </div>
+          </ul>
         </div>
       ))}
     </div>

@@ -3,12 +3,13 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Showcase from '../components/Showcase.astro';
+import HowItRuns from '../components/HowItRuns.astro';
 import Timeline from '../components/Timeline.astro';
 import Skills from '../components/Skills.astro';
+import NotesStrip from '../components/NotesStrip.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import Backdrop from '../components/Backdrop.astro';
-import Divider from '../components/Divider.astro';
 ---
 
 <Base alternates={{ en: '/', tr: '/tr/' }}>
@@ -16,13 +17,11 @@ import Divider from '../components/Divider.astro';
   <Header />
   <main id="main">
     <Hero />
-    <Divider />
     <Showcase />
-    <Divider />
+    <HowItRuns />
     <Timeline />
-    <Divider />
     <Skills />
-    <Divider />
+    <NotesStrip />
     <Contact />
   </main>
   <Footer />

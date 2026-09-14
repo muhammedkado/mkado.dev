@@ -1,0 +1,35 @@
+---
+// The three most recent engineering notes (src/content/notes), as a ruled list.
+// The notes themselves are English-only; the Turkish page says so in its lead.
+import { getCollection } from 'astro:content';
+import { t, type Lang } from '../lib/i18n';
+
+const { lang = 'en' } = Astro.props as { lang?: Lang };
+const s = t(lang);
+const entries = (await getCollection('notes')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime()).slice(0, 3);
+const fmt = (d: Date) => d.toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+---
+
+<section class="section" id="notes">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>{s.notes.h2}</h2>
+        <p>{s.notes.lead}</p>
+      </div>
+    </div>
+
+    <ul class="notes">
+      {entries.map((e) => (
+        <li>
+          <a href={`/notes/${e.id}/`}>
+            <time datetime={e.data.date.toISOString()}>{fmt(e.data.date)}</time>
+            <h3>{e.data.title}</h3>
+            <p>{e.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="notes-all"><a href="/notes/">{s.notes.all}</a></p>
+  </div>
+</section>

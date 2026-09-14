@@ -1,6 +1,7 @@
 ---
 import { profile } from '../data/site';
 import { t, homeFor, langs, type Lang } from '../lib/i18n';
+import Mark from './Mark.astro';
 
 // `alternates`: path of this same page in each language (pages that exist in both);
 // the language links use it, and fall back to the language's home page.
@@ -12,13 +13,7 @@ const home = homeFor(lang);
 <header class="hdr" id="hdr">
   <div class="wrap">
     <a class="brand" href={`${home}#top`}>
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
-        <rect width="64" height="64" rx="14" fill="#101828"/>
-        <path d="M40 14a10 10 0 0 1 10 10" fill="none" stroke="#6FD0FF" stroke-width="2.6" stroke-linecap="round" opacity="0.6"/>
-        <path d="M40 8a16 16 0 0 1 16 16" fill="none" stroke="#6FD0FF" stroke-width="2.6" stroke-linecap="round" opacity="0.32"/>
-        <circle cx="40" cy="24" r="3.2" fill="#6D93FF"/>
-        <text x="12" y="49" font-family="'Bricolage Grotesque', system-ui, sans-serif" font-weight="700" font-size="30" letter-spacing="-1.5" fill="#F1F4F9">mk</text>
-      </svg>
+      <Mark />
       <span class="name">{profile.name}</span>
       <span class="pip" title={s.openToWork} aria-hidden="true"></span>
     </a>
@@ -27,6 +22,7 @@ const home = homeFor(lang);
       <a href={`${home}#work`}>{s.nav.work}</a>
       <a href={`${home}#experience`}>{s.nav.experience}</a>
       <a href={`${home}#skills`}>{s.nav.skills}</a>
+      <a href={`${home}#notes`}>{s.nav.notes}</a>
       <a href={`${home}#contact`}>{s.nav.contact}</a>
     </nav>
 
@@ -70,7 +66,7 @@ const home = homeFor(lang);
     const dark = !isDark();
     if (dark) root.setAttribute('data-theme', 'dark');
     else root.removeAttribute('data-theme');
-    if (themeMeta) themeMeta.content = dark ? '#0b0f17' : '#f7f7f5';
+    if (themeMeta) themeMeta.content = dark ? '#121317' : '#f4f3ed';
     labelTheme();
     try {
       localStorage.setItem('theme', dark ? 'dark' : 'light');
