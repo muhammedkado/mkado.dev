@@ -1,160 +1,89 @@
-/* Design Tokens - Auto-generated */
-/* Do not edit directly - modify tokens.json instead */
+/* Design tokens — mkado.dev, "two-ink print" (docs/brand-guidelines.md v2.0).
+   Mirrors the tokens the site actually uses in src/styles/global.css; kept in step by hand. */
 
 /* === PRIMITIVES === */
 :root {
-  --primitive-color-gray-50: #F9FAFB;
-  --primitive-color-gray-100: #F3F4F6;
-  --primitive-color-gray-200: #E5E7EB;
-  --primitive-color-gray-300: #D1D5DB;
-  --primitive-color-gray-400: #9CA3AF;
-  --primitive-color-gray-500: #6B7280;
-  --primitive-color-gray-600: #4B5563;
-  --primitive-color-gray-700: #374151;
-  --primitive-color-gray-800: #1F2937;
-  --primitive-color-gray-900: #111827;
-  --primitive-color-gray-950: #030712;
-  --primitive-color-blue-50: #EFF6FF;
-  --primitive-color-blue-500: #3B82F6;
-  --primitive-color-blue-600: #2563EB;
-  --primitive-color-blue-700: #1D4ED8;
-  --primitive-color-blue-800: #1E40AF;
-  --primitive-color-red-500: #EF4444;
-  --primitive-color-red-600: #DC2626;
-  --primitive-color-red-700: #B91C1C;
-  --primitive-color-green-500: #22C55E;
-  --primitive-color-green-600: #16A34A;
-  --primitive-color-yellow-500: #EAB308;
-  --primitive-color-white: #FFFFFF;
-  --primitive-color-primary-50: #6D93FF;
-  --primitive-color-primary-100: #6D93FF;
-  --primitive-color-primary-200: #B8E8FF;
-  --primitive-color-primary-300: #85B5FF;
-  --primitive-color-primary-400: #5282FF;
-  --primitive-color-primary-500: #1F4FD8;
-  --primitive-color-primary-600: #173FB0;
-  --primitive-color-primary-700: #00038C;
-  --primitive-color-primary-800: #000065;
-  --primitive-color-primary-900: #00003F;
-  --primitive-color-secondary-50: #34D399;
-  --primitive-color-secondary-100: #34D399;
-  --primitive-color-secondary-200: #AFFFE3;
-  --primitive-color-secondary-300: #7CFFB0;
-  --primitive-color-secondary-400: #49D67D;
-  --primitive-color-secondary-500: #16A34A;
-  --primitive-color-secondary-600: #15803D;
-  --primitive-color-secondary-700: #005700;
-  --primitive-color-secondary-800: #003000;
-  --primitive-color-secondary-900: #000A00;
-  --primitive-color-accent-50: #6FD0FF;
-  --primitive-color-accent-100: #6FD0FF;
-  --primitive-color-accent-200: #9FFFFF;
-  --primitive-color-accent-300: #6CFFFF;
-  --primitive-color-accent-400: #39E9FF;
-  --primitive-color-accent-500: #06B6D4;
-  --primitive-color-accent-600: #0090AE;
-  --primitive-color-accent-700: #006A88;
-  --primitive-color-accent-800: #004361;
-  --primitive-color-accent-900: #001D3B;
-  --primitive-spacing-0: 0;
-  --primitive-spacing-1: 0.25rem;
-  --primitive-spacing-2: 0.5rem;
-  --primitive-spacing-3: 0.75rem;
-  --primitive-spacing-4: 1rem;
-  --primitive-spacing-5: 1.25rem;
-  --primitive-spacing-6: 1.5rem;
-  --primitive-spacing-8: 2rem;
-  --primitive-spacing-10: 2.5rem;
-  --primitive-spacing-12: 3rem;
-  --primitive-spacing-16: 4rem;
-  --primitive-fontSize-xs: 0.75rem;
-  --primitive-fontSize-sm: 0.875rem;
-  --primitive-fontSize-base: 1rem;
-  --primitive-fontSize-lg: 1.125rem;
-  --primitive-fontSize-xl: 1.25rem;
-  --primitive-fontSize-2xl: 1.5rem;
-  --primitive-fontSize-3xl: 1.875rem;
-  --primitive-fontSize-4xl: 2.25rem;
-  --primitive-radius-none: 0;
-  --primitive-radius-sm: 0.125rem;
-  --primitive-radius-default: 0.25rem;
-  --primitive-radius-md: 0.375rem;
-  --primitive-radius-lg: 0.5rem;
-  --primitive-radius-xl: 0.75rem;
-  --primitive-radius-full: 9999px;
-  --primitive-shadow-none: none;
-  --primitive-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --primitive-shadow-default: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --primitive-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --primitive-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --primitive-duration-fast: 150ms;
-  --primitive-duration-normal: 200ms;
-  --primitive-duration-slow: 300ms;
+  --primitive-color-paper-50: #F4F3ED;
+  --primitive-color-paper-100: #EBE9E1;
+  --primitive-color-paper-200: #D9D7CE;
+  --primitive-color-paper-300: #C4C2B8;
+  --primitive-color-ink-950: #17181C;
+  --primitive-color-ink-900: #121317;
+  --primitive-color-ink-850: #1A1B21;
+  --primitive-color-ink-800: #2A2B32;
+  --primitive-color-ink-700: #3A3B43;
+  --primitive-color-ink-600: #4A4C54;
+  --primitive-color-ink-500: #5F626B;
+  --primitive-color-ink-400: #8D8D87;
+  --primitive-color-ink-300: #B6B5AD;
+  --primitive-color-ink-100: #ECEBE4;
+  --primitive-color-signal-800: #1A36AD;
+  --primitive-color-signal-700: #2447D6;
+  --primitive-color-signal-500: #6F8BFF;
+  --primitive-color-signal-400: #8EA3FF;
+  --primitive-color-signal-300: #A9BAFF;
+  --primitive-color-signal-100: #D6DEF9;
+  --primitive-color-signal-900: #1D2A66;
+  --primitive-color-live-700: #157A3B;
+  --primitive-color-live-400: #3FC46F;
+  --primitive-color-live-100: #D9EFE0;
+  --primitive-color-live-900: #0F2C1B;
+  --primitive-color-down-700: #B45309;
+  --primitive-color-down-400: #F59E0B;
+  --primitive-font-display: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --primitive-font-body: "Instrument Sans Variable", "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --primitive-font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, monospace;
+  --primitive-radius-sm: 6px;
+  --primitive-radius-lg: 14px;
+  --primitive-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --primitive-duration-fast: 200ms;
+  --primitive-duration-base: 350ms;
+  --primitive-duration-slow: 700ms;
 }
 
-/* === SEMANTIC === */
+/* === SEMANTIC (light) === */
 :root {
-  --color-background: #F9FAFB;
-  --color-foreground: #111827;
-  --color-primary: #1F4FD8;
-  --color-primary-hover: #173FB0;
-  --color-primary-foreground: #FFFFFF;
-  --color-secondary: #16A34A;
-  --color-secondary-foreground: #111827;
-  --color-muted: #F3F4F6;
-  --color-muted-foreground: #6B7280;
-  --color-destructive: #DC2626;
-  --color-destructive-foreground: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-ring: #3B82F6;
-  --color-primary-active: #00038C;
-  --color-primary-light: #5282FF;
-  --color-primary-lighter: #6D93FF;
-  --color-primary-dark: #173FB0;
-  --color-secondary-hover: #15803D;
-  --color-secondary-light: #7CFFB0;
-  --color-secondary-dark: #15803D;
-  --color-accent: #06B6D4;
-  --color-accent-hover: #0090AE;
-  --color-accent-light: #6CFFFF;
-  --color-success: #06B6D4;
-  --color-success-light: #6CFFFF;
-  --color-error: #1F4FD8;
-  --color-error-light: #85B5FF;
-  --color-info: #16A34A;
-  --color-info-light: #7CFFB0;
-  --spacing-component: 1rem;
-  --spacing-section: 3rem;
+  --paper: var(--primitive-color-paper-50);
+  --paper-2: var(--primitive-color-paper-100);
+  --ink: var(--primitive-color-ink-950);
+  --ink-2: var(--primitive-color-ink-600);
+  --ink-3: var(--primitive-color-ink-500);
+  --line: var(--primitive-color-paper-200);
+  --line-2: var(--primitive-color-paper-300);
+  --accent: var(--primitive-color-signal-700);
+  --accent-deep: var(--primitive-color-signal-800);
+  --accent-tint: var(--primitive-color-signal-100);
+  --accent-on-ink: var(--primitive-color-signal-500);
+  --on-accent: var(--primitive-color-paper-50);
+  --live: var(--primitive-color-live-700);
+  --live-tint: var(--primitive-color-live-100);
+  --down: var(--primitive-color-down-700);
+  --print-paper: var(--primitive-color-paper-50);
+  --print-line: var(--primitive-color-paper-200);
+  --radius: var(--primitive-radius-sm);
+  --radius-lg: var(--primitive-radius-lg);
+  --font-display: var(--primitive-font-display);
+  --font-body: var(--primitive-font-body);
+  --font-mono: var(--primitive-font-mono);
+  --ease: var(--primitive-ease);
 }
 
-/* === COMPONENTS === */
-:root {
-  --button-bg: #1F4FD8;
-  --button-fg: #FFFFFF;
-  --button-hover-bg: #173FB0;
-  --button-padding-x: 1rem;
-  --button-padding-y: 0.5rem;
-  --button-radius: 0.375rem;
-  --button-font-size: 0.875rem;
-  --input-bg: #F9FAFB;
-  --input-border: #E5E7EB;
-  --input-focus-ring: #3B82F6;
-  --input-padding-x: 0.75rem;
-  --input-padding-y: 0.5rem;
-  --input-radius: 0.375rem;
-  --card-bg: #FFFFFF;
-  --card-border: #E5E7EB;
-  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --card-padding: 1.5rem;
-  --card-radius: 0.5rem;
-}
-
-/* === DARK MODE === */
-.dark {
-  --color-background: #030712;
-  --color-foreground: #F9FAFB;
-  --color-secondary: #1F2937;
-  --color-muted: #1F2937;
-  --color-muted-foreground: #9CA3AF;
-  --color-border: #1F2937;
+/* === SEMANTIC (dark): the same page printed in reverse === */
+:root[data-theme="dark"] {
+  --paper: var(--primitive-color-ink-900);
+  --paper-2: var(--primitive-color-ink-850);
+  --ink: var(--primitive-color-ink-100);
+  --ink-2: var(--primitive-color-ink-300);
+  --ink-3: var(--primitive-color-ink-400);
+  --line: var(--primitive-color-ink-800);
+  --line-2: var(--primitive-color-ink-700);
+  --accent: var(--primitive-color-signal-400);
+  --accent-deep: var(--primitive-color-signal-300);
+  --accent-tint: var(--primitive-color-signal-900);
+  --accent-on-ink: var(--primitive-color-signal-700);
+  --on-accent: var(--primitive-color-ink-900);
+  --live: var(--primitive-color-live-400);
+  --live-tint: var(--primitive-color-live-900);
+  --down: var(--primitive-color-down-400);
+  --print-line: var(--primitive-color-ink-800);
 }
