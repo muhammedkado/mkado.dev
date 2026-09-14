@@ -12,7 +12,8 @@ const home = homeFor(lang);
 
 <header class="hdr" id="hdr">
   <div class="wrap">
-    <a class="brand" href={`${home}#top`}>
+    {/* aria-label: on phones the name is hidden and only the mark shows, so the link still needs a name */}
+    <a class="brand" href={`${home}#top`} aria-label={profile.name}>
       <Mark />
       <span class="name">{profile.name}</span>
       <span class="pip" title={s.openToWork} aria-hidden="true"></span>
