@@ -43,14 +43,17 @@ const en = {
     password: 'password',
     stackLabel: 'Built with',
   },
-  how: {
-    h2: 'How it runs',
-    lead: 'The portfolio is a static site; the applications are real, each with its own database. Everything runs on one free virtual machine behind Cloudflare, deploys with a single command, resets itself every night and is health-checked every five minutes.',
-    vm: 'free virtual machine runs all of it',
-    apps: 'applications, each with its own database',
-    minutes: 'minutes between health checks',
-    more: 'How this site is run',
-    artAlt: 'Two-ink print: one small server on a shelf, seven labelled cables running out of it.',
+  // The ink block: the day job in plain words, as the path of one RFID read.
+  readpath: {
+    h2: 'From a tag on a towel to an invoice',
+    lead: 'What I work on at USTEK RFID, in plain words.',
+    mine: 'My part',
+    more: 'My experience',
+    steps: [
+      { title: 'A tag on every item', body: 'Each towel, sheet and uniform carries a small, washable RFID tag.', tech: 'UHF RFID tags' },
+      { title: 'Readers count a whole cart at once', body: 'Readers at the laundry read a full cart in one go, so nobody counts linen by hand.', tech: 'UHF RFID terminals and handheld readers' },
+      { title: 'The platform turns reads into answers', body: 'The web platform I build turns those reads into stock levels, invoices and delivery lists, so a hotel knows where every towel is.', tech: 'REST APIs in PHP, Laravel and Zend Framework 1: inventory, billing, logistics' },
+    ],
   },
   notes: {
     h2: 'Notes',
@@ -183,14 +186,16 @@ const trUi: typeof en = {
     password: 'şifre',
     stackLabel: 'Kullanılanlar:',
   },
-  how: {
-    h2: 'Nasıl çalışıyor',
-    lead: 'Portfolyo statik bir site; uygulamalar ise kendi veritabanları olan gerçek yazılımlar. Hepsi Cloudflare arkasındaki tek bir ücretsiz sanal makinede çalışıyor, tek komutla yayınlanıyor, her gece kendini sıfırlıyor ve beş dakikada bir sağlık kontrolünden geçiyor.',
-    vm: 'ücretsiz sanal makine hepsini çalıştırıyor',
-    apps: 'uygulama, her biri kendi veritabanıyla',
-    minutes: 'dakikada bir sağlık kontrolü',
-    more: 'Bu site nasıl çalışıyor (İngilizce)',
-    artAlt: 'İki mürekkepli baskı: rafta küçük bir sunucu, ondan çıkan etiketli yedi kablo.',
+  readpath: {
+    h2: 'Havludaki etiketten faturaya',
+    lead: "USTEK RFID'de üzerinde çalıştığım iş, sade bir dille.",
+    mine: 'Benim kısmım',
+    more: 'Deneyimim',
+    steps: [
+      { title: 'Her parçada bir etiket', body: 'Her havlu, çarşaf ve üniformada küçük, yıkanabilir bir RFID etiketi bulunur.', tech: 'UHF RFID etiketleri' },
+      { title: 'Okuyucu bütün arabayı bir kerede sayar', body: 'Çamaşırhanedeki okuyucular dolu bir arabayı tek seferde okur; kimse çamaşırı elle saymaz.', tech: 'UHF RFID terminalleri ve el okuyucuları' },
+      { title: 'Platform okumaları bilgiye çevirir', body: 'Geliştirdiğim web platformu bu okumaları stok, fatura ve teslimat listelerine dönüştürür; otel her havlusunun nerede olduğunu bilir.', tech: "PHP, Laravel ve Zend Framework 1 ile REST API'ler: envanter, faturalama, lojistik" },
+    ],
   },
   notes: {
     h2: 'Notlar',

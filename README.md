@@ -4,7 +4,7 @@ Personal site of Muhammed Kado — computer engineer and full-stack PHP/Laravel/
 
 Three renderings of the same content, all static:
 
-- `/` — the main site, designed as a two-ink print (paper, ink, one signal blue; Instrument Serif + Instrument Sans): a hero with a risograph-style print of a laundry floor, a ruled catalogue of the seven live applications (one print each, the dashboard screenshot as a blue duotone, one-click "Open signed in", demo accounts as the fallback), an ink block on how it all runs, a timeline, skills tied to the projects that use them, the latest notes, contact. Turkish at `/tr/`.
+- `/` — the main site, designed as a two-ink print (paper, ink, one signal blue; Instrument Serif + Instrument Sans): a hero with a risograph-style print of a laundry floor, a ruled catalogue of the seven live applications (one print each, the dashboard screenshot as a blue duotone, one-click "Open signed in", demo accounts as the fallback), an ink block on the day job in plain words (one RFID read, tag to reader to the platform I build), a timeline, skills tied to the projects that use them, the latest notes, contact. Turkish at `/tr/`.
 - `/v2` — a Swiss / minimalist rendering generated with the [ui-ux-pro-max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) design system (`design-system/mkado-dev-v2/MASTER.md`): navy + blue CTA, Space Grotesk / Archivo, filterable project grid, GSAP reveals. `noindex`, left out of the sitemap.
 - `/v3` — "mkOS": the same content as a small operating system, written so non-programmers can follow it. Boot screen, windows, dock, Ctrl+K search, a terminal with clickable commands, an in-place English / Turkish switch (Turkish copy in `src/data/tr.ts`). `noindex`, left out of the sitemap.
 
@@ -27,7 +27,7 @@ Each app exposes a `/health` probe (`/health.php` for the invoice app). On the s
 ## Screenshots, prints and share images
 
 - `npm run shots` — captures each demo's signed-in dashboard into `src/assets/shots/<slug>.png` with the installed Chrome over the DevTools protocol (`scripts/shots.mjs`); `astro:assets` turns them into AVIF/WebP at build time.
-- `node scripts/art.mjs` — resizes the nine Higgsfield prints (7 MB originals kept outside the repo in `../../tools/mkado-art-src/`; prompts and the generation script in `../../tools/shots/higgsfield/gen-mkado.mjs`) into `src/assets/art/*.webp`: the hero, one spot per application, one for the ink block.
+- `node scripts/art.mjs` — resizes the nine Higgsfield prints (7 MB originals kept outside the repo in `../../tools/mkado-art-src/`; prompts and the generation script in `../../tools/shots/higgsfield/gen-mkado.mjs`) into `src/assets/art/*.webp`: the hero, one spot per application, and a server print that is no longer on the home page.
 - `npm run og` — renders `scripts/og.html` to `public/og.png` (English) and `public/og-tr.png` (Turkish), 1200×630, with the hero print beside the headline.
 
 All outputs are committed; the deploy refuses a dirty tree.

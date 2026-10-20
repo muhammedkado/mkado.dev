@@ -1,11 +1,12 @@
 // The home page's scroll choreography (docs/brand-guidelines.md §6): the page
 // goes through the press as it is read. Headlines set line by line, ruled
-// lists rule their top line and then their rows, a print prints itself, the
-// ink block rolls out to the edges, and the timeline rail reads each entry as
-// it passes. The hero's load moment stays in CSS so it never waits for this file.
+// lists rule their top line and then their rows, the ink block rolls out to
+// the edges and an RFID read travels tag -> reader -> platform across it, and
+// the timeline rail reads each entry as it passes. The hero's load moment
+// stays in CSS so it never waits for this file.
 //
 // Markup API: data-reveal="lines" (a headline), "up" (a paragraph), "rows"
-// (a ruled list; its children rise), "print" (a figure.print). The hidden
+// (a ruled list; its children rise). The hidden
 // starting states are CSS under html.motion (global.css), so nothing flashes.
 // If this file arrives after Base.astro's fallback timer has shown the page,
 // the reveals are skipped; the scroll-linked effects still run.
@@ -62,11 +63,6 @@ if (reveal) {
       onEnter: (els) => gsap.to(els, { autoAlpha: 1, y: 0, duration: 0.8, ease, stagger: 0.07, delay: 0.1 }),
     });
   });
-
-  // Prints print themselves, like the hero's on load (--printed, global.css).
-  document.querySelectorAll<HTMLElement>('[data-reveal="print"]').forEach((fig) => {
-    gsap.fromTo(fig, { '--printed': 0 }, { '--printed': 1, duration: 1.1, ease, scrollTrigger: { trigger: fig, start, once: true } });
-  });
 }
 
 // ---------- scroll-linked: these follow the scroll position, in both directions ----------
@@ -92,11 +88,30 @@ if (heroPicture) {
 }
 
 // The ink block rolls out from a rounded card to the full width as it comes up (--roll, global.css).
-gsap.fromTo('.how', { '--roll': 0 }, {
+gsap.fromTo('.ink', { '--roll': 0 }, {
   '--roll': 1,
   ease: 'none',
-  scrollTrigger: { trigger: '.how', start: 'top bottom', end: 'top 25%', scrub: 0.8 },
+  scrollTrigger: { trigger: '.ink', start: 'top bottom', end: 'top 25%', scrub: 0.8 },
 });
+
+// Inside it, the read travels tag -> reader -> platform: the rail fills
+// (--read, global.css) and each step lights as the smoothed fill reaches it.
+const path = document.querySelector<HTMLElement>('.readpath');
+if (path) {
+  const steps = Array.from(path.querySelectorAll('.rp-step'));
+  // fromTo renders (and calls onUpdate) once while it is being created, before `fill` is assigned.
+  let fill: gsap.core.Tween | undefined;
+  fill = gsap.fromTo(path, { '--read': 0 }, {
+    '--read': 1,
+    ease: 'none',
+    // Ends while the whole row is still on screen, so "my part" lights where it can be seen.
+    scrollTrigger: { trigger: path, start: 'top 80%', end: 'bottom 70%', scrub: 0.6 },
+    onUpdate: () => {
+      const p = fill?.progress() ?? 0;
+      steps.forEach((step, i) => step.classList.toggle('is-read', p > Math.max(0.02, i / (steps.length - 1) - 0.02)));
+    },
+  });
+}
 
 // The timeline rail fills while the list is read; each entry's dot takes the
 // signal colour as the rail's head (around 65% down the screen) reaches it.

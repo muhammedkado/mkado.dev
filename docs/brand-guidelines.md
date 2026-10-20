@@ -75,7 +75,7 @@ themselves stay on paper in both themes, like a photograph pasted onto the page.
 | `--accent-on-ink` | #2447D6 | on the light tile |
 | `--live` / `--down` | #3FC46F / #F59E0B | |
 
-The prints keep `--print-paper: #F4F3ED` in both themes. The ink block (`.how`) takes the other theme's
+The prints keep `--print-paper: #F4F3ED` in both themes. The ink block (`.ink`) takes the other theme's
 tokens wholesale, so buttons and links inside it need no special rules.
 
 ### Accessibility
@@ -186,7 +186,8 @@ case everywhere; no exclamation marks; no emoji.
 
 - **Prints:** nine risograph-style two-ink illustrations (black + cobalt on off-white paper, visible
   grain, a hint of misregistration, wordless): the hero (a laundry floor with a handheld reader and
-  tagged linen), one spot per application, and one for "how it runs" (a small server, seven cables).
+  tagged linen), one spot per application, and a small server with seven cables (`about.webp`, made for
+  the old "how it runs" block; not on the home page since 2026-10-20).
   Sources: `../../tools/mkado-art-src/*.png` (7 MB originals, outside the repo); `scripts/art.mjs`
   resizes them into `src/assets/art/*.webp`; `<Picture>` serves AVIF/WebP. Prints sit on `--print-paper`
   in both themes, inside a hairline with a 14px radius. No stock photography, no 3D renders, no photos
@@ -201,11 +202,11 @@ case everywhere; no exclamation marks; no emoji.
      clip-path wipe, the reader pulses once.
   2. *Reading (GSAP + ScrollTrigger, home page only, `src/scripts/home-motion.ts`):* headlines are set
      line by line; a ruled list rules its heavy top line from the left, then its rows rise as they reach
-     the screen; the "how it runs" print prints itself; the ink block rolls out from an inset, rounded
-     card to the full width; the timeline rail fills and each entry's dot takes the signal colour as the
+     the screen; the ink block rolls out from an inset, rounded card to the full width and an RFID read
+     travels across it, tag to reader to platform, lighting each step and "my part" last; the timeline rail fills and each entry's dot takes the signal colour as the
      rail reaches it; the halftone field drifts up as the hero leaves and shifts slightly against the
      pointer; the primary hero button leans toward the pointer. Each reveal plays once; the scroll-linked
-     ones follow the scroll both ways. Markup hooks: `data-reveal="lines" | "up" | "rows" | "print"`.
+     ones follow the scroll both ways. Markup hooks: `data-reveal="lines" | "up" | "rows"`.
   3. *Scrolling (Lenis, every page, `src/scripts/smooth-scroll.ts`):* smooth wheel scrolling, in-page
      links glide to the section under the header; touch keeps the platform's own scrolling.
 
