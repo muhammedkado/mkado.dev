@@ -196,11 +196,25 @@ case everywhere; no exclamation marks; no emoji.
 - **Backdrop:** paper with a film of print grain (feTurbulence, multiply on light / screen on dark) and
   one halftone dot field in Signal behind the hero that scrolls away with it. Nothing else.
 - **Icons:** 24px stroke icons (2px, round caps), currentColor. Never emoji.
-- **Motion:** one page-load moment (hero copy rises in order, the print prints itself with a clip-path
-  wipe, the reader pulses once); motion that answers an action (a row opens, a link underline fills, a
-  button fills with ink, "copied"); and two scroll-driven touches (the halftone drifts, the timeline rail
-  fills). No per-section fades, no GSAP. Easing `cubic-bezier(0.22,1,0.36,1)`; `prefers-reduced-motion`
-  renders the final state. Continuous animation is reserved for the live-status dot.
+- **Motion: the page goes through the press as it is read.** Three layers:
+  1. *Load (CSS, never waits for a script):* the hero copy rises in order, the print prints itself with a
+     clip-path wipe, the reader pulses once.
+  2. *Reading (GSAP + ScrollTrigger, home page only, `src/scripts/home-motion.ts`):* headlines are set
+     line by line; a ruled list rules its heavy top line from the left, then its rows rise as they reach
+     the screen; the "how it runs" print prints itself; the ink block rolls out from an inset, rounded
+     card to the full width; the timeline rail fills and each entry's dot takes the signal colour as the
+     rail reaches it; the halftone field drifts up as the hero leaves and shifts slightly against the
+     pointer; the primary hero button leans toward the pointer. Each reveal plays once; the scroll-linked
+     ones follow the scroll both ways. Markup hooks: `data-reveal="lines" | "up" | "rows" | "print"`.
+  3. *Scrolling (Lenis, every page, `src/scripts/smooth-scroll.ts`):* smooth wheel scrolling, in-page
+     links glide to the section under the header; touch keeps the platform's own scrolling.
+
+  Motion that answers an action stays CSS (a row opens, a link underline fills, a button fills with ink,
+  "copied"). GSAP is fetched only by pages with `data-reveal` (~47 KB gz); Lenis ships everywhere (~5 KB gz).
+  Easing `cubic-bezier(0.22,1,0.36,1)` in CSS, `power4.out` in GSAP; transforms, opacity and short clips
+  only; no blur, no bounce. `prefers-reduced-motion` renders the final state with native scrolling; with
+  JavaScript off, or if the GSAP chunk has not arrived within 2.5 s, the page shows as it is. Continuous
+  animation is reserved for the live-status dot.
 
 ---
 

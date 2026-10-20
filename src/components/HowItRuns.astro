@@ -13,16 +13,16 @@ const s = t(lang);
 <section class="section how" id="how">
   <div class="wrap how-grid">
     <div>
-      <h2>{s.how.h2}</h2>
-      <p>{s.how.lead}</p>
-      <ul class="how-facts">
+      <h2 data-reveal="lines">{s.how.h2}</h2>
+      <p data-reveal="up">{s.how.lead}</p>
+      <ul class="how-facts" data-reveal="rows">
         <li><b>1</b><span>{s.how.vm}</span></li>
         <li><b>{demos.length}</b><span>{s.how.apps}</span></li>
         <li><b>5</b><span>{s.how.minutes}</span></li>
       </ul>
       <a class="btn" href="/about-this-site/">{s.how.more}</a>
     </div>
-    <figure class="print how-print">
+    <figure class="print how-print" data-reveal="print">
       <Picture src={aboutArt} formats={['avif', 'webp']} fallbackFormat="webp" widths={[400, 800]} sizes="(min-width: 768px) 380px, 100vw" alt={s.how.artAlt} loading="lazy" decoding="async" />
     </figure>
   </div>

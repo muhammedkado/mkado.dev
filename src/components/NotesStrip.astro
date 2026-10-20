@@ -14,12 +14,12 @@ const fmt = (d: Date) => d.toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-GB',
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>{s.notes.h2}</h2>
-        <p>{s.notes.lead}</p>
+        <h2 data-reveal="lines">{s.notes.h2}</h2>
+        <p data-reveal="up">{s.notes.lead}</p>
       </div>
     </div>
 
-    <ul class="notes">
+    <ul class="notes" data-reveal="rows">
       {entries.map((e) => (
         <li>
           <a href={`/notes/${e.id}/`}>

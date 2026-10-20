@@ -4,6 +4,8 @@
 @import "@fontsource/instrument-serif/400.css";
 @import "@fontsource/instrument-serif/400-italic.css";
 @import "@fontsource-variable/instrument-sans";
+/* Lenis smooth scrolling (src/scripts/smooth-scroll.ts). */
+@import "lenis/dist/lenis.css";
 
 /* ---------- tokens (source of truth: docs/brand-guidelines.md) ----------
    Paper, ink and one signal blue: the site reads like a two-ink print. The dark
@@ -65,6 +67,7 @@
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; overflow-x: clip; } /* reduced-motion override lives in the motion block below */
+html.lenis { scroll-behavior: auto; } /* Lenis does the smoothing; native smooth scrolling would fight it */
 
 body {
   margin: 0;
@@ -116,6 +119,26 @@ a:hover { color: var(--accent-deep); text-decoration-color: currentColor; }
   }
 }
 
+/* Scroll reveals on the home page (src/scripts/home-motion.ts). The starting
+   states apply only under html.motion, which Base.astro sets before first paint
+   when motion is allowed and removes again if the script does not arrive. */
+html.motion [data-reveal="lines"],
+html.motion [data-reveal="up"],
+html.motion [data-reveal="rows"] > * { visibility: hidden; }
+html.motion [data-reveal="rows"] { --rule: 0; }
+html.motion [data-reveal="print"] { --printed: 0; }
+html.motion .tl-progress { transform: scaleY(0); }
+
+/* Clips driven by numbers (0 to 1) rather than clip-path strings, which the
+   browser shortens (inset(0% 0% 0% 0%) reads back as inset(0%)) and which then
+   no longer interpolate. A print prints from the top; the ink block (.how)
+   rolls out from an inset, rounded card to the full width. */
+[data-reveal="print"] img { clip-path: inset(0 0 calc((1 - var(--printed, 1)) * 100%) 0); }
+.how { clip-path: inset(calc((1 - var(--roll, 1)) * 5%) calc((1 - var(--roll, 1)) * 3%) round calc((1 - var(--roll, 1)) * 20px)); }
+
+/* A section focused by a keyboard-followed in-page link (smooth-scroll.ts). */
+[tabindex="-1"]:focus { outline: none; }
+
 /* ---------- backdrop: paper grain and one halftone field ---------- */
 
 body { position: relative; }
@@ -141,12 +164,7 @@ body { position: relative; }
 .bg-grain { position: absolute; inset: 0; opacity: var(--grain-opacity); mix-blend-mode: multiply; background-repeat: repeat; }
 :root[data-theme="dark"] .bg-grain { mix-blend-mode: screen; }
 
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .bg-halftone { animation: drift linear both; animation-timeline: scroll(root); }
-  }
-}
-@keyframes drift { to { transform: translateY(-40%); } }
+/* It drifts with the scroll and against the pointer: home-motion.ts. */
 
 @media print { .bg { display: none; } }
 
@@ -368,7 +386,18 @@ html.js .pulse circle:nth-child(2) { animation-delay: 1.45s; }
 
 /* ---------- work catalogue ---------- */
 
-.catalog { border-top: 1px solid var(--ink); }
+/* The heavy rule over each ruled list (catalogue, skills, notes) is a pseudo-element,
+   so the motion script can rule it in from the left (--rule 0 to 1). */
+.catalog, .skills, .notes { position: relative; padding-top: 1px; }
+.catalog::before, .skills::before, .notes::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(var(--rule, 1));
+  transform-origin: left;
+}
 
 .item { border-bottom: 1px solid var(--line); }
 
@@ -498,18 +527,16 @@ html.js .pulse circle:nth-child(2) { animation-delay: 1.45s; }
 .timeline { position: relative; }
 .timeline::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1.5px; background: var(--line); }
 
-.tl-progress { position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1.5px; background: var(--accent); transform-origin: top; transform: scaleY(0); }
-
-@supports (animation-timeline: view()) {
-  .tl-progress { animation: draw linear both; animation-timeline: view(); animation-range: entry 10% cover 65%; }
-}
-@keyframes draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+/* The rail fills as the list is read (home-motion.ts); without that script it is simply drawn. */
+.tl-progress { position: absolute; left: 6px; top: 8px; bottom: 8px; width: 1.5px; background: var(--accent); transform-origin: top; }
 
 .tl-list { list-style: none; margin: 0; padding: 0 0 0 36px; }
 .tl-item { position: relative; padding-bottom: 48px; }
 .tl-item:last-child { padding-bottom: 0; }
-.tl-item::before { content: ""; position: absolute; left: -36px; top: 9px; width: 13px; height: 13px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--line-2); }
+.tl-item::before { content: ""; position: absolute; left: -36px; top: 9px; width: 13px; height: 13px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--line-2); transition: border-color 0.4s var(--ease), box-shadow 0.6s var(--ease); }
 .tl-item.is-current::before { background: var(--accent); border-color: var(--accent); }
+/* Read: the rail's head has reached this entry. */
+.tl-item.is-read::before { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-tint); }
 
 .tl-when { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; font-size: 0.9rem; color: var(--ink-3); }
 .tl-when .years { font-family: var(--font-display); font-size: 1.25rem; color: var(--ink); }
@@ -526,7 +553,6 @@ html.js .pulse circle:nth-child(2) { animation-delay: 1.45s; }
 
 /* ---------- skills ---------- */
 
-.skills { border-top: 1px solid var(--ink); }
 .skill-group { display: grid; grid-template-columns: 1fr; gap: 6px 24px; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .skill-group h3 { font-family: var(--font-body); font-size: 0.95rem; font-weight: 500; color: var(--ink-3); letter-spacing: 0; line-height: 1.6; }
 .skill-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
@@ -537,7 +563,7 @@ html.js .pulse circle:nth-child(2) { animation-delay: 1.45s; }
 
 /* ---------- notes strip ---------- */
 
-.notes { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.notes { list-style: none; margin: 0; padding-inline: 0; }
 .notes li { border-bottom: 1px solid var(--line); }
 .notes a { display: grid; grid-template-columns: 1fr; gap: 4px 24px; padding: 16px 0; color: inherit; text-decoration: none; }
 .notes time { font-size: 0.86rem; color: var(--ink-3); }

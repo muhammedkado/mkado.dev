@@ -22,12 +22,12 @@ function usedIn(skill: string): string[] {
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>{s.skills.h2}</h2>
-        <p>{s.skills.lead}</p>
+        <h2 data-reveal="lines">{s.skills.h2}</h2>
+        <p data-reveal="up">{s.skills.lead}</p>
       </div>
     </div>
 
-    <div class="skills">
+    <div class="skills" data-reveal="rows">
       {skills.map((g) => (
         <div class="skill-group">
           <h3>{skillGroupName(g.group, lang)}</h3>

@@ -11,15 +11,15 @@ const entries = timelineCopy(lang);
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>{s.timeline.h2}</h2>
-        <p>{s.timeline.lead}</p>
+        <h2 data-reveal="lines">{s.timeline.h2}</h2>
+        <p data-reveal="up">{s.timeline.lead}</p>
       </div>
     </div>
 
     <div class="timeline">
       {/* The rail fills as the list scrolls into view (CSS scroll-driven animation; still without support). */}
       <span class="tl-progress" aria-hidden="true"></span>
-      <ol class="tl-list">
+      <ol class="tl-list" data-reveal="rows">
         {entries.map((e) => (
           <li class={`tl-item ${e.to === 'present' ? 'is-current' : ''}`}>
             <p class="tl-when">

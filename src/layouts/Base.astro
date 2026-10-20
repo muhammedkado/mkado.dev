@@ -80,6 +80,15 @@ const jsonLd = jsonLdProp ?? {
       // Mark JS as available (the timeline reveals rely on it) and apply the
       // saved theme before first paint. System preference is the default.
       document.documentElement.classList.add('js');
+      // Scroll reveals start hidden under html.motion (global.css). If the motion
+      // script has not taken over within 2.5 s (slow network, blocked script),
+      // the page is shown as it is. Reduced motion never hides anything.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('motion');
+        setTimeout(function () {
+          if (!document.documentElement.classList.contains('motion-ready')) document.documentElement.classList.remove('motion');
+        }, 2500);
+      }
       try {
         var t = localStorage.getItem('theme');
         if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

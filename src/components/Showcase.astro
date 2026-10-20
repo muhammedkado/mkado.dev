@@ -21,8 +21,8 @@ const allLive = demos.every(isLive);
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2>{s.showcase.h2}</h2>
-        <p>{s.showcase.lead}</p>
+        <h2 data-reveal="lines">{s.showcase.h2}</h2>
+        <p data-reveal="up">{s.showcase.lead}</p>
       </div>
       {/* data-status-* : src/scripts/status.ts swaps in the live 5-minute probe (/status.json) */}
       <span class={`status ${allLive ? '' : 'soon'}`} data-status-pill>
@@ -32,7 +32,7 @@ const allLive = demos.every(isLive);
     </div>
 
     {/* Every application is one row; the first is open so the page shows a screenshot at once. Native <details>: keyboard and no JS. */}
-    <div class="catalog">
+    <div class="catalog" data-reveal="rows">
       {demos.map((d, i) => {
         const copy = demoCopy(d, lang);
         const open = d.demoUrl ?? d.url;
